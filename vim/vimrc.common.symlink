@@ -44,8 +44,12 @@ set shiftwidth=4
 set expandtab
 
 set background=dark
-colorscheme solarized
 set guifont=Monaco:h13
+try
+    colorscheme solarized
+catch
+    colorscheme darkblue
+endtry
 
 filetype plugin on
 
@@ -81,11 +85,15 @@ let g:vimwiki_list = [{       'path': vimwiki_path,
                        \ 'template_default': 'default',
                        \ 'template_ext': '.tpl'}]
 
-if exists(':Neomake')
+try
     autocmd! BufWritePost,BufEnter * Neomake
-endif
+endtry
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
+let g:tagbar_width = 25
+let g:tagbar_compact = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_autoshowtag = 1
 
 " Python section
 augroup python

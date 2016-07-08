@@ -15,6 +15,7 @@ else
 fi
 
 alias bc='bc -q -l'
+alias cp='cp -r'
 alias c=clear
 alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 
@@ -36,4 +37,3 @@ if [ $? -eq 0 ]; then
 fi
 
 source ~/.alias.*
-

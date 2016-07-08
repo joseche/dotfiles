@@ -41,3 +41,4 @@ install_files() {
 symlink_files
 install_files
 
+set +e
