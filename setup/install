@@ -34,9 +34,7 @@ install_files() {
   for src in $(find -H $DOTFILESDIR -maxdepth 4 -name 'install.sh' -not -path '*.git*')
   do
       echo "Installing $(dirname $src)"
-      pushd .
       source "$src"
-      popd
   done
 }
 
