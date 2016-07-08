@@ -20,12 +20,3 @@ Plug 'kien/rainbow_parentheses.vim'
 call plug#end()
 
 source ~/.vimrc.common
-
-set background=dark
-if exists('neovim_dot_app')
-"    set background=light
-    colorscheme solarized
-    set guifont=Monaco:h13
-"else
-"    set background=dark
-endif

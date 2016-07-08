@@ -34,12 +34,4 @@ source ~/.vimrc.common
 
 let g:github_dashboard = { 'username': 'joseche', 'password': $GITHUB_TOKEN }
 
-set background=dark
-if has('gui_macvim')
-"    set background=light
-    colorscheme solarized
-    set guifont=Monaco:h13
-"else
-"    set background=dark
-endif
 

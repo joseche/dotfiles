@@ -44,13 +44,8 @@ set shiftwidth=4
 set expandtab
 
 set background=dark
-if has('gui_macvim')
-"    set background=light
-    colorscheme solarized
-    set guifont=Monaco:h13
-"else
-"    set background=dark
-endif
+colorscheme solarized
+set guifont=Monaco:h13
 
 filetype plugin on
 
