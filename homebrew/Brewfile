@@ -1,0 +1,44 @@
+cask_args appdir: '/Applications'
+
+tap 'homebrew/bundle'
+tap 'homebrew/versions'
+
+brew 'coreutils'
+brew 'binutils'
+brew 'diffutils'
+brew 'ed', args: ['with-default-names']
+brew 'findutils', args: ['with-default-names']
+brew 'gawk'
+brew 'gnu-indent', args: ['with-default-names']
+brew 'gnu-sed', args: ['with-default-names']
+brew 'gnu-tar', args: ['with-default-names']
+brew 'gnu-which', args: ['with-default-names']
+brew 'gnutls'
+brew 'grep', args: ['with-default-names']
+brew 'gzip'
+brew 'screen'
+brew 'watch'
+brew 'wdiff', args: ['with-gettext']
+brew 'wget'
+brew 'bash'
+brew 'emacs'
+brew 'gdb'
+brew 'gpatch'
+brew 'm4'
+brew 'make'
+brew 'file-formula'
+brew 'git'
+brew 'less'
+brew 'openssh'
+brew 'perl518'
+brew 'python'
+brew 'rsync'
+brew 'svn'
+brew 'unzip'
+brew 'zsh'
+brew 'irssi'
+brew 'jmeter'
+brew 'rsync'
+brew 'tmux'
+brew 'ansible'
+brew 'alpine'

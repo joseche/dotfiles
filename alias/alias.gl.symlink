@@ -1,0 +1,6 @@
+# vim:syntax=sh
+
+alias splunk_ssh='ssh -i ~/Dropbox/Keys/GL/nbc-admin.idrsa  ec2-user@54.86.149.65'
+alias jenkins_ssh='ssh -i /Users/jose/.ssh/id_rsa ec2-user@54.187.238.231'
+alias jenkins_master_ssh='ssh -i ~/Dropbox/Keys/GL/park-envs.id_rsa ec2-user@52.90.86.98'
+alias jenkins_slave_ssh='ssh -i ~/Dropbox/Keys/GL/park-envs.id_rsa ec2-user@184.72.70.48'

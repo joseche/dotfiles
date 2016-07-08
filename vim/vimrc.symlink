@@ -1,0 +1,44 @@
+
+source ~/.vimrc.common
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'mhinz/vim-startify'
+Plugin 'scrooloose/nerdtree'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'junegunn/vim-github-dashboard'
+Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'majutsushi/tagbar'
+" Plugin 'valloric/youcompleteme'
+
+" Plugin 'scrooloose/syntastic'
+Plugin 'neomake/neomake'
+
+Plugin 'vimwiki'
+Plugin 'mattn/calendar-vim'
+Plugin 'drmingdrmer/xptemplate'
+Plugin 'hdima/python-syntax'
+Plugin 'powerline/powerline'
+Plugin 'bling/vim-bufferline'
+Plugin 'hhsnopek/vim-firewatch'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'motemen/git-vim'
+
+Plugin 'kien/rainbow_parentheses.vim'
+
+call vundle#end()
+
+let g:github_dashboard = { 'username': 'joseche', 'password': $GITHUB_TOKEN }
+
+set background=dark
+if has('gui_macvim')
+    set background=light
+    colorscheme solarized
+    set guifont=Monaco:h13
+"else
+"    set background=dark
+endif
+

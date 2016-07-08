@@ -1,0 +1,39 @@
+# vim:syntax=sh
+#
+
+which gls 2>/dev/null >/dev/null
+if [ $? -eq 0 ]; then
+    alias l='gls -Gh --color'
+    alias ls='gls -Gh --color'
+    alias ll='gls -Glha --color'
+    alias la='gls -Glha --color'
+else
+    alias l='ls -Gh --color'
+    alias ls='ls -Gh --color'
+    alias ll='ls -Gh -l --color'
+    alias la='ls -Ghla --color'
+fi
+
+alias bc='bc -q -l'
+alias c=clear
+alias w='cd ~/git/work/gorillalogic ; ls -lhG'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+which gsort 2>/dev/null >/dev/null && alias sort='gsort'
+which gecho 2>/dev/null >/dev/null  && alias echo='gecho'
+which gprintf 2>/dev/null >/dev/null  && alias printf='gprintf'
+which nvim 2>/dev/null >/dev/null  && alias vim='nvim'
+which apt-get 2>/dev/null >/dev/null  && alias apt-get='sudo apt-get'
+
+which tmux 2>/dev/null >/dev/null 
+if [ $? -eq 0 ]; then
+    alias ta='tmux attach -d -t'
+    alias tn='tmux new -s $(basename $(pwd))'
+    alias tl='tmux list-sessions'
+fi
+
+source ~/.alias.*
+

@@ -1,0 +1,31 @@
+
+source ~/.vimrc.common
+
+call plug#begin('~/.config/nvim/')
+Plug 'mhinz/vim-startify'
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/vim-easy-align'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'majutsushi/tagbar'
+" Plug 'valloric/youcompleteme'
+Plug 'benekastah/neomake'
+Plug 'vimwiki'
+Plug 'mattn/calendar-vim'
+Plug 'hdima/python-syntax'
+Plug 'bling/vim-bufferline'
+Plug 'airblade/vim-gitgutter'
+Plug 'motemen/git-vim'
+" Plug 'altercation/vim-colors-solarized'
+Plug 'kien/rainbow_parentheses.vim'
+call plug#end()
+
+set background=dark
+if exists('neovim_dot_app')
+"    set background=light
+    colorscheme evening
+    set guifont=Monaco:h13
+"else
+"    set background=dark
+endif
