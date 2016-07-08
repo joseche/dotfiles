@@ -14,7 +14,7 @@ echo "dotfile dir: $DOTFILESDIR"
 link_file() {
   # $1 - source file or dir to link
   # $2 - destination file or dir
-  if [ -r "$2" ]; then
+  if [ -e "$2" ]; then
       rm -rf "$2"
       echo "Existing $2 removed!"
   fi
