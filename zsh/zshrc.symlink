@@ -2,7 +2,7 @@
 
 source ~/.profile
 
-bindkey -v
+bindkey -e
 
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
@@ -14,7 +14,7 @@ export GITHUB_USER="joseche"
 # }}}
 
 # Auto Completion {{{
-autoload -U compinit && compinit
+autoload -U compinit && compinit -u
 zmodload -i zsh/complist
 
 # Enable completion caching, use rehash to clear
@@ -216,7 +216,7 @@ function check_last_exit_code() {
     EXIT_CODE_PROMPT+="%{$fg_bold[red]%}$LAST_EXIT_CODE%{$reset_color%}"
     EXIT_CODE_PROMPT+="%{\033[5;34m%}"
     EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
-    echo "$EXIT_CODE_PROMPT"
+    echo -en "$EXIT_CODE_PROMPT"
   fi
 }
 

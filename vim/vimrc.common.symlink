@@ -45,7 +45,7 @@ set expandtab
 
 set background=dark
 if has('gui_macvim')
-    set background=light
+"    set background=light
     colorscheme solarized
     set guifont=Monaco:h13
 "else

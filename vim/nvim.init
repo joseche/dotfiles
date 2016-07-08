@@ -1,6 +1,4 @@
 
-source ~/.vimrc.common
-
 call plug#begin('~/.config/nvim/')
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -17,14 +15,16 @@ Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
 Plug 'motemen/git-vim'
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 call plug#end()
+
+source ~/.vimrc.common
 
 set background=dark
 if exists('neovim_dot_app')
 "    set background=light
-    colorscheme evening
+    colorscheme solarized
     set guifont=Monaco:h13
 "else
 "    set background=dark

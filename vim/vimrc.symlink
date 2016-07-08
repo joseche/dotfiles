@@ -1,5 +1,4 @@
 
-source ~/.vimrc.common
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -31,11 +30,13 @@ Plugin 'kien/rainbow_parentheses.vim'
 
 call vundle#end()
 
+source ~/.vimrc.common
+
 let g:github_dashboard = { 'username': 'joseche', 'password': $GITHUB_TOKEN }
 
 set background=dark
 if has('gui_macvim')
-    set background=light
+"    set background=light
     colorscheme solarized
     set guifont=Monaco:h13
 "else
