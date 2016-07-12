@@ -96,7 +96,9 @@ Plug 'powerline/powerline'
 
 " Plugin 'drmingdrmer/xptemplate'
 
-Plug 'shougo/vimproc.vim', {'do' : 'make' }
+" Plug 'shougo/vimproc.vim', {'do' : 'make' }
+
+Plug 'jceb/vim-orgmode'
 
 call plug#end()
 
@@ -123,6 +125,7 @@ augroup END " }
 
 
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :qa<CR>
