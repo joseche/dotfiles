@@ -96,6 +96,8 @@ Plug 'powerline/powerline'
 
 " Plugin 'drmingdrmer/xptemplate'
 
+Plug 'shougo/vimproc.vim'
+
 call plug#end()
 
 let g:github_dashboard = { 'username': 'joseche', 'password': $GITHUB_TOKEN }

@@ -16,7 +16,7 @@ echo Configuring nvim
 [ -d ~/.config/nvim ] && rm -rf ~/.config/nvim
 curl -s -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ln -s "$(dirname $0)/vimrc.symlink" ~/.config/nvim/init.vim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
 nvim +PlugInstall +qall
 
 set +e
