@@ -2,23 +2,31 @@
 
 syntax on
 
+" display number on left side and status bar
 set ruler
 set number
 
+" monitor file changes
 set autoread
 
+" display statusbar
 set laststatus=2
 
 set autoindent
 set smartindent
+
+" lines from cursor to bottom
 set scrolloff=10
 
 set wildmode=list:longest,full
 
+" decent backspace
 set backspace=indent,eol,start
 
+" when searching
 set showmatch
 set incsearch
+set hlsearch
 
 set noerrorbells        " annoying sounds
 set novisualbell
@@ -26,6 +34,7 @@ set t_vb=
 
 set clipboard=unnamed
 
+" on splits
 set splitbelow
 set splitright
 
@@ -42,6 +51,10 @@ highlight ColorColumn guibg=#2d2d2d ctermbg=246
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+set wrap
+set linebreak
+set showbreak=↪
 
 set background=dark
 set guifont=Monaco:h13
@@ -100,6 +113,13 @@ filetype plugin on
 " set backupskip=/tmp/*,/private/tmp/*
 autocmd filetype crontab setlocal nobackup nowritebackup
 
+" Reload when vimrc is changed
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
+
 let mapleader = "\<Space>"
 
 nnoremap <Leader>w :w<CR>
@@ -109,12 +129,12 @@ nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>b :NERDTree<CR>
 
-if exists(':RainbowParenthesesToggle')
-  autocmd VimEnter * RainbowParenthesesToggle
+"if exists(':RainbowParenthesesActivate')
+  autocmd VimEnter * RainbowParenthesesActivate
   autocmd Syntax * RainbowParenthesesLoadRound
   autocmd Syntax * RainbowParenthesesLoadSquare
   autocmd Syntax * RainbowParenthesesLoadBraces
-endif
+"endif
 
 let g:Powerline_symbols = 'fancy'
 
@@ -133,6 +153,8 @@ try
 endtry
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
+" autocmd VimEnter * RainbowParenthesesActivate
+
 let g:tagbar_width = 25
 let g:tagbar_compact = 1
 let g:tagbar_singleclick = 1
