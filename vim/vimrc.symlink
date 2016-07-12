@@ -96,7 +96,7 @@ Plug 'powerline/powerline'
 
 " Plugin 'drmingdrmer/xptemplate'
 
-Plug 'shougo/vimproc.vim'
+Plug 'shougo/vimproc.vim', {'do' : 'make' }
 
 call plug#end()
 
