@@ -67,8 +67,4 @@ export NVM_DIR="$HOME/.nvm"
 #fi
 
 # ssh keys
-ssh-add -l >/dev/null 2>/dev/null
-if [ $? != 0 ]; then
-    ssh-add ~/.ssh/joseche-keypair.pem 2>/dev/null >/dev/null
-    ssh-add ~/.ssh/id_rsa 2>/dev/null >/dev/null
-fi
+set_sshagent
