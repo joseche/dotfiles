@@ -67,19 +67,21 @@ run_files(){
     done
 }
 
-if [ -z "$1" ] || [ "$1" == "-i" ]; then
-    git pull
-    symlink_files
-    run_files "configure.sh"
-elif [ "$1" == "-u" ]; then
-    git pull
-    run_files "update.sh"
-elif [ "$1" == "-c" ]; then
-    remove_files
-elif [ "$1" == "-h" ]; then
-    echo -e "\nRun '$0 -i' for installing the dotfiles"
-    echo -e "Run '$0 -u' for updates to gems, packages, etc..."
-    echo -e "Run '$0 -c' for removing the dotfiles"
-fi
+for arg in "$@"; do
+    if [ -z "$arg" ] || [ "$arg" == "-i" ]; then
+        git pull
+        symlink_files
+        run_files "configure.sh"
+    elif [ "$arg" == "-u" ]; then
+        git pull
+        run_files "update.sh"
+    elif [ "$arg" == "-c" ]; then
+        remove_files
+    elif [ "$arg" == "-h" ]; then
+        echo -e "\nRun '$0 -i' for installing the dotfiles"
+        echo -e "Run '$0 -u' for updates to gems, packages, etc..."
+        echo -e "Run '$0 -c' for removing the dotfiles"
+    fi
+done
 
 set +e
