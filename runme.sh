@@ -6,7 +6,6 @@ set -e
 
 # Change dir to dotfiles dir
 cd "$(dirname "$0")"
-git pull
 
 DOTFILESDIR=$(pwd -P)
 echo "dotfiles folder: $DOTFILESDIR"
@@ -27,8 +26,8 @@ remove_files() {
       # remove the extension '.symlink'
       dst="$HOME/.$(basename "${src%.*}")"
       # if file exists, check if different
-      if [ -e $dst ]; then
-          rm -rf $dst && echo "$dst removed"
+      if [ -e "$dst" ]; then
+          rm -rf "$dst" && echo "$dst removed"
       fi
   done
 }
@@ -42,7 +41,7 @@ symlink_files() {
       dst="$HOME/.$(basename "${src%.*}")"
 
       # if file exists, check if different
-      if [ -e $dst ]; then
+      if [ -e "$dst" ]; then
           diff "$src" "$dst" > /dev/null 2>/dev/null
       DF=$?
       fi
@@ -68,15 +67,18 @@ run_files(){
     done
 }
 
-if [ "$1" == "-u" ]; then
+if [ -z "$1" ] || [ "$1" == "-i" ]; then
+    git pull
+    symlink_files
+    run_files "configure.sh"
+elif [ "$1" == "-u" ]; then
+    git pull
     run_files "update.sh"
 elif [ "$1" == "-c" ]; then
     remove_files
-else
-    symlink_files
-    run_files "configure.sh"
-
-    echo -e "\nRun '$0 -u' for updates to gems, packages, etc..."
+elif [ "$1" == "-h" ]; then
+    echo -e "\nRun '$0 -i' for installing the dotfiles"
+    echo -e "Run '$0 -u' for updates to gems, packages, etc..."
     echo -e "Run '$0 -c' for removing the dotfiles"
 fi
 
