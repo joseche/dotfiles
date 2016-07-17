@@ -6,6 +6,7 @@ set -e
 
 # Change dir to dotfiles dir
 cd "$(dirname "$0")"
+git pull
 
 DOTFILESDIR=$(pwd -P)
 echo "dotfiles folder: $DOTFILESDIR"
@@ -23,9 +24,19 @@ link_file() {
 symlink_files() {
   for src in $(find -H $DOTFILESDIR -maxdepth 4 -name '*.symlink' -not -path '*.git*')
   do
+      DF=1
+      
       # remove the extension '.symlink'
       dst="$HOME/.$(basename "${src%.*}")"
-      if ! diff -q "$src" "$dst" > /dev/null  2>&1; then
+
+      # if file exists, check if different
+      if [ -e $dst ]; then
+          diff "$src" "$dst" > /dev/null 2>/dev/null
+	  DF=$?
+      fi
+
+      # if different, remove and link
+      if [ ! $DF -eq 0 ]; then
           link_file "$src" "$dst"
       fi
   done
