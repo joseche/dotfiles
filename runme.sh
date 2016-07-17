@@ -17,7 +17,7 @@ link_file() {
       rm -rf "$2"
       echo -e "\tExisting $2 removed!"
   fi
-  ln -sf "$1" "$2" && echo -e "\tLinked: $2 -> $2"
+  ln -sf "$1" "$2" && echo -e "\tLinked: $2 -> $1"
 }
 
 symlink_files() {
