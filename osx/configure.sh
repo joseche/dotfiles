@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -x
 if test "$(uname -s)" = "Darwin"
 then
     echo -e "\tUpdating OSX defaults require sudo, checking sudo rights"

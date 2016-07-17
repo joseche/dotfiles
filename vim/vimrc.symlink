@@ -1,0 +1,208 @@
+" vim: syntax=vim
+
+syntax on
+
+" display number on left side and status bar
+set ruler
+set number
+
+" monitor file changes
+set autoread
+
+" display statusbar
+set laststatus=2
+
+set autoindent
+set smartindent
+
+" lines from cursor to bottom
+set scrolloff=10
+
+set wildmode=list:longest,full
+
+" decent backspace
+set backspace=indent,eol,start
+
+" when searching
+set showmatch
+set incsearch
+set hlsearch
+
+set noerrorbells        " annoying sounds
+set novisualbell
+set t_vb=
+
+set clipboard=unnamed
+
+" on splits
+set splitbelow
+set splitright
+
+set ffs=unix,mac,dos
+
+set foldmethod=syntax
+set foldlevel=3
+
+set textwidth=120        " more realistic size
+set colorcolumn=+1
+highlight ColorColumn guibg=#2d2d2d ctermbg=246
+" highlight Normal ctermfg=grey ctermbg=#0e143d
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+set wrap
+set linebreak
+set showbreak=↪
+
+set background=dark
+set guifont=Monaco:h13
+
+" call plug#begin('~/.config/nvim/')
+call plug#begin('~/.vim/plugged')
+
+Plug 'mhinz/vim-startify'
+Plug 'scrooloose/nerdtree'
+
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
+
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+" Plug 'valloric/youcompleteme'
+"
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'majutsushi/tagbar'
+
+Plug 'benekastah/neomake'
+
+Plug 'vimwiki'
+
+Plug 'mattn/calendar-vim'
+
+Plug 'hdima/python-syntax'
+
+Plug 'bling/vim-bufferline'
+Plug 'airblade/vim-gitgutter'
+Plug 'motemen/git-vim'
+
+Plug 'altercation/vim-colors-solarized'
+
+Plug 'kien/rainbow_parentheses.vim'
+
+Plug 'powerline/powerline'
+
+" Plugin 'drmingdrmer/xptemplate'
+
+" Plug 'shougo/vimproc.vim', {'do' : 'make' }
+
+Plug 'jceb/vim-orgmode'
+
+call plug#end()
+
+let g:github_dashboard = { 'username': 'joseche', 'password': $GITHUB_TOKEN }
+
+try
+    " solarized requires solarized iterm's colors set in preferences
+    colorscheme solarized
+catch
+    colorscheme darkblue
+endtry
+
+filetype plugin on
+
+" fix crontab -e problem
+" set backupskip=/tmp/*,/private/tmp/*
+autocmd filetype crontab setlocal nobackup nowritebackup
+
+" Reload when vimrc is changed
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
+
+let mapleader = "\<Space>"
+let maplocalleader = "\\"
+
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :qa<CR>
+nnoremap <Leader>n :tabnext<CR>
+nnoremap <Leader>c :tabnew<CR>
+nnoremap <Leader>e :tabedit $MYVIMRC<CR>
+nnoremap <Leader>b :NERDTree<CR>
+
+"if exists(':RainbowParenthesesActivate')
+  autocmd VimEnter * RainbowParenthesesActivate
+  autocmd Syntax * RainbowParenthesesLoadRound
+  autocmd Syntax * RainbowParenthesesLoadSquare
+  autocmd Syntax * RainbowParenthesesLoadBraces
+"endif
+
+let g:Powerline_symbols = 'fancy'
+
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_hl_cb_checked = 1
+let vimwiki_path=$HOME.'/git/work/vimwiki'
+let vimwiki_html_path=$HOME.'/git/work/vimwiki_html'
+let g:vimwiki_list = [{       'path': vimwiki_path,
+                       \ 'path_html': vimwiki_html_path,
+                       \ 'template_path': vimwiki_html_path.'/assets',
+                       \ 'template_default': 'default',
+                       \ 'template_ext': '.tpl'}]
+
+try
+    autocmd! BufWritePost,BufEnter * Neomake
+endtry
+
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+" autocmd VimEnter * RainbowParenthesesActivate
+
+let g:tagbar_width = 25
+let g:tagbar_compact = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_autoshowtag = 1
+
+" Python section
+augroup python
+au!
+au FileType python setl expandtab     " Use spaces instead of tabs.
+au FileType python setl tabstop=4     " A tab counts for 4 spaces.
+au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
+au FileType python setl shiftwidth=4  " Shift by 4 spaces.
+au FileType python nnoremap <Leader>r :w<CR>:!python -m pdb %<CR>
+augroup end
+
+" Ruby section
+augroup ruby
+au!
+au FileType ruby nnoremap <Leader>r :w<CR>:!ruby -r debug %<CR>
+augroup end
+
+" Javascript section
+augroup javascript
+au!
+augroup end
+
+
+" Git commits
+augroup gitcommit
+au!
+au FileType gitcommit setl spell     " Enable spellchecking.
+au FileType gitcommit setl expandtab " Use spaces instead of tabs.
+augroup end
+
+" Markdown
+augroup markdown
+au!
+au FileType markdown setl spell         " Enable spellchecking.
+au FileType markdown setl expandtab     " Use spaces instead of tabs.
+au FileType markdown setl tabstop=2     " Lists are indented with 2 spaces.
+au FileType markdown setl softtabstop=2 " Causes backspace to delete 2 spaces.
+au FileType markdown setl shiftwidth=2  " Shift by 2 spaces.
+augroup end
+
+" autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
+
