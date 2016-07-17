@@ -67,7 +67,12 @@ run_files(){
     done
 }
 
-for arg in "$@"; do
+args="$@"
+if [ -z "$*" ]; then
+    args="-i"
+fi
+
+for arg in $args; do
     if [ -z "$arg" ] || [ "$arg" == "-i" ]; then
         git pull
         symlink_files
