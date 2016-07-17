@@ -21,18 +21,30 @@ link_file() {
   ln -sf "$1" "$2" && echo -e "\tLinked: $2 -> $1"
 }
 
+remove_files() {
+  for src in $(find -H $DOTFILESDIR -maxdepth 4 -name '*.symlink' -not -path '*.git*')
+  do
+      # remove the extension '.symlink'
+      dst="$HOME/.$(basename "${src%.*}")"
+      # if file exists, check if different
+      if [ -e $dst ]; then
+          rm -rf $dst && echo "$dst removed"
+      fi
+  done
+}
+
 symlink_files() {
   for src in $(find -H $DOTFILESDIR -maxdepth 4 -name '*.symlink' -not -path '*.git*')
   do
       DF=1
-      
+
       # remove the extension '.symlink'
       dst="$HOME/.$(basename "${src%.*}")"
 
       # if file exists, check if different
       if [ -e $dst ]; then
           diff "$src" "$dst" > /dev/null 2>/dev/null
-	  DF=$?
+      DF=$?
       fi
 
       # if different, remove and link
@@ -56,13 +68,16 @@ run_files(){
     done
 }
 
-symlink_files
-run_files "configure.sh"
-
 if [ "$1" == "-u" ]; then
     run_files "update.sh"
+elif [ "$1" == "-c" ]; then
+    remove_files
 else
+    symlink_files
+    run_files "configure.sh"
+
     echo -e "\nRun '$0 -u' for updates to gems, packages, etc..."
+    echo -e "Run '$0 -c' for removing the dotfiles"
 fi
 
 set +e
