@@ -48,7 +48,7 @@ run_files(){
 symlink_files
 run_files "configure.sh"
 
-if [ "$1" == "-u" ]; then 
+if [ "$1" == "-u" ]; then
     run_files "update.sh"
 else
     echo -e "\nRun '$0 -u' for updates to gems, packages, etc..."
