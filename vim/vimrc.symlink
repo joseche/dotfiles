@@ -1,4 +1,7 @@
-" vim: syntax=vim
+" vim: syntax=vim foldmethod=marker
+
+""""""""""""""""""" Global variables
+"{{{
 
 syntax on
 
@@ -59,52 +62,47 @@ set showbreak=↪
 set background=dark
 set guifont=Monaco:h13
 
-" call plug#begin('~/.config/nvim/')
+filetype plugin on
+
+let mapleader = "\<Space>"
+let maplocalleader = "\\"
+" }}}
+
+""""""""""""""""""" Plugins to install
+" {{{
 call plug#begin('~/.vim/plugged')
 
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
-
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+" Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
+" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 " Plug 'valloric/youcompleteme'
-"
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'majutsushi/tagbar'
-
 Plug 'benekastah/neomake'
-
 Plug 'vimwiki'
-
 Plug 'mattn/calendar-vim'
-
 Plug 'hdima/python-syntax'
-
 Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
 Plug 'motemen/git-vim'
-
 Plug 'altercation/vim-colors-solarized'
-
 Plug 'kien/rainbow_parentheses.vim'
-
 Plug 'powerline/powerline'
-
 " Plugin 'drmingdrmer/xptemplate'
-
 " Plug 'shougo/vimproc.vim', {'do' : 'make' }
-
 Plug 'jceb/vim-orgmode'
-
 Plug 'ctrlpvim/ctrlp.vim'
-
 call plug#end()
+" }}}
 
-let g:github_dashboard = { 'username': 'joseche', 'password': $GITHUB_TOKEN }
+""""""""""""""""""" Plugin configurations
+" {{{
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 try
     " solarized requires solarized iterm's colors set in preferences
@@ -112,29 +110,6 @@ try
 catch
     colorscheme darkblue
 endtry
-
-filetype plugin on
-
-" fix crontab -e problem
-" set backupskip=/tmp/*,/private/tmp/*
-autocmd filetype crontab setlocal nobackup nowritebackup
-
-" Reload when vimrc is changed
-augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
-
-
-let mapleader = "\<Space>"
-let maplocalleader = "\\"
-
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :qa<CR>
-nnoremap <Leader>n :tabnext<CR>
-nnoremap <Leader>c :tabnew<CR>
-nnoremap <Leader>e :tabedit $MYVIMRC<CR>
-nnoremap <Leader>b :NERDTree<CR>
 
 "if exists(':RainbowParenthesesActivate')
   autocmd VimEnter * RainbowParenthesesActivate
@@ -155,17 +130,33 @@ let g:vimwiki_list = [{       'path': vimwiki_path,
                        \ 'template_default': 'default',
                        \ 'template_ext': '.tpl'}]
 
+
+let g:tagbar_width = 25
+let g:tagbar_compact = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_autoshowtag = 1
+
+" }}}
+
+""""""""""""""""""" Autocommands & Autogroups
+" {{{
+
+" fix crontab -e problem
+" set backupskip=/tmp/*,/private/tmp/*
+autocmd filetype crontab setlocal nobackup nowritebackup
+
+" Reload when vimrc is changed
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
 try
     autocmd! BufWritePost,BufEnter * Neomake
 endtry
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 " autocmd VimEnter * RainbowParenthesesActivate
-
-let g:tagbar_width = 25
-let g:tagbar_compact = 1
-let g:tagbar_singleclick = 1
-let g:tagbar_autoshowtag = 1
 
 " Python section
 augroup python
@@ -174,7 +165,8 @@ au FileType python setl expandtab     " Use spaces instead of tabs.
 au FileType python setl tabstop=4     " A tab counts for 4 spaces.
 au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
 au FileType python setl shiftwidth=4  " Shift by 4 spaces.
-au FileType python nnoremap <Leader>r :w<CR>:!python -m pdb %<CR>
+au FileType python setl foldmethod=indent " fold method is indent for python
+au FileType python nnoremap <Leader>r :!python -m pdb %<CR>
 augroup end
 
 " Ruby section
@@ -207,4 +199,15 @@ au FileType markdown setl shiftwidth=2  " Shift by 2 spaces.
 augroup end
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
+" }}}
 
+""""""""""""""""""" Mappings
+" {{{
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :qa<CR>
+nnoremap <Leader>n :tabnext<CR>
+nnoremap <Leader>c :tabnew<CR>
+nnoremap <Leader>e :tabedit $MYVIMRC<CR>
+nnoremap <Leader>b :NERDTree<CR>
+
+" }}}
