@@ -1,4 +1,4 @@
-" vim: syntax=vim foldmethod=marker
+" vim: syntax=vim foldmethod=marker foldlevel=0
 
 """"""""""""""""""" Global variables
 "{{{
