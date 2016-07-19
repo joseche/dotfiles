@@ -17,6 +17,7 @@ fi
 alias bc='bc -q -l'
 alias cp='cp -r'
 alias c=clear
+alias e='printf "\ec"'
 alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 
 alias ..='cd ..'
