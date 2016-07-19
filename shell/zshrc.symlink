@@ -1,4 +1,4 @@
-# vim:syntax=sh
+# vim:syntax=sh foldmethod=marker
 
 source ~/.profile
 
@@ -127,8 +127,8 @@ setopt multios # perform implicit tees or cats when multiple redirections are at
 # Prompt {{{
 
 function prompt_char {
-  git branch >/dev/null 2>/dev/null && echo '»' && return
-  hg root >/dev/null 2>/dev/null && echo '☿' && return
+  git branch >/dev/null 2>/dev/null && echo '☿' && return
+  hg root >/dev/null 2>/dev/null && echo '»' && return
   echo '❆'
 }
 
@@ -262,4 +262,12 @@ function precmd {
 #function postexec {
 #  set_running_app
 #}
+# }}}
+
+# Other initializations {{{
+
+# pyenv-virtualenv
+eval "$(pyenv init -)"
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
 # }}}

@@ -15,6 +15,7 @@ set autoread
 " display statusbar
 set laststatus=2
 
+" indents
 set autoindent
 set smartindent
 
@@ -31,16 +32,23 @@ set showmatch
 set incsearch
 set hlsearch
 
-set noerrorbells        " annoying sounds
+" annoying sounds
+set noerrorbells
 set novisualbell
 set t_vb=
 
+" required for osx clipboard
 set clipboard=unnamed
+
+" history and undo levels
+set history=1000
+set undolevels=1000
 
 " on splits
 set splitbelow
 set splitright
 
+" default file format
 set ffs=unix,mac,dos
 
 set foldmethod=syntax
@@ -51,6 +59,7 @@ set colorcolumn=+1
 highlight ColorColumn guibg=#2d2d2d ctermbg=246
 " highlight Normal ctermfg=grey ctermbg=#0e143d
 
+" Tabs
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -71,29 +80,27 @@ let maplocalleader = "\\"
 """"""""""""""""""" Plugins to install
 " {{{
 call plug#begin('~/.vim/plugged')
+Plug 'davidhalter/jedi-vim'
+
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
 
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
-
 Plug 'junegunn/vim-easy-align'
-" Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-" Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 Plug 'benekastah/neomake'
 Plug 'vimwiki'
 Plug 'mattn/calendar-vim'
-Plug 'hdima/python-syntax'
+" Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
 Plug 'motemen/git-vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'powerline/powerline'
-" Plugin 'drmingdrmer/xptemplate'
-" Plug 'shougo/vimproc.vim', {'do' : 'make' }
 Plug 'jceb/vim-orgmode'
 Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
@@ -102,7 +109,24 @@ call plug#end()
 """"""""""""""""""" Plugin configurations
 " {{{
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts            = 1
+
+let g:jedi#goto_command             = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command    = "K"
+let g:jedi#usages_command           = "<leader>u"
+let g:jedi#completions_command      = "<C-Space>"
+let g:jedi#rename_command           = "<leader>r"
+
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<c-b>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+
+let g:snips_author       = "Jose Hidalgo"
+let g:snips_author_email = "c0d5x@protonmail.com"
+let g:snips_email        = "c0d5x@protonmail.com"
+let g:snips_github       = "https://github.com/c0d5x"
 
 try
     " solarized requires solarized iterm's colors set in preferences
@@ -206,8 +230,14 @@ augroup end
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :qa<CR>
 nnoremap <Leader>n :tabnext<CR>
+nnoremap <Leader>m :tabprev<CR>
 nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>b :NERDTree<CR>
+
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " }}}
