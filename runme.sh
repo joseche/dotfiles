@@ -77,6 +77,10 @@ for arg in $args; do
         git pull
         symlink_files
         run_files "configure.sh"
+    elif [ "$arg" == "-a" ]; then
+        git pull
+        remove_files
+        symlink_files
     elif [ "$arg" == "-u" ]; then
         git pull
         run_files "update.sh"
@@ -84,6 +88,7 @@ for arg in $args; do
         remove_files
     elif [ "$arg" == "-h" ]; then
         echo -e "\nRun '$0 -i' for installing the dotfiles"
+        echo -e "Run '$0 -a' for aliases"
         echo -e "Run '$0 -u' for updates to gems, packages, etc..."
         echo -e "Run '$0 -c' for removing the dotfiles"
     fi

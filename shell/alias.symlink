@@ -37,4 +37,6 @@ if [ $? -eq 0 ]; then
     alias tl='tmux list-sessions'
 fi
 
-source ~/.alias.*
+for af in ~/.alias.*; do
+    source $af
+done
