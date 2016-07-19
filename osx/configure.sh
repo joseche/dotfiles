@@ -91,7 +91,10 @@ then
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
     # Set the icon size of Dock items to 36 pixels
-    defaults write com.apple.dock tilesize -int 36
+    defaults write com.apple.dock tilesize -int 22
+
+    # Speed of mission control animations
+    defaults write com.apple.dock expose-animation-duration -float 0.12
 
     # Change minimize/maximize window effect
     defaults write com.apple.dock mineffect -string "scale"
@@ -102,5 +105,8 @@ then
     # Time machine
     # Prevent Time Machine from prompting to use new hard drives as backup volume
     defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+    killall Dock
+    killall Finder
 fi
 
