@@ -3,15 +3,15 @@
 
 which gls 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then
-    alias l='gls -Gh --color'
-    alias ls='gls -Gh --color'
-    alias ll='gls -Glha --color'
-    alias la='gls -Glha --color'
+    alias l='gls -h --color'
+    alias ls='gls -h --color'
+    alias ll='gls -lha --color'
+    alias la='gls -lha --color'
 else
-    alias l='ls -Gh --color'
-    alias ls='ls -Gh --color'
-    alias ll='ls -Gh -l --color'
-    alias la='ls -Ghla --color'
+    alias l='ls -h --color'
+    alias ls='ls -h --color'
+    alias ll='ls -h -l --color'
+    alias la='ls -hla --color'
 fi
 
 alias bc='bc -q -l'
