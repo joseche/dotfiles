@@ -175,9 +175,9 @@ augroup reload_vimrc " {
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
-try
+if exists(':Neomake')
     autocmd! BufWritePost,BufEnter * Neomake
-endtry
+endif
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 " autocmd VimEnter * RainbowParenthesesActivate
