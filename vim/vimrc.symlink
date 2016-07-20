@@ -179,7 +179,9 @@ if exists(':Neomake')
     autocmd! BufWritePost,BufEnter * Neomake
 endif
 
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+if exists("g:loaded_tagbar")
+    autocmd VimEnter * nested :call tagbar#autoopen(1)
+endif
 " autocmd VimEnter * RainbowParenthesesActivate
 
 " Python section
