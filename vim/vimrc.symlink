@@ -1,7 +1,6 @@
 " vim: syntax=vim foldmethod=marker foldlevel=0
 
-""""""""""""""""""" Global variables
-"{{{
+" Global variables {{{
 
 syntax on
 
@@ -71,14 +70,35 @@ set showbreak=↪
 set background=dark
 set guifont=Monaco:h13
 
+" should be on but making sure
+set ttyfast
+set title
+
+" backups
+set backup                        " enable backups
+set noswapfile
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+
 filetype plugin on
 
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
 " }}}
 
-""""""""""""""""""" Plugins to install
-" {{{
+" Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 Plug 'davidhalter/jedi-vim'
 
@@ -106,8 +126,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 " }}}
 
-""""""""""""""""""" Plugin configurations
-" {{{
+" Plugin configurations {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
 
@@ -162,8 +181,7 @@ let g:tagbar_autoshowtag = 1
 
 " }}}
 
-""""""""""""""""""" Autocommands & Autogroups
-" {{{
+" Autocommands & Autogroups {{{
 
 " fix crontab -e problem
 " set backupskip=/tmp/*,/private/tmp/*
@@ -175,14 +193,16 @@ augroup reload_vimrc " {
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
-if exists(':Neomake')
+" if exists(':Neomake')
     autocmd! BufWritePost,BufEnter * Neomake
-endif
+" endif
 
-if exists("g:loaded_tagbar")
+" if exists("g:loaded_tagbar")
     autocmd VimEnter * nested :call tagbar#autoopen(1)
-endif
-" autocmd VimEnter * RainbowParenthesesActivate
+" endif
+
+autocmd VimResized * :wincmd =
+
 
 " Python section
 augroup python
@@ -227,8 +247,7 @@ augroup end
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 " }}}
 
-""""""""""""""""""" Mappings
-" {{{
+"  Mappings {{{
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :qa<CR>
 nnoremap <Leader>n :tabnext<CR>
