@@ -194,7 +194,7 @@ augroup reload_vimrc " {
 augroup END " }
 
 " if exists(':Neomake')
-    autocmd! BufWritePost,BufEnter * Neomake
+    autocmd! BufWritePost * Neomake
 " endif
 
 " if exists("g:loaded_tagbar")
