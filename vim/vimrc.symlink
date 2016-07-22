@@ -256,7 +256,7 @@ nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>b :NERDTree<CR>
 
-nnoremap <Leader>i G?import<CR>niimport 
+nnoremap <Leader>i G?import<CR>:nohlsearch<CR>oimport 
 
 nnoremap <Localleader>r :!python -m pdb %<CR>
 
