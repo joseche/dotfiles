@@ -111,7 +111,9 @@ Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-Plug 'benekastah/neomake'
+" Plug 'benekastah/neomake'
+Plug 'scrooloose/syntastic'
+
 Plug 'vimwiki'
 Plug 'mattn/calendar-vim'
 " Plug 'hdima/python-syntax'
@@ -146,6 +148,11 @@ let g:snips_author       = "Jose Hidalgo"
 let g:snips_author_email = "c0d5x@protonmail.com"
 let g:snips_email        = "c0d5x@protonmail.com"
 let g:snips_github       = "https://github.com/c0d5x"
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 try
     " solarized requires solarized iterm's colors set in preferences
@@ -194,7 +201,7 @@ augroup reload_vimrc " {
 augroup END " }
 
 " if exists(':Neomake')
-    autocmd! BufWritePost * Neomake
+"    autocmd! BufWritePost * Neomake
 " endif
 
 " if exists("g:loaded_tagbar")
