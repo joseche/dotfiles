@@ -74,6 +74,17 @@ set guifont=Monaco:h13
 set ttyfast
 set title
 
+" encoding
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
 " backups
 set backup                        " enable backups
 set noswapfile
@@ -261,8 +272,8 @@ augroup end
 "  Mappings {{{
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :qa<CR>
-nnoremap <Leader>n :tabnext<CR>
-nnoremap <Leader>m :tabprev<CR>
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>m :bp<CR>
 nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>b :NERDTree<CR>
