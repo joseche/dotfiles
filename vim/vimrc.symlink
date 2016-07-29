@@ -12,7 +12,7 @@ set number
 set autoread
 
 " display statusbar
-set laststatus=2
+set laststatus=1
 
 " indents
 set autoindent
@@ -84,6 +84,10 @@ if has("multi_byte")
   "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
 endif
+
+" invisible chars
+set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
+" →     
 
 " backups
 set backup                        " enable backups
