@@ -1,7 +1,7 @@
 # vim:syntax=sh:ft=sh
 
 cdl () {
-    cd $@
+    \cd $@
     ls -Gh
 }
 
