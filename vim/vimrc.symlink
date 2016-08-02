@@ -79,7 +79,7 @@ if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
   endif
-  set encoding=utf-8
+  " set encoding=utf-8
   setglobal fileencoding=utf-8
   "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
@@ -87,7 +87,7 @@ endif
 
 " invisible chars
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
-" →     
+" →
 
 " backups
 set backup                        " enable backups
@@ -116,6 +116,8 @@ let maplocalleader = "\\"
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 Plug 'davidhalter/jedi-vim'
+
+Plug 'tpope/vim-rails'
 
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
@@ -170,6 +172,9 @@ let g:syntastic_auto_loc_list            = 1
 let g:syntastic_loc_list_height          = 4
 let g:syntastic_check_on_open            = 1
 let g:syntastic_check_on_wq              = 0
+
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_rails          = 1
 
 try
     " solarized requires solarized iterm's colors set in preferences
@@ -275,7 +280,7 @@ augroup end
 
 " Mappings {{{
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :qa<CR>
+nnoremap <Leader>q :q<CR>
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>m :bp<CR>
 nnoremap <Leader>c :tabnew<CR>
@@ -283,7 +288,7 @@ nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>b :NERDTree<CR>
 nnoremap <Leader>E :EasyAlign=<CR>
 
-nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport
+nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport 
 
 nnoremap <Localleader>r :!python -m pdb %<CR>
 
@@ -297,9 +302,9 @@ map <Leader>l <C-w>l
 " Functions and other {{{
 
 function! ScratchEdit(cmd, options)
-	exe a:cmd tempname()
-	setl buftype=nofile bufhidden=wipe nobuflisted
-	if !empty(a:options) | exe 'setl' a:options | endif
+    exe a:cmd tempname()
+    setl buftype=nofile bufhidden=wipe nobuflisted
+    if !empty(a:options) | exe 'setl' a:options | endif
 endfunction
 command! -bar -nargs=* Sedit    call ScratchEdit('edit', <q-args>)
 command! -bar -nargs=* Ssplit   call ScratchEdit('split', <q-args>)
