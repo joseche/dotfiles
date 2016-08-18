@@ -58,6 +58,10 @@ set colorcolumn=+1
 highlight ColorColumn guibg=#2d2d2d ctermbg=246
 " highlight Normal ctermfg=grey ctermbg=#0e143d
 
+" highligh current row and column
+set cursorline
+set cursorcolumn
+
 " Tabs
 set tabstop=4
 set shiftwidth=4
@@ -134,7 +138,7 @@ Plug 'scrooloose/syntastic'
 
 Plug 'vimwiki'
 Plug 'mattn/calendar-vim'
-" Plug 'hdima/python-syntax'
+Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
 Plug 'motemen/git-vim'
@@ -143,6 +147,8 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'powerline/powerline'
 Plug 'jceb/vim-orgmode'
 Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'dracula/vim'
 call plug#end()
 " }}}
 
@@ -173,8 +179,8 @@ let g:syntastic_loc_list_height          = 4
 let g:syntastic_check_on_open            = 1
 let g:syntastic_check_on_wq              = 0
 
-let g:syntastic_error_symbol         = "\u2717"
-let g:syntastic_style_error_symbol   = "\u00A7"
+let g:syntastic_error_symbol         = "\u00A7"
+let g:syntastic_style_error_symbol   = "\u2717"
 let g:syntastic_warning_symbol       = "\u26A0"
 let g:syntastic_style_warning_symbol = "\u0482"
 
@@ -185,16 +191,17 @@ let g:rubycomplete_rails          = 1
 
 try
     " solarized requires solarized iterm's colors set in preferences
-    colorscheme solarized
+    " colorscheme solarized
+    colorscheme dracula
 catch
     colorscheme darkblue
 endtry
 
 "if exists(':RainbowParenthesesActivate')
-  autocmd VimEnter * RainbowParenthesesActivate
-  autocmd Syntax * RainbowParenthesesLoadRound
-  autocmd Syntax * RainbowParenthesesLoadSquare
-  autocmd Syntax * RainbowParenthesesLoadBraces
+"   autocmd VimEnter * RainbowParenthesesActivate
+"   autocmd Syntax * RainbowParenthesesLoadRound
+"   autocmd Syntax * RainbowParenthesesLoadSquare
+"   autocmd Syntax * RainbowParenthesesLoadBraces
 "endif
 
 let g:Powerline_symbols = 'fancy'
@@ -298,6 +305,7 @@ nnoremap <Leader>E :EasyAlign=<CR>
 nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport 
 
 nnoremap <Localleader>r :!python -m pdb %<CR>
+inoremap # X<BS>#
 
 map <Leader>h <C-w>h
 map <Leader>j <C-w>j
