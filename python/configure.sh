@@ -7,8 +7,8 @@ if [ -e ~/.config/flake8 ]; then
 fi
 ln -fs "$CWD/flake8rc" ~/.config/flake8
 
-pip install --upgrade pip
-pip install pdb
-pip install neovim
-pip install pep8-naming
+sudo pip install --upgrade pip
+sudo pip install pdb
+sudo pip install neovim
+sudo pip install pep8-naming
 

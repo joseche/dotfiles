@@ -267,7 +267,7 @@ function precmd {
 # Other initializations {{{
 
 # pyenv-virtualenv
-eval "$(pyenv init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv init -)";eval "$(pyenv virtualenv-init -)"; fi
 
 # }}}

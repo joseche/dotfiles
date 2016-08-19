@@ -149,6 +149,8 @@ Plug 'jceb/vim-orgmode'
 Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'dracula/vim'
+
+Plug 'klen/python-mode'
 call plug#end()
 " }}}
 
@@ -257,7 +259,7 @@ au FileType python setl tabstop=4     " A tab counts for 4 spaces.
 au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
 au FileType python setl shiftwidth=4  " Shift by 4 spaces.
 au FileType python setl foldmethod=indent " fold method is indent for python
-au FileType python nnoremap <Leader>r :!python -m pdb %<CR>
+" au FileType python nnoremap <Leader>r :!python -m pdb %<CR>
 augroup end
 
 " Ruby section

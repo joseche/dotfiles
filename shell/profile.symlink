@@ -61,9 +61,10 @@ export LC_ALL=en_US.UTF-8
 #export EC2_HOME=~/ec2-api-tools-1.7.5.1
 #export PATH=$PATH:$EC2_HOME/bin
 
-#Node JS setup
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+# Disabled Nodejs
+# Node JS setup
+# export NVM_DIR="$HOME/.nvm"
+# . "$(brew --prefix nvm)/nvm.sh"
 
 # python
 if which pyenv-virtualenv-init 2>/dev/null > /dev/null; then
