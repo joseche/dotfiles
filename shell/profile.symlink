@@ -12,7 +12,10 @@ export PATH=$PATH:"/usr/bin"
 export PATH=$PATH:"/sbin"
 export PATH=$PATH:"/usr/sbin"
 export PATH=$PATH:"/opt/X11/bin"
-export PATH=$PATH:"/usr/local/MacGPG2/bin"
+
+if [ -d /usr/local/MacGPG2/bin ]; then
+	export PATH=$PATH:"/usr/local/MacGPG2/bin"
+fi
 
 # export MANPATH="/usr/local/man:$MANPATH""
 
