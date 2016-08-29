@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.5
 '''
 Script for managing dotfiles that follow this convention:
     - Symbolic links (files and directories) have to be called
