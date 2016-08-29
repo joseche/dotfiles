@@ -191,6 +191,8 @@ let g:syntastic_enable_highlighting = 1
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails          = 1
 
+let g:pymode_lint_ignore = "E501"
+
 try
     " solarized requires solarized iterm's colors set in preferences
     " colorscheme solarized
