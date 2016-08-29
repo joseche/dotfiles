@@ -34,6 +34,8 @@ which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
 
 which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
 
+which xdg-open 2>/dev/null >/dev/null && alias open='xdg-open'
+
 which tmux 2>/dev/null >/dev/null 
 if [ $? -eq 0 ]; then
     alias ta='tmux attach -d -t'

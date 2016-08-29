@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.5
 '''
 Script for managing dotfiles that follow this convention:
     - Symbolic links (files and directories) have to be called
@@ -22,7 +22,8 @@ def link_files(dotdir, homedir):
     '''
     for file in os.scandir(dotdir):
         if file.name.endswith('.symlink'):
-            link_file(file.path, homedir + '/.' + file.name.replace('.symlink', ''))
+            link_file(file.path,
+                      homedir + '/.' + file.name.replace('.symlink', ''))
         elif file.is_dir():
             link_files(file.path, homedir)
 
@@ -71,8 +72,9 @@ def parse_args():
     # default dotfiles dir is the same where this script sits
     dotdir = os.path.dirname(os.path.abspath(__file__))
     homedir = os.environ['HOME']
-    osname = os.uname().sysname + '.sh'
-    osname_update = os.uname().sysname + '-update.sh'
+    sysname = os.uname()[0]
+    osname = sysname + '.sh'
+    osname_update = sysname + '-update.sh'
 
     parser = argparse.ArgumentParser(description='Manage your dotfiles')
     parser.add_argument('-l', '--link', action='store_true',
@@ -80,7 +82,7 @@ def parse_args():
     parser.add_argument('-r', '--run', action='store_true',
                         help='run the scripts in the dotdir subdirectories')
     parser.add_argument('-u', '--update', action='store_true',
-                        help='run the update scripts in the dotdir subdirectories')
+                        help='run update scripts in the dotdir subdirectories')
     parser.add_argument('-a', '--all', action='store_true',
                         help='link files, run scripts')
     parser.add_argument('-d', '--dotdir',
