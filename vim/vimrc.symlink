@@ -194,7 +194,8 @@ let g:rubycomplete_rails          = 1
 try
     " solarized requires solarized iterm's colors set in preferences
     " colorscheme solarized
-    colorscheme dracula
+    " colorscheme dracula
+    colorscheme morning
 catch
     colorscheme darkblue
 endtry
