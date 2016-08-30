@@ -14,6 +14,7 @@ Script for managing dotfiles that follow this convention:
 
 import argparse
 import os
+import shutil
 
 
 def link_files(dotdir, homedir):
@@ -39,7 +40,10 @@ def link_file(src, dst):
         if srcinfo.st_ino == dstinfo.st_ino:
             return
         else:
-            os.unlink(dst)
+            if os.path.isfile(dst):
+                os.unlink(dst)
+            else:
+                shutil.rmtree(dst)
 
     print("linking %s to %s" % (src, dst))
     os.symlink(src, dst)
