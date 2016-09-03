@@ -95,7 +95,7 @@ def parse_args():
     parser.add_argument('-p', '--homedir', help='user home directory')
     args = parser.parse_args()
 
-    if not (args.all or args.run or args.link):
+    if not (args.all or args.run or args.link or args.update):
         parser.print_usage()
         return
 
