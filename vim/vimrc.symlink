@@ -12,7 +12,7 @@ set number
 set autoread
 
 " display statusbar
-set laststatus=1
+set laststatus=2
 
 " indents
 set autoindent
