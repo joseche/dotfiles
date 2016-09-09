@@ -20,6 +20,7 @@ alias c=cdl
 alias cd=cdl
 alias e='printf "\ec"'
 alias w='cd ~/git/work/gorillalogic ; ls -lhG'
+alias rm='rm -rf '
 
 alias ..='cd ..'
 alias ...='cd ../..'
