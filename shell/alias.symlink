@@ -30,6 +30,7 @@ which gecho 2>/dev/null >/dev/null  && alias echo='gecho'
 which gprintf 2>/dev/null >/dev/null  && alias printf='gprintf'
 which nvim 2>/dev/null >/dev/null  && alias vim='nvim'
 which apt-get 2>/dev/null >/dev/null  && alias apt-get='sudo apt-get'
+which apt 2>/dev/null >/dev/null  && alias apt='sudo apt'
 which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
 
 which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
