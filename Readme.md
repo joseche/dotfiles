@@ -4,7 +4,7 @@ Feel free to copy ideas or fork
 ## Use
 ```
 git clone git@github.com:c0d5x/dotfiles.git ~/.dotfiles/
-source ~/.dotfiles/runme.sh
+~/.dotfiles/runme.py
 ```
 
 ## Notes
