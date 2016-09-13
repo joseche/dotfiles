@@ -1,6 +1,10 @@
 #!/bin/sh
 
-which apm && ruby -e '%w{
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt-get -y update
+sudo apt install -y atom
+
+which apm 2>/dev/null && ruby -e '%w{
 autocomplete-go
 builder-go
 environment
