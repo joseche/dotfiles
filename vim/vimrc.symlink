@@ -2,6 +2,8 @@
 
 " Global variables {{{
 
+set nocompatible
+
 syntax on
 
 " display number on left side and status bar
@@ -22,6 +24,10 @@ set smartindent
 set scrolloff=10
 
 set wildmode=list:longest,full
+set wildmenu
+set wildignore=*~,*.o
+set wildignore+=*DS_Store*
+set wildignore+=*.pyc
 
 " decent backspace
 set backspace=indent,eol,start
@@ -78,7 +84,11 @@ set guifont=Monaco:h13
 set ttyfast
 set title
 
+set showcmd
+set showmode
+
 " encoding
+scriptencoding utf-8
 if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
@@ -90,6 +100,8 @@ if has("multi_byte")
 endif
 
 " invisible chars
+set list
+" set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,space:·
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 " →
 
@@ -112,6 +124,7 @@ endif
 
 
 filetype plugin on
+filetype indent on
 
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
@@ -151,6 +164,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim'
 
 Plug 'klen/python-mode'
+
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 " }}}
 
@@ -330,5 +346,24 @@ command! -bar -nargs=* Sedit    call ScratchEdit('edit', <q-args>)
 command! -bar -nargs=* Ssplit   call ScratchEdit('split', <q-args>)
 command! -bar -nargs=* Svsplit  call ScratchEdit('vsplit', <q-args>)
 command! -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
+
+function! ShuffleLines()
+ruby << EOF
+    buf = VIM::Buffer.current
+    firstnum =  VIM::evaluate('a:firstline')
+    lastnum = VIM::evaluate('a:lastline')
+    lines = []
+    firstnum.upto(lastnum) do |lnum|
+      lines << buf[lnum]
+    end
+    lines.shuffle!
+    firstnum.upto(lastnum) do |lnum|
+      buf[lnum] = lines[lnum-firstnum]
+    end
+EOF
+endfunction
+command! -bar Shuffle  call ShuffleLines()
+
+
 
 " }}}
