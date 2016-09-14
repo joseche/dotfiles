@@ -8,9 +8,10 @@ sudo apt install -y sysstat lm-sensors sensord vim-gtk3 i2c-tools terminology \
    virtualbox-dkms virtualbox-guest-dkms virtualbox-guest-x11 \
    virtualbox-guest-utils libvirt-bin vagrant vagrant-lxc \
    qemu-kvm mailutils lxctl virtualbox-guest-additions-iso \
-   sqlite3 virtualbox golang tree
+   sqlite3 virtualbox golang tree ansible \
+   rhythmbox-data rhythmbox rhythmbox-plugins
 
 sudo apt -y autoremove
 
 sudo easy_install pip
-
+ 
