@@ -9,9 +9,10 @@ sudo apt install -y sysstat lm-sensors sensord vim-gtk3 i2c-tools terminology \
    virtualbox-guest-utils libvirt-bin vagrant vagrant-lxc \
    qemu-kvm mailutils lxctl virtualbox-guest-additions-iso \
    sqlite3 virtualbox golang tree ansible \
-   rhythmbox-data rhythmbox rhythmbox-plugins
+   rhythmbox-data rhythmbox rhythmbox-plugins \
+   openjdk-9-jdk \
+   android-sdk android-sdk-platform-tools adb
 
 sudo apt -y autoremove
 
 sudo easy_install pip
- 
