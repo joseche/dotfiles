@@ -1,8 +1,8 @@
 #!/bin/sh
 
-sudo add-apt-repository ppa:webupd8team/atom
+yes yes | sudo add-apt-repository ppa:webupd8team/atom
 sudo apt-get -y update
-sudo apt install -y atom
+yes yes | sudo apt install -y atom
 
 which apm 2>/dev/null && ruby -e '%w{
 autocomplete-go

@@ -318,6 +318,7 @@ nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>m :bp<CR>
 nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
+nnoremap <Leader>t :tabedit ~/org/index.org<CR>
 nnoremap <Leader>b :NERDTree<CR>
 nnoremap <Leader>E :EasyAlign=<CR>
 

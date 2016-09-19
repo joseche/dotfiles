@@ -2,5 +2,5 @@
 
 sudo apt -y install rubygems ruby-all-dev
 
-gem install neovim
-gem install rails
+sudo gem install neovim
+sudo gem install rails
