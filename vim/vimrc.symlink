@@ -78,7 +78,8 @@ set linebreak
 set showbreak=↪
 
 set background=dark
-set guifont=Monaco:h13
+" set guifont=Monaco:h13
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
 
 " should be on but making sure
 set ttyfast
@@ -133,23 +134,18 @@ let maplocalleader = "\\"
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 Plug 'davidhalter/jedi-vim'
-
-Plug 'tpope/vim-rails'
-
+" Plug 'tpope/vim-rails'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
-
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-
 " Plug 'benekastah/neomake'
 Plug 'scrooloose/syntastic'
-
-Plug 'vimwiki'
+" Plug 'vimwiki'
 Plug 'mattn/calendar-vim'
 Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
@@ -160,19 +156,17 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'powerline/powerline'
 Plug 'jceb/vim-orgmode'
 Plug 'ctrlpvim/ctrlp.vim'
-
 Plug 'dracula/vim'
-
 Plug 'klen/python-mode'
-
 Plug 'ryanoasis/vim-devicons'
-
 call plug#end()
 " }}}
 
 " Plugin configurations {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
+let g:airline_left_sep  = "\uE0C0"
+let g:airline_right_sep = "\uE0C2"
 
 let g:jedi#goto_command             = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
@@ -209,6 +203,10 @@ let g:rubycomplete_rails          = 1
 
 let g:pymode_lint_ignore = "E501"
 
+let python_highlight_all = 1
+
+let g:org_agenda_files = ['~/org/*.org']
+
 try
     " solarized requires solarized iterm's colors set in preferences
     " colorscheme solarized
@@ -219,10 +217,10 @@ catch
 endtry
 
 "if exists(':RainbowParenthesesActivate')
-"   autocmd VimEnter * RainbowParenthesesActivate
-"   autocmd Syntax * RainbowParenthesesLoadRound
-"   autocmd Syntax * RainbowParenthesesLoadSquare
-"   autocmd Syntax * RainbowParenthesesLoadBraces
+   autocmd VimEnter * RainbowParenthesesActivate
+   autocmd Syntax * RainbowParenthesesLoadRound
+   autocmd Syntax * RainbowParenthesesLoadSquare
+   autocmd Syntax * RainbowParenthesesLoadBraces
 "endif
 
 let g:Powerline_symbols = 'fancy'
