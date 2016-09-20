@@ -159,6 +159,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim'
 Plug 'klen/python-mode'
 Plug 'ryanoasis/vim-devicons'
+Plug 'chase/vim-ansible-yaml'
 call plug#end()
 " }}}
 

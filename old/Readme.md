@@ -3,8 +3,8 @@ Feel free to copy ideas or fork
 
 ## Use
 ```
-git clone git@github.com:c0d5x/dotfiles.git ~/git/dotfiles/
-ansible-playbook -i "localhost," -c local all playbook.yml
+git clone git@github.com:c0d5x/dotfiles.git ~/.dotfiles/
+~/.dotfiles/runme.py
 ```
 
 ## Notes

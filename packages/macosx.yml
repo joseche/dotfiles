@@ -1,0 +1,36 @@
+# vim:ft=ansible:
+---
+- homebrew: name={{item}} state=present update_homebrew=yes
+  with_items:
+    - coreutils
+    - binutils
+    - diffutils
+    - gawk
+    - gnutls
+    - gzip
+    - screen
+    - watch
+    - wdiff
+    - wget
+    - bash
+    - emacs
+    - gdb
+    - m4
+    - make
+    - file-formula
+    - git
+    - less
+    - openssh
+    - python
+    - rsync
+    - unzip
+    - zsh
+    - irssi
+    - jmeter
+    - tmux
+    - ansible
+    - ctags
+    - pyenv-virtualenv
+    - golang
+
+- local_action: osx_say msg="{{inventory_hostname}} is all done" voice=Zarvox

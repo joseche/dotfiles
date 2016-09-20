@@ -1,0 +1,4 @@
+- name: "OSX - remove sound at boot"
+  become: true
+  shell: nvram SystemAudioVolume=" "
+
