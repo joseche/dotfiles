@@ -1,0 +1,23 @@
+# vim:ft=ansible:
+---
+- name: pip modules
+  pip: name={{item}} state=present
+  become: true
+  become_user: root
+  with_items:
+    - powerline-status
+    - pdb
+    - neovim
+    - pep8-naming
+    - flask
+    - nose
+    - nose-cov
+    - rednose
+    - pytest
+    - pytest-cov
+    - mock
+    - requests
+    - Django
+    - mccabe
+    - pylama
+    - pycodestyle

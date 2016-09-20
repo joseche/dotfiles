@@ -7,10 +7,10 @@
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
     - name: "Install base packages for Mac OS X"
       include: packages/macosx.yml
-      when: ansible_distribution == 'Darwin'
+      when: ansible_distribution == 'MacOSX'
     - name: "Mac defaults"
       include: macdefaults.yml
-      when: ansible_distribution == 'Darwin'
+      when: ansible_distribution == 'MacOSX'
     - name: "Ansible configuration"
       file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link
     - name: "AWS dir"
@@ -47,7 +47,7 @@
       file: src={{ playbook_dir }}/files/gitconfig.symlink dest=~/.gitconfig state=link
     - name: "Javascript console"
       file: src=/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc dest=/bin/jsc state=link
-      when: ansible_distribution == 'Darwin'
+      when: ansible_distribution == 'MacOSX'
       become: true
     - name: "User shell"
       user: name={{ansible_user_id}} shell=/bin/zsh
@@ -61,10 +61,14 @@
       file: src=~/.zprezto/runcoms/zprofile dest=~/.zprofile state=link
     - name: "Zenv"
       file: src=~/.zprezto/runcoms/zshenv dest=~/.zshenv state=link
+    - name: "nvim config dir"
+      file: path=~/.config/nvim/autoload state=directory
     - name: "vim plug nvim"
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: ~/.config/nvim/init.vim
+        dest: ~/.config/nvim/autoload/plug.vim
+    - name: "vim config dir"
+      file: path=~/.vim/autoload state=directory
     - name: "vim plug vim"
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -78,7 +82,7 @@
     - name: "System Update"
       become: true
       shell: softwareupdate -i -a
-      when: ansible_distribution == 'Darwin'
+      when: ansible_distribution == 'MacOSX'
     - name: "Install gems"
       gem: name={{item}} state=present
       become: true

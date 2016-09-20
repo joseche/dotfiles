@@ -32,5 +32,7 @@
     - ctags
     - pyenv-virtualenv
     - golang
+- name: pip packages
+  include: pip.yml
 
 - local_action: osx_say msg="{{inventory_hostname}} is all done" voice=Zarvox
