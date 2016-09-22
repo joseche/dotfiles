@@ -3,18 +3,12 @@
 - hosts: all
   tasks:
     - name: "Install base packages for Debian-like"
-      include: packages/debianlike.yml
+      include: packages/servers.yml
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-    - name: "Install base packages for Mac OS X"
-      include: packages/macosx.yml
-      when: ansible_distribution == 'MacOSX'
-    - name: "Mac defaults"
-      include: macdefaults.yml
-      when: ansible_distribution == 'MacOSX'
-    - name: pip modules
-      include: packages/pip.yml
     - name: "Ansible configuration"
       file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link
+    - name: include pip
+      include: packages/pip-servers.yml
     - name: "AWS dir"
       file: path=~/.aws state=directory mode=700 force=yes
     - name: "AWS Config"
@@ -47,10 +41,6 @@
       file: src={{ playbook_dir }}/files/alias.git.symlink dest=~/.alias.git state=link
     - name: "git config"
       file: src={{ playbook_dir }}/files/gitconfig.symlink dest=~/.gitconfig state=link
-    - name: "Javascript console"
-      file: src=/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc dest=/bin/jsc state=link
-      when: ansible_distribution == 'MacOSX'
-      become: true
     - name: "User shell"
       user: name={{ansible_user_id}} shell=/bin/zsh
     - name: "Clone prezto zsh"
@@ -81,10 +71,6 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link
     - name: "nvim PlugInstall"
       shell: nvim +PlugInstall +qall
-    - name: "System Update"
-      become: true
-      shell: softwareupdate -i -a
-      when: ansible_distribution == 'MacOSX'
     - name: "Install gems"
       gem: name={{item}} state=present
       become: true

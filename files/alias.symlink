@@ -16,7 +16,6 @@ fi
 
 alias bc='bc -q -l'
 alias cp='cp -r'
-alias c=cdl
 alias cd=cdl
 alias e='printf "\ec"'
 alias w='cd ~/git/work/gorillalogic ; ls -lhG'
@@ -33,10 +32,14 @@ which nvim 2>/dev/null >/dev/null  && alias vim='nvim'
 which apt-get 2>/dev/null >/dev/null  && alias apt-get='sudo apt-get -y'
 which apt 2>/dev/null >/dev/null  && alias apt='sudo apt -y'
 which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
-
 which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
-
 which xdg-open 2>/dev/null >/dev/null && alias open='xdg-open'
+
+alias sha1='openssl sha1'
+
+alias svim='sudo vim'
+alias df='df -H'
+alias nocomment='grep -Ev '\''^(#|$)'\'''
 
 which tmux 2>/dev/null >/dev/null 
 if [ $? -eq 0 ]; then

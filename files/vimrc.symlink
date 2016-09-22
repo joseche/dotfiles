@@ -145,7 +145,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 " Plug 'benekastah/neomake'
 Plug 'scrooloose/syntastic'
-" Plug 'vimwiki'
+Plug 'vimwiki'
 Plug 'mattn/calendar-vim'
 Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
@@ -206,7 +206,7 @@ let g:pymode_lint_ignore = "E501"
 
 let python_highlight_all = 1
 
-let g:org_agenda_files = ['~/org/*.org']
+let g:org_agenda_files = ['~/git/work/org/*.org']
 
 try
     " solarized requires solarized iterm's colors set in preferences
@@ -218,10 +218,10 @@ catch
 endtry
 
 "if exists(':RainbowParenthesesActivate')
-   autocmd VimEnter * RainbowParenthesesActivate
-   autocmd Syntax * RainbowParenthesesLoadRound
-   autocmd Syntax * RainbowParenthesesLoadSquare
-   autocmd Syntax * RainbowParenthesesLoadBraces
+"    autocmd VimEnter * RainbowParenthesesActivate
+"    autocmd Syntax * RainbowParenthesesLoadRound
+"    autocmd Syntax * RainbowParenthesesLoadSquare
+"    autocmd Syntax * RainbowParenthesesLoadBraces
 "endif
 
 let g:Powerline_symbols = 'fancy'

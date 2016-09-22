@@ -1,0 +1,40 @@
+# vim:ft=ansible:
+---
+- name: "Add repo for neovim"
+  apt_repository: repo='ppa:neovim-ppa/unstable'
+- name: "Add repo for atom"
+  apt_repository: repo='ppa:webupd8team/atom'
+- name: "Add base packages"
+  apt: name={{item}} state=present
+  become: true
+  become_user: root
+  with_items:
+    - sysstat
+    - lm-sensors
+    - sensord
+    - i2c-tools
+    - vim
+    - zsh
+    - git
+    - python-pip
+    - python-dev
+    - python3-pip
+    - python-setuptools
+    - virtualenv
+    - rubygems
+    - ruby-all-dev
+    - build-essential
+    - zlib1g-dev
+    - awscli
+    - curl
+    - wget
+    - nmap
+    - exuberant-ctags
+    - bpython3
+    - mailutils
+    - tree
+    - powerline
+    - python3-powerline
+    - neovim
+    - atop
+    - sqlite3

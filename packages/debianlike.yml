@@ -1,43 +1,19 @@
 # vim:ft=ansible:
 ---
-- name: "Add repo for neovim"
-  apt_repository: repo='ppa:neovim-ppa/unstable'
-- name: "Add repo for atom"
-  apt_repository: repo='ppa:webupd8team/atom'
+- name: "Include server packages"
+  include: servers.yml
 - name: "Add base packages"
   apt: name={{item}} state=present
   become: true
   become_user: root
   with_items:
-    - sysstat
-    - lm-sensors
-    - sensord
     - vim-gtk3
-    - i2c-tools
     - terminology
-    - zsh
-    - git
-    - python-dev
-    - python-pip
     - python3-dev
-    - python3-pip
     - python3-pudb
-    - virtualenv
-    - rubygems
-    - ruby-all-dev
-    - python-setuptools
-    - python-dev
-    - build-essential
-    - zlib1g-dev
-    - awscli
-    - curl
-    - wget
-    - nmap
-    - exuberant-ctags
     - wifite
     - wireshark
     - macchanger
-    - bpython3
     - gitk
     - virtualbox
     - virtualbox-qt
@@ -51,11 +27,8 @@
     - vagrant
     - vagrant-lxc
     - qemu-kvm
-    - mailutils
     - lxctl
-    - sqlite3
     - golang
-    - tree
     - ansible
     - rhythmbox
     - rhythmbox-plugins
@@ -63,9 +36,3 @@
     - android-sdk-platform-tools
     - adb
     - fonts-powerline
-    - powerline
-    - python3-powerline
-    - neovim
-
-- name: pip modules
-  include: pip.yml
