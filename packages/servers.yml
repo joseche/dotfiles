@@ -2,7 +2,9 @@
 ---
 - name: "Add repo for neovim"
   apt_repository: repo='ppa:neovim-ppa/unstable'
+  become: true
 - name: "Add repo for atom"
+  become: true
   apt_repository: repo='ppa:webupd8team/atom'
 - name: "Add base packages"
   apt: name={{item}} state=present
@@ -20,7 +22,7 @@
     - python-dev
     - python3-pip
     - python-setuptools
-    - virtualenv
+    - python-virtualenv
     - rubygems
     - ruby-all-dev
     - build-essential

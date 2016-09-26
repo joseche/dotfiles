@@ -40,6 +40,7 @@ alias sha1='openssl sha1'
 alias svim='sudo vim'
 alias df='df -H'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
+alias ping='ping -c 4'
 
 which tmux 2>/dev/null >/dev/null 
 if [ $? -eq 0 ]; then

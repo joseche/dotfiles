@@ -7,7 +7,7 @@ then
 
     # Remove sound at boot
     sudo nvram SystemAudioVolume=" "
-    
+
     # Disable transparency in the menu bar and elsewhere on Yosemite
     defaults write com.apple.universalaccess reduceTransparency -bool true
 
@@ -109,4 +109,3 @@ then
     killall Dock
     killall Finder
 fi
-

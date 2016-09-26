@@ -4,7 +4,7 @@
   tasks:
     - name: "Install base packages for Debian-like"
       include: packages/servers.yml
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      when: ansible_distribution == 'Ubuntu'
     - name: "Ansible configuration"
       file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link
     - name: include pip
@@ -71,36 +71,3 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link
     - name: "nvim PlugInstall"
       shell: nvim +PlugInstall +qall
-    - name: "Install gems"
-      gem: name={{item}} state=present
-      become: true
-      with_items:
-        - neovim
-        - rails
-
-      # atom packages
-#    - name: "Atom modules"
-#      shell: |
-#        which apm 2>/dev/null && ruby -e '%w{
-#        autocomplete-go
-#        builder-go
-#        environment
-#        figletify
-#        git-plus
-#        go-plus
-#        language-chef
-#        language-hcl
-#        language-puppet
-#        language-terraform
-#        language-viml
-#        linter
-#        linter-foodcritic
-#        linter-puppet
-#        minimap
-#        navigator-godef
-#        pretty-json
-#        }.each do |c|
-#          cmd = "apm install #{c}"
-#          %x( #{cmd} )
-#        end'
-
