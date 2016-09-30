@@ -53,6 +53,7 @@
       become: true
     - name: "User shell"
       user: name={{ansible_user_id}} shell=/bin/zsh
+      become: true
     - name: "Clone prezto zsh"
       git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto force=yes
     - name: "Zlogin"

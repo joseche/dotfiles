@@ -21,6 +21,9 @@ alias e='printf "\ec"'
 alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 alias rm='rm -rf '
 
+alias ap='ansible-playbook'
+alias apl='ansible-playbook -i "localhost," -c local '
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
