@@ -1,5 +1,7 @@
 # vim:syntax=sh
 
+umask 0077
+
 # User configuration
 if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin"
