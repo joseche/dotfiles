@@ -1,6 +1,6 @@
 # vim:syntax=sh
 
-umask 0077
+umask 0022
 
 # User configuration
 if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then

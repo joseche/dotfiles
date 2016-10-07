@@ -36,3 +36,5 @@
     - android-sdk-platform-tools
     - adb
     - fonts-powerline
+    - transmission-gtk
+    - mongodb

@@ -38,6 +38,8 @@ which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
 which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
 which xdg-open 2>/dev/null >/dev/null && alias open='xdg-open'
 
+which node 2>/dev/null >/dev/null || alias node=nodejs
+
 alias sha1='openssl sha1'
 
 alias svim='sudo vim'
