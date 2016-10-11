@@ -12,47 +12,47 @@
     - name: "AWS dir"
       file: path=~/.aws state=directory mode=700 force=yes
     - name: "AWS Config"
-      file: src={{ playbook_dir }}/files/aws.config.symlink dest=~/.aws/config state=link
+      file: src={{ playbook_dir }}/files/aws.config.symlink dest=~/.aws/config state=link force=yes
     - name: "ctags Config"
-      file: src={{ playbook_dir }}/files/ctags.symlink dest=~/.ctags state=link
+      file: src={{ playbook_dir }}/files/ctags.symlink dest=~/.ctags state=link force=yes
     - name: "Emacs Config"
-      file: src={{ playbook_dir }}/files/emacs.symlink dest=~/.emacs state=link
+      file: src={{ playbook_dir }}/files/emacs.symlink dest=~/.emacs state=link force=yes
     - name: "tmux config"
-      file: src={{ playbook_dir }}/files/tmux.conf.symlink dest=~/.tmux.conf state=link
+      file: src={{ playbook_dir }}/files/tmux.conf.symlink dest=~/.tmux.conf state=link force=yes
     - name: "pylintrc config"
-      file: src={{ playbook_dir }}/files/pylintrc.symlink dest=~/.pylintrc state=link
+      file: src={{ playbook_dir }}/files/pylintrc.symlink dest=~/.pylintrc state=link force=yes
     - name: "gemrc config"
-      file: src={{ playbook_dir }}/files/gemrc.symlink dest=~/.gemrc state=link
+      file: src={{ playbook_dir }}/files/gemrc.symlink dest=~/.gemrc state=link force=yes
     - name: "zpreztorc"
-      file: src={{ playbook_dir }}/files/zpreztorc.symlink dest=~/.zpreztorc state=link
+      file: src={{ playbook_dir }}/files/zpreztorc.symlink dest=~/.zpreztorc state=link force=yes
     - name: "zshrc"
-      file: src={{ playbook_dir }}/files/zshrc.symlink dest=~/.zshrc state=link
+      file: src={{ playbook_dir }}/files/zshrc.symlink dest=~/.zshrc state=link force=yes
     - name: "xinitrc"
-      file: src={{ playbook_dir }}/files/xinitrc.symlink dest=~/.xinitrc state=link
+      file: src={{ playbook_dir }}/files/xinitrc.symlink dest=~/.xinitrc state=link force=yes
     - name: "profile"
-      file: src={{ playbook_dir }}/files/profile.symlink dest=~/.profile state=link
+      file: src={{ playbook_dir }}/files/profile.symlink dest=~/.profile state=link force=yes
     - name: "hushlogin"
-      file: src={{ playbook_dir }}/files/hushlogin.symlink dest=~/.hushlogin state=link
+      file: src={{ playbook_dir }}/files/hushlogin.symlink dest=~/.hushlogin state=link force=yes
     - name: "Functions"
-      file: src={{ playbook_dir }}/files/functions.symlink dest=~/.functions state=link
+      file: src={{ playbook_dir }}/files/functions.symlink dest=~/.functions state=link force=yes
     - name: "Alias"
-      file: src={{ playbook_dir }}/files/alias.symlink dest=~/.alias state=link
+      file: src={{ playbook_dir }}/files/alias.symlink dest=~/.alias state=link force=yes
     - name: "Alias git"
-      file: src={{ playbook_dir }}/files/alias.git.symlink dest=~/.alias.git state=link
+      file: src={{ playbook_dir }}/files/alias.git.symlink dest=~/.alias.git state=link force=yes
     - name: "git config"
-      file: src={{ playbook_dir }}/files/gitconfig.symlink dest=~/.gitconfig state=link
+      file: src={{ playbook_dir }}/files/gitconfig.symlink dest=~/.gitconfig state=link force=yes
     - name: "User shell"
       user: name={{ansible_user_id}} shell=/bin/zsh
     - name: "Clone prezto zsh"
       git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto force=yes
     - name: "Zlogin"
-      file: src=~/.zprezto/runcoms/zlogin dest=~/.zlogin state=link
+      file: src=~/.zprezto/runcoms/zlogin dest=~/.zlogin state=link force=yes
     - name: "Zlogout"
-      file: src=~/.zprezto/runcoms/zlogout dest=~/.zlogout state=link
+      file: src=~/.zprezto/runcoms/zlogout dest=~/.zlogout state=link force=yes
     - name: "Zprofile"
-      file: src=~/.zprezto/runcoms/zprofile dest=~/.zprofile state=link
+      file: src=~/.zprezto/runcoms/zprofile dest=~/.zprofile state=link force=yes
     - name: "Zenv"
-      file: src=~/.zprezto/runcoms/zshenv dest=~/.zshenv state=link
+      file: src=~/.zprezto/runcoms/zshenv dest=~/.zshenv state=link force=yes
     - name: "nvim config dir"
       file: path=~/.config/nvim/autoload state=directory
     - name: "vim plug nvim"
@@ -66,8 +66,8 @@
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: ~/.vim/autoload/plug.vim
     - name: "vimrc"
-      file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link
+      file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
     - name: "vimrc nvim"
-      file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link
+      file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
     - name: "nvim PlugInstall"
       shell: nvim +PlugInstall +qall

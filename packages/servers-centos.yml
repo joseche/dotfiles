@@ -1,0 +1,37 @@
+# vim:ft=ansible:
+---
+- name: "Add base packages"
+  yum: name={{item}} state=present
+  become: true
+  become_user: root
+  with_items:
+    - sysstat
+    - lm-sensors
+    - sensord
+    - i2c-tools
+    - vim
+    - zsh
+    - git
+    - python-pip
+    - python-dev
+    - python3-pip
+    - python-setuptools
+    - python-virtualenv
+    - rubygems
+    - ruby-all-dev
+    - build-essential
+    - zlib1g-dev
+    - awscli
+    - curl
+    - wget
+    - nmap
+    - exuberant-ctags
+    - bpython3
+    - mailutils
+    - tree
+    - powerline
+    - python3-powerline
+    - neovim
+    - atop
+    - sqlite3
+    - bmon
