@@ -3,8 +3,11 @@
 - hosts: all
   tasks:
     - name: "Install base packages for Debian-like"
-      include: packages/servers.yml
+      include: packages/servers-debian.yml
       when: ansible_distribution == 'Ubuntu'
+    - name: "Install base packages for CentOS"
+      include: packages/servers-centos.yml
+      when: ansible_distribution == 'CentOS'
     - name: "Ansible configuration"
       file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link
     - name: include pip

@@ -1,9 +1,9 @@
 # vim:ft=ansible:
 ---
-- name: "Include server packages"
-  include: servers.yml
-- name: "Add base packages"
-  apt: name={{item}} state=present
+- name: "Include server packages for centos servers"
+  include: servers-centos.yml
+- name: "Add base packages for centos"
+  yum: name={{item}} state=present
   become: true
   become_user: root
   with_items:

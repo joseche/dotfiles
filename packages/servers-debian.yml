@@ -1,12 +1,12 @@
 # vim:ft=ansible:
 ---
-- name: "Add repo for neovim"
+- name: "Add repo for neovim for debian"
   apt_repository: repo='ppa:neovim-ppa/unstable'
   become: true
-- name: "Add repo for atom"
+- name: "Add repo for atom for debian"
   become: true
   apt_repository: repo='ppa:webupd8team/atom'
-- name: "Add base packages"
+- name: "Add base packages for servers debian"
   apt: name={{item}} state=present
   become: true
   become_user: root

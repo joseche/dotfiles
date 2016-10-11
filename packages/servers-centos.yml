@@ -1,37 +1,42 @@
 # vim:ft=ansible:
 ---
-- name: "Add base packages"
+- name: Add repository EPEL
+  become: true
+  become_user: root
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: http://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    # - name: Add repository Neovim
+    #   become: true
+    #   become_user: root
+    #   yum_repository:
+    #     name: neovim
+    #     description: Neovim
+    #     baseurl: https://copr.fedorainfracloud.org/coprs/dperson/neovim/repo/epel-7/dperson-neovim-epel-7.repo
+- name: "Add base packages for servers centos"
   yum: name={{item}} state=present
   become: true
   become_user: root
   with_items:
     - sysstat
-    - lm-sensors
-    - sensord
+    - lm_sensors
+    - lm_sensors-sensord
     - i2c-tools
     - vim
     - zsh
     - git
     - python-pip
-    - python-dev
-    - python3-pip
+    - python-devel
     - python-setuptools
     - python-virtualenv
     - rubygems
-    - ruby-all-dev
-    - build-essential
-    - zlib1g-dev
+    - ruby-devel
     - awscli
     - curl
     - wget
     - nmap
-    - exuberant-ctags
-    - bpython3
-    - mailutils
+    - bpython
     - tree
-    - powerline
-    - python3-powerline
-    - neovim
     - atop
-    - sqlite3
     - bmon
