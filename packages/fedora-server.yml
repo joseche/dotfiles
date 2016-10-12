@@ -1,12 +1,12 @@
 # vim:ft=ansible:
 ---
-- name: Add repository EPEL
-  become: true
-  become_user: root
-  yum_repository:
-    name: epel
-    description: EPEL YUM repo
-    baseurl: http://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+# - name: Add repository EPEL
+#   become: true
+#   become_user: root
+#   yum_repository:
+#     name: epel
+#     description: EPEL YUM repo
+#     baseurl: http://download.fedoraproject.org/pub/epel/$releasever/$basearch/
     # - name: Add repository Neovim
     #   become: true
     #   become_user: root
