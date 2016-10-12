@@ -52,3 +52,4 @@
     - vim-powerline
     - powerline
     - global-ctags
+    - x11-ssh-askpass

@@ -86,8 +86,8 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
     - name: "vimrc nvim"
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
-    - name: "vim PlugInstall"
-      shell: vim +PlugInstall +qall
+    - name: "nvim PlugInstall"
+      shell: nvim +PlugInstall +qall
     - name: "System Update"
       become: true
       shell: softwareupdate -i -a
