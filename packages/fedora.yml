@@ -1,0 +1,55 @@
+# vim:ft=ansible:
+---
+- name: Install fedora specific dependencies
+  yum: name=python2-dnf state=present
+- name: "Add base packages for Fedora"
+  dnf: name={{item}} state=present
+  become: true
+  become_user: root
+  with_items:
+    - wireshark
+    - macchanger
+    - gitk
+    - VirtualBox
+    - kmod-VirtualBox
+    - libvirt-daemon-driver-vbox
+    - virt-manager
+    - libvirt-daemon-kvm
+    - libvirt-daemon-lxc
+    - libvirt-daemon-vbox
+    - vagrant
+    - vagrant-lxc
+    - qemu-kvm
+    - golang
+    - ansible
+    - rhythmbox
+    - adb
+    - transmission-gtk
+    - mongodb
+    - sysstat
+    - lm_sensors
+    - lm_sensors-sensord
+    - i2c-tools
+    - vim
+    - vim-X11
+    - vim-enhanced
+    - zsh
+    - git
+    - python-pip
+    - python-devel
+    - python-setuptools
+    - python-virtualenv
+    - rubygems
+    - ruby-devel
+    - awscli
+    - curl
+    - wget
+    - nmap
+    - bpython
+    - tree
+    - atop
+    - bmon
+    - vim-powerline
+    - powerline
+    - global-ctags
+

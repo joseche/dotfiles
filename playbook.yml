@@ -8,6 +8,9 @@
     - name: "Install base packages for Centos"
       include: packages/centos.yml
       when: ansible_distribution == 'CentOS'
+    - name: "Install base packages for Fedora"
+      include: packages/fedora.yml
+      when: ansible_distribution == 'Fedora'
     - name: "Install base packages for Mac OS X"
       include: packages/macosx.yml
       when: ansible_distribution == 'MacOSX'
@@ -83,8 +86,8 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
     - name: "vimrc nvim"
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
-    - name: "nvim PlugInstall"
-      shell: nvim +PlugInstall +qall
+    - name: "vim PlugInstall"
+      shell: vim +PlugInstall +qall
     - name: "System Update"
       become: true
       shell: softwareupdate -i -a
