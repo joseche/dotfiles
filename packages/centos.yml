@@ -1,7 +1,7 @@
 # vim:ft=ansible:
 ---
 - name: "Include server packages for centos servers"
-  include: servers-centos.yml
+  include: centos-server.yml
 - name: "Add base packages for centos"
   yum: name={{item}} state=present
   become: true
