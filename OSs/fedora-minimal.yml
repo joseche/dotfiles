@@ -31,3 +31,9 @@
     - tree
     - atop
     - bmon
+    - libselinux-python
+- name: Fastest mirror
+  become: true
+  lineinfile: dest=/etc/dnf/dnf.conf
+              line="fastestmirror=true"
+              state=present
