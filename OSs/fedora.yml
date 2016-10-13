@@ -2,8 +2,16 @@
 ---
 - name: Include minimal fedora
   include: fedora-minimal.yml
+  become: true
+- name: RPM Fusion Free
+  dnf: name="https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-24.noarch.rpm" state=present
+  become: true
+- name: RPM Fusion Non Free
+  dnf: name="https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-24.noarch.rpm" state=present
+  become: true
 - name: Install fedora specific dependencies
-  yum: name=python2-dnf state=present
+  dnf: name=python2-dnf state=present
+  become: true
 - name: "Add base packages for Fedora"
   dnf: name={{item}} state=present
   become: true
@@ -55,3 +63,4 @@
     - powerline
     - global-ctags
     - x11-ssh-askpass
+    - dnf-plugins-core

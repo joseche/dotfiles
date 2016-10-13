@@ -81,8 +81,8 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
     - name: "vimrc nvim"
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
-    - name: "nvim PlugInstall"
-      shell: nvim +PlugInstall +qall
+    - name: "vim PlugInstall"
+      shell: vim +PlugInstall +qall
     - name: "Install gems"
       gem: name={{item}} state=present
       become: true
