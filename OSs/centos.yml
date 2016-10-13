@@ -1,8 +1,8 @@
 # vim:ft=ansible:
 ---
-- name: "Include server packages for centos servers"
-  include: centos-server.yml
-- name: "Add base packages for centos"
+- name: Minimal centos packages
+  include: centos-minimal.yml
+- name: Common centos packages
   yum: name={{item}} state=present
   become: true
   become_user: root

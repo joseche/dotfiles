@@ -1,5 +1,11 @@
 # vim:ft=ansible:
 ---
+- name: "System Update"
+  become: true
+  shell: softwareupdate -i -a
+- name: "Javascript console"
+  file: src=/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc dest=/bin/jsc state=link
+  become: true
 - homebrew: name={{item}} state=present update_homebrew=yes
   with_items:
     - coreutils
@@ -32,7 +38,9 @@
     - ctags
     - pyenv-virtualenv
     - golang
-- name: pip packages
-  include: pip.yml
 
 - local_action: osx_say msg="{{inventory_hostname}} is all done" voice=Zarvox
+- name: "OSX - remove sound at boot"
+  become: true
+  shell: nvram SystemAudioVolume=" "
+

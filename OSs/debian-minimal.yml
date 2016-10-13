@@ -1,5 +1,8 @@
 # vim:ft=ansible:
 ---
+- name: "User shell"
+  user: name={{ansible_user_id}} shell=/bin/zsh
+  become: true
 - name: "Add repo for neovim for debian"
   apt_repository: repo='ppa:neovim-ppa/unstable'
   become: true

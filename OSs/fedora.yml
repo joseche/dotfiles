@@ -1,5 +1,7 @@
 # vim:ft=ansible:
 ---
+- name: Include minimal fedora
+  include: fedora-minimal.yml
 - name: Install fedora specific dependencies
   yum: name=python2-dnf state=present
 - name: "Add base packages for Fedora"

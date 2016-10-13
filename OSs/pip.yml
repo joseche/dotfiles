@@ -1,7 +1,7 @@
 # vim:ft=ansible:
 ---
 - name: include server pip modules
-  include: pip-servers.yml
+  include: pip-minimal.yml
 - name: pip modules
   pip: name={{item}} state=present
   become: true

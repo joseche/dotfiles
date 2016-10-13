@@ -2,16 +2,27 @@
 ---
 - hosts: all
   tasks:
+
     - name: "Install base packages for Debian-like"
-      include: packages/servers-debian.yml
-      when: ansible_distribution == 'Ubuntu'
-    - name: "Install base packages for CentOS"
-      include: packages/servers-centos.yml
+      include: OSs/debian-minimal.yml
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: "Install base OSs for Centos"
+      include: OSs/centos-minimal.yml
       when: ansible_distribution == 'CentOS'
+
+    - name: "Install base OSs for Fedora"
+      include: OSs/fedora-minimal.yml
+      when: ansible_distribution == 'Fedora'
+
+    - name: "Install base OSs for Mac OS X"
+      include: OSs/macosx-minimal.yml
+      when: ansible_distribution == 'MacOSX'
+
+    - name: pip modules
+      include: OSs/pip-minimal.yml
     - name: "Ansible configuration"
-      file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link
-    - name: include pip
-      include: packages/pip-servers.yml
+      file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link force=yes
     - name: "AWS dir"
       file: path=~/.aws state=directory mode=700 force=yes
     - name: "AWS Config"
@@ -44,8 +55,6 @@
       file: src={{ playbook_dir }}/files/alias.git.symlink dest=~/.alias.git state=link force=yes
     - name: "git config"
       file: src={{ playbook_dir }}/files/gitconfig.symlink dest=~/.gitconfig state=link force=yes
-    - name: "User shell"
-      user: name={{ansible_user_id}} shell=/bin/zsh
     - name: "Clone prezto zsh"
       git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto force=yes
     - name: "Zlogin"
@@ -74,3 +83,9 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
     - name: "nvim PlugInstall"
       shell: nvim +PlugInstall +qall
+    - name: "Install gems"
+      gem: name={{item}} state=present
+      become: true
+      with_items:
+        - neovim
+        - rails
