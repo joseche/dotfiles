@@ -64,3 +64,4 @@
     - global-ctags
     - x11-ssh-askpass
     - dnf-plugins-core
+    - gnome-tweak-tool
