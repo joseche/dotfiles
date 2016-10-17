@@ -1,6 +1,7 @@
 #!/bin/sh
 
 WM=startxfce4
+WM=spectrwm
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
