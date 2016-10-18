@@ -90,9 +90,11 @@
         - neovim
         - rails
     - name: Clone Nerd fonts
+      become: true
       git: repo=https://github.com/ryanoasis/nerd-fonts
            dest=~/git/nerd-fonts
       register: nerdfont
     - name: Install Nerd Fonts
       shell: ~/git/nerd-fonts/install.sh
       when: nerdfont.changed
+      ignore_errors: true
