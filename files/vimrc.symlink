@@ -211,8 +211,8 @@ let g:org_agenda_files = ['~/git/work/org/*.org']
 
 try
     " solarized requires solarized iterm's colors set in preferences
-    " colorscheme solarized
-    colorscheme dracula
+    colorscheme solarized
+    " colorscheme dracula
     " colorscheme morning
 catch
     colorscheme darkblue
