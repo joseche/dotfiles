@@ -37,7 +37,8 @@ source ~/.functions
 [ -f ~/.keys ] && source ~/.keys
 
 # after alias, vim should be nvim
-export EDITOR=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Android
 if [ -d ~/android/android-sdk-linux ]; then
