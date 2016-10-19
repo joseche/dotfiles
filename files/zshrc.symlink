@@ -12,3 +12,6 @@ fi
 
 # Customize to your needs...
 source ~/.profile
+
+export NVM_DIR="/home/c0d5x/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
