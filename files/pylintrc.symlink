@@ -60,7 +60,8 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=cmp-builtin,import-star-module-level,next-method-called,raising-string,file-builtin,round-builtin,nonzero-method,delslice-method,old-raise-syntax,useless-suppression,intern-builtin,no-absolute-import,old-ne-operator,reload-builtin,xrange-builtin,old-octal-literal,range-builtin-not-iterating,coerce-method,reduce-builtin,getslice-method,suppressed-message,input-builtin,hex-method,old-division,using-cmp-argument,cmp-method,raw_input-builtin,dict-iter-method,apply-builtin,indexing-exception,coerce-builtin,basestring-builtin,print-statement,map-builtin-not-iterating,filter-builtin-not-iterating,unicode-builtin,parameter-unpacking,long-suffix,unpacking-in-except,setslice-method,long-builtin,standarderror-builtin,buffer-builtin,dict-view-method,unichr-builtin,backtick,oct-method,execfile-builtin,metaclass-assignment,zip-builtin-not-iterating,bad-whitespace
+# disable=cmp-builtin,import-star-module-level,next-method-called,raising-string,file-builtin,round-builtin,nonzero-method,delslice-method,old-raise-syntax,useless-suppression,intern-builtin,no-absolute-import,old-ne-operator,reload-builtin,xrange-builtin,old-octal-literal,range-builtin-not-iterating,coerce-method,reduce-builtin,getslice-method,suppressed-message,input-builtin,hex-method,old-division,using-cmp-argument,cmp-method,raw_input-builtin,dict-iter-method,apply-builtin,indexing-exception,coerce-builtin,basestring-builtin,print-statement,map-builtin-not-iterating,filter-builtin-not-iterating,unicode-builtin,parameter-unpacking,long-suffix,unpacking-in-except,setslice-method,long-builtin,standarderror-builtin,buffer-builtin,dict-view-method,unichr-builtin,backtick,oct-method,execfile-builtin,metaclass-assignment,zip-builtin-not-iterating,bad-whitespace
+disable=bare-except,fixme,
 
 
 [REPORTS]
@@ -186,7 +187,7 @@ max-nested-blocks=5
 [FORMAT]
 
 # Maximum number of characters on a single line.
-max-line-length=120
+max-line-length=140
 
 # Regexp for a line that is allowed to be longer than the limit.
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$
@@ -352,6 +353,8 @@ max-public-methods=20
 
 # Maximum number of boolean expressions in a if statement
 max-bool-expr=5
+
+max-complexity=20
 
 
 [IMPORTS]

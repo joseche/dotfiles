@@ -107,6 +107,10 @@ set list
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 " →
 
+let g:netrw_banner = 0
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 25
+
 " backups
 set backup                        " enable backups
 set noswapfile
@@ -158,7 +162,7 @@ Plug 'powerline/powerline'
 Plug 'jceb/vim-orgmode'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim'
-Plug 'klen/python-mode'
+" Plug 'klen/python-mode'
 Plug 'ryanoasis/vim-devicons'
 Plug 'chase/vim-ansible-yaml'
 call plug#end()
@@ -188,7 +192,7 @@ let g:snips_email        = "c0d5x@protonmail.com"
 let g:snips_github       = "https://github.com/c0d5x"
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list            = 0
+let g:syntastic_auto_loc_list            = 1
 let g:syntastic_loc_list_height          = 4
 let g:syntastic_check_on_open            = 1
 let g:syntastic_check_on_wq              = 0
@@ -197,13 +201,14 @@ let g:syntastic_error_symbol         = "\u00A7"
 let g:syntastic_style_error_symbol   = "\u2717"
 let g:syntastic_warning_symbol       = "\u26A0"
 let g:syntastic_style_warning_symbol = "\u0482"
+let g:syntastic_enable_highlighting  = 1
 
-let g:syntastic_enable_highlighting = 1
+let g:syntastic_python_flake8_post_args='--ignore=E501'
+let g:pymode_lint_ignore = "E501"
+
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails          = 1
-
-let g:pymode_lint_ignore = "E501"
 
 let python_highlight_all = 1
 
