@@ -58,7 +58,7 @@ set splitright
 set ffs=unix,mac,dos
 
 set foldmethod=syntax
-set foldlevel=3
+set foldlevel=4
 
 set textwidth=120        " more realistic size
 set colorcolumn=+1
@@ -165,6 +165,8 @@ Plug 'dracula/vim'
 " Plug 'klen/python-mode'
 Plug 'ryanoasis/vim-devicons'
 Plug 'chase/vim-ansible-yaml'
+
+Plug 'hashivim/vim-terraform'
 call plug#end()
 " }}}
 
