@@ -9,7 +9,7 @@ syntax on
 " display number on left side and status bar
 set ruler
 set number
-set relativenumber
+set norelativenumber
 
 " monitor file changes
 set autoread
