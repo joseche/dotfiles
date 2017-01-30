@@ -7,10 +7,12 @@ source ~/.profile
 fpath=($fpath ~/git/zsh-completions)
 autoload -U compinit && compinit -u
 autoload -U colors && colors
+autoload -U -X bashcompinit && bashcompinit
 
 setopt PROMPT_SUBST
 
 source ~/git/zsh-git-prompt/zshrc.sh
+source /usr/local/bin/aws_zsh_completer.sh
 
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?
