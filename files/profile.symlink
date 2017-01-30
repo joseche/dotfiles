@@ -20,6 +20,10 @@ if [ -d /usr/local/MacGPG2/bin ]; then
   export PATH=$PATH:"/usr/local/MacGPG2/bin"
 fi
 
+if [ -d /Users/c0d5x/Library/Android/sdk/platform-tools ]; then
+    export PATH=$PATH
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH""
 
 export GREP_COLOR="1;32"
@@ -53,25 +57,12 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 
-# Ruby setup
-# Load RVM into a shell session *as a function*
-#[ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
-#eval "$(rbenv init -)"
+# common
+export NET=192.168.70
 
-# GOlang setup
-# export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=~/Go
-export GOBIN=$GOPATH/bin
-#export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$GOPATH/bin
+# grunt
+export TERRAGRUNT_TFPATH=`which terraform`
 
-#export EC2_HOME=~/ec2-api-tools-1.7.5.1
-#export PATH=$PATH:$EC2_HOME/bin
-
-# Disabled Nodejs
-# Node JS setup
-# export NVM_DIR="$HOME/.nvm"
-# . "$(brew --prefix nvm)/nvm.sh"
 
 # python
 if which pyenv-virtualenv-init 2>/dev/null > /dev/null; then
@@ -80,3 +71,5 @@ fi
 
 # ssh keys
 set_sshagent
+
+# source /usr/local/share/zsh/site-functions/_aws

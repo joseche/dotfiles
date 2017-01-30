@@ -1,0 +1,3 @@
+# 
+# `.zlogout' is sourced when login shells exit. `.zprofile' is similar to `.zlogin', except that it is sourced before `.zshrc'.
+#

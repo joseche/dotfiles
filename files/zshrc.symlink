@@ -1,17 +1,55 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
 # Customize to your needs...
 source ~/.profile
 
-export NVM_DIR="/home/c0d5x/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+#
+# `.zshrc' is sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
+#
+fpath=($fpath ~/git/zsh-completions)
+autoload -U compinit && compinit -u
+autoload -U colors && colors
+autoload -U bashcompinit && bashcompinit
+autoload -U zrecompile
+
+setopt PROMPT_SUBST \
+       auto_cd \
+       complete_aliases \
+       extended_glob
+
+zstyle ':completion:*' menu select
+
+source ~/git/zsh-git-prompt/zshrc.sh
+source /usr/local/bin/aws_zsh_completer.sh
+
+function check_last_exit_code() {
+  local LAST_EXIT_CODE=$?
+  if [[ $LAST_EXIT_CODE -ne 0 ]]; then
+    local EXIT_CODE_PROMPT='Error code: '
+    EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
+    EXIT_CODE_PROMPT+="%{$fg_bold[red]%}$LAST_EXIT_CODE%{$reset_color%}"
+    EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
+    echo "$EXIT_CODE_PROMPT"
+  fi
+}
+
+PROMPT='$(check_last_exit_code)
+%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
+%T %# '
+
+
+function preexec() {
+  timer=${timer:-$SECONDS}
+}
+
+function precmd() {
+  if [ $timer ]; then
+    timer_show=$(($SECONDS - $timer))
+    export RPROMPT="%F{cyan}${timer_show}s %{$reset_color%}"
+    unset timer
+  fi
+}
+
+REPORTTIME=10
+WATCH=notme
+WATCHFMT='%n %a %l from %m at %T.'
+
+
