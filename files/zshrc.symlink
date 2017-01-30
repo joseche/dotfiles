@@ -10,15 +10,22 @@ autoload -U colors && colors
 autoload -U bashcompinit && bashcompinit
 autoload -U zrecompile
 
-setopt PROMPT_SUBST \
+setopt prompt_subst \
        auto_cd \
        complete_aliases \
-       extended_glob
+       extended_glob \
+       append_history \
+       extended_history
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
 
 zstyle ':completion:*' menu select
 
 source ~/git/zsh-git-prompt/zshrc.sh
 source /usr/local/bin/aws_zsh_completer.sh
+source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?
@@ -52,4 +59,11 @@ REPORTTIME=10
 WATCH=notme
 WATCHFMT='%n %a %l from %m at %T.'
 
+bindkey -e
+
+bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string.
+# The string may begin with ^ to anchor the search to the beginning of the line.
+
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
 
