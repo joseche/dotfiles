@@ -8,4 +8,4 @@ fact_caching = jsonfile
 fact_caching_connection = ~/tmp/ansible_fact_cache
 forks = 20
 private_key_file = ~/.ssh/id_rsa
-roles_path = /Users/c0d5x/git/ansible_roles
+roles_path = ~/git/ansible_roles

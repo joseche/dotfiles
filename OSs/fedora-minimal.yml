@@ -32,6 +32,7 @@
     - atop
     - bmon
     - libselinux-python
+    - strace
 - name: Fastest mirror
   become: true
   lineinfile: dest=/etc/dnf/dnf.conf
