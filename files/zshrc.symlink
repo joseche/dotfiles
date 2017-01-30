@@ -8,8 +8,14 @@ fpath=($fpath ~/git/zsh-completions)
 autoload -U compinit && compinit -u
 autoload -U colors && colors
 autoload -U bashcompinit && bashcompinit
+autoload -U zrecompile
 
-setopt PROMPT_SUBST
+setopt PROMPT_SUBST \
+       auto_cd \
+       complete_aliases \
+       extended_glob
+
+zstyle ':completion:*' menu select
 
 source ~/git/zsh-git-prompt/zshrc.sh
 source /usr/local/bin/aws_zsh_completer.sh
@@ -41,3 +47,9 @@ function precmd() {
     unset timer
   fi
 }
+
+REPORTTIME=10
+WATCH=notme
+WATCHFMT='%n %a %l from %m at %T.'
+
+
