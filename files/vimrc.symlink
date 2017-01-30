@@ -111,6 +111,10 @@ let g:netrw_banner = 0
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 
+
+" let g:airline_section_b = '%{strftime("%c")}'
+
+
 " backups
 set backup                        " enable backups
 set noswapfile
@@ -175,6 +179,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
 let g:airline_left_sep  = "\uE0C0"
 let g:airline_right_sep = "\uE0C2"
+let g:airline_section_b = '%{strftime("%c")}'
 
 let g:jedi#goto_command             = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
