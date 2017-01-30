@@ -28,3 +28,16 @@ function check_last_exit_code() {
 PROMPT='$(check_last_exit_code)
 %{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
 %T %# '
+
+
+function preexec() {
+  timer=${timer:-$SECONDS}
+}
+
+function precmd() {
+  if [ $timer ]; then
+    timer_show=$(($SECONDS - $timer))
+    export RPROMPT="%F{cyan}${timer_show}s %{$reset_color%}"
+    unset timer
+  fi
+}
