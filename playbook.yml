@@ -59,8 +59,8 @@
       file: src={{ playbook_dir }}/files/alias.hosts.symlink dest=~/.alias.hosts state=link force=yes
     - name: "git config"
       file: src={{ playbook_dir }}/files/gitconfig.symlink dest=~/.gitconfig state=link force=yes
-    - name: "Clone prezto zsh"
-      git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto force=yes
+      #    - name: "Clone prezto zsh"
+      #      git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto force=yes
     - name: "Zlogin"
       file: src=~/.zprezto/runcoms/zlogin dest=~/.zlogin state=link force=yes
     - name: "Zlogout"
