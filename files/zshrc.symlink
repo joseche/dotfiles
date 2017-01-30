@@ -18,7 +18,7 @@ setopt PROMPT_SUBST \
 zstyle ':completion:*' menu select
 
 source ~/git/zsh-git-prompt/zshrc.sh
-source /usr/local/bin/aws_zsh_completer.sh
+source `which aws_zsh_completer.sh`
 
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?

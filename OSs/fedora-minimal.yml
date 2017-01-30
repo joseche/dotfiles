@@ -6,7 +6,7 @@
 - name: EPEL for fedora
   dnf: name=epel-release state=present
 - name: "YUM Update"
-  yum: update_cache=yes
+  yum: name=* update_cache=yes state=latest
 - name: "Add base packages for servers Fedora"
   yum: name={{item}} state=present
   become: true
