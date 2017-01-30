@@ -24,7 +24,6 @@ SAVEHIST=10000000
 zstyle ':completion:*' menu select
 
 source ~/git/zsh-git-prompt/zshrc.sh
-source /usr/local/bin/aws_zsh_completer.sh
 source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 function check_last_exit_code() {
