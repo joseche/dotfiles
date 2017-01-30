@@ -7,7 +7,7 @@ source ~/.profile
 fpath=($fpath ~/git/zsh-completions)
 autoload -U compinit && compinit -u
 autoload -U colors && colors
-autoload -U -X bashcompinit && bashcompinit
+autoload -U bashcompinit && bashcompinit
 
 setopt PROMPT_SUBST
 
