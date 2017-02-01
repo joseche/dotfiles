@@ -322,6 +322,14 @@ au FileType markdown setl softtabstop=2 " Causes backspace to delete 2 spaces.
 au FileType markdown setl shiftwidth=2  " Shift by 2 spaces.
 augroup end
 
+
+augroup vimwiki
+au!
+au BufRead ~/git/work/vimwiki/index.wiki !git pull
+au BufReadPost ~/git/work/vimwiki/diary/diary.wiki :VimwikiAll2HTML<CR>
+au BufWritePost ~/git/work/vimwiki/* !git add . ;git commit -m "Auto commit + push.";git push<CR>
+augroup end
+
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 " }}}
 

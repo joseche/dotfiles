@@ -21,10 +21,15 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 
+REPORTTIME=10
+WATCH=notme
+WATCHFMT='%n %a %l from %m at %T.'
+
 zstyle ':completion:*' menu select
 
 source ~/git/zsh-git-prompt/zshrc.sh
 source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
+source `which aws_zsh_completer.sh`
 
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?
@@ -54,15 +59,8 @@ function precmd() {
   fi
 }
 
-REPORTTIME=10
-WATCH=notme
-WATCHFMT='%n %a %l from %m at %T.'
-
 bindkey -e
-
-bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string.
-# The string may begin with ^ to anchor the search to the beginning of the line.
-
+bindkey '^r' history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 

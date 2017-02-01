@@ -25,7 +25,6 @@ if [ -d /Users/c0d5x/Library/Android/sdk/platform-tools ]; then
 fi
 
 # export MANPATH="/usr/local/man:$MANPATH""
-
 export GREP_COLOR="1;32"
 export MANPAGER="less -X"
 
@@ -56,13 +55,11 @@ fi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-
 # common
 export NET=192.168.70
 
 # grunt
 export TERRAGRUNT_TFPATH=`which terraform`
-
 
 # python
 if which pyenv-virtualenv-init 2>/dev/null > /dev/null; then
