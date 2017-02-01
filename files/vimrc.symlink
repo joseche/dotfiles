@@ -153,17 +153,17 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 " Plug 'benekastah/neomake'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'vimwiki'
-Plug 'mattn/calendar-vim'
-Plug 'hdima/python-syntax'
+" Plug 'mattn/calendar-vim'
+" Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'motemen/git-vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'powerline/powerline'
-Plug 'jceb/vim-orgmode'
+" Plug 'jceb/vim-orgmode'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim'
 " Plug 'klen/python-mode'
@@ -171,6 +171,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'chase/vim-ansible-yaml'
 
 Plug 'hashivim/vim-terraform'
+
+Plug 'valloric/youcompleteme'
+
 call plug#end()
 " }}}
 
@@ -181,9 +184,9 @@ let g:airline_left_sep  = "\uE0C0"
 let g:airline_right_sep = "\uE0C2"
 let g:airline_section_b = '%{strftime("%c")}'
 
-let g:jedi#goto_command             = "<leader>d"
+let g:jedi#goto_command             = ""
 let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
+let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command    = "K"
 let g:jedi#usages_command           = "<leader>u"
 let g:jedi#completions_command      = "<C-Space>"
@@ -192,6 +195,12 @@ let g:jedi#rename_command           = "<leader>r"
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<c-b>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+
+" let g:UltiSnipsSnippetsDir        = "UltiSnippets"
+" let g:UltiSnipsSnippetDirectories = ["~/git/UltiSnippets"]
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
 
 let g:snips_author       = "Jose Hidalgo"
 let g:snips_author_email = "c0d5x@protonmail.com"
