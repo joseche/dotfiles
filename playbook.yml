@@ -3,22 +3,6 @@
 - hosts: all
   tasks:
 
-    - name: "Install base packages for Debian-like"
-      include: OSs/debian.yml
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-    - name: "Install base OSs for Centos"
-      include: OSs/centos.yml
-      when: ansible_distribution == 'CentOS'
-
-    - name: "Install base OSs for Fedora"
-      include: OSs/fedora.yml
-      when: ansible_distribution == 'Fedora'
-
-    - name: "Install base OSs for Mac OS X"
-      include: OSs/macosx.yml
-      when: ansible_distribution == 'MacOSX'
-
     - name: pip modules
       include: OSs/pip.yml
     - name: "Ansible configuration"
@@ -108,3 +92,27 @@
       shell: ~/git/fonts/install.sh
       when: nerdfont.changed
       ignore_errors: true
+
+
+      # #################################
+
+
+    - name: "Install base packages for Debian-like"
+      include: OSs/debian.yml
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: "Install base OSs for Centos"
+      include: OSs/centos.yml
+      when: ansible_distribution == 'CentOS'
+
+    - name: "Install base OSs for Fedora"
+      include: OSs/fedora.yml
+      when: ansible_distribution == 'Fedora'
+
+    - name: "Install base OSs for Mac OS X"
+      include: OSs/macosx.yml
+      when: ansible_distribution == 'MacOSX'
+
+    - name: "Install base packages for FBSD"
+      include: OSs/freebsd.yml
+      when: ansible_distribution == 'FreeBSD'
