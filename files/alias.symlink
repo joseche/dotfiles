@@ -8,10 +8,10 @@ if [ $? -eq 0 ]; then
     alias ll='gls -lha --color'
     alias la='gls -lha --color'
 else
-    alias l='ls -h --color'
-    alias ls='ls -h --color'
-    alias ll='ls -h -l --color'
-    alias la='ls -hla --color'
+    alias l='ls -h'
+    alias ls='ls -h'
+    alias ll='ls -h -l'
+    alias la='ls -hla'
 fi
 
 alias bc='bc -q -l'
