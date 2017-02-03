@@ -1,12 +1,24 @@
 # vim:ft=ansible:
 ---
-- name: "Add base packages for debian"
-  pkg: name={{item}} state=present
+- name: "User shell"
+  user: name={{ansible_user_id}} shell=/usr/local/bin/zsh
+  become: true
+- name: "Add base packages for servers centos"
+  pkgng: name={{item}} state=present
   become: true
   become_user: root
   with_items:
-    - python3-dev
-    - python3-pudb
-    - golang
+    - sysstat
+    - neovim
+    - zsh
+    - git
+    - py27-virtualenv
+    - awscli
+    - curl
+    - wget
+    - nmap
+    - bpython
+    - tree
+    - atop
+    - bmon
     - ansible
-    - fonts-powerline
