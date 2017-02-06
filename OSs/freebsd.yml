@@ -3,12 +3,11 @@
 - name: "User shell"
   user: name={{ansible_user_id}} shell=/usr/local/bin/zsh
   become: true
-- name: "Add base packages for servers centos"
+- name: "Add base packages for servers FreeBSD"
   pkgng: name={{item}} state=present
   become: true
   become_user: root
   with_items:
-    - sysstat
     - neovim
     - zsh
     - git
@@ -17,7 +16,7 @@
     - curl
     - wget
     - nmap
-    - bpython
+    - bpython-py27
     - tree
     - atop
     - bmon
