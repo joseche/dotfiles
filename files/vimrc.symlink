@@ -143,7 +143,6 @@ let maplocalleader = "\\"
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 Plug 'davidhalter/jedi-vim'
-" Plug 'tpope/vim-rails'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-startify'
@@ -152,10 +151,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-" Plug 'benekastah/neomake'
-" Plug 'scrooloose/syntastic'
 Plug 'vimwiki'
-" Plug 'mattn/calendar-vim'
+Plug 'mattn/calendar-vim'
 " Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
 " Plug 'airblade/vim-gitgutter'
@@ -349,7 +346,7 @@ nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>m :bp<CR>
 nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
-nnoremap <Leader>t :tabedit ~/org/index.org<CR>
+" nnoremap <Leader>t :tabedit ~/org/index.org<CR>
 nnoremap <Leader>b :NERDTree<CR>
 nnoremap <Leader>E :EasyAlign=<CR>
 
@@ -366,16 +363,6 @@ map <Leader>l <C-w>l
 " }}}
 
 " Functions and other {{{
-
-function! ScratchEdit(cmd, options)
-    exe a:cmd tempname()
-    setl buftype=nofile bufhidden=wipe nobuflisted
-    if !empty(a:options) | exe 'setl' a:options | endif
-endfunction
-command! -bar -nargs=* Sedit    call ScratchEdit('edit', <q-args>)
-command! -bar -nargs=* Ssplit   call ScratchEdit('split', <q-args>)
-command! -bar -nargs=* Svsplit  call ScratchEdit('vsplit', <q-args>)
-command! -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
 
 function! ShuffleLines()
 ruby << EOF
