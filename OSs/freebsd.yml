@@ -21,3 +21,4 @@
     - atop
     - bmon
     - ansible
+    - lsof
