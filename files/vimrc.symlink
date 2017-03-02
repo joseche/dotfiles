@@ -132,6 +132,15 @@ filetype indent on
 
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
+
+if exists('*jobstart')
+    " NEOVIM ON
+    set viminfo='10,\"100,:100,%,n~/.viminfo
+else
+    " Vim only
+    set viminfo='10,\"100,:100,%,n~/.viminfo_vim
+endif
+
 " }}}
 
 " Plugins to install {{{
@@ -238,23 +247,23 @@ endtry
 
 "if exists(':RainbowParenthesesActivate')
 let g:rbpt_colorpairs = [
-	\ ['darkgreen',   'firebrick3'],
-	\ ['darkcyan',    'SeaGreen3'],
-	\ ['darkred',     'DarkOrchid3'],
-	\ ['black',       'SeaGreen3'],
-	\ ['Darkblue',    'firebrick3'],
-	\ ['darkcyan',    'RoyalBlue3'],
-	\ ['darkred',     'SeaGreen3'],
-	\ ['darkmagenta', 'DarkOrchid3'],
-	\ ['brown',       'firebrick3'],
-	\ ['gray',        'RoyalBlue3'],
-	\ ['red',         'firebrick3'],
-	\ ['brown',       'RoyalBlue3'],
-	\ ['darkgreen',   'RoyalBlue3'],
-	\ ['darkmagenta', 'DarkOrchid3'],
-	\ ['darkgray',    'DarkOrchid3'],
-	\ ['Darkblue',    'SeaGreen3'],
-	\ ]
+\ ['darkgreen',   'firebrick3'],
+\ ['darkcyan',    'SeaGreen3'],
+\ ['darkred',     'DarkOrchid3'],
+\ ['black',       'SeaGreen3'],
+\ ['Darkblue',    'firebrick3'],
+\ ['darkcyan',    'RoyalBlue3'],
+\ ['darkred',     'SeaGreen3'],
+\ ['darkmagenta', 'DarkOrchid3'],
+\ ['brown',       'firebrick3'],
+\ ['gray',        'RoyalBlue3'],
+\ ['red',         'firebrick3'],
+\ ['brown',       'RoyalBlue3'],
+\ ['darkgreen',   'RoyalBlue3'],
+\ ['darkmagenta', 'DarkOrchid3'],
+\ ['darkgray',    'DarkOrchid3'],
+\ ['Darkblue',    'SeaGreen3'],
+\ ]
     autocmd VimEnter * RainbowParenthesesActivate
     autocmd Syntax * RainbowParenthesesLoadRound
     autocmd Syntax * RainbowParenthesesLoadSquare
@@ -375,7 +384,7 @@ nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>b :NERDTree<CR>
 nnoremap <Leader>E :EasyAlign=<CR>
 
-nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport 
+nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport
 
 nnoremap <Localleader>r :!python %<CR>
 inoremap # X<BS>#
