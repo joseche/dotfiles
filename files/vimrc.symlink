@@ -1,6 +1,6 @@
 " vim: syntax=vim foldmethod=marker foldlevel=0
 
-" Global variables {{{
+" Set options {{{
 
 set nocompatible
 
@@ -36,11 +36,11 @@ set backspace=indent,eol,start
 " when searching
 set showmatch
 set incsearch
-set hlsearch
+set nohlsearch
 
 " annoying sounds
 set noerrorbells
-set novisualbell
+set visualbell
 set t_vb=
 
 " required for osx clipboard
@@ -80,7 +80,7 @@ set showbreak=↪
 
 set background=dark
 " set guifont=Monaco:h13
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
 
 " should be on but making sure
 set ttyfast
@@ -88,6 +88,8 @@ set title
 
 set showcmd
 set showmode
+
+set viminfo='10,\"100,:100,%,n~/.viminfo
 
 " encoding
 scriptencoding utf-8
@@ -106,14 +108,6 @@ set list
 " set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,space:·
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 " →
-
-let g:netrw_banner = 0
-let g:netrw_browse_split = 2
-let g:netrw_winsize = 25
-
-
-" let g:airline_section_b = '%{strftime("%c")}'
-
 
 " backups
 set backup                        " enable backups
@@ -155,8 +149,8 @@ Plug 'vimwiki'
 Plug 'mattn/calendar-vim'
 " Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
-" Plug 'airblade/vim-gitgutter'
-Plug 'motemen/git-vim'
+Plug 'airblade/vim-gitgutter'
+" Plug 'motemen/git-vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'powerline/powerline'
@@ -175,11 +169,16 @@ call plug#end()
 " }}}
 
 " Plugin configurations {{{
+"
+let g:netrw_banner = 0
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 25
+"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
 let g:airline_left_sep  = "\uE0C0"
 let g:airline_right_sep = "\uE0C2"
-let g:airline_section_b = '%{strftime("%c")}'
+let g:airline_section_b = '%{strftime("%F %H:%M")}'
 
 let g:jedi#goto_command             = ""
 let g:jedi#goto_assignments_command = "<leader>g"
@@ -187,14 +186,15 @@ let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command    = "K"
 let g:jedi#usages_command           = "<leader>u"
 let g:jedi#completions_command      = "<C-Space>"
-let g:jedi#rename_command           = "<leader>r"
+" let g:jedi#rename_command           = "<leader>r"
 
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<c-b>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+let g:UltiSnipsListSnippets        = "<c-s>"
 
 " let g:UltiSnipsSnippetsDir        = "UltiSnippets"
-" let g:UltiSnipsSnippetDirectories = ["~/git/UltiSnippets"]
+" let g:UltiSnipsSnippetDirectories = ["~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
@@ -218,7 +218,7 @@ let g:syntastic_enable_highlighting  = 1
 
 let g:syntastic_python_flake8_post_args='--ignore=E501'
 let g:pymode_lint_ignore = "E501"
-
+let g:pymode_rope_lookup_project = 0
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails          = 1
@@ -237,10 +237,29 @@ catch
 endtry
 
 "if exists(':RainbowParenthesesActivate')
-"    autocmd VimEnter * RainbowParenthesesActivate
-"    autocmd Syntax * RainbowParenthesesLoadRound
-"    autocmd Syntax * RainbowParenthesesLoadSquare
-"    autocmd Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+	\ ['darkgreen',   'firebrick3'],
+	\ ['darkcyan',    'SeaGreen3'],
+	\ ['darkred',     'DarkOrchid3'],
+	\ ['black',       'SeaGreen3'],
+	\ ['Darkblue',    'firebrick3'],
+	\ ['darkcyan',    'RoyalBlue3'],
+	\ ['darkred',     'SeaGreen3'],
+	\ ['darkmagenta', 'DarkOrchid3'],
+	\ ['brown',       'firebrick3'],
+	\ ['gray',        'RoyalBlue3'],
+	\ ['red',         'firebrick3'],
+	\ ['brown',       'RoyalBlue3'],
+	\ ['darkgreen',   'RoyalBlue3'],
+	\ ['darkmagenta', 'DarkOrchid3'],
+	\ ['darkgray',    'DarkOrchid3'],
+	\ ['Darkblue',    'SeaGreen3'],
+	\ ]
+    autocmd VimEnter * RainbowParenthesesActivate
+    autocmd Syntax * RainbowParenthesesLoadRound
+    autocmd Syntax * RainbowParenthesesLoadSquare
+    autocmd Syntax * RainbowParenthesesLoadBraces
+    autocmd Syntax * RainbowParenthesesLoadChevrons
 "endif
 
 let g:Powerline_symbols = 'fancy'
@@ -264,6 +283,12 @@ let g:tagbar_autoshowtag = 1
 " }}}
 
 " Autocommands & Autogroups {{{
+"
+augroup resCur
+  autocmd!
+  autocmd BufReadPost * call setpos(".", getpos("'\""))
+augroup END
+
 
 " fix crontab -e problem
 " set backupskip=/tmp/*,/private/tmp/*
@@ -296,7 +321,7 @@ au FileType python setl tabstop=4     " A tab counts for 4 spaces.
 au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
 au FileType python setl shiftwidth=4  " Shift by 4 spaces.
 au FileType python setl foldmethod=indent " fold method is indent for python
-" au FileType python nnoremap <Leader>r :!python -m pdb %<CR>
+au FileType python nnoremap <Leader>r :!python %<CR>
 augroup end
 
 " Ruby section
@@ -352,13 +377,15 @@ nnoremap <Leader>E :EasyAlign=<CR>
 
 nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport 
 
-nnoremap <Localleader>r :!python -m pdb %<CR>
+nnoremap <Localleader>r :!python %<CR>
 inoremap # X<BS>#
 
 map <Leader>h <C-w>h
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
+
+imap <C-]> <ESC>
 
 " }}}
 

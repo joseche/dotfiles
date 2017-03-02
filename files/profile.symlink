@@ -70,3 +70,6 @@ fi
 set_sshagent
 
 # source /usr/local/share/zsh/site-functions/_aws
+
+# added by Anaconda2 4.3.0 installer
+export PATH="/Users/c0d5x/anaconda/bin:$PATH"

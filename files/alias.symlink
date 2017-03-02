@@ -1,6 +1,8 @@
 # vim:syntax=sh
 #
 
+alias history='history 0'
+
 which gls 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then
     alias l='gls -h --color'
@@ -25,6 +27,8 @@ alias hg='history|grep '
 alias ap='ansible-playbook'
 alias apl='ansible-playbook -i "localhost," -c local '
 
+alias gca='git commit -a -m '
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -36,10 +40,11 @@ which nvim 2>/dev/null >/dev/null  && alias vim='nvim'
 which apt-get 2>/dev/null >/dev/null  && alias apt-get='sudo apt-get -y'
 which apt 2>/dev/null >/dev/null  && alias apt='sudo apt -y'
 which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
-which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
+# which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
 which xdg-open 2>/dev/null >/dev/null && alias open='xdg-open'
 
 which node 2>/dev/null >/dev/null || alias node=nodejs
+
 alias startmongo='mongod --config /usr/local/etc/mongod.conf'
 
 alias sha1='openssl sha1'
@@ -47,7 +52,7 @@ alias sha1='openssl sha1'
 alias svim='sudo vim'
 alias df='df -H'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
-alias ping='ping -c 4'
+# alias ping='ping -c 4'
 
 which tmux 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then

@@ -1,4 +1,4 @@
-# 
+#
 source ~/.profile
 
 #
@@ -74,3 +74,4 @@ bindkey '^r' history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+which direnv 2>&1 >/dev/null && eval "$(direnv hook zsh)"
