@@ -14,6 +14,9 @@ set norelativenumber
 " monitor file changes
 set autoread
 
+" let me change buffers when mod
+set hidden
+
 " display statusbar
 set laststatus=2
 
@@ -174,44 +177,46 @@ Plug 'hashivim/vim-terraform'
 
 Plug 'valloric/youcompleteme'
 
+Plug 'bsdelf/bufferhint'
+
 call plug#end()
 " }}}
 
 " Plugin configurations {{{
 "
-let g:netrw_banner = 0
-let g:netrw_browse_split = 2
-let g:netrw_winsize = 25
+let g:netrw_banner                       = 0
+let g:netrw_browse_split                 = 2
+let g:netrw_winsize                      = 25
 "
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
-let g:airline_left_sep  = "\uE0C0"
-let g:airline_right_sep = "\uE0C2"
-let g:airline_section_b = '%{strftime("%F %H:%M")}'
+let g:airline_left_sep                   = "\uE0C0"
+let g:airline_right_sep                  = "\uE0C2"
+let g:airline_section_b                  = '%{strftime("%F %H:%M")}'
 
-let g:jedi#goto_command             = ""
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command    = "K"
-let g:jedi#usages_command           = "<leader>u"
-let g:jedi#completions_command      = "<C-Space>"
+let g:jedi#goto_command                  = ""
+let g:jedi#goto_assignments_command      = "<leader>g"
+let g:jedi#goto_definitions_command      = "<leader>d"
+let g:jedi#documentation_command         = "K"
+let g:jedi#usages_command                = "<leader>u"
+let g:jedi#completions_command           = "<C-Space>"
 " let g:jedi#rename_command           = "<leader>r"
 
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<c-b>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
-let g:UltiSnipsListSnippets        = "<c-s>"
+let g:UltiSnipsExpandTrigger             = "<tab>"
+let g:UltiSnipsJumpForwardTrigger        = "<c-b>"
+let g:UltiSnipsJumpBackwardTrigger       = "<c-z>"
+let g:UltiSnipsListSnippets              = "<c-s>"
 
 " let g:UltiSnipsSnippetsDir        = "UltiSnippets"
 " let g:UltiSnipsSnippetDirectories = ["~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_key_list_select_completion     = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion   = ['<C-p>', '<Up>']
 
 
-let g:snips_author       = "Jose Hidalgo"
-let g:snips_author_email = "c0d5x@protonmail.com"
-let g:snips_email        = "c0d5x@protonmail.com"
-let g:snips_github       = "https://github.com/c0d5x"
+let g:snips_author                       = "Jose Hidalgo"
+let g:snips_author_email                 = "c0d5x@protonmail.com"
+let g:snips_email                        = "c0d5x@protonmail.com"
+let g:snips_github                       = "https://github.com/c0d5x"
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list            = 1
@@ -219,22 +224,25 @@ let g:syntastic_loc_list_height          = 4
 let g:syntastic_check_on_open            = 1
 let g:syntastic_check_on_wq              = 0
 
-let g:syntastic_error_symbol         = "\u00A7"
-let g:syntastic_style_error_symbol   = "\u2717"
-let g:syntastic_warning_symbol       = "\u26A0"
-let g:syntastic_style_warning_symbol = "\u0482"
-let g:syntastic_enable_highlighting  = 1
+let g:syntastic_error_symbol             = "\u00A7"
+let g:syntastic_style_error_symbol       = "\u2717"
+let g:syntastic_warning_symbol           = "\u26A0"
+let g:syntastic_style_warning_symbol     = "\u0482"
+let g:syntastic_enable_highlighting      = 1
 
-let g:syntastic_python_flake8_post_args='--ignore=E501'
-let g:pymode_lint_ignore = "E501"
-let g:pymode_rope_lookup_project = 0
+let g:syntastic_python_flake8_post_args  = '--ignore=E501'
+let g:pymode_lint_ignore                 = "E501"
+let g:pymode_rope_lookup_project         = 0
 
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_rails          = 1
+let g:rubycomplete_buffer_loading        = 1
+let g:rubycomplete_rails                 = 1
 
-let python_highlight_all = 1
+let python_highlight_all                 = 1
 
-let g:org_agenda_files = ['~/git/work/org/*.org']
+let g:org_agenda_files                   = ['~/git/work/org/*.org']
+
+nnoremap - :call bufferhint#Popup()<CR>
+nnoremap \ :call bufferhint#LoadPrevious()<CR>
 
 try
     " solarized requires solarized iterm's colors set in preferences
@@ -366,8 +374,8 @@ augroup end
 augroup vimwiki
 au!
 au BufRead ~/git/work/vimwiki/index.wiki !git pull
-au BufReadPost ~/git/work/vimwiki/diary/diary.wiki :VimwikiAll2HTML<CR>
-au BufWritePost ~/git/work/vimwiki/* !git add . ;git commit -m "Auto commit + push.";git push<CR>
+au BufRead ~/git/work/vimwiki/diary/diary.wiki :VimwikiDiaryGenerateLinks<CR>
+au BufWritePost ~/git/work/vimwiki/* :!git add . ;git commit -m "Auto commit + push.";git push<CR>
 augroup end
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
@@ -393,6 +401,9 @@ map <Leader>h <C-w>h
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
+
+" I want it to work on all modes
+map <C-l> :buffers<CR>
 
 imap <C-]> <ESC>
 
