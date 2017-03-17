@@ -171,13 +171,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim'
 " Plug 'klen/python-mode'
 Plug 'ryanoasis/vim-devicons'
-Plug 'chase/vim-ansible-yaml'
-
+" Plug 'chase/vim-ansible-yaml'
+Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
-
 Plug 'valloric/youcompleteme'
-
 Plug 'bsdelf/bufferhint'
+Plug 'jiangmiao/auto-pairs'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 " }}}
@@ -253,6 +253,11 @@ catch
     colorscheme darkblue
 endtry
 
+" after changing the colorscheme, set italic for comments
+" iterm2 needs a font with italics, also terminfo has to support italics
+highlight Comment cterm=italic
+
+
 "if exists(':RainbowParenthesesActivate')
 let g:rbpt_colorpairs = [
 \ ['darkgreen',   'firebrick3'],
@@ -297,13 +302,30 @@ let g:tagbar_compact = 1
 let g:tagbar_singleclick = 1
 let g:tagbar_autoshowtag = 1
 
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>W <Plug>(easymotion-bd-w)
+nmap <Leader>W <Plug>(easymotion-overwin-w)
+
+
 " }}}
 
 " Autocommands & Autogroups {{{
 "
 augroup resCur
-  autocmd!
-  autocmd BufReadPost * call setpos(".", getpos("'\""))
+autocmd!
+autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup END
 
 
@@ -313,8 +335,8 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Reload when vimrc is changed
 augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+autocmd!
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
 " if exists(':Neomake')
@@ -322,7 +344,7 @@ augroup END " }
 " endif
 
 " if exists("g:loaded_tagbar")
-    autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 " endif
 
 autocmd VimResized * :wincmd =

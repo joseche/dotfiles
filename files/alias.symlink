@@ -24,6 +24,8 @@ alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 alias rm='rm -rf '
 alias hg='history|grep '
 
+alias ssh='TERM=xterm-256color ssh'
+
 alias ap='ansible-playbook'
 alias apl='ansible-playbook -i "localhost," -c local '
 
