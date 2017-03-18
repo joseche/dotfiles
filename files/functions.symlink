@@ -32,6 +32,6 @@ set_sshagent() {
     # if empty agent, add default keys
     ssh-add -l >/dev/null
     if [ "$?" != "0" ]; then
-        ssh-add < /dev/null
+#        ssh-add < /dev/null
     fi
 }

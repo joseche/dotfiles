@@ -59,7 +59,7 @@ export LC_ALL=en_US.UTF-8
 export NET=192.168.70
 
 # grunt
-export TERRAGRUNT_TFPATH=`which terraform`
+which terraform 2>/dev/null > /dev/null && export TERRAGRUNT_TFPATH=`which terraform`
 
 # python
 if which pyenv-virtualenv-init 2>/dev/null > /dev/null; then
