@@ -182,7 +182,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
 let g:airline_left_sep  = "\uE0C0"
 let g:airline_right_sep = "\uE0C2"
-let g:airline_section_b = '%{strftime("%c")}'
+let g:airline_section_b = '%{strftime("%F %H:%M")}'
 
 let g:jedi#goto_command             = ""
 let g:jedi#goto_assignments_command = "<leader>g"
@@ -232,8 +232,8 @@ let g:org_agenda_files = ['~/git/work/org/*.org']
 
 try
     " solarized requires solarized iterm's colors set in preferences
-    colorscheme solarized
-    " colorscheme dracula
+    " colorscheme solarized
+    colorscheme dracula
     " colorscheme morning
 catch
     colorscheme darkblue
@@ -270,7 +270,7 @@ let g:tagbar_autoshowtag = 1
 
 " fix crontab -e problem
 " set backupskip=/tmp/*,/private/tmp/*
-autocmd filetype crontab setlocal nobackup nowritebackup
+" autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Reload when vimrc is changed
 augroup reload_vimrc " {

@@ -73,12 +73,6 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
       #    - name: "vim PlugInstall"
       #      command: vim +PlugInstall +qall
-    - name: "Install gems"
-      gem: name={{item}} state=present
-      become: true
-      with_items:
-        - neovim
-        - rails
 #    - name: Clone Nerd fonts
 #      become: true
 #      git: repo=https://github.com/ryanoasis/nerd-fonts
