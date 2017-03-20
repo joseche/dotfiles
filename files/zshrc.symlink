@@ -1,4 +1,6 @@
-# 
+#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+
+#
 source ~/.profile
 
 #
@@ -38,7 +40,8 @@ WATCHFMT='%n %a %l from %m at %T.'
 
 source ~/git/zsh-git-prompt/zshrc.sh
 source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
-source `which aws_zsh_completer.sh` 2>/dev/null
+which aws_zsh_completer.sh 2>/dev/null >/dev/null && source `which aws_zsh_completer.sh` 2>/dev/null
+which direnv 2>/dev/null >/dev/null && eval "$(direnv hook zsh)"
 
 
 function check_last_exit_code() {
@@ -73,4 +76,6 @@ bindkey -e
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+
+
 

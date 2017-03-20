@@ -1,6 +1,6 @@
 " vim: syntax=vim foldmethod=marker foldlevel=0
 
-" Global variables {{{
+" Set options {{{
 
 set nocompatible
 
@@ -13,6 +13,9 @@ set norelativenumber
 
 " monitor file changes
 set autoread
+
+" let me change buffers when mod
+set hidden
 
 " display statusbar
 set laststatus=2
@@ -36,11 +39,11 @@ set backspace=indent,eol,start
 " when searching
 set showmatch
 set incsearch
-set hlsearch
+set nohlsearch
 
 " annoying sounds
 set noerrorbells
-set novisualbell
+set visualbell
 set t_vb=
 
 " required for osx clipboard
@@ -80,7 +83,7 @@ set showbreak=↪
 
 set background=dark
 " set guifont=Monaco:h13
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
 
 " should be on but making sure
 set ttyfast
@@ -88,6 +91,8 @@ set title
 
 set showcmd
 set showmode
+
+set viminfo='10,\"100,:100,%,n~/.viminfo
 
 " encoding
 scriptencoding utf-8
@@ -106,14 +111,6 @@ set list
 " set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,space:·
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 " →
-
-let g:netrw_banner = 0
-let g:netrw_browse_split = 2
-let g:netrw_winsize = 25
-
-
-" let g:airline_section_b = '%{strftime("%c")}'
-
 
 " backups
 set backup                        " enable backups
@@ -138,12 +135,20 @@ filetype indent on
 
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
+
+if exists('*jobstart')
+    " NEOVIM ON
+    set viminfo='10,\"100,:100,%,n~/.viminfo
+else
+    " Vim only
+    set viminfo='10,\"100,:100,%,n~/.viminfo_vim
+endif
+
 " }}}
 
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 Plug 'davidhalter/jedi-vim'
-" Plug 'tpope/vim-rails'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-startify'
@@ -152,14 +157,12 @@ Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-" Plug 'benekastah/neomake'
-" Plug 'scrooloose/syntastic'
 Plug 'vimwiki'
-" Plug 'mattn/calendar-vim'
+Plug 'mattn/calendar-vim'
 " Plug 'hdima/python-syntax'
 Plug 'bling/vim-bufferline'
-" Plug 'airblade/vim-gitgutter'
-Plug 'motemen/git-vim'
+Plug 'airblade/vim-gitgutter'
+" Plug 'motemen/git-vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'powerline/powerline'
@@ -168,44 +171,52 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim'
 " Plug 'klen/python-mode'
 Plug 'ryanoasis/vim-devicons'
-Plug 'chase/vim-ansible-yaml'
-
+" Plug 'chase/vim-ansible-yaml'
+Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
-
 Plug 'valloric/youcompleteme'
+Plug 'bsdelf/bufferhint'
+Plug 'jiangmiao/auto-pairs'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 " }}}
 
 " Plugin configurations {{{
+"
+let g:netrw_banner                       = 0
+let g:netrw_browse_split                 = 2
+let g:netrw_winsize                      = 25
+"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
-let g:airline_left_sep  = "\uE0C0"
-let g:airline_right_sep = "\uE0C2"
-let g:airline_section_b = '%{strftime("%F %H:%M")}'
+let g:airline_left_sep                   = "\uE0C0"
+let g:airline_right_sep                  = "\uE0C2"
+let g:airline_section_b                  = '%{strftime("%F %H:%M")}'
 
-let g:jedi#goto_command             = ""
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command    = "K"
-let g:jedi#usages_command           = "<leader>u"
-let g:jedi#completions_command      = "<C-Space>"
-let g:jedi#rename_command           = "<leader>r"
+let g:jedi#goto_command                  = ""
+let g:jedi#goto_assignments_command      = "<leader>g"
+let g:jedi#goto_definitions_command      = "<leader>d"
+let g:jedi#documentation_command         = "K"
+let g:jedi#usages_command                = "<leader>u"
+let g:jedi#completions_command           = "<C-Space>"
+" let g:jedi#rename_command           = "<leader>r"
 
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<c-b>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+let g:UltiSnipsExpandTrigger             = "<tab>"
+let g:UltiSnipsJumpForwardTrigger        = "<c-b>"
+let g:UltiSnipsJumpBackwardTrigger       = "<c-z>"
+let g:UltiSnipsListSnippets              = "<c-s>"
 
 " let g:UltiSnipsSnippetsDir        = "UltiSnippets"
-" let g:UltiSnipsSnippetDirectories = ["~/git/UltiSnippets"]
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:UltiSnipsSnippetDirectories = ["~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
+let g:ycm_key_list_select_completion     = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion   = ['<C-p>', '<Up>']
 
 
-let g:snips_author       = "Jose Hidalgo"
-let g:snips_author_email = "c0d5x@protonmail.com"
-let g:snips_email        = "c0d5x@protonmail.com"
-let g:snips_github       = "https://github.com/c0d5x"
+let g:snips_author                       = "Jose Hidalgo"
+let g:snips_author_email                 = "c0d5x@protonmail.com"
+let g:snips_email                        = "c0d5x@protonmail.com"
+let g:snips_github                       = "https://github.com/c0d5x"
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list            = 1
@@ -213,22 +224,25 @@ let g:syntastic_loc_list_height          = 4
 let g:syntastic_check_on_open            = 1
 let g:syntastic_check_on_wq              = 0
 
-let g:syntastic_error_symbol         = "\u00A7"
-let g:syntastic_style_error_symbol   = "\u2717"
-let g:syntastic_warning_symbol       = "\u26A0"
-let g:syntastic_style_warning_symbol = "\u0482"
-let g:syntastic_enable_highlighting  = 1
+let g:syntastic_error_symbol             = "\u00A7"
+let g:syntastic_style_error_symbol       = "\u2717"
+let g:syntastic_warning_symbol           = "\u26A0"
+let g:syntastic_style_warning_symbol     = "\u0482"
+let g:syntastic_enable_highlighting      = 1
 
-let g:syntastic_python_flake8_post_args='--ignore=E501'
-let g:pymode_lint_ignore = "E501"
+let g:syntastic_python_flake8_post_args  = '--ignore=E501'
+let g:pymode_lint_ignore                 = "E501"
+let g:pymode_rope_lookup_project         = 0
 
+let g:rubycomplete_buffer_loading        = 1
+let g:rubycomplete_rails                 = 1
 
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_rails          = 1
+let python_highlight_all                 = 1
 
-let python_highlight_all = 1
+let g:org_agenda_files                   = ['~/git/work/org/*.org']
 
-let g:org_agenda_files = ['~/git/work/org/*.org']
+nnoremap - :call bufferhint#Popup()<CR>
+nnoremap \ :call bufferhint#LoadPrevious()<CR>
 
 try
     " solarized requires solarized iterm's colors set in preferences
@@ -239,11 +253,35 @@ catch
     colorscheme darkblue
 endtry
 
+" after changing the colorscheme, set italic for comments
+" iterm2 needs a font with italics, also terminfo has to support italics
+highlight Comment cterm=italic
+
+
 "if exists(':RainbowParenthesesActivate')
-"    autocmd VimEnter * RainbowParenthesesActivate
-"    autocmd Syntax * RainbowParenthesesLoadRound
-"    autocmd Syntax * RainbowParenthesesLoadSquare
-"    autocmd Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+\ ['darkgreen',   'firebrick3'],
+\ ['darkcyan',    'SeaGreen3'],
+\ ['darkred',     'DarkOrchid3'],
+\ ['black',       'SeaGreen3'],
+\ ['Darkblue',    'firebrick3'],
+\ ['darkcyan',    'RoyalBlue3'],
+\ ['darkred',     'SeaGreen3'],
+\ ['darkmagenta', 'DarkOrchid3'],
+\ ['brown',       'firebrick3'],
+\ ['gray',        'RoyalBlue3'],
+\ ['red',         'firebrick3'],
+\ ['brown',       'RoyalBlue3'],
+\ ['darkgreen',   'RoyalBlue3'],
+\ ['darkmagenta', 'DarkOrchid3'],
+\ ['darkgray',    'DarkOrchid3'],
+\ ['Darkblue',    'SeaGreen3'],
+\ ]
+    autocmd VimEnter * RainbowParenthesesActivate
+    autocmd Syntax * RainbowParenthesesLoadRound
+    autocmd Syntax * RainbowParenthesesLoadSquare
+    autocmd Syntax * RainbowParenthesesLoadBraces
+    autocmd Syntax * RainbowParenthesesLoadChevrons
 "endif
 
 let g:Powerline_symbols = 'fancy'
@@ -264,9 +302,32 @@ let g:tagbar_compact = 1
 let g:tagbar_singleclick = 1
 let g:tagbar_autoshowtag = 1
 
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>W <Plug>(easymotion-bd-w)
+nmap <Leader>W <Plug>(easymotion-overwin-w)
+
+
 " }}}
 
 " Autocommands & Autogroups {{{
+"
+augroup resCur
+autocmd!
+autocmd BufReadPost * call setpos(".", getpos("'\""))
+augroup END
+
 
 " fix crontab -e problem
 " set backupskip=/tmp/*,/private/tmp/*
@@ -274,8 +335,8 @@ let g:tagbar_autoshowtag = 1
 
 " Reload when vimrc is changed
 augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+autocmd!
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
 " if exists(':Neomake')
@@ -283,7 +344,7 @@ augroup END " }
 " endif
 
 " if exists("g:loaded_tagbar")
-    autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 " endif
 
 autocmd VimResized * :wincmd =
@@ -299,7 +360,7 @@ au FileType python setl tabstop=4     " A tab counts for 4 spaces.
 au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
 au FileType python setl shiftwidth=4  " Shift by 4 spaces.
 au FileType python setl foldmethod=indent " fold method is indent for python
-" au FileType python nnoremap <Leader>r :!python -m pdb %<CR>
+au FileType python nnoremap <Leader>r :!python %<CR>
 augroup end
 
 " Ruby section
@@ -335,8 +396,8 @@ augroup end
 augroup vimwiki
 au!
 au BufRead ~/git/work/vimwiki/index.wiki !git pull
-au BufReadPost ~/git/work/vimwiki/diary/diary.wiki :VimwikiAll2HTML<CR>
-au BufWritePost ~/git/work/vimwiki/* !git add . ;git commit -m "Auto commit + push.";git push<CR>
+au BufRead ~/git/work/vimwiki/diary/diary.wiki :VimwikiDiaryGenerateLinks<CR>
+au BufWritePost ~/git/work/vimwiki/* :!git add . ;git commit -m "Auto commit + push.";git push<CR>
 augroup end
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
@@ -349,13 +410,13 @@ nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>m :bp<CR>
 nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
-nnoremap <Leader>t :tabedit ~/org/index.org<CR>
+" nnoremap <Leader>t :tabedit ~/org/index.org<CR>
 nnoremap <Leader>b :NERDTree<CR>
 nnoremap <Leader>E :EasyAlign=<CR>
 
-nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport 
+nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport
 
-nnoremap <Localleader>r :!python -m pdb %<CR>
+nnoremap <Localleader>r :!python %<CR>
 inoremap # X<BS>#
 
 map <Leader>h <C-w>h
@@ -363,19 +424,14 @@ map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 
+" I want it to work on all modes
+map <C-l> :buffers<CR>
+
+imap <C-]> <ESC>
+
 " }}}
 
 " Functions and other {{{
-
-function! ScratchEdit(cmd, options)
-    exe a:cmd tempname()
-    setl buftype=nofile bufhidden=wipe nobuflisted
-    if !empty(a:options) | exe 'setl' a:options | endif
-endfunction
-command! -bar -nargs=* Sedit    call ScratchEdit('edit', <q-args>)
-command! -bar -nargs=* Ssplit   call ScratchEdit('split', <q-args>)
-command! -bar -nargs=* Svsplit  call ScratchEdit('vsplit', <q-args>)
-command! -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
 
 function! ShuffleLines()
 ruby << EOF

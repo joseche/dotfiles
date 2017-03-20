@@ -11,6 +11,9 @@
     status = auto
     branch = auto
 
+[color "status"]
+    changed = green bold
+
 [diff]
     tool = vimdiff
 
@@ -34,4 +37,5 @@
 
 [diff]
     tool = vimdiff
+
 
