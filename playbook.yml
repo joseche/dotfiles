@@ -31,6 +31,12 @@
       file: path=~/.aws state=directory mode=700 force=yes
     - name: "AWS Config"
       file: src={{ playbook_dir }}/files/aws.config.symlink dest=~/.aws/config state=link force=yes
+
+    - name: "irssi dir"
+      file: path=~/.irssi state=directory mode=700 force=yes
+    - name: "irssi Config"
+      file: src={{ playbook_dir }}/files/irssi.config.symlink dest=~/.irssi/config state=link force=yes
+
     - name: "ctags Config"
       file: src={{ playbook_dir }}/files/ctags.symlink dest=~/.ctags state=link force=yes
     - name: "Emacs Config"

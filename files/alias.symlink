@@ -55,6 +55,7 @@ alias svim='sudo vim'
 alias df='df -H'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 # alias ping='ping -c 4'
+alias mutt='mutt -f /var/mail/c0d5x'
 
 which tmux 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then

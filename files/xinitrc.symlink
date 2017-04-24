@@ -1,7 +1,12 @@
 #!/bin/sh
 
-WM=startxfce4
-WM=spectrwm
+# WM=startxfce4
+# WM=spectrwm
+# WM=i3wm
+
+
+# OSX
+WM=quartz-wm
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -46,4 +51,5 @@ fi
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
 # exec $WM
-xterm
+# exec $WM
+exec xterm
