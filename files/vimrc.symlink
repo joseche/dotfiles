@@ -248,8 +248,8 @@ nnoremap \ :call bufferhint#LoadPrevious()<CR>
 
 try
     " solarized requires solarized iterm's colors set in preferences
-    colorscheme solarized
-    " colorscheme dracula
+    " colorscheme solarized
+    colorscheme dracula
     " colorscheme morning
 catch
     colorscheme darkblue
@@ -333,7 +333,7 @@ augroup END
 
 " fix crontab -e problem
 " set backupskip=/tmp/*,/private/tmp/*
-autocmd filetype crontab setlocal nobackup nowritebackup
+" autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Reload when vimrc is changed
 augroup reload_vimrc " {
