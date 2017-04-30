@@ -5,8 +5,9 @@
 # WM=i3wm
 
 
-# OSX
-WM=quartz-wm
+which quartz-wm >/dev/null 2>/dev/null && WM=quartz-wm
+which gnome-session >/dev/null 2>/dev/null && WM=gnome-session
+which xterm >/dev/null 2>/dev/null && WM=xterm
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -50,6 +51,5 @@ fi
 # xterm -geometry 80x50+494+51 &
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
-# exec $WM
-# exec $WM
-exec xterm
+xterm -geometry 80x50-1+1 &
+exec $WM
