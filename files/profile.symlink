@@ -1,4 +1,8 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2155
+# shellcheck disable=SC1090
 # vim:syntax=sh
+
 
 umask 0022
 
@@ -21,10 +25,13 @@ if [ -d /usr/local/MacGPG2/bin ]; then
 fi
 
 if [ -d /Users/c0d5x/Library/Android/sdk/platform-tools ]; then
-    export PATH=$PATH
+  export PATH=$PATH:"/Users/c0d5x/Library/Android/sdk/platform-tools"
 fi
 
-# export MANPATH="/usr/local/man:$MANPATH""
+if [ -d /usr/local/man ]; then
+  export MANPATH="/usr/local/man":$MANPATH
+fi
+
 export GREP_COLOR="1;32"
 export MANPAGER="less -X"
 
@@ -59,17 +66,15 @@ export LC_ALL=en_US.UTF-8
 export NET=192.168.70
 
 # grunt
-which terraform 2>/dev/null > /dev/null && export TERRAGRUNT_TFPATH=`which terraform`
+which terraform 2>/dev/null > /dev/null && export TERRAGRUNT_TFPATH=$(which terraform)
 
 # python
 if which pyenv-virtualenv-init 2>/dev/null > /dev/null; then
-    eval "$(pyenv virtualenv-init -)"
+   eval "$(pyenv virtualenv-init -)"
 fi
 
 # ssh keys
 set_sshagent
-
-# source /usr/local/share/zsh/site-functions/_aws
 
 # added by Anaconda2 4.3.0 installer
 export PATH="/Users/c0d5x/anaconda/bin:$PATH"
