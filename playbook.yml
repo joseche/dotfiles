@@ -27,6 +27,8 @@
       file: src={{ playbook_dir }}/files/alias.git.symlink dest=~/.alias.git state=link force=yes
     - name: "Alias hosts"
       file: src={{ playbook_dir }}/files/alias.hosts.symlink dest=~/.alias.hosts state=link force=yes
+    - name: "OSX specific"
+      file: src={{ playbook_dir }}/files/osx.symlink dest=~/.osx state=link force=yes
     - name: "AWS dir"
       file: path=~/.aws state=directory mode=700 force=yes
     - name: "AWS Config"

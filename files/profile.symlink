@@ -44,6 +44,9 @@ source ~/.alias
 # functions
 source ~/.functions
 
+# osx specific calls
+which macerror >/dev/null 2>/dev/null && source ~/.osx
+
 # keys, tokens, etc.
 [ -f ~/.keys ] && source ~/.keys
 
