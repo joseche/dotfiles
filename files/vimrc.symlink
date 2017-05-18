@@ -49,9 +49,6 @@ set t_vb=
 " required for osx clipboard
 set clipboard=unnamed
 
-" history and undo levels
-set history=1000
-set undolevels=1000
 
 " on splits
 set splitbelow
@@ -112,7 +109,11 @@ set list
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 " →
 
-" backups
+" history, backups and undo levels
+set undofile
+set history=1000
+set undolevels=1000
+set undoreload=10000
 set backup                        " enable backups
 set noswapfile
 set undodir=~/.vim/tmp/undo//     " undo files
@@ -336,8 +337,8 @@ augroup END
 
 
 " fix crontab -e problem
-" set backupskip=/tmp/*,/private/tmp/*
-" autocmd filetype crontab setlocal nobackup nowritebackup
+set backupskip=/tmp/*,/private/tmp/*
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Reload when vimrc is changed
 augroup reload_vimrc " {
@@ -398,12 +399,11 @@ au FileType markdown setl softtabstop=2 " Causes backspace to delete 2 spaces.
 au FileType markdown setl shiftwidth=2  " Shift by 2 spaces.
 augroup end
 
-
 augroup vimwiki
 au!
-au BufRead ~/git/work/vimwiki/index.wiki !git pull
-au BufRead ~/git/work/vimwiki/diary/diary.wiki :VimwikiDiaryGenerateLinks<CR>
-au BufWritePost ~/git/work/vimwiki/* :!git add . ;git commit -m "Auto commit + push.";git push<CR>
+au BufEnter * silent! lcd %:p:h
+au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
+au BufWritePost ~/git/work/vimwiki/* :VimwikiDiaryGenerateLinks<CR>
 augroup end
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
