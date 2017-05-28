@@ -24,7 +24,11 @@ alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 alias rm='rm -rf '
 alias hg='history|grep '
 
-alias ssh='TERM=xterm-256color ssh'
+# xquartz in mac seems to always warn about dynamic cookies..
+alias ssh='ssh -y'
+
+# because mac < linux
+alias ssh='TERM=xterm-256color ssh -y'
 
 alias ap='ansible-playbook'
 alias apl='ansible-playbook -i "localhost," -c local '
