@@ -49,9 +49,6 @@ set t_vb=
 " required for osx clipboard
 set clipboard=unnamed
 
-" history and undo levels
-set history=1000
-set undolevels=1000
 
 " on splits
 set splitbelow
@@ -112,7 +109,11 @@ set list
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
 " →
 
-" backups
+" history, backups and undo levels
+set undofile
+set history=1000
+set undolevels=1000
+set undoreload=10000
 set backup                        " enable backups
 set noswapfile
 set undodir=~/.vim/tmp/undo//     " undo files
@@ -148,37 +149,40 @@ endif
 
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
+
+" Plug 'chase/vim-ansible-yaml'
+" Plug 'hdima/python-syntax'
+" Plug 'jceb/vim-orgmode'
+" Plug 'klen/python-mode'
+" Plug 'motemen/git-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'bling/vim-bufferline'
+Plug 'bsdelf/bufferhint'
+Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'chr4/sslsecure.vim'
 Plug 'davidhalter/jedi-vim'
-Plug 'sirver/ultisnips'
+Plug 'dracula/vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'hashivim/vim-terraform'
 Plug 'honza/vim-snippets'
-Plug 'mhinz/vim-startify'
-Plug 'scrooloose/nerdtree'
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'majutsushi/tagbar'
+Plug 'mattn/calendar-vim'
+Plug 'mhinz/vim-startify'
+Plug 'mileszs/ack.vim'
+Plug 'pearofducks/ansible-vim'
+Plug 'powerline/powerline'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'sirver/ultisnips'
+Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'majutsushi/tagbar'
 Plug 'vimwiki'
-Plug 'mattn/calendar-vim'
-" Plug 'hdima/python-syntax'
-Plug 'bling/vim-bufferline'
-Plug 'airblade/vim-gitgutter'
-" Plug 'motemen/git-vim'
-Plug 'altercation/vim-colors-solarized'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'powerline/powerline'
-" Plug 'jceb/vim-orgmode'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dracula/vim'
-" Plug 'klen/python-mode'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'chase/vim-ansible-yaml'
-Plug 'pearofducks/ansible-vim'
-Plug 'hashivim/vim-terraform'
-Plug 'valloric/youcompleteme'
-Plug 'bsdelf/bufferhint'
-Plug 'jiangmiao/auto-pairs'
-Plug 'easymotion/vim-easymotion'
-
 call plug#end()
 " }}}
 
@@ -200,7 +204,7 @@ let g:jedi#goto_definitions_command      = "<leader>d"
 let g:jedi#documentation_command         = "K"
 let g:jedi#usages_command                = "<leader>u"
 let g:jedi#completions_command           = "<C-Space>"
-" let g:jedi#rename_command           = "<leader>r"
+let g:jedi#rename_command                = "<leader>n"
 
 let g:UltiSnipsExpandTrigger             = "<tab>"
 let g:UltiSnipsJumpForwardTrigger        = "<c-b>"
@@ -230,7 +234,10 @@ let g:syntastic_warning_symbol           = "\u26A0"
 let g:syntastic_style_warning_symbol     = "\u0482"
 let g:syntastic_enable_highlighting      = 1
 
-let g:syntastic_python_flake8_post_args  = '--ignore=E501'
+let g:syntastic_python_checkers          = ['flake8']
+let g:syntastic_python_flake8_exec       = 'python3'
+let g:syntastic_python_flake8_args       = ['-m', 'flake8']
+let g:syntastic_python_flake8_post_args  = '--ignore=E501,E221'
 let g:pymode_lint_ignore                 = "E501"
 let g:pymode_rope_lookup_project         = 0
 
@@ -246,8 +253,8 @@ nnoremap \ :call bufferhint#LoadPrevious()<CR>
 
 try
     " solarized requires solarized iterm's colors set in preferences
-    colorscheme solarized
-    " colorscheme dracula
+    " colorscheme solarized
+    colorscheme dracula
     " colorscheme morning
 catch
     colorscheme darkblue
@@ -330,7 +337,7 @@ augroup END
 
 
 " fix crontab -e problem
-" set backupskip=/tmp/*,/private/tmp/*
+set backupskip=/tmp/*,/private/tmp/*
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Reload when vimrc is changed
@@ -392,12 +399,11 @@ au FileType markdown setl softtabstop=2 " Causes backspace to delete 2 spaces.
 au FileType markdown setl shiftwidth=2  " Shift by 2 spaces.
 augroup end
 
-
 augroup vimwiki
 au!
-au BufRead ~/git/work/vimwiki/index.wiki !git pull
-au BufRead ~/git/work/vimwiki/diary/diary.wiki :VimwikiDiaryGenerateLinks<CR>
-au BufWritePost ~/git/work/vimwiki/* :!git add . ;git commit -m "Auto commit + push.";git push<CR>
+au BufEnter * silent! lcd %:p:h
+au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
+au BufWritePost ~/git/work/vimwiki/* :VimwikiDiaryGenerateLinks<CR>
 augroup end
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>

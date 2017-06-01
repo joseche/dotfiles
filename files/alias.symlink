@@ -24,7 +24,11 @@ alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 alias rm='rm -rf '
 alias hg='history|grep '
 
-alias ssh='TERM=xterm-256color ssh'
+# xquartz in mac seems to always warn about dynamic cookies..
+# alias ssh='ssh -y'
+
+# because mac < linux
+alias ssh='TERM=xterm-256color ssh -y'
 
 alias ap='ansible-playbook'
 alias apl='ansible-playbook -i "localhost," -c local '
@@ -55,6 +59,7 @@ alias svim='sudo vim'
 alias df='df -H'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 # alias ping='ping -c 4'
+alias mutt='mutt -f /var/mail/c0d5x'
 
 which tmux 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then

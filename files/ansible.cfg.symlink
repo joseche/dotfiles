@@ -11,3 +11,8 @@ private_key_file = ~/.ssh/id_rsa
 roles_path = ~/git/ansible_roles
 retry_files_enabled = False
 retry_files_save_path = ~/tmp/
+
+[ssh_connection]
+ssh_args = -o ControlMaster=auto -o ControlPersist=30m
+control_path = ~/.ssh/ansible_%%r@%%h:%%p
+
