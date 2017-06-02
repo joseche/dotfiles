@@ -51,8 +51,8 @@ which macerror >/dev/null 2>/dev/null && source ~/.osx
 [ -f ~/.keys ] && source ~/.keys
 
 # after alias, vim should be nvim
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=vim
+export VISUAL=vim
 
 # Android
 if [ -d ~/android/android-sdk-linux ]; then

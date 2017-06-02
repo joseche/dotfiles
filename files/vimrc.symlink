@@ -80,7 +80,12 @@ set showbreak=↪
 
 set background=dark
 " set guifont=Monaco:h13
+" set guifont=Source\ Code\ Pro\ for\ Powerline
+" set guifontwide=Source\ Code\ Pro\ for\ Powerline
+" set guifontwide=Monaco:h13
 " set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
+" set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular
+" set guifontwide=Ubuntu\ Mono\ derivative\ Powerline\ Regular
 
 " should be on but making sure
 set ttyfast
@@ -92,12 +97,14 @@ set showmode
 set viminfo='10,\"100,:100,%,n~/.viminfo
 
 " encoding
+set encoding=utf-8
+set fileencoding=utf-8
 scriptencoding utf-8
 if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
   endif
-  " set encoding=utf-8
+  
   setglobal fileencoding=utf-8
   "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
@@ -175,14 +182,14 @@ Plug 'mhinz/vim-startify'
 Plug 'mileszs/ack.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'powerline/powerline'
-Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'sirver/ultisnips'
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vimwiki'
+Plug 'ryanoasis/vim-devicons'
+" Plug 'vimwiki'
 call plug#end()
 " }}}
 
@@ -194,9 +201,17 @@ let g:netrw_winsize                      = 25
 "
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
-let g:airline_left_sep                   = "\uE0C0"
-let g:airline_right_sep                  = "\uE0C2"
+" let g:airline_left_sep                   = "\uE0C0"
+" let g:airline_right_sep                  = "\uE0C2"
 let g:airline_section_b                  = '%{strftime("%F %H:%M")}'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+
 
 let g:jedi#goto_command                  = ""
 let g:jedi#goto_assignments_command      = "<leader>g"
@@ -338,7 +353,7 @@ augroup END
 
 " fix crontab -e problem
 set backupskip=/tmp/*,/private/tmp/*
-autocmd filetype crontab setlocal nobackup nowritebackup
+" autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Reload when vimrc is changed
 augroup reload_vimrc " {

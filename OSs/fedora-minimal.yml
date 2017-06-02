@@ -3,8 +3,8 @@
 - name: "User shell"
   user: name={{ansible_user_id}} shell=/usr/bin/zsh
   become: true
-- name: EPEL for fedora
-  dnf: name=epel-release state=present
+# - name: EPEL for fedora 
+# dnf: name=epel-release state=present
 - name: "YUM Update"
   yum: name=* update_cache=yes state=latest
 - name: "Add base packages for servers Fedora"
