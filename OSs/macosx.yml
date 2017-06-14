@@ -3,9 +3,9 @@
 - name: "System Update"
   become: true
   shell: softwareupdate -i -a
-- name: "Javascript console"
-  file: src=/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc dest=/bin/jsc state=link
-  become: true
+# - name: "Javascript console"
+#   file: src=/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc dest=/bin/jsc state=link
+#   become: true
 - homebrew: name={{item}} state=present update_homebrew=yes
   with_items:
     - coreutils
@@ -42,3 +42,7 @@
 - name: "OSX - remove sound at boot"
   become: true
   shell: nvram SystemAudioVolume=" "
+- name: "neovim via brew"
+  shell: brew install neovim/neovim/neovim
+- name: reattach-to-user-namespace
+  shell: brew install reattach-to-user-namespace
