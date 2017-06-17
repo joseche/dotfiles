@@ -1,4 +1,4 @@
-" vim: syntax=vim foldmethod=marker foldlevel=0
+" vim: syntax=vim foldmethod=marker foldlevel=1
 
 " Set options {{{
 
@@ -19,6 +19,9 @@ set hidden
 
 " display statusbar
 set laststatus=2
+
+" enable mouse
+set mouse=a
 
 " indents
 set autoindent
@@ -51,8 +54,8 @@ set clipboard=unnamed
 
 
 " on splits
-set splitbelow
 set splitright
+set splitbelow
 
 " default file format
 set ffs=unix,mac,dos

@@ -23,6 +23,7 @@ alias e='printf "\ec"'
 alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 alias rm='rm -rf '
 alias hg='history|grep '
+alias wallpaper='~/git/wallpaper_manager/wallpaper.py'
 
 # xquartz in mac seems to always warn about dynamic cookies..
 # alias ssh='ssh -y'
