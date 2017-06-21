@@ -18,11 +18,13 @@
     - name: "zlogin"
       file: src={{ playbook_dir }}/files/zlogin.symlink dest=~/.zlogin state=link force=yes
     - name: "zlogout"
-      file: src={{ playbook_dir }}/files/zlogin.symlink dest=~/.zlogout state=link force=yes
+      file: src={{ playbook_dir }}/files/zlogout.symlink dest=~/.zlogout state=link force=yes
     - name: "zprofile"
       file: src={{ playbook_dir }}/files/zprofile.symlink dest=~/.zprofile state=link force=yes
     - name: "zshrc"
       file: src={{ playbook_dir }}/files/zshrc.symlink dest=~/.zshrc state=link force=yes
+    - name: "bashrc"
+      file: src={{ playbook_dir }}/files/bashrc.symlink dest=~/.bashrc state=link force=yes
     - name: "xinitrc"
       file: src={{ playbook_dir }}/files/xinitrc.symlink dest=~/.xinitrc state=link force=yes
     - name: "profile"

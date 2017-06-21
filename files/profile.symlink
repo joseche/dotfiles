@@ -76,6 +76,11 @@ if which pyenv-virtualenv-init 2>/dev/null > /dev/null; then
    eval "$(pyenv virtualenv-init -)"
 fi
 
+# ruby & chef
+if which rbenv 2>/dev/null > /dev/null; then
+    eval "$(rbenv init -)";
+fi
+
 # ssh keys
 set_sshagent
 
