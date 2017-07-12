@@ -67,6 +67,10 @@
       git: repo=https://github.com/olivierverdier/zsh-git-prompt dest=~/git/zsh-git-prompt force=yes
     - name: "Clone https://github.com/zsh-users/zsh-history-substring-search"
       git: repo=https://github.com/zsh-users/zsh-history-substring-search dest=~/git/zsh-history-substring-search
+    - name: "Download docker zsh completion"
+      get_url:
+        url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+        dest: ~/git/zsh-completions/_docker
     - name: "nvim config dir"
       file: path=~/.config/nvim/autoload state=directory
 

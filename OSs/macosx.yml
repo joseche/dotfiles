@@ -38,11 +38,12 @@
     - ctags
     - pyenv-virtualenv
     - golang
+    - neovim
 
 - name: "OSX - remove sound at boot"
   become: true
   shell: nvram SystemAudioVolume=" "
-- name: "neovim via brew"
-  shell: brew install neovim/neovim/neovim
+  # - name: "neovim via brew"
+  # shell: brew install neovim
 - name: reattach-to-user-namespace
   shell: brew install reattach-to-user-namespace

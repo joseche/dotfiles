@@ -192,7 +192,7 @@ Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'vimwiki'
+Plug 'vimwiki/vimwiki'
 
 " Chef
 Plug 'glidenote/vim-chef'
@@ -235,6 +235,8 @@ let g:UltiSnipsListSnippets              = "<c-s>"
 
 " let g:UltiSnipsSnippetsDir        = "UltiSnippets"
 " let g:UltiSnipsSnippetDirectories = ["~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
+let g:ycm_auto_trigger = 1
+
 let g:ycm_key_list_select_completion     = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion   = ['<C-p>', '<Up>']
 
@@ -256,7 +258,7 @@ let g:syntastic_warning_symbol           = "\u26A0"
 let g:syntastic_style_warning_symbol     = "\u0482"
 let g:syntastic_enable_highlighting      = 1
 
-let g:syntastic_python_checkers          = ['flake8']
+let g:syntastic_python_checkers          = ['flake8', 'pylint']
 let g:syntastic_python_flake8_exec       = 'python3'
 let g:syntastic_python_flake8_args       = ['-m', 'flake8']
 let g:syntastic_python_flake8_post_args  = '--ignore=E501,E221'
