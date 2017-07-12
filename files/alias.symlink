@@ -19,10 +19,12 @@ fi
 alias bc='bc -q -l'
 alias cp='cp -r'
 alias cd=cdl
+alias dmesg='sudo dmesg'
 alias e='printf "\ec"'
 alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 alias rm='rm -rf '
 alias hg='history|grep '
+alias wallpaper='~/git/wallpaper_manager/wallpaper.py'
 
 # xquartz in mac seems to always warn about dynamic cookies..
 # alias ssh='ssh -y'
@@ -42,11 +44,12 @@ alias ....='cd ../../..'
 which gsort 2>/dev/null >/dev/null && alias sort='gsort'
 which gecho 2>/dev/null >/dev/null  && alias echo='gecho'
 which gprintf 2>/dev/null >/dev/null  && alias printf='gprintf'
-which nvim 2>/dev/null >/dev/null  && alias vim='nvim'
+which nvim 2>/dev/null >/dev/null  && alias vim='nvim' && alias vi='nvim'
 which apt-get 2>/dev/null >/dev/null  && alias apt-get='sudo apt-get -y'
 which apt 2>/dev/null >/dev/null  && alias apt='sudo apt -y'
 which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
 # which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
+which python3 2>/dev/null >/dev/null && alias python='python3'
 which xdg-open 2>/dev/null >/dev/null && alias open='xdg-open'
 
 which node 2>/dev/null >/dev/null || alias node=nodejs
@@ -73,3 +76,6 @@ fi
 for af in ~/.alias.*; do
     source $af
 done
+
+alias dev='ssh -t auxisjh ssh -t dev'
+alias chefdev='ssh -t auxisjh ssh -t dev ssh -t chefdev'

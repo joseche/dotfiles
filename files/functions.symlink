@@ -24,7 +24,7 @@ set_sshagent() {
         # we have an agent, record pid and socket
         export SSH_AUTH_SOCK=$(sudo lsof -U -a -p $SSH_AGENT_PID -F n | \
                                   grep '^n/' | cut -c2-|sed 's, .*,,')
-        rm -f ${HOME}/.ssh-* 2>&1 >/dev/null
+        rm -f ${HOME}/.ssh-* 2>/dev/null >/dev/null
         echo "$SSH_AUTH_SOCK" > ${HOME}/.ssh-auth-sock
         echo "$SSH_AGENT_PID" > ${HOME}/.ssh-agent-pid
     fi

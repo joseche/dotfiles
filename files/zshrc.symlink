@@ -1,11 +1,9 @@
+# `.zshrc' is sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
+
 #[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
-#
 source ~/.profile
 
-#
-# `.zshrc' is sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
-#
 fpath=($fpath ~/git/zsh-completions)
 autoload -U compinit && compinit -u
 autoload -U colors && colors
@@ -55,9 +53,16 @@ function check_last_exit_code() {
   fi
 }
 
+# iterm2 shell integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 PROMPT='$(check_last_exit_code)
 %{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
 %# '
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && PROMPT='$(check_last_exit_code)
+%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
+%{$(iterm2_prompt_mark)%} '
 
 
 function preexec() {
@@ -77,5 +82,4 @@ bindkey '^r' history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-
-
+which fortune 2>/dev/null >/dev/null && fortune -s

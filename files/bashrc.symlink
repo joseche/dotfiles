@@ -1,0 +1,49 @@
+
+#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+
+source ~/.profile
+
+HISTFILE="$HOME/.history"
+HISTSIZE=1000
+SAVEHIST=1000
+
+#  bindkey -e
+#  bindkey '^r' history-incremental-search-backward
+#  bindkey "^[[A" history-substring-search-up
+#  bindkey "^[[B" history-substring-search-down
+
+ulimit -S -c 0      # Don't want coredumps.
+set -o notify
+set -o noclobber
+set -o ignoreeof
+
+# Enable options:
+shopt -s cdspell
+shopt -s cdable_vars
+shopt -s checkhash
+shopt -s checkwinsize
+shopt -s sourcepath
+shopt -s no_empty_cmd_completion
+shopt -s cmdhist
+shopt -s histappend histreedit histverify
+shopt -s extglob       # Necessary for programmable completion.
+
+complete -A hostname   ssh scp rsh rcp telnet rlogin ftp ping
+complete -A export     printenv
+complete -A variable   export local readonly unset
+complete -A enabled    builtin
+complete -A alias      alias unalias
+complete -A function   function
+complete -A helptopic  help     # Currently same as builtins.
+complete -A shopt      shopt
+complete -A stopped -P '%' bg
+complete -A job -P '%'     fg jobs disown
+complete -A directory  mkdir rmdir
+complete -A directory   -o default cd
+
+test -e ~/.alias 2>/dev/null && source ~/.alias
+
+export PS1='\u @ \h \w \$ '
+date
+
+which fortune 2>/dev/null > /dev/null && fortune -s     # Makes our day a bit more fun.... :-)
