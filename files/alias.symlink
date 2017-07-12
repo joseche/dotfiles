@@ -42,7 +42,7 @@ alias ....='cd ../../..'
 which gsort 2>/dev/null >/dev/null && alias sort='gsort'
 which gecho 2>/dev/null >/dev/null  && alias echo='gecho'
 which gprintf 2>/dev/null >/dev/null  && alias printf='gprintf'
-# which nvim 2>/dev/null >/dev/null  && alias vim='nvim'
+which nvim 2>/dev/null >/dev/null  && alias vim='nvim'
 which apt-get 2>/dev/null >/dev/null  && alias apt-get='sudo apt-get -y'
 which apt 2>/dev/null >/dev/null  && alias apt='sudo apt -y'
 which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
@@ -50,6 +50,8 @@ which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
 which xdg-open 2>/dev/null >/dev/null && alias open='xdg-open'
 
 which node 2>/dev/null >/dev/null || alias node=nodejs
+
+which xsel 2>/dev/null >/dev/null && alias pbcopy='xsel --clipboard --input'
 
 alias startmongo='mongod --config /usr/local/etc/mongod.conf'
 
