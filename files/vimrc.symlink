@@ -60,8 +60,8 @@ set splitbelow
 " default file format
 set ffs=unix,mac,dos
 
-set foldmethod=syntax
-set foldlevel=4
+set foldmethod=indent
+set foldlevel=3
 
 set textwidth=120        " more realistic size
 set colorcolumn=+1
@@ -175,6 +175,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'dracula/vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'hashivim/vim-terraform'
+Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
@@ -187,7 +188,6 @@ Plug 'pearofducks/ansible-vim'
 Plug 'powerline/powerline'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'sirver/ultisnips'
 Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -219,7 +219,6 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
 
-
 let g:jedi#goto_command                  = ""
 let g:jedi#goto_assignments_command      = "<leader>g"
 let g:jedi#goto_definitions_command      = "<leader>d"
@@ -228,13 +227,19 @@ let g:jedi#usages_command                = "<leader>u"
 let g:jedi#completions_command           = "<C-Space>"
 let g:jedi#rename_command                = "<leader>n"
 
-let g:UltiSnipsExpandTrigger             = "<tab>"
-let g:UltiSnipsJumpForwardTrigger        = "<c-b>"
-let g:UltiSnipsJumpBackwardTrigger       = "<c-z>"
-let g:UltiSnipsListSnippets              = "<c-s>"
+
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsListSnippets        = "<c-s>"
+
+" exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+
 
 " let g:UltiSnipsSnippetsDir        = "UltiSnippets"
-" let g:UltiSnipsSnippetDirectories = ["~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
+" let g:UltiSnipsSnippetDirectories = [ "~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
+
+
 let g:ycm_auto_trigger = 1
 
 let g:ycm_key_list_select_completion     = ['<C-n>', '<Down>']
@@ -405,6 +410,17 @@ augroup javascript
 au!
 augroup end
 
+" Terraform section
+augroup terraform
+au!
+au FileType terraform setl expandtab     " Use spaces instead of tabs.
+au FileType terraform setl tabstop=2     " A tab counts for 4 spaces.
+au FileType terraform setl softtabstop=2 " Causes backspace to delete 4 spaces.
+au FileType terraform setl shiftwidth=2  " Shift by 4 spaces.
+au FileType terraform setl foldmethod=indent " fold method is indent for terraform
+au FileType terraform setl foldlevel=2 " fold method is indent for terraform
+au FileType terraform nnoremap <Leader>r :!terraform plan %<CR>
+augroup end
 
 " Git commits
 augroup gitcommit
