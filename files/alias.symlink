@@ -55,6 +55,8 @@ which xdg-open 2>/dev/null >/dev/null && alias open='xdg-open'
 
 which node 2>/dev/null >/dev/null || alias node=nodejs
 
+which xsel 2>/dev/null >/dev/null && alias pbcopy='xsel --clipboard --input'
+
 alias startmongo='mongod --config /usr/local/etc/mongod.conf'
 
 alias sha1='openssl sha1'

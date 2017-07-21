@@ -86,6 +86,7 @@ fi
 set_sshagent
 
 # source /usr/local/share/zsh/site-functions/_aws
+export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 
 # added for i3
 export TERMINAL=gnome-terminal
