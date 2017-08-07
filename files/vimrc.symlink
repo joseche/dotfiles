@@ -84,10 +84,9 @@ set showbreak=↪
 set background=dark
 " set guifont=Monaco:h13
 " set guifont=Source\ Code\ Pro\ for\ Powerline
-" set guifontwide=Source\ Code\ Pro\ for\ Powerline
-" set guifontwide=Monaco:h13
-" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
 " set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
+" set guifontwide=Source\ Code\ Pro\ for\ Powerline
 " set guifontwide=Ubuntu\ Mono\ derivative\ Powerline\ Regular
 
 " should be on but making sure
@@ -208,16 +207,15 @@ let g:netrw_winsize                      = 25
 "
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts            = 1
-" let g:airline_left_sep                   = "\uE0C0"
-" let g:airline_right_sep                  = "\uE0C2"
-let g:airline_section_b                  = '%{strftime("%F %H:%M")}'
+" let g:airline_section_b                  = '%{strftime("%F %H:%M")}'
 
 " airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-
+" let g:airline_left_sep                   = "\uE0C0"
+" let g:airline_right_sep                  = "\uE0C2"
+let g:airline_left_sep                   = ''
+let g:airline_left_alt_sep               = ''
+let g:airline_right_sep                  = ''
+let g:airline_right_alt_sep              = ''
 
 let g:jedi#goto_command                  = ""
 let g:jedi#goto_assignments_command      = "<leader>g"
@@ -226,7 +224,6 @@ let g:jedi#documentation_command         = "K"
 let g:jedi#usages_command                = "<leader>u"
 let g:jedi#completions_command           = "<C-Space>"
 let g:jedi#rename_command                = "<leader>n"
-
 
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
@@ -244,7 +241,6 @@ let g:ycm_auto_trigger = 1
 
 let g:ycm_key_list_select_completion     = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion   = ['<C-p>', '<Up>']
-
 
 let g:snips_author                       = "Jose Hidalgo"
 let g:snips_author_email                 = "c0d5x@protonmail.com"
