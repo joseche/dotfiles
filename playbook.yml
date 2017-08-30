@@ -123,8 +123,9 @@
     - name: Install Nerd fonts
       shell: ~/git/nerd-fonts/install.sh
       when: nerdfont.changed
-#    - name: "vim PlugInstall"
-#      command: vim +PlugInstall +qall
+      ignore_errors: yes
+      #    - name: "vim PlugInstall"
+      #      command: vim +PlugInstall +qa!
     - name: Powerline fonts
       git: repo=https://github.com/powerline/fonts
            dest=~/git/fonts

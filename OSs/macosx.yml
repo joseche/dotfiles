@@ -46,4 +46,5 @@
   # - name: "neovim via brew"
   # shell: brew install neovim
 - name: reattach-to-user-namespace
-  shell: brew install reattach-to-user-namespace
+  shell: brew upgrade reattach-to-user-namespace
+  ignore_errors: yes

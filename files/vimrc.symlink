@@ -52,7 +52,6 @@ set t_vb=
 " required for osx clipboard
 set clipboard=unnamed
 
-
 " on splits
 set splitright
 set splitbelow
@@ -73,8 +72,8 @@ set cursorline
 set cursorcolumn
 
 " Tabs
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 set wrap
@@ -237,7 +236,7 @@ let g:UltiSnipsListSnippets        = "<c-s>"
 " let g:UltiSnipsSnippetDirectories = [ "~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
 
 
-let g:ycm_auto_trigger = 1
+let g:ycm_auto_trigger                   = 1
 
 let g:ycm_key_list_select_completion     = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion   = ['<C-p>', '<Up>']
@@ -316,9 +315,9 @@ let g:rbpt_colorpairs = [
     autocmd Syntax * RainbowParenthesesLoadChevrons
 "endif
 
-let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols     = 'fancy'
 
-let g:vimwiki_hl_headers = 1
+let g:vimwiki_hl_headers    = 1
 let g:vimwiki_hl_cb_checked = 1
 let vimwiki_path=$HOME.'/git/work/vimwiki'
 let vimwiki_html_path=$HOME.'/git/work/vimwiki_html'
@@ -329,8 +328,8 @@ let g:vimwiki_list = [{       'path': vimwiki_path,
                        \ 'template_ext': '.tpl'}]
 
 
-let g:tagbar_width = 25
-let g:tagbar_compact = 1
+let g:tagbar_width       = 25
+let g:tagbar_compact     = 1
 let g:tagbar_singleclick = 1
 let g:tagbar_autoshowtag = 1
 
@@ -494,7 +493,5 @@ ruby << EOF
 EOF
 endfunction
 command! -bar Shuffle  call ShuffleLines()
-
-
 
 " }}}
