@@ -7,17 +7,5 @@
   become: true
   become_user: root
   with_items:
-    - virtualbox
-    - virtualbox-qt
-    - virtualbox-ext-pack
-    - virtualbox-dkms
-    - virtualbox-guest-dkms
-    - virtualbox-guest-x11
-    - virtualbox-guest-utils
-    - virtualbox-guest-additions-iso
-    - libvirt-bin
-    - vagrant
-    - vagrant-lxc
-    - qemu-kvm
     - ansible
     - fonts-powerline
