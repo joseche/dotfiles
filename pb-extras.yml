@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: Clone Nerd fonts
+      git: repo=https://github.com/ryanoasis/nerd-fonts
+           dest=~/git/nerd-fonts
+      register: nerdfont
+    - name: Install Nerd fonts
+      shell: ~/git/nerd-fonts/install.sh
+      when: nerdfont.changed
+      ignore_errors: yes
+

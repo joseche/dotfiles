@@ -116,14 +116,6 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
     - name: "vimrc nvim"
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
-    - name: Clone Nerd fonts
-      git: repo=https://github.com/ryanoasis/nerd-fonts
-           dest=~/git/nerd-fonts
-      register: nerdfont
-    - name: Install Nerd fonts
-      shell: ~/git/nerd-fonts/install.sh
-      when: nerdfont.changed
-      ignore_errors: yes
       #    - name: "vim PlugInstall"
       #      command: vim +PlugInstall +qa!
     - name: Powerline fonts
