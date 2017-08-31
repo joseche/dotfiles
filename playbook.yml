@@ -102,6 +102,10 @@
       include: OSs/pip.yml
     - name: "Ansible configuration"
       file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link force=yes
+
+    - name: Install Neovim
+      shell: which nvim 2>/dev/null || ~/bin/install_neovim.sh
+
     - name: "vim plug nvim"
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -116,8 +120,8 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
     - name: "vimrc nvim"
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
-      #    - name: "vim PlugInstall"
-      #      command: vim +PlugInstall +qa!
+    - name: "nvim PlugInstall"
+      command: nvim +PlugInstall +qa!
     - name: Powerline fonts
       git: repo=https://github.com/powerline/fonts
            dest=~/git/fonts
