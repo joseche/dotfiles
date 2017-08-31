@@ -8,4 +8,3 @@
   become_user: root
   with_items:
     - ansible
-    - fonts-powerline
