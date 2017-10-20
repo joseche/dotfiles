@@ -21,7 +21,6 @@ alias cp='cp -r'
 alias cd=cdl
 alias dmesg='sudo dmesg'
 alias e='printf "\ec"'
-alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 alias rm='rm -rf '
 alias hg='history|grep '
 alias wallpaper='~/git/wallpaper_manager/src/wallpaper.py'
@@ -68,7 +67,6 @@ alias svim='sudo vim'
 alias df='df -H'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 # alias ping='ping -c 4'
-alias mutt='mutt -f /var/mail/c0d5x'
 
 which tmux 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then
@@ -80,9 +78,6 @@ fi
 for af in ~/.alias.*; do
     source $af
 done
-
-alias dev='ssh -t auxisjh ssh -t dev'
-alias chefdev='ssh -t auxisjh ssh -t dev ssh -t chefdev'
 
 alias aws_account_id='aws sts get-caller-identity --output text --query Account'
 alias aws_keys="export | grep AWS | sed 's,^,export ,'"

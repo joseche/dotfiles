@@ -114,7 +114,7 @@ endif
 " invisible chars
 set list
 " set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,space:·
-set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·
+set listchars=tab:▸\ ,trail:·,nbsp:·
 " →
 
 " history, backups and undo levels
