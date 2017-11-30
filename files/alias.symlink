@@ -26,6 +26,9 @@ alias hg='history|grep '
 alias wallpaper='~/git/wallpaper_manager/src/wallpaper.py'
 alias listening='netstat -anf inet|grep tcp|grep -i listen'
 
+# console mp3 player
+alias mpv='mpv --no-audio-display'
+
 # xquartz in mac seems to always warn about dynamic cookies..
 # alias ssh='ssh -y'
 
