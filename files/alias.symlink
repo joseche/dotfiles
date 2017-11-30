@@ -21,10 +21,13 @@ alias cp='cp -r'
 alias cd=cdl
 alias dmesg='sudo dmesg'
 alias e='printf "\ec"'
-alias w='cd ~/git/work/gorillalogic ; ls -lhG'
 alias rm='rm -rf '
 alias hg='history|grep '
-alias wallpaper='~/git/wallpaper_manager/wallpaper.py'
+alias wallpaper='~/git/wallpaper_manager/src/wallpaper.py'
+alias listening='netstat -anf inet|grep tcp|grep -i listen'
+
+# console mp3 player
+alias mpv='mpv --no-audio-display'
 
 # xquartz in mac seems to always warn about dynamic cookies..
 # alias ssh='ssh -y'
@@ -41,20 +44,23 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-which gsort 2>/dev/null >/dev/null && alias sort='gsort'
-which gecho 2>/dev/null >/dev/null  && alias echo='gecho'
-which gprintf 2>/dev/null >/dev/null  && alias printf='gprintf'
-which nvim 2>/dev/null >/dev/null  && alias vim='nvim' && alias vi='nvim'
-which apt-get 2>/dev/null >/dev/null  && alias apt-get='sudo apt-get -y'
-which apt 2>/dev/null >/dev/null  && alias apt='sudo apt -y'
+which gsort 2>/dev/null >/dev/null &&     alias sort='gsort'
+which gecho 2>/dev/null >/dev/null &&     alias echo='gecho'
+which gprintf 2>/dev/null >/dev/null &&   alias printf='gprintf'
+
+which nvim 2>/dev/null >/dev/null &&      alias vim='nvim' && alias vi='nvim'
+# which nvim 2>/dev/null >/dev/null ||      alias nvim='vim'
+
+which apt-get 2>/dev/null >/dev/null &&   alias apt-get='sudo apt-get -y'
+which apt 2>/dev/null >/dev/null &&       alias apt='sudo apt -y'
 which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
 # which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
-which python3 2>/dev/null >/dev/null && alias python='python3'
-which xdg-open 2>/dev/null >/dev/null && alias open='xdg-open'
+which python3 2>/dev/null >/dev/null &&   alias python='python3'
+which xdg-open 2>/dev/null >/dev/null &&  alias open='xdg-open'
 
-which node 2>/dev/null >/dev/null || alias node=nodejs
+which node 2>/dev/null >/dev/null ||      alias node=nodejs
 
-which xsel 2>/dev/null >/dev/null && alias pbcopy='xsel --clipboard --input'
+which xsel 2>/dev/null >/dev/null &&      alias pbcopy='xsel --clipboard --input'
 
 alias startmongo='mongod --config /usr/local/etc/mongod.conf'
 
@@ -64,7 +70,6 @@ alias svim='sudo vim'
 alias df='df -H'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 # alias ping='ping -c 4'
-alias mutt='mutt -f /var/mail/c0d5x'
 
 which tmux 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then
@@ -77,5 +82,10 @@ for af in ~/.alias.*; do
     source $af
 done
 
-alias dev='ssh -t auxisjh ssh -t dev'
-alias chefdev='ssh -t auxisjh ssh -t dev ssh -t chefdev'
+alias aws_account_id='aws sts get-caller-identity --output text --query Account'
+alias aws_keys="export | grep AWS | sed 's,^,export ,'"
+
+# not an alias, but related to above
+aws_list_amis() {
+    open 'https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Images:visibility=owned-by-me;search=Consensus-CentOS7;sort=desc:ownerId'
+}

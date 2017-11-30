@@ -25,7 +25,6 @@
     - curl
     - wget
     - nmap
-    - bpython
     - tree
     - atop
     - bmon

@@ -8,17 +8,19 @@ umask 0022
 
 # User configuration
 if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin"
-else
-    export PATH="/usr/local/bin"
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin"
 fi
-export PATH=$PATH:"/usr/local/sbin"
+
+export PATH=$PATH:"~/bin"
+export PATH=$PATH:"/opt/X11/bin"
+
 export PATH=$PATH:"/bin"
 export PATH=$PATH:"/usr/bin"
+export PATH=$PATH:"/usr/local/bin"
+
 export PATH=$PATH:"/sbin"
 export PATH=$PATH:"/usr/sbin"
-export PATH=$PATH:"/opt/X11/bin"
-export PATH=$PATH:"~/bin"
+export PATH=$PATH:"/usr/local/sbin"
 
 if [ -d /usr/local/MacGPG2/bin ]; then
   export PATH=$PATH:"/usr/local/MacGPG2/bin"
@@ -50,9 +52,8 @@ which macerror >/dev/null 2>/dev/null && source ~/.osx
 # keys, tokens, etc.
 [ -f ~/.keys ] && source ~/.keys
 
-# after alias, vim should be nvim
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Android
 if [ -d ~/android/android-sdk-linux ]; then

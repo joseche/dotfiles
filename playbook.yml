@@ -67,6 +67,10 @@
       git: repo=https://github.com/olivierverdier/zsh-git-prompt dest=~/git/zsh-git-prompt force=yes
     - name: "Clone https://github.com/zsh-users/zsh-history-substring-search"
       git: repo=https://github.com/zsh-users/zsh-history-substring-search dest=~/git/zsh-history-substring-search
+    - name: "Download docker zsh completion"
+      get_url:
+        url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+        dest: ~/git/zsh-completions/_docker
     - name: "nvim config dir"
       file: path=~/.config/nvim/autoload state=directory
 
@@ -98,6 +102,10 @@
       include: OSs/pip.yml
     - name: "Ansible configuration"
       file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link force=yes
+
+    - name: Install Neovim
+      shell: which nvim 2>/dev/null || ~/bin/install_neovim.sh
+
     - name: "vim plug nvim"
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -112,15 +120,8 @@
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
     - name: "vimrc nvim"
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
-    - name: Clone Nerd fonts
-      git: repo=https://github.com/ryanoasis/nerd-fonts
-           dest=~/git/nerd-fonts
-      register: nerdfont
-    - name: Install Nerd fonts
-      shell: ~/git/nerd-fonts/install.sh
-      when: nerdfont.changed
-#    - name: "vim PlugInstall"
-#      command: vim +PlugInstall +qall
+    - name: "nvim PlugInstall"
+      command: nvim +PlugInstall +qa!
     - name: Powerline fonts
       git: repo=https://github.com/powerline/fonts
            dest=~/git/fonts
