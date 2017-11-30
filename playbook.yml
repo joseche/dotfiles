@@ -127,5 +127,7 @@
       register: powerline
     - name: Install Powerline Fonts
       shell: ~/git/fonts/install.sh
+      args:
+        cwd: ~/git/fonts
       when: powerline.changed
       ignore_errors: true
