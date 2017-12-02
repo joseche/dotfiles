@@ -1,13 +1,10 @@
 # vim:ft=ansible:
 ---
-- name: include server pip modules
-  include: pip-minimal.yml
 - name: pip modules
   pip: name={{item}} state=present
   become: true
   become_user: root
   with_items:
-    - pdb
     - Django
     - mccabe
     - pylama

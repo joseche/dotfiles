@@ -2,8 +2,8 @@
 ---
 - name: pip modules for servers
   pip: name={{item}} state=present
-  become: true
-  become_user: root
+  #  become: true
+  #  become_user: root
   with_items:
     - powerline-status
     - neovim

@@ -2,7 +2,6 @@
 ---
 - hosts: all
   tasks:
-
     - name: "AWS dir"
       file: path=~/.aws state=directory mode=700 force=yes
     - name: "irssi dir"
@@ -59,76 +58,98 @@
       file: src={{ playbook_dir }}/files/i3config.symlink dest=~/.config/i3/config state=link force=yes
     - name: "AWS Config"
       file: src={{ playbook_dir }}/files/aws.config.symlink dest=~/.aws/config state=link force=yes
+
     - name: "git config"
       file: src={{ playbook_dir }}/files/gitconfig.symlink dest=~/.gitconfig state=link force=yes
+
     - name: "Clone git://github.com/zsh-users/zsh-completions.git"
       git: repo=git://github.com/zsh-users/zsh-completions.git dest=~/git/zsh-completions force=yes
+
     - name: "Clone https://github.com/olivierverdier/zsh-git-prompt"
       git: repo=https://github.com/olivierverdier/zsh-git-prompt dest=~/git/zsh-git-prompt force=yes
+
     - name: "Clone https://github.com/zsh-users/zsh-history-substring-search"
       git: repo=https://github.com/zsh-users/zsh-history-substring-search dest=~/git/zsh-history-substring-search
+
     - name: "Download docker zsh completion"
       get_url:
         url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
         dest: ~/git/zsh-completions/_docker
+
     - name: "nvim config dir"
       file: path=~/.config/nvim/autoload state=directory
 
-      # #################################
+    - name: "vim config dir"
+      file: path=~/.vim/autoload state=directory
+
+    - name: "vim plug nvim"
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: ~/.config/nvim/autoload/plug.vim
+
+    - name: "vim plug vim"
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: ~/.vim/autoload/plug.vim
 
     - name: "Install base packages for Debian-like"
-      include: OSs/debian.yml
+      include_tasks: OSs/debian-user.yml
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
     - name: "Install base OSs for Centos"
-      include: OSs/centos.yml
+      include_tasks: OSs/centos-user.yml
       when: ansible_distribution == 'CentOS'
 
     - name: "Install base OSs for Fedora"
-      include: OSs/fedora.yml
+      include_tasks: OSs/fedora-user.yml
       when: ansible_distribution == 'Fedora'
 
     - name: "Install base OSs for Mac OS X"
-      include: OSs/macosx.yml
+      include_tasks: OSs/macosx.yml
       when: ansible_distribution == 'MacOSX'
 
     - name: "Install base packages for FBSD"
-      include: OSs/freebsd.yml
+      include_tasks: OSs/freebsd.yml
       when: ansible_distribution == 'FreeBSD'
 
-      # #################################
-
     - name: pip modules
-      include: OSs/pip.yml
+      include_tasks: pip-user.yml
     - name: "Ansible configuration"
       file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link force=yes
 
     - name: Install Neovim
       shell: which nvim 2>/dev/null || ~/bin/install_neovim.sh
 
-    - name: "vim plug nvim"
-      get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: ~/.config/nvim/autoload/plug.vim
-    - name: "vim config dir"
-      file: path=~/.vim/autoload state=directory
-    - name: "vim plug vim"
-      get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: ~/.vim/autoload/plug.vim
     - name: "vimrc"
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
     - name: "vimrc nvim"
       file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
-    - name: "nvim PlugInstall"
-      command: nvim +PlugInstall +qa!
+
     - name: Powerline fonts
       git: repo=https://github.com/powerline/fonts
            dest=~/git/fonts
       register: powerline
+
+    - name: Nerd fonts
+      git: repo=https://github.com/ryanoasis/nerd-fonts
+           dest=~/git/nerdfonts
+      register: nerdfonts
+
+    - name: install nerdfonts
+      shell: ~/git/nerfonts/install.sh
+      args:
+        cwd: ~/git/nerdfonts
+      when: nerdfonts.changed
+
     - name: Install Powerline Fonts
       shell: ~/git/fonts/install.sh
       args:
         cwd: ~/git/fonts
       when: powerline.changed
       ignore_errors: true
+
+    - name: "Install gems"
+      gem: name={{item}} state=present
+      with_items:
+        - neovim
+        - rails

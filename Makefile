@@ -1,11 +1,11 @@
-all:
-	which ansible 2>/dev/null || sudo yum install -y epel-release ansible || sudo apt install -y ansible || brew install ansible
-	ansible-playbook -i 'localhost,' -c local ./playbook.yml
+all: ansible user server
 
-minimal:
-	which ansible 2>/dev/null || sudo yum install -y epel-release ansible || sudo apt install -y ansible || brew install ansible
-	ansible-playbook -i 'localhost,' -c local ./pb-minimal.yml
+user:
+	ansible-playbook -i 'localhost,' -c local ./user.yml
 
-extra:
+server:
+	ansible-playbook -i 'localhost,' -c local ./server.yml
+
+ansible:
 	which ansible 2>/dev/null || sudo yum install -y epel-release ansible || sudo apt install -y ansible || brew install ansible
-	ansible-playbook -i 'localhost,' -c local ./pb-extras.yml
+

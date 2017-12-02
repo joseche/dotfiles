@@ -1,7 +1,5 @@
 # vim:ft=ansible:
 ---
-- name: "Include server packages for servers debian"
-  include: debian-minimal.yml
 - name: "Add base packages for debian"
   apt: name={{item}} state=present
   become: true

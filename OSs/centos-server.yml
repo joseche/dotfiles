@@ -1,8 +1,13 @@
 # vim:ft=ansible:
 ---
-- name: "User shell"
-  user: name={{ansible_user_id}} shell=/usr/bin/zsh
+- name: Common centos packages
+  yum: name={{item}} state=present
   become: true
+  become_user: root
+  with_items:
+    - ansible
+    - gcc-c++
+
 - name: "Add base packages for servers centos"
   yum: name={{item}} state=present
   become: true
