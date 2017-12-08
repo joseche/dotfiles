@@ -192,6 +192,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vimwiki/vimwiki'
 
+Plug 'trevordmiller/nova-vim'
+
 " Chef
 Plug 'glidenote/vim-chef'
 Plug 'gregf/ultisnips-chef'
@@ -278,7 +280,8 @@ nnoremap \ :call bufferhint#LoadPrevious()<CR>
 try
     " solarized requires solarized iterm's colors set in preferences
     " colorscheme solarized
-    colorscheme dracula
+    " colorscheme dracula
+    colorscheme nova
     " colorscheme morning
 catch
     colorscheme darkblue
