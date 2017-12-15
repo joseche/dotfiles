@@ -138,13 +138,13 @@
     - name: install nerdfonts
       shell: ~/git/nerfonts/install.sh
       args:
-        cwd: ~/git/nerdfonts
+        chdir: ~/git/nerdfonts
       when: nerdfonts.changed
 
     - name: Install Powerline Fonts
       shell: ~/git/fonts/install.sh
       args:
-        cwd: ~/git/fonts
+        chdir: ~/git/fonts
       when: powerline.changed
       ignore_errors: true
 
