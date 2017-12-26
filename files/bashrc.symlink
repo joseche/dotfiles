@@ -46,4 +46,4 @@ test -e ~/.alias 2>/dev/null && source ~/.alias
 export PS1='\u @ \h \w \$ '
 date
 
-which fortune 2>/dev/null > /dev/null && fortune -s     # Makes our day a bit more fun.... :-)
+which fortune 2>/dev/null > /dev/null && fortune -s || true    # Makes our day a bit more fun.... :-)

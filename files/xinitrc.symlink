@@ -8,8 +8,8 @@
 
 which xterm >/dev/null 2>/dev/null && WM=xterm
 which i3wm >/dev/null 2>/dev/null && WM=i3wm
-which startxfce4 >/dev/null 2>/dev/null && WM=startxfce4
 which quartz-wm >/dev/null 2>/dev/null && WM=quartz-wm
+which startxfce4 >/dev/null 2>/dev/null && WM=startxfce4
 which gnome-session >/dev/null 2>/dev/null && WM=gnome-session
 
 userresources=$HOME/.Xresources
@@ -54,5 +54,5 @@ fi
 # xterm -geometry 80x50+494+51 &
 # xterm -geometry 80x20+494-0 &
 # exec xterm -geometry 80x66+0+0 -name login
-xterm -geometry 80x50-1+1 &
-exec $WM
+# xterm -geometry 80x50-1+1 &
+exec dbus-launch $WM

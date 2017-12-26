@@ -3,7 +3,3 @@
 [default]
 output = json
 region = us-west-2
-
-[profile benchmarkresults001]
-output = json
-region = us-west-2

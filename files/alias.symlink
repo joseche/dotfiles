@@ -24,7 +24,7 @@ alias e='printf "\ec"'
 alias rm='rm -rf '
 alias hg='history|grep '
 alias wallpaper='~/git/wallpaper_manager/src/wallpaper.py'
-alias listening='netstat -anf inet|grep tcp|grep -i listen'
+alias listening='netstat -ant|grep tcp|grep -i listen'
 
 # console mp3 player
 alias mpv='mpv --no-audio-display'
@@ -37,8 +37,6 @@ alias ssh='TERM=xterm-256color ssh -y'
 
 alias ap='ansible-playbook'
 alias apl='ansible-playbook -i "localhost," -c local '
-
-alias gca='git commit -a -m '
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -87,5 +85,5 @@ alias aws_keys="export | grep AWS | sed 's,^,export ,'"
 
 # not an alias, but related to above
 aws_list_amis() {
-    open 'https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Images:visibility=owned-by-me;search=Consensus-CentOS7;sort=desc:ownerId'
+    open 'https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Images:visibility=owned-by-me;search=CentOS7;sort=desc:ownerId'
 }

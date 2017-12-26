@@ -281,8 +281,9 @@ try
     " solarized requires solarized iterm's colors set in preferences
     " colorscheme solarized
     " colorscheme dracula
-    colorscheme nova
+    " colorscheme nova
     " colorscheme morning
+    colorscheme darkblue
 catch
     colorscheme darkblue
 endtry
