@@ -2,72 +2,58 @@
 ---
 - hosts: all
   tasks:
-    - name: "AWS dir"
-      file: path=~/.aws state=directory mode=700 force=yes
-    - name: "irssi dir"
-      file: path=~/.irssi state=directory mode=700 force=yes
-    - name: "config dir"
-      file: path=~/.config state=directory mode=700 force=yes
-    - name: "i3 config dir"
-      file: path=~/.config/i3 state=directory mode=700 force=yes
-    - name: "i3status dir"
-      file: path=~/.config/i3status state=directory mode=700 force=yes
-    - name: "zenv"
-      file: src={{ playbook_dir }}/files/zlogin.symlink dest=~/.zshenv state=link force=yes
-    - name: "zlogin"
-      file: src={{ playbook_dir }}/files/zlogin.symlink dest=~/.zlogin state=link force=yes
-    - name: "zlogout"
-      file: src={{ playbook_dir }}/files/zlogout.symlink dest=~/.zlogout state=link force=yes
-    - name: "zprofile"
-      file: src={{ playbook_dir }}/files/zprofile.symlink dest=~/.zprofile state=link force=yes
-    - name: "zshrc"
-      file: src={{ playbook_dir }}/files/zshrc.symlink dest=~/.zshrc state=link force=yes
-    - name: "bashrc"
-      file: src={{ playbook_dir }}/files/bashrc.symlink dest=~/.bashrc state=link force=yes
-    - name: "xinitrc"
-      file: src={{ playbook_dir }}/files/xinitrc.symlink dest=~/.xinitrc state=link force=yes
-    - name: "profile"
-      file: src={{ playbook_dir }}/files/profile.symlink dest=~/.profile state=link force=yes
-    - name: "hushlogin"
-      file: src={{ playbook_dir }}/files/hushlogin.symlink dest=~/.hushlogin state=link force=yes
-    - name: "Functions"
-      file: src={{ playbook_dir }}/files/functions.symlink dest=~/.functions state=link force=yes
-    - name: "Alias"
-      file: src={{ playbook_dir }}/files/alias.symlink dest=~/.alias state=link force=yes
-    - name: "Alias git"
-      file: src={{ playbook_dir }}/files/alias.git.symlink dest=~/.alias.git state=link force=yes
-    - name: "Alias hosts"
-      file: src={{ playbook_dir }}/files/alias.hosts.symlink dest=~/.alias.hosts state=link force=yes
-    - name: "OSX specific"
-      file: src={{ playbook_dir }}/files/osx.symlink dest=~/.osx state=link force=yes
-    - name: "irssi Config"
-      file: src={{ playbook_dir }}/files/irssi.config.symlink dest=~/.irssi/config state=link force=yes
-    - name: "ctags Config"
-      file: src={{ playbook_dir }}/files/ctags.symlink dest=~/.ctags state=link force=yes
-    - name: "Emacs Config"
-      file: src={{ playbook_dir }}/files/emacs.symlink dest=~/.emacs state=link force=yes
-    - name: "tmux config"
-      file: src={{ playbook_dir }}/files/tmux.conf.symlink dest=~/.tmux.conf state=link force=yes
-    - name: "flake8 config"
-      file: src={{ playbook_dir }}/files/flake8.symlink dest=~/.flake8 state=link force=yes
-    - name: "pylintrc config"
-      file: src={{ playbook_dir }}/files/pylintrc.symlink dest=~/.pylintrc state=link force=yes
-    - name: "gemrc config"
-      file: src={{ playbook_dir }}/files/gemrc.symlink dest=~/.gemrc state=link force=yes
-    - name: "i3 config"
-      file: src={{ playbook_dir }}/files/i3config.symlink dest=~/.config/i3/config state=link force=yes
-    - name: "AWS Config"
-      file: src={{ playbook_dir }}/files/aws.config.symlink dest=~/.aws/config state=link force=yes
+    # start with directories
+    - name: Directories
+      with_items:
+        - ~/tmp
+        - ~/git
+        - ~/.vim/autoload
+        - ~/.config/nvim/autoload
+        - ~/.aws
+        - ~/.irssi
+        - ~/.config
+        - ~/.config/i3
+        - ~/.config/i3status
+      file: path={{item}} state=directory mode=700 force=yes
 
-    - name: "git config"
-      file: src={{ playbook_dir }}/files/gitconfig.symlink dest=~/.gitconfig state=link force=yes
+    # shell configuration
+    - name: shell configs
+      file: src={{ item.src }} dest={{ item.dst }} state=link force=yes
+      with_items:
+        - { src: "{{ playbook_dir }}/files/zlogin.symlink", dst: "~/.zshenv" }
+        - { src: "{{ playbook_dir }}/files/zlogin.symlink", dst: "~/.zlogin" }
+        - { src: "{{ playbook_dir }}/files/zlogout.symlink", dst: "~/.zlogout" }
+        - { src: "{{ playbook_dir }}/files/zprofile.symlink", dst: "~/.zprofile" }
+        - { src: "{{ playbook_dir }}/files/zshrc.symlink", dst: "~/.zshrc" }
+        - { src: "{{ playbook_dir }}/files/bashrc.symlink", dst: "~/.bashrc" }
+        - { src: "{{ playbook_dir }}/files/xinitrc.symlink", dst: "~/.xinitrc" }
+        - { src: "{{ playbook_dir }}/files/Xresources.symlink", dst: "~/.Xresources" }
+        - { src: "{{ playbook_dir }}/files/profile.symlink", dst: "~/.profile" }
+        - { src: "{{ playbook_dir }}/files/hushlogin.symlink", dst: "~/.hushlogin" }
+        - { src: "{{ playbook_dir }}/files/functions.symlink", dst: "~/.functions" }
+        - { src: "{{ playbook_dir }}/files/alias.symlink", dst: "~/.alias" }
+        - { src: "{{ playbook_dir }}/files/alias.git.symlink", dst: "~/.alias.git" }
+        - { src: "{{ playbook_dir }}/files/alias.hosts.symlink", dst: "~/.alias.hosts" }
+        - { src: "{{ playbook_dir }}/files/osx.symlink", dst: "~/.osx" }
+        - { src: "{{ playbook_dir }}/files/ctags.symlink", dst: "~/.ctags" }
+        - { src: "{{ playbook_dir }}/files/emacs.symlink", dst: "~/.emacs" }
+        - { src: "{{ playbook_dir }}/files/tmux.conf.symlink", dst: "~/.tmux.conf" }
+        - { src: "{{ playbook_dir }}/files/flake8.symlink", dst: "~/.flake8" }
+        - { src: "{{ playbook_dir }}/files/pylintrc.symlink", dst: "~/.pylintrc" }
+        - { src: "{{ playbook_dir }}/files/gemrc.symlink", dst: "~/.gemrc" }
+        - { src: "{{ playbook_dir }}/files/i3config.symlink", dst: "~/.config/i3/config" }
+        - { src: "{{ playbook_dir }}/files/aws.config.symlink", dst: "~/.aws/config" }
+        - { src: "{{ playbook_dir }}/files/gitconfig.symlink", dst: "~/.gitconfig" }
+        - { src: "{{ playbook_dir }}/files/ansible.cfg.symlink", dst: "~/.ansible.cfg" }
+        - { src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.vimrc" }
+        - { src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.config/nvim/init.vim" }
 
+
+    # clone zsh plugins
     - name: "Clone git://github.com/zsh-users/zsh-completions.git"
       git: repo=git://github.com/zsh-users/zsh-completions.git dest=~/git/zsh-completions force=yes
-
     - name: "Clone https://github.com/olivierverdier/zsh-git-prompt"
       git: repo=https://github.com/olivierverdier/zsh-git-prompt dest=~/git/zsh-git-prompt force=yes
-
     - name: "Clone https://github.com/zsh-users/zsh-history-substring-search"
       git: repo=https://github.com/zsh-users/zsh-history-substring-search dest=~/git/zsh-history-substring-search
 
@@ -76,22 +62,17 @@
         url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
         dest: ~/git/zsh-completions/_docker
 
-    - name: "nvim config dir"
-      file: path=~/.config/nvim/autoload state=directory
-
-    - name: "vim config dir"
-      file: path=~/.vim/autoload state=directory
-
+    # nvim's plug
     - name: "vim plug nvim"
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: ~/.config/nvim/autoload/plug.vim
-
     - name: "vim plug vim"
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         dest: ~/.vim/autoload/plug.vim
 
+    # distro specific tasks
     - name: "Install base packages for Debian-like"
       include_tasks: OSs/debian-user.yml
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
@@ -112,31 +93,27 @@
       include_tasks: OSs/freebsd.yml
       when: ansible_distribution == 'FreeBSD'
 
+    # PIP modules
     - name: pip modules
       include_tasks: pip-user.yml
-    - name: "Ansible configuration"
-      file: src={{ playbook_dir }}/files/ansible.cfg.symlink dest=~/.ansible.cfg state=link force=yes
 
     - name: Install Neovim
       shell: which nvim 2>/dev/null || ~/bin/install_neovim.sh
 
-    - name: "vimrc"
-      file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.vimrc state=link force=yes
-    - name: "vimrc nvim"
-      file: src={{ playbook_dir }}/files/vimrc.symlink dest=~/.config/nvim/init.vim state=link force=yes
-
     - name: Powerline fonts
       git: repo=https://github.com/powerline/fonts
            dest=~/git/fonts
+           force=yes
       register: powerline
 
     - name: Nerd fonts
       git: repo=https://github.com/ryanoasis/nerd-fonts
            dest=~/git/nerdfonts
+           force=yes
       register: nerdfonts
 
-    - name: install nerdfonts
-      shell: ~/git/nerfonts/install.sh
+    - name: Install nerdfonts
+      shell: ~/git/nerdfonts/install.sh
       args:
         chdir: ~/git/nerdfonts
       when: nerdfonts.changed
@@ -147,9 +124,3 @@
         chdir: ~/git/fonts
       when: powerline.changed
       ignore_errors: true
-
-    - name: "Install gems"
-      gem: name={{item}} state=present
-      with_items:
-        - neovim
-        - rails

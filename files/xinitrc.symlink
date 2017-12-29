@@ -6,11 +6,11 @@
 # WM=i3wm
 
 
-which xterm >/dev/null 2>/dev/null && WM=xterm
-which i3wm >/dev/null 2>/dev/null && WM=i3wm
-which quartz-wm >/dev/null 2>/dev/null && WM=quartz-wm
-which startxfce4 >/dev/null 2>/dev/null && WM=startxfce4
-which gnome-session >/dev/null 2>/dev/null && WM=gnome-session
+which xterm >/dev/null 2>&1 && WM=xterm
+which i3wm >/dev/null 2>&1 && WM=i3wm
+which quartz-wm >/dev/null 2>&1 && WM=quartz-wm
+which startxfce4 >/dev/null 2>&1 && WM=startxfce4
+which gnome-session >/dev/null 2>&1 && WM=gnome-session
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -41,13 +41,18 @@ if [ -f "$usermodmap" ]; then
 fi
 
 # start some nice programs
-
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
    [ -x "$f" ] && . "$f"
  done
  unset f
 fi
+
+if which xscreensaver >/dev/null 2>&1; then
+  xscreensaver -nosplash &
+fi
+
+. /etc/X11/xinit/xinitrc
 
 # twm &
 # xclock -geometry 50x50-1+1 &
