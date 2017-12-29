@@ -12,12 +12,11 @@
     - gcc-c++
     - python3-devel
     - redhat-lsb-core
-    - makeinfo
     - wireshark
     - macchanger
     - gitk
-    - VirtualBox
-    - kmod-VirtualBox
+    - RemoteBox
+    - kmod-devel
     - libvirt-daemon-driver-vbox
     - virt-manager
     - libvirt-daemon-kvm

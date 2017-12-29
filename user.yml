@@ -117,6 +117,7 @@
       args:
         chdir: ~/git/nerdfonts
       when: nerdfonts.changed
+      ignore_errors: true
 
     - name: Install Powerline Fonts
       shell: ~/git/fonts/install.sh
