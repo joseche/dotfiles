@@ -5,7 +5,6 @@
   become: true
   become_user: root
   with_items:
-    - Django
     - mccabe
     - pylama
     - pycodestyle
