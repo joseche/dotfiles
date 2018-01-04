@@ -92,4 +92,7 @@ export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 export TERMINAL=gnome-terminal
 
 # added by Anaconda2 4.3.0 installer
-export PATH="/Users/c0d5x/anaconda/bin:$PATH"
+export PATH="~/anaconda/bin:$PATH"
+
+# export KISYS3DMOD="$HOME/git/KiCad-Libraries"
+# export KICAD_PTEMPLATES="$HOME/git/KiCad-Libraries/Templates"

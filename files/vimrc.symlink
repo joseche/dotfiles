@@ -62,14 +62,14 @@ set ffs=unix,mac,dos
 set foldmethod=indent
 set foldlevel=3
 
-set textwidth=120        " more realistic size
-set colorcolumn=+1
-highlight ColorColumn guibg=#2d2d2d ctermbg=246
+" set textwidth=120        " more realistic size
+" set colorcolumn=+1
+" highlight ColorColumn guibg=#2d2d2d ctermbg=246
 " highlight Normal ctermfg=grey ctermbg=#0e143d
 
 " highligh current row and column
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 
 " Tabs
 set tabstop=2
