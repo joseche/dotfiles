@@ -163,6 +163,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'jceb/vim-orgmode'
 " Plug 'klen/python-mode'
 " Plug 'motemen/git-vim'
+Plug 'vim-scripts/BufOnly.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-bufferline'
