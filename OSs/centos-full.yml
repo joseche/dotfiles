@@ -3,21 +3,15 @@
 - name: "User shell"
   user: name={{ansible_user_id}} shell=/usr/bin/zsh
   become: true
-- name: first packages
-  dnf: name={{item}}
-  become: true
-  with_items:
-    - yum
-    - python-yumdaemon
-- name: "YUM Update"
-  become: true
-  yum: name=* update_cache=yes state=latest
-- name: "Add base packages for servers Fedora"
+
+- name: "Add base packages for servers centos"
   yum: name={{item}} state=present
   become: true
   become_user: root
   with_items:
     - sysstat
+    - ansible
+    - gcc-c++
     - lm_sensors
     - lm_sensors-sensord
     - i2c-tools
@@ -34,14 +28,6 @@
     - curl
     - wget
     - nmap
-    - bpython
     - tree
     - atop
     - bmon
-    - libselinux-python
-    - strace
-- name: Fastest mirror
-  become: true
-  lineinfile: dest=/etc/dnf/dnf.conf
-              line="fastestmirror=true"
-              state=present

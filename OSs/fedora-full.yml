@@ -1,8 +1,54 @@
 # vim:ft=ansible:
 ---
+- name: "User shell"
+  user: name={{ansible_user_id}} shell=/usr/bin/zsh
+  become: true
+
+- name: first packages
+  dnf: name={{item}}
+  become: true
+  with_items:
+    - yum
+
+- name: "Add base packages for servers Fedora"
+  dnf: name={{item}} state=present
+  become: true
+  become_user: root
+  with_items:
+    - sysstat
+    - lm_sensors
+    - lm_sensors-sensord
+    - i2c-tools
+    - vim
+    - zsh
+    - git
+    - python-pip
+    - python-devel
+    - python-setuptools
+    - python-virtualenv
+    - rubygems
+    - ruby-devel
+    - awscli
+    - curl
+    - wget
+    - nmap
+    - bpython
+    - tree
+    - atop
+    - bmon
+    - libselinux-python
+    - strace
+
+- name: Fastest mirror
+  become: true
+  lineinfile: dest=/etc/dnf/dnf.conf
+              line="fastestmirror=true"
+              state=present
+
 - name: Install fedora specific dependencies
   dnf: name=python2-dnf state=present
   become: true
+
 - name: "Add base packages for Fedora"
   dnf: name={{item}} state=present
   become: true

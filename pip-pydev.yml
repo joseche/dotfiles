@@ -1,10 +1,13 @@
 # vim:ft=ansible:
 ---
-- name: pip modules for servers
+- name: pip modules
   pip: name={{item}} state=present
-  become: true
+  become: False
   become_user: root
   with_items:
+    - mccabe
+    - pylama
+    - pycodestyle
     - powerline-status
     - neovim
     - pep8-naming
