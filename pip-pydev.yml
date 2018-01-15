@@ -2,7 +2,7 @@
 ---
 - name: pip modules
   pip: name={{item}} state=present
-  become: False
+  become: True
   become_user: root
   with_items:
     - mccabe
@@ -19,3 +19,5 @@
     - pytest-cov
     - mock
     - requests
+    - ansible-lint
+    - yamllint

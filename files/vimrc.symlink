@@ -195,6 +195,10 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'trevordmiller/nova-vim'
 
+"vimL lint
+Plug 'ynkdir/vim-vimlparser'
+Plug 'syngan/vim-vimlint'
+
 " Chef
 Plug 'glidenote/vim-chef'
 Plug 'gregf/ultisnips-chef'

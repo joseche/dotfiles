@@ -1,10 +1,21 @@
 # My dotfiles
 Feel free to copy ideas or fork
 
-## Use
+## Install
 ```
 git clone git@github.com:c0d5x/dotfiles.git ~/git/dotfiles/
+```
+
+## Run
+```
+cd ~/git/dotfiles
+
+# option 1
+make
+
+# option 2
 ansible-playbook -i "localhost," -c local playbook.yml
+
 ```
 
 ## Notes
