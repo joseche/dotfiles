@@ -1,7 +1,7 @@
 # vim:ft=ansible:
 ---
 - hosts: all
-  gather_facts: False
+  gather_facts: True
   tasks:
     - name: "Install base packages for Debian-like"
       include_tasks: OSs/debian-packages.yml
