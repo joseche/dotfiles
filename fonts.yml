@@ -1,10 +1,12 @@
 # vim:ft=ansible:
 ---
 - hosts: all
+  gather_facts: False
   tasks:
     - name: Download Powerline fonts
       git: repo=https://github.com/powerline/fonts
            dest=~/git/fonts
+           version="master"
       register: powerline
 
     - name: Install Powerline fonts
@@ -16,6 +18,7 @@
     - name: Download Nerd fonts
       git: repo=https://github.com/ryanoasis/nerd-fonts
            dest=~/git/nerdfonts
+           version="master"
       register: nerdfonts
 
     - name: Install nerdfonts

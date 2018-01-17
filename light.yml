@@ -1,6 +1,7 @@
 # vim:ft=ansible:
 ---
 - hosts: all
+  gather_facts: False
   tasks:
     # start with directories
     - name: Directories
@@ -14,7 +15,7 @@
         - ~/.config
         - ~/.config/i3
         - ~/.config/i3status
-      file: path={{item}} state=directory mode=700 force=yes
+      file: path={{item}} state=directory mode=0700 force=yes
 
     # shell configuration
     - name: shell configs
@@ -51,11 +52,11 @@
 
     # clone zsh plugins
     - name: "Clone git://github.com/zsh-users/zsh-completions.git"
-      git: repo=git://github.com/zsh-users/zsh-completions.git dest=~/git/zsh-completions force=yes
+      git: repo=git://github.com/zsh-users/zsh-completions.git dest=~/git/zsh-completions force=yes version=master
     - name: "Clone https://github.com/olivierverdier/zsh-git-prompt"
-      git: repo=https://github.com/olivierverdier/zsh-git-prompt dest=~/git/zsh-git-prompt force=yes
+      git: repo=https://github.com/olivierverdier/zsh-git-prompt dest=~/git/zsh-git-prompt force=yes version=master
     - name: "Clone https://github.com/zsh-users/zsh-history-substring-search"
-      git: repo=https://github.com/zsh-users/zsh-history-substring-search dest=~/git/zsh-history-substring-search
+      git: repo=https://github.com/zsh-users/zsh-history-substring-search dest=~/git/zsh-history-substring-search version=master
 
     - name: "Download docker zsh completion"
       get_url:

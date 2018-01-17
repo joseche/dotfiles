@@ -1,6 +1,7 @@
 # vim:ft=ansible:
 ---
 - hosts: all
+  gather_facts: False
   tasks:
     - name: "Install base packages for Debian-like"
       include_tasks: OSs/debian-packages.yml
@@ -26,7 +27,3 @@
       shell: which nvim 2>/dev/null || ~/bin/install_neovim.sh
       args:
         creates: /usr/bin/nvim
-
-    # PIP modules
-    - name: pip modules
-      include_tasks: pip-pydev.yml
