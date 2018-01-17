@@ -114,3 +114,4 @@
     - xbacklight
     - ShellCheck
     - pylint
+    - terminology
