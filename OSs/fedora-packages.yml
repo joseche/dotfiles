@@ -112,3 +112,6 @@
     - i3-ipc
     - i3lock
     - xbacklight
+    - ShellCheck
+    - pylint
+    - terminology

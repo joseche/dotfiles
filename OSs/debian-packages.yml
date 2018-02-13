@@ -3,12 +3,15 @@
 - name: "User shell"
   user: name={{ansible_user_id}} shell=/bin/zsh
   become: true
+
 - name: "Add repo for neovim for debian"
   apt_repository: repo='ppa:neovim-ppa/unstable'
   become: true
+
 - name: "Add repo for atom for debian"
   become: true
   apt_repository: repo='ppa:webupd8team/atom'
+
 - name: "Add base packages for servers debian"
   apt: name={{item}} state=present
   become: true

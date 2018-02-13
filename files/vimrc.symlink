@@ -27,6 +27,20 @@ set mouse=a
 set autoindent
 set smartindent
 
+" encoding
+set encoding=utf-8
+set fileencoding=utf-8
+scriptencoding utf-8
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
 " lines from cursor to bottom
 set scrolloff=10
 
@@ -97,20 +111,6 @@ set showmode
 
 set viminfo='10,\"100,:100,%,n~/.viminfo
 
-" encoding
-set encoding=utf-8
-set fileencoding=utf-8
-scriptencoding utf-8
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-
-  setglobal fileencoding=utf-8
-  "setglobal bomb
-  set fileencodings=ucs-bom,utf-8,latin1
-endif
-
 " invisible chars
 set list
 " set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,space:·
@@ -142,8 +142,8 @@ endif
 filetype plugin on
 filetype indent on
 
-let mapleader = "\<Space>"
-let maplocalleader = "\\"
+let g:mapleader = "\<Space>"
+let g:maplocalleader = "\\"
 
 if exists('*jobstart')
     " NEOVIM ON
@@ -194,6 +194,10 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vimwiki/vimwiki'
 
 Plug 'trevordmiller/nova-vim'
+
+"vimL lint
+Plug 'ynkdir/vim-vimlparser'
+Plug 'syngan/vim-vimlint'
 
 " Chef
 Plug 'glidenote/vim-chef'
@@ -271,7 +275,7 @@ let g:pymode_rope_lookup_project         = 0
 let g:rubycomplete_buffer_loading        = 1
 let g:rubycomplete_rails                 = 1
 
-let python_highlight_all                 = 1
+let g:python_highlight_all                 = 1
 
 let g:org_agenda_files                   = ['~/git/work/org/*.org']
 
@@ -324,8 +328,8 @@ let g:Powerline_symbols     = 'fancy'
 
 let g:vimwiki_hl_headers    = 1
 let g:vimwiki_hl_cb_checked = 1
-let vimwiki_path=$HOME.'/git/work/vimwiki'
-let vimwiki_html_path=$HOME.'/git/work/vimwiki_html'
+let g:vimwiki_path=$HOME.'/git/work/vimwiki'
+let g:vimwiki_html_path=$HOME.'/git/work/vimwiki_html'
 let g:vimwiki_list = [{       'path': vimwiki_path,
                        \ 'path_html': vimwiki_html_path,
                        \ 'template_path': vimwiki_html_path.'/assets',

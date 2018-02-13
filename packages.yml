@@ -1,0 +1,29 @@
+# vim:ft=ansible:
+---
+- hosts: all
+  gather_facts: True
+  tasks:
+    - name: "Install base packages for Debian-like"
+      include_tasks: OSs/debian-packages.yml
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: "Install base OSs for Centos"
+      include_tasks: OSs/centos-packages.yml
+      when: ansible_distribution == 'CentOS'
+
+    - name: "Install base OSs for Fedora"
+      include_tasks: OSs/fedora-packages.yml
+      when: ansible_distribution == 'Fedora'
+
+    - name: "Install base OSs for Mac OS X"
+      include_tasks: OSs/macosx.yml
+      when: ansible_distribution == 'MacOSX'
+
+    - name: "Install base packages for FBSD"
+      include_tasks: OSs/freebsd.yml
+      when: ansible_distribution == 'FreeBSD'
+
+    - name: Install Neovim
+      shell: which nvim 2>/dev/null || ~/bin/install_neovim.sh
+      args:
+        creates: /usr/bin/nvim

@@ -55,7 +55,7 @@ function check_last_exit_code() {
 
 
 PROMPT='$(check_last_exit_code)
-%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
+%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%2m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
 ▶ '
 
 # iterm2 shell integration
