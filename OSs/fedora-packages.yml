@@ -73,6 +73,7 @@
     - qemu-kvm
     - golang
     - ansible
+    - ansible-lint
     - rhythmbox
     - adb
     - transmission-gtk
