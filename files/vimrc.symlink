@@ -142,6 +142,17 @@ endif
 filetype plugin on
 filetype indent on
 
+" vim uses
+let g:pymode_python = 'python3'
+
+" neovim
+" Set python3 interpreter
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+" Disable python2
+let g:loaded_python_provider = 1 
+" let g:loaded_python3_provider = 1 
+
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
 
@@ -275,7 +286,7 @@ let g:pymode_rope_lookup_project         = 0
 let g:rubycomplete_buffer_loading        = 1
 let g:rubycomplete_rails                 = 1
 
-let g:python_highlight_all                 = 1
+let g:python_highlight_all               = 1
 
 let g:org_agenda_files                   = ['~/git/work/org/*.org']
 

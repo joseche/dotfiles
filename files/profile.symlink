@@ -3,31 +3,48 @@
 # shellcheck disable=SC1090
 # vim:syntax=sh
 
+Z=$(basename "$SHELL")
+if [ "$Z" = "zsh" ]; then
+  source /etc/zshrc
+fi
 
 umask 0022
 
+pathmunge()
+{
+  if [ -d "$1" ]; then
+    if ! echo "$PATH" | /bin/grep -qE "(^|:)$1($|:)" ; then
+        if [ "$2" = "after" ] ; then
+            PATH=$PATH:$1
+        else
+            PATH=$1:$PATH
+        fi
+    fi
+  fi
+}
+
 # User configuration
 if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin"
+    pathmunge /usr/local/opt/coreutils/libexec/gnubin
 fi
 
-export PATH=$PATH:"~/bin"
-export PATH=$PATH:"/opt/X11/bin"
+pathmunge "$HOME/bin"
+pathmunge "/opt/X11/bin"
 
-export PATH=$PATH:"/bin"
-export PATH=$PATH:"/usr/bin"
-export PATH=$PATH:"/usr/local/bin"
+pathmunge "/bin"
+pathmunge "/usr/bin"
+pathmunge "/usr/local/bin"
 
-export PATH=$PATH:"/sbin"
-export PATH=$PATH:"/usr/sbin"
-export PATH=$PATH:"/usr/local/sbin"
+pathmunge "/sbin"
+pathmunge "/usr/sbin"
+pathmunge "/usr/local/sbin"
 
 if [ -d /usr/local/MacGPG2/bin ]; then
-  export PATH=$PATH:"/usr/local/MacGPG2/bin"
+  pathmunge "/usr/local/MacGPG2/bin"
 fi
 
 if [ -d /Users/c0d5x/Library/Android/sdk/platform-tools ]; then
-  export PATH=$PATH:"/Users/c0d5x/Library/Android/sdk/platform-tools"
+  pathmunge "/Users/c0d5x/Library/Android/sdk/platform-tools"
 fi
 
 if [ -d /usr/local/man ]; then
@@ -54,12 +71,13 @@ which macerror >/dev/null 2>/dev/null && source ~/.osx
 
 export EDITOR=nvim
 export VISUAL=nvim
+export PATH
 
 # Android
-if [ -d ~/android/android-sdk-linux ]; then
-   export ANDROID_HOME=~/android/android-sdk-linux
-   export ANDROID_SDK_HOME=~/android/android-sdk-linux
-   export PATH=$PATH:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/tools
+if [ -d /opt/android-sdk ]; then
+   export ANDROID_HOME=/opt/android-sdk
+   export ANDROID_SDK_HOME=/opt/android-sdk
+   pathmunge $ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/tools/bin
 fi
 
 # Standard and osx ssh problem
@@ -90,9 +108,3 @@ export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 
 # added for i3
 export TERMINAL=gnome-terminal
-
-# added by Anaconda2 4.3.0 installer
-export PATH="~/anaconda/bin:$PATH"
-
-# export KISYS3DMOD="$HOME/git/KiCad-Libraries"
-# export KICAD_PTEMPLATES="$HOME/git/KiCad-Libraries/Templates"
