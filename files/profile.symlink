@@ -23,6 +23,8 @@ pathmunge()
   fi
 }
 
+export TZ='America/Costa_Rica'
+
 # User configuration
 if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
     pathmunge /usr/local/opt/coreutils/libexec/gnubin

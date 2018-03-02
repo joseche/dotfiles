@@ -73,8 +73,12 @@ set splitbelow
 " default file format
 set ffs=unix,mac,dos
 
+" fold enabled
 set foldmethod=indent
 set foldlevel=3
+" fold exception for startified, using startified's event
+autocmd User Startified normal! zR
+
 
 " set textwidth=120        " more realistic size
 " set colorcolumn=+1
@@ -280,6 +284,9 @@ let g:syntastic_python_checkers          = ['flake8', 'pylint']
 let g:syntastic_python_flake8_exec       = 'python3'
 let g:syntastic_python_flake8_args       = ['-m', 'flake8']
 let g:syntastic_python_flake8_post_args  = '--ignore=E501,E221'
+
+let g:syntastic_sh_shellcheck_args       = "-x"
+
 let g:pymode_lint_ignore                 = "E501"
 let g:pymode_rope_lookup_project         = 0
 
@@ -460,6 +467,14 @@ au BufEnter * silent! lcd %:p:h
 au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
 au BufWritePost ~/git/work/vimwiki/* :VimwikiDiaryGenerateLinks<CR>
 augroup end
+
+autocmd VimEnter *
+                \   if !argc()
+                \ |   Startify
+                \ |   NERDTree
+                \ |   wincmd w
+                \ | endif
+
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 " }}}
