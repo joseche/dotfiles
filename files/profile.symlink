@@ -41,13 +41,10 @@ pathmunge "/sbin"
 pathmunge "/usr/sbin"
 pathmunge "/usr/local/sbin"
 
-if [ -d /usr/local/MacGPG2/bin ]; then
-  pathmunge "/usr/local/MacGPG2/bin"
-fi
+pathmunge "/opt/spark/bin"
 
-if [ -d /Users/c0d5x/Library/Android/sdk/platform-tools ]; then
-  pathmunge "/Users/c0d5x/Library/Android/sdk/platform-tools"
-fi
+pathmunge "/usr/local/MacGPG2/bin"
+pathmunge "/Users/c0d5x/Library/Android/sdk/platform-tools"
 
 if [ -d /usr/local/man ]; then
   export MANPATH="/usr/local/man":$MANPATH
@@ -100,6 +97,10 @@ fi
 # ruby & chef
 if which rbenv 2>/dev/null > /dev/null; then
     eval "$(rbenv init -)";
+fi
+
+if [ -d "/opt/spark" ]; then
+  export SPARK_HOME="/opt/spark"
 fi
 
 # ssh keys
