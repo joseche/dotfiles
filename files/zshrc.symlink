@@ -60,24 +60,17 @@ PROMPT='$(check_last_exit_code)
 # ¥ '
 # ▶ '
 
-# iterm2 shell integration
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && PROMPT='$(check_last_exit_code)
-# %{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
-# %{$(iterm2_prompt_mark)%} '
-
-
-function preexec() {
-  timer=${timer:-$SECONDS}
-}
-
-function precmd() {
-  if [ $timer ]; then
-    timer_show=$(($SECONDS - $timer))
-    export RPROMPT="%F{cyan}${timer_show}s %{$reset_color%}"
-    unset timer
-  fi
-}
+# function preexec() {
+#   timer=${timer:-$SECONDS}
+# }
+# 
+# function precmd() {
+#   if [ $timer ]; then
+#     timer_show=$(($SECONDS - $timer))
+#     export RPROMPT="%F{cyan}${timer_show}s %{$reset_color%}"
+#     unset timer
+#   fi
+# }
 
 bindkey -e
 bindkey '^r' history-incremental-search-backward
