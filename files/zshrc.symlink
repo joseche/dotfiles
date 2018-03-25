@@ -24,7 +24,7 @@ setopt prompt_subst \
        auto_cd \
        complete_aliases \
        extended_glob \
-       append_history \
+       incappendhistory \
        extended_history
 
 HISTFILE="$HOME/.zsh_history"
