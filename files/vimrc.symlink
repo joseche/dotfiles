@@ -24,7 +24,7 @@ set spell
 set laststatus=2
 
 " enable mouse
-set mouse=a
+set mouse=
 
 " indents
 set autoindent
@@ -101,7 +101,7 @@ set wrap
 set linebreak
 set showbreak=↪
 
-set background=dark
+" set background=dark
 " set guifont=Monaco:h13
 " set guifont=Source\ Code\ Pro\ for\ Powerline
 " set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular
@@ -157,8 +157,8 @@ let g:pymode_python = 'python3'
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
 " Disable python2
-let g:loaded_python_provider = 1 
-" let g:loaded_python3_provider = 1 
+let g:loaded_python_provider = 1
+" let g:loaded_python3_provider = 1
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
@@ -306,10 +306,10 @@ nnoremap \ :call bufferhint#LoadPrevious()<CR>
 try
     " solarized requires solarized iterm's colors set in preferences
     " colorscheme solarized
-    " colorscheme dracula
+    colorscheme dracula
     " colorscheme nova
     " colorscheme morning
-    colorscheme darkblue
+    " colorscheme darkblue
 catch
     colorscheme default
 endtry
