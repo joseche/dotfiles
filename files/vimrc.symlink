@@ -17,6 +17,9 @@ set autoread
 " let me change buffers when mod
 set hidden
 
+" set spell by default, in code it applies to comments
+set spell
+
 " display statusbar
 set laststatus=2
 
@@ -308,7 +311,7 @@ try
     " colorscheme morning
     colorscheme darkblue
 catch
-    colorscheme darkblue
+    colorscheme default
 endtry
 
 " after changing the colorscheme, set italic for comments
@@ -490,7 +493,7 @@ nnoremap <Leader>m :bp<CR>
 nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 " nnoremap <Leader>t :tabedit ~/org/index.org<CR>
-nnoremap <Leader>b :NERDTree<CR>
+nnoremap <Leader>b :NERDTreeToggle<CR>
 nnoremap <Leader>E :EasyAlign=<CR>
 
 nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport
