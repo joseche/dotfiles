@@ -83,7 +83,7 @@ set foldlevel=3
 autocmd User Startified normal! zR
 
 
-" set textwidth=120        " more realistic size
+set textwidth=120        " more realistic size
 " set colorcolumn=+1
 " highlight ColorColumn guibg=#2d2d2d ctermbg=246
 " highlight Normal ctermfg=grey ctermbg=#0e143d
@@ -152,18 +152,21 @@ filetype indent on
 " vim uses
 let g:pymode_python = 'python3'
 
+" let g:pymode_folding=0
+" let g:pymode_rope = 0
+
 " neovim
 " Set python3 interpreter
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/bin/python'
+let g:python3_host_prog = '/bin/python3'
 " Disable python2
-let g:loaded_python_provider = 1
+" let g:loaded_python_provider = 1
 " let g:loaded_python3_provider = 1
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
 
-if exists('*jobstart')
+if has('nvim')
     " NEOVIM ON
     set viminfo='10,\"100,:100,%,n~/.viminfo
 else
@@ -179,7 +182,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'chase/vim-ansible-yaml'
 " Plug 'hdima/python-syntax'
 " Plug 'jceb/vim-orgmode'
-" Plug 'klen/python-mode'
+Plug 'klen/python-mode'
 " Plug 'motemen/git-vim'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'airblade/vim-gitgutter'
@@ -188,38 +191,49 @@ Plug 'bling/vim-bufferline'
 Plug 'bsdelf/bufferhint'
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'chr4/sslsecure.vim'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'dracula/vim'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 Plug 'hashivim/vim-terraform'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
-Plug 'kien/rainbow_parentheses.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/calendar-vim'
 Plug 'mhinz/vim-startify'
-Plug 'mileszs/ack.vim'
+" Plug 'mileszs/ack.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'powerline/powerline'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
-Plug 'valloric/youcompleteme'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
+
+" Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vimwiki/vimwiki'
 
-Plug 'trevordmiller/nova-vim'
+" Plug 'trevordmiller/nova-vim'
 
-"vimL lint
+" vimL lint
 Plug 'ynkdir/vim-vimlparser'
 Plug 'syngan/vim-vimlint'
 
 " Chef
 Plug 'glidenote/vim-chef'
 Plug 'gregf/ultisnips-chef'
+
+if has("nvim")
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
 call plug#end()
 " }}}
 
@@ -241,13 +255,13 @@ let g:airline_left_alt_sep               = ''
 let g:airline_right_sep                  = ''
 let g:airline_right_alt_sep              = ''
 
-let g:jedi#goto_command                  = ""
-let g:jedi#goto_assignments_command      = "<leader>g"
-let g:jedi#goto_definitions_command      = "<leader>d"
-let g:jedi#documentation_command         = "K"
-let g:jedi#usages_command                = "<leader>u"
-let g:jedi#completions_command           = "<C-Space>"
-let g:jedi#rename_command                = "<leader>n"
+" let g:jedi#goto_command                  = ""
+" let g:jedi#goto_assignments_command      = "<leader>g"
+" let g:jedi#goto_definitions_command      = "<leader>d"
+" let g:jedi#documentation_command         = "K"
+" let g:jedi#usages_command                = "<leader>u"
+" let g:jedi#completions_command           = "<C-Space>"
+" let g:jedi#rename_command                = "<leader>n"
 
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
@@ -271,30 +285,30 @@ let g:snips_author_email                 = "c0d5x@protonmail.com"
 let g:snips_email                        = "c0d5x@protonmail.com"
 let g:snips_github                       = "https://github.com/c0d5x"
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list            = 1
-let g:syntastic_loc_list_height          = 4
-let g:syntastic_check_on_open            = 1
-let g:syntastic_check_on_wq              = 0
-
-let g:syntastic_error_symbol             = "\u00A7"
-let g:syntastic_style_error_symbol       = "\u2717"
-let g:syntastic_warning_symbol           = "\u26A0"
-let g:syntastic_style_warning_symbol     = "\u0482"
-let g:syntastic_enable_highlighting      = 1
-
-let g:syntastic_python_checkers          = ['flake8', 'pylint']
-let g:syntastic_python_flake8_exec       = 'python3'
-let g:syntastic_python_flake8_args       = ['-m', 'flake8']
-let g:syntastic_python_flake8_post_args  = '--ignore=E501,E221'
-
-let g:syntastic_sh_shellcheck_args       = "-x"
-
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list            = 1
+" let g:syntastic_loc_list_height          = 4
+" let g:syntastic_check_on_open            = 1
+" let g:syntastic_check_on_wq              = 0
+" 
+" let g:syntastic_error_symbol             = "\u00A7"
+" let g:syntastic_style_error_symbol       = "\u2717"
+" let g:syntastic_warning_symbol           = "\u26A0"
+" let g:syntastic_style_warning_symbol     = "\u0482"
+" let g:syntastic_enable_highlighting      = 1
+" 
+" let g:syntastic_python_checkers          = ['flake8', 'pylint']
+" let g:syntastic_python_flake8_exec       = 'python3'
+" let g:syntastic_python_flake8_args       = ['-m', 'flake8']
+" let g:syntastic_python_flake8_post_args  = '--ignore=E501,E221'
+" 
+" let g:syntastic_sh_shellcheck_args       = "-x"
+" 
 let g:pymode_lint_ignore                 = "E501"
-let g:pymode_rope_lookup_project         = 0
-
-let g:rubycomplete_buffer_loading        = 1
-let g:rubycomplete_rails                 = 1
+" let g:pymode_rope_lookup_project         = 0
+" 
+" let g:rubycomplete_buffer_loading        = 1
+" let g:rubycomplete_rails                 = 1
 
 let g:python_highlight_all               = 1
 
@@ -317,33 +331,6 @@ endtry
 " after changing the colorscheme, set italic for comments
 " iterm2 needs a font with italics, also terminfo has to support italics
 highlight Comment cterm=italic
-
-
-"if exists(':RainbowParenthesesActivate')
-let g:rbpt_colorpairs = [
-\ ['darkgreen',   'firebrick3'],
-\ ['darkcyan',    'SeaGreen3'],
-\ ['darkred',     'DarkOrchid3'],
-\ ['black',       'SeaGreen3'],
-\ ['Darkblue',    'firebrick3'],
-\ ['darkcyan',    'RoyalBlue3'],
-\ ['darkred',     'SeaGreen3'],
-\ ['darkmagenta', 'DarkOrchid3'],
-\ ['brown',       'firebrick3'],
-\ ['gray',        'RoyalBlue3'],
-\ ['red',         'firebrick3'],
-\ ['brown',       'RoyalBlue3'],
-\ ['darkgreen',   'RoyalBlue3'],
-\ ['darkmagenta', 'DarkOrchid3'],
-\ ['darkgray',    'DarkOrchid3'],
-\ ['Darkblue',    'SeaGreen3'],
-\ ]
-    autocmd VimEnter * RainbowParenthesesActivate
-    autocmd Syntax * RainbowParenthesesLoadRound
-    autocmd Syntax * RainbowParenthesesLoadSquare
-    autocmd Syntax * RainbowParenthesesLoadBraces
-    autocmd Syntax * RainbowParenthesesLoadChevrons
-"endif
 
 let g:Powerline_symbols     = 'fancy'
 
@@ -394,20 +381,6 @@ augroup END
 set backupskip=/tmp/*,/private/tmp/*
 " autocmd filetype crontab setlocal nobackup nowritebackup
 
-" Reload when vimrc is changed
-augroup reload_vimrc " {
-autocmd!
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
-
-" if exists(':Neomake')
-"    autocmd! BufWritePost * Neomake
-" endif
-
-" if exists("g:loaded_tagbar")
-autocmd VimEnter * nested :call tagbar#autoopen(1)
-" endif
-
 autocmd VimResized * :wincmd =
 
 " Remove trailing spaces for file types:
@@ -421,13 +394,11 @@ au FileType python setl tabstop=4     " A tab counts for 4 spaces.
 au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
 au FileType python setl shiftwidth=4  " Shift by 4 spaces.
 au FileType python setl foldmethod=indent " fold method is indent for python
-au FileType python nnoremap <Leader>r :!python %<CR>
 augroup end
 
 " Ruby section
 augroup ruby
 au!
-au FileType ruby nnoremap <Leader>r :w<CR>:!ruby -r debug %<CR>
 augroup end
 
 " Javascript section
@@ -444,7 +415,6 @@ au FileType terraform setl softtabstop=2 " Causes backspace to delete 4 spaces.
 au FileType terraform setl shiftwidth=2  " Shift by 4 spaces.
 au FileType terraform setl foldmethod=indent " fold method is indent for terraform
 au FileType terraform setl foldlevel=2 " fold method is indent for terraform
-au FileType terraform nnoremap <Leader>r :!terraform plan %<CR>
 augroup end
 
 " Git commits
@@ -471,12 +441,12 @@ au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
 au BufWritePost ~/git/work/vimwiki/* :VimwikiDiaryGenerateLinks<CR>
 augroup end
 
-autocmd VimEnter *
-                \   if !argc()
-                \ |   Startify
-                \ |   NERDTree
-                \ |   wincmd w
-                \ | endif
+" autocmd VimEnter *
+"                 \   if !argc()
+"                 \ |   Startify
+"                 \ |   NERDTree
+"                 \ |   wincmd w
+"                 \ | endif
 
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
@@ -494,11 +464,11 @@ nnoremap <Leader>c :tabnew<CR>
 nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 " nnoremap <Leader>t :tabedit ~/org/index.org<CR>
 nnoremap <Leader>b :NERDTreeToggle<CR>
+nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>E :EasyAlign=<CR>
 
 nnoremap <Leader>i G?^import<CR>:nohlsearch<CR>oimport
 
-nnoremap <Localleader>r :!python %<CR>
 inoremap # X<BS>#
 
 map <Leader>h <C-w>h
@@ -514,22 +484,5 @@ imap <C-]> <ESC>
 " }}}
 
 " Functions and other {{{
-
-function! ShuffleLines()
-ruby << EOF
-    buf = VIM::Buffer.current
-    firstnum =  VIM::evaluate('a:firstline')
-    lastnum = VIM::evaluate('a:lastline')
-    lines = []
-    firstnum.upto(lastnum) do |lnum|
-      lines << buf[lnum]
-    end
-    lines.shuffle!
-    firstnum.upto(lastnum) do |lnum|
-      buf[lnum] = lines[lnum-firstnum]
-    end
-EOF
-endfunction
-command! -bar Shuffle  call ShuffleLines()
 
 " }}}
