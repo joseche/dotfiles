@@ -1,11 +1,12 @@
+#!/usr/bin/env bash
 
 #[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
-source ~/.profile
+source "$HOME/.profile"
 
-HISTFILE="$HOME/.history"
-HISTSIZE=1000
-SAVEHIST=1000
+export HISTFILE="$HOME/.history"
+export HISTSIZE=1000
+export SAVEHIST=1000
 
 #  bindkey -e
 #  bindkey '^r' history-incremental-search-backward
@@ -41,9 +42,10 @@ complete -A job -P '%'     fg jobs disown
 complete -A directory  mkdir rmdir
 complete -A directory   -o default cd
 
-test -e ~/.alias 2>/dev/null && source ~/.alias
+test -e "$HOME/.alias" 2>/dev/null && source "$HOME/.alias"
 
 export PS1='\u @ \h \w \$ '
-date
 
-which fortune 2>/dev/null > /dev/null && fortune -s || true    # Makes our day a bit more fun.... :-)
+if command -v fortune >/dev/null 2>&1; then
+  fortune -s
+fi
