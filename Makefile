@@ -1,3 +1,7 @@
+
+PATH := $(PATH):/usr/local/bin
+
+
 all: light
 
 light: ansible
@@ -13,5 +17,5 @@ pip: ansible
 	ansible-playbook -i 'localhost,' -c local ./pip-pydev.yml
 
 ansible:
-	which ansible 2>/dev/null || sudo dnf install ansible || sudo yum install -y epel-release ansible || sudo apt install -y ansible || /usr/local/bin/brew install ansible
+	which ansible 2>/dev/null || sudo dnf install ansible || sudo yum install -y epel-release ansible || sudo apt install -y ansible || brew install ansible
 
