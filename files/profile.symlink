@@ -8,6 +8,10 @@ if [ "$Z" = "zsh" ]; then
   source /etc/zshrc
 fi
 
+if [ "$Z" = "bash" ]; then
+   [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+fi
+
 umask 0022
 
 pathmunge()
@@ -24,6 +28,7 @@ pathmunge()
 }
 
 export TZ='America/Costa_Rica'
+
 
 # User configuration
 if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then

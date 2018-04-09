@@ -38,8 +38,8 @@ WATCHFMT='%n %a %l from %m at %T.'
 
 source ~/git/zsh-git-prompt/zshrc.sh
 source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
-which aws_zsh_completer.sh 2>/dev/null >/dev/null && source `which aws_zsh_completer.sh` 2>/dev/null
-which direnv 2>/dev/null >/dev/null && eval "$(direnv hook zsh)"
+which aws_zsh_completer.sh >/dev/null 2>&1 && aws_zsh_completer.sh >/dev/null 2>&1
+which direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 
 function check_last_exit_code() {
