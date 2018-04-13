@@ -20,6 +20,7 @@ alias bc='bc -q -l'
 alias cp='cp -r'
 alias cd=cdl
 alias dmesg='sudo dmesg'
+alias c='clear'
 alias e='printf "\ec"'
 alias rm='rm -rf '
 alias hg='history|grep '

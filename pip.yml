@@ -1,0 +1,31 @@
+# vim:ft=ansible:
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+  - name: pip modules
+    pip: name={{item}} state=present
+    # become: True
+    # become_user: root
+    with_items:
+      - mccabe
+      - yapf
+      - pycodestyle==2.3.1
+      - isort
+      - pep8-naming
+      - flake8-coding
+      - flake8-imports
+      - flake8-requirements
+      - powerline-status
+      - neovim
+      - requests
+      - ansible-lint
+      - yamllint
+      # - prospector
+      # - pylint
+      # - pylama
+      # - nose
+      # - nose-cov
+      # - rednose
+      # - pytest
+      # - pytest-cov
