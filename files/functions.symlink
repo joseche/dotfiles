@@ -5,6 +5,17 @@ cdl () {
     ls -Gh
 }
 
+unicodes() {
+printf "
+Á = c1 | á = e1
+É = c9 | é = e9
+Í = cd | í = ed
+Ó - d3 | ó = f3
+Ú = da | ú = fa
+Ñ = d1 | ñ = f1
+"
+}
+
 set_sshagent() {
     # Discover the running ssh-agent
     if [[ -f $HOME/.ssh-agent-pid ]] && [[ -f $HOME/.ssh-auth-sock ]] && \
