@@ -7,11 +7,11 @@ export OS=$(uname -s)
 
 Z=$(basename "$SHELL")
 if [ "$Z" = "zsh" ] && [ -e /etc/zshrc ]; then
-   /etc/zshrc
+   source /etc/zshrc
 fi
 
 if [ "$Z" = "bash" ] && [ -f /usr/local/etc/bash_completion ]; then
-   /usr/local/etc/bash_completion
+   source /usr/local/etc/bash_completion
 fi
 
 umask 0022
@@ -74,7 +74,7 @@ which macerror >/dev/null 2>&1 && source ~/.osx
 # keys, tokens, etc.
 [ -f ~/.keys ] && source ~/.keys
 
-if command -v nvim; then
+if command -v nvim >/dev/null 2>&1; then
    export EDITOR=nvim
    export VISUAL=nvim
 else

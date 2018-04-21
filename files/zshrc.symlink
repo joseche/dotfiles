@@ -77,4 +77,4 @@ bindkey '^r' history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-which fortune 2>/dev/null >/dev/null && fortune -s
+which fortune >/dev/null 2>&1 && fortune -s
