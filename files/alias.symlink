@@ -3,17 +3,27 @@
 
 alias history='history 0'
 
-which gls 2>/dev/null >/dev/null
-if [ $? -eq 0 ]; then
+# set nice ls
+if [ "$OS" = "Linux" ]; then
+  alias l='ls -h --color'
+  alias ls='ls -h --color'
+  alias ll='ls -h -l --color'
+  alias la='ls -hla --color'
+else
+  # OSX with gnu ls ?
+  which gls 2>/dev/null >/dev/null
+  if [ $? -eq 0 ]; then
     alias l='gls -h --color'
     alias ls='gls -h --color'
     alias ll='gls -lha --color'
     alias la='gls -lha --color'
-else
-    alias l='ls -h'
-    alias ls='ls -h'
-    alias ll='ls -h -l'
-    alias la='ls -hla'
+  else
+    # probably OSX without gnu ls
+    alias l='gls -h'
+    alias ls='gls -h'
+    alias ll='gls -lha'
+    alias la='gls -lha'
+  fi
 fi
 
 alias bc='bc -q -l'
@@ -30,11 +40,12 @@ alias listening='netstat -ant|grep tcp|grep -i listen'
 # console mp3 player
 alias mpv='mpv --no-audio-display'
 
+if [ "$OS" = "Darwin" ]; then
 # xquartz in mac seems to always warn about dynamic cookies..
 # alias ssh='ssh -y'
-
 # because mac < linux
-alias ssh='TERM=xterm-256color ssh -y'
+  alias ssh='TERM=xterm-256color ssh -y'
+fi
 
 alias ap='ansible-playbook'
 alias apl='ansible-playbook -i "localhost," -c local '

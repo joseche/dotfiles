@@ -3,13 +3,15 @@
 # shellcheck disable=SC1090
 # vim:syntax=sh
 
+export OS=$(uname -s)
+
 Z=$(basename "$SHELL")
 if [ "$Z" = "zsh" ]; then
   source /etc/zshrc
 fi
 
 if [ "$Z" = "bash" ]; then
-   [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+   [ -f /usr/local/etc/bash_completion ] && /usr/local/etc/bash_completion
 fi
 
 umask 0022
@@ -68,7 +70,7 @@ source ~/.alias
 source ~/.functions
 
 # osx specific calls
-which macerror >/dev/null 2>/dev/null && source ~/.osx
+which macerror >/dev/null 2>&1 && source ~/.osx
 
 # keys, tokens, etc.
 [ -f ~/.keys ] && source ~/.keys
