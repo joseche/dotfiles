@@ -1,7 +1,8 @@
+#!/usr/bin/env bash
 # vim:syntax=sh:ft=sh
 
 cdl () {
-    \cd $@
+    \cd "$@" || exit 1
     ls -Gh
 }
 
@@ -16,33 +17,33 @@ printf "
 "
 }
 
-set_sshagent() {
-    # Discover the running ssh-agent
-    if [[ -f $HOME/.ssh-agent-pid ]] && [[ -f $HOME/.ssh-auth-sock ]] && \
-        kill -0 $(cat $HOME/.ssh-agent-pid) 2>/dev/null; then
-        SSH_AUTH_SOCK=$(cat $HOME/.ssh-auth-sock)
-        SSH_AGENT_PID=$(cat $HOME/.ssh-agent-pid)
-        export SSH_AUTH_SOCK SSH_AGENT_PID
+sshagent() {
+  NEEDSAGENT=0
+  SSHSOCK="$HOME/.ssh-auth-sock"
+  SSHPID="$HOME/.ssh-agent-pid"
+  ssh-add -l >/dev/null 2>&1
+  if [ $? = 2 ]; then
+    # ssh-add was not able to talk to the agent
+    # check if stored pid and socket work
+    if [[ -f "$SSHSOCK" ]] && [[ -f "$SSHPID" ]]; then
+       SSH_AUTH_SOCK=$(cat "$SSHSOCK")
+       SSH_AGENT_PID=$(cat "$SSHPID")
+       export SSH_AUTH_SOCK SSH_AGENT_PID
+       ssh-add -l >/dev/null 2>&1
+       if [ $? = 2 ]; then
+         # stored values don't work
+         NEEDSAGENT=1
+       fi
     else
-        # if files not found, check if agent is running
-        export SSH_AGENT_PID=$(pgrep -U $USER ssh-agent|head -n 1)
-        if [ -z "$SSH_AGENT_PID" ]; then
-            # agent not running, run new instance
-            eval $(ssh-agent)
-            export SSH_AGENT_PID=$(pgrep -U $USER ssh-agent|head -n 1)
-        fi
-
-        # we have an agent, record pid and socket
-        export SSH_AUTH_SOCK=$(sudo lsof -U -a -p $SSH_AGENT_PID -F n 2>/dev/null | \
-                                  grep '^n/' | cut -c2-|sed 's, .*,,')
-        rm -f ${HOME}/.ssh-* 2>/dev/null >/dev/null
-        echo "$SSH_AUTH_SOCK" > ${HOME}/.ssh-auth-sock
-        echo "$SSH_AGENT_PID" > ${HOME}/.ssh-agent-pid
+      # no stored files
+      NEEDSAGENT=1
     fi
-
-    # if empty agent, add default keys
-    # ssh-add -l >/dev/null
-    # if [ "$?" != "0" ]; then
-    #     ssh-add < /dev/null
-    # fi
+    if [ $NEEDSAGENT = 1 ]; then
+      rm -rf "$SSHPID" "$SSHSOCK" 2>/dev/null
+      eval "$(ssh-agent)"
+      echo "$SSH_AGENT_PID" > "$SSHPID"
+      echo "$SSH_AUTH_SOCK" > "$SSHSOCK"
+    fi
+  fi
+  unset NEEDSAGENT SSHSOCK SSHPID
 }
