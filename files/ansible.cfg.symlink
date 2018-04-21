@@ -16,4 +16,3 @@ retry_files_save_path = ~/tmp/
 [ssh_connection]
 ssh_args = -o ControlMaster=auto -o ControlPersist=30m
 control_path = ~/.ssh/ansible_%%r@%%h:%%p
-

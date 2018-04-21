@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # vim:syntax=sh
 
 alias gs='git status'
