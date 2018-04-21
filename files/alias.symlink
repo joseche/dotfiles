@@ -1,5 +1,5 @@
+#!/usr/bin/env bash
 # vim:syntax=sh
-#
 
 alias history='history 0'
 
@@ -11,18 +11,17 @@ if [ "$OS" = "Linux" ]; then
   alias la='ls -hla --color'
 else
   # OSX with gnu ls ?
-  which gls 2>/dev/null >/dev/null
-  if [ $? -eq 0 ]; then
+  if command -v gls >/dev/null 2>&1; then
     alias l='gls -h --color'
     alias ls='gls -h --color'
     alias ll='gls -lha --color'
     alias la='gls -lha --color'
   else
     # probably OSX without gnu ls
-    alias l='gls -h'
-    alias ls='gls -h'
-    alias ll='gls -lha'
-    alias la='gls -lha'
+    alias l='ls -h'
+    alias ls='ls -h'
+    alias ll='ls -lha'
+    alias la='ls -lha'
   fi
 fi
 
@@ -50,46 +49,33 @@ fi
 alias ap='ansible-playbook'
 alias apl='ansible-playbook -i "localhost," -c local '
 
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
+command -v python3 >/dev/null 2>&1 && alias python='python3'
+command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim'
 
-which gsort 2>/dev/null >/dev/null &&     alias sort='gsort'
-which gecho 2>/dev/null >/dev/null &&     alias echo='gecho'
-which gprintf 2>/dev/null >/dev/null &&   alias printf='gprintf'
-
-which nvim 2>/dev/null >/dev/null &&      alias vim='nvim' && alias vi='nvim'
-# which nvim 2>/dev/null >/dev/null ||      alias nvim='vim'
-
-which apt-get 2>/dev/null >/dev/null &&   alias apt-get='sudo apt-get -y'
-which apt 2>/dev/null >/dev/null &&       alias apt='sudo apt -y'
-which greadlink 2>/dev/null >/dev/null && alias readlink='greadlink'
-# which python3.5 2>/dev/null >/dev/null && alias python='python3.5'
-which python3 2>/dev/null >/dev/null &&   alias python='python3'
-which xdg-open 2>/dev/null >/dev/null &&  alias open='xdg-open'
-
-which node 2>/dev/null >/dev/null ||      alias node=nodejs
-
-which xsel 2>/dev/null >/dev/null &&      alias pbcopy='xsel --clipboard --input'
-
-alias startmongo='mongod --config /usr/local/etc/mongod.conf'
+command -v gsort >/dev/null 2>&1 && alias sort='gsort'
+command -v gecho >/dev/null 2>&1 && alias echo='gecho'
+command -v gprintf >/dev/null 2>&1 && alias printf='gprintf'
+command -v apt-get >/dev/null 2>&1 && alias apt-get='sudo apt-get -y'
+command -v apt >/dev/null 2>&1 && alias apt='sudo apt -y'
+command -v greadlink >/dev/null 2>&1 && alias readlink='greadlink'
+command -v xdg-open >/dev/null 2>&1 && alias open='xdg-open'
+command -v xsel >/dev/null 2>&1 && alias pbcopy='xsel --clipboard --input'
 
 alias sha1='openssl sha1'
-
 alias svim='sudo vim'
 alias df='df -H'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 # alias ping='ping -c 4'
 
-which tmux 2>/dev/null >/dev/null
-if [ $? -eq 0 ]; then
-    alias ta='tmux attach -d -t'
-    alias tn='tmux new -s $(basename $(pwd))'
-    alias tl='tmux list-sessions'
+if command -v tmux >/dev/null 2>&1; then
+  alias ta='tmux attach -d -t'
+  alias tn='tmux new -s $(basename $(pwd))'
+  alias tl='tmux list-sessions'
 fi
 
-for af in ~/.alias.*; do
-    source $af
+for af in $HOME/.alias.*; do
+  # shellcheck disable=SC1090
+  source "$af"
 done
 
 alias aws_account_id='aws sts get-caller-identity --output text --query Account'
@@ -97,5 +83,5 @@ alias aws_keys="export | grep AWS | sed 's,^,export ,'"
 
 # not an alias, but related to above
 aws_list_amis() {
-    open 'https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Images:visibility=owned-by-me;search=CentOS7;sort=desc:ownerId'
+  open 'https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Images:visibility=owned-by-me;search=CentOS7;sort=desc:ownerId'
 }
