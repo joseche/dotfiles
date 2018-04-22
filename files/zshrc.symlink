@@ -1,5 +1,9 @@
 # `.zshrc' is sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
 
+# for profiling a slow zsh:
+# zmodload zsh/zprof
+# then when you get the prompt type: zprof
+
 #[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
 source ~/.profile
@@ -35,12 +39,13 @@ REPORTTIME=10
 WATCH=notme
 WATCHFMT='%n %a %l from %m at %T.'
 
+if ! [ "$SLOWPROMPT" = "yes" ]; then
+  source ~/git/zsh-git-prompt/zshrc.sh
+fi
 
-source ~/git/zsh-git-prompt/zshrc.sh
 source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
 which aws_zsh_completer.sh >/dev/null 2>&1 && aws_zsh_completer.sh >/dev/null 2>&1
 which direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
-
 
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?
@@ -54,11 +59,19 @@ function check_last_exit_code() {
 }
 
 
-PROMPT='$(check_last_exit_code)
+# Nice unicodes for prompt
+# ¥
+# ▶
+# ¤
+if [ "$SLOWPROMPT" = "yes" ]; then
+  PROMPT='$(check_last_exit_code)
+%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%2m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%}
+¤ '
+else
+  PROMPT='$(check_last_exit_code)
 %{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%2m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
 ¤ '
-# ¥ '
-# ▶ '
+fi
 
 # function preexec() {
 #   timer=${timer:-$SECONDS}
@@ -77,4 +90,6 @@ bindkey '^r' history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-which fortune >/dev/null 2>&1 && fortune -s
+if ! [ "$SLOWPROMPT" = "yes" ]; then
+  command -v fortune >/dev/null 2>&1 && fortune -s
+fi

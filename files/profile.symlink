@@ -3,9 +3,17 @@
 # shellcheck disable=SC1090
 # vim:syntax=sh
 
-export OS=$(uname -s)
 
+# Generic variables
+export OS=$(uname -s)
+# Z = shell without path
 Z=$(basename "$SHELL")
+
+SLOWPROMPT="no"
+if [[ "$(arch)" =~ "arm" ]]; then
+  SLOWPROMPT="yes"
+fi
+
 if [ "$Z" = "zsh" ] && [ -e /etc/zshrc ]; then
    source /etc/zshrc
 fi
@@ -77,9 +85,12 @@ which macerror >/dev/null 2>&1 && source ~/.osx
 if command -v nvim >/dev/null 2>&1; then
    export EDITOR=nvim
    export VISUAL=nvim
-else
+elif command -v vim >/dev/null 2>&1; then
    export EDITOR=vim
    export VISUAL=vim
+else
+   export EDITOR=vi
+   export VISUAL=vi
 fi
 
 export PATH
@@ -122,4 +133,4 @@ sshagent
 export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 
 # added for i3 and others
-export TERMINAL=gnome-terminal
+# export TERMINAL=gnome-terminal
