@@ -5,7 +5,16 @@
 
 export OS="$(uname -s)"
 
+# Generic variables
+export OS=$(uname -s)
+# Z = shell without path
 Z=$(basename "$SHELL")
+
+SLOWPROMPT="no"
+if [[ "$(arch)" =~ "arm" ]]; then
+  SLOWPROMPT="yes"
+fi
+
 if [ "$Z" = "zsh" ] && [ -e /etc/zshrc ]; then
    source /etc/zshrc
 fi
@@ -77,7 +86,7 @@ which macerror >/dev/null 2>&1 && source ~/.osx
 if command -v nvim >/dev/null 2>&1; then
    export EDITOR=nvim
    export VISUAL=nvim
-elif command -v vim 2>/dev/null 2>&1; then
+elif command -v vim >/dev/null 2>&1; then
    export EDITOR=vim
    export VISUAL=vim
 else
@@ -127,7 +136,7 @@ fi
 sshagent
 
 # source /usr/local/share/zsh/site-functions/_aws
-export VAGRANT_DEFAULT_PROVIDER='virtualbox'
+# export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 
 # added for i3 and others
 # export TERMINAL=gnome-terminal
