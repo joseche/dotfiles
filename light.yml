@@ -15,6 +15,7 @@
         - ~/.config
         - ~/.config/i3
         - ~/.config/i3status
+        - ~/.config/yamllint
       file: path={{item}} state=directory mode=0700 force=yes
 
     # shell configuration
@@ -48,6 +49,7 @@
         - { src: "{{ playbook_dir }}/files/ansible.cfg.symlink", dst: "~/.ansible.cfg" }
         - { src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.vimrc" }
         - { src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.config/nvim/init.vim" }
+        - { src: "{{ playbook_dir }}/files/yamllint.symlink", dst: "~/.config/yamllint/config" }
 
 
     # clone zsh plugins

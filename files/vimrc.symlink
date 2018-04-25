@@ -5,6 +5,7 @@
 set nocompatible
 
 syntax on
+set t_Co=256
 
 " display number on left side and status bar
 set ruler
