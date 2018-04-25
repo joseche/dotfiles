@@ -3,7 +3,7 @@
 # shellcheck disable=SC1090
 # vim:syntax=sh
 
-export OS=$(uname -s)
+export OS="$(uname -s)"
 
 Z=$(basename "$SHELL")
 if [ "$Z" = "zsh" ] && [ -e /etc/zshrc ]; then
@@ -56,7 +56,7 @@ if [ -d /usr/local/man ]; then
   export MANPATH="/usr/local/man":$MANPATH
 fi
 
-export GREP_COLOR="1;32"
+# export GREP_COLOR="1;32"
 export MANPAGER="less -X"
 
 # Java
@@ -77,12 +77,13 @@ which macerror >/dev/null 2>&1 && source ~/.osx
 if command -v nvim >/dev/null 2>&1; then
    export EDITOR=nvim
    export VISUAL=nvim
-else
+elif command -v vim 2>/dev/null 2>&1; then
    export EDITOR=vim
    export VISUAL=vim
+else
+   export EDITOR=vi
+   export VISUAL=vi
 fi
-
-export PATH
 
 # Android
 if [ -d /opt/android-sdk ]; then
@@ -91,9 +92,16 @@ if [ -d /opt/android-sdk ]; then
   pathmunge $ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/tools/bin
 fi
 
+export PATH
+
 # Standard and fixes an osx ssh problem
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+LANG=$(locale -a|grep -i en_us.utf|head -n1)
+if [ -n "$LANG" ]; then
+  export LANG
+  export LC_ALL=$LANG
+else
+  unset LANG
+fi
 
 # common
 export NET=192.168.70
@@ -122,4 +130,4 @@ sshagent
 export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 
 # added for i3 and others
-export TERMINAL=gnome-terminal
+# export TERMINAL=gnome-terminal
