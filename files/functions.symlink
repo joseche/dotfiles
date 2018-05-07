@@ -2,7 +2,8 @@
 # vim:syntax=sh:ft=sh
 
 cdl () {
-    \cd "$@" || exit 1
+    # shellcheck disable=SC2164
+    \cd "$@"
     ls -Gh
 }
 
