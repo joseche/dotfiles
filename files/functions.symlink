@@ -25,6 +25,7 @@ sshagent() {
   if [ $? = 2 ]; then
     # ssh-add was not able to talk to the agent
     # check if stored pid and socket work
+    echo "ssh-agent not responding"
     if [[ -f "$SSHSOCK" ]] && [[ -f "$SSHPID" ]]; then
        SSH_AUTH_SOCK=$(cat "$SSHSOCK")
        SSH_AGENT_PID=$(cat "$SSHPID")
@@ -32,6 +33,7 @@ sshagent() {
        ssh-add -l >/dev/null 2>&1
        if [ $? = 2 ]; then
          # stored values don't work
+         echo "ssh-agent stored values do not work"
          NEEDSAGENT=1
        fi
     else
@@ -39,8 +41,10 @@ sshagent() {
       NEEDSAGENT=1
     fi
     if [ $NEEDSAGENT = 1 ]; then
+      echo "spawning new ssh-agent"
       rm -rf "$SSHPID" "$SSHSOCK" 2>/dev/null
       eval "$(ssh-agent)"
+      disown "$SSH_AGENT_PID"
       echo "$SSH_AGENT_PID" > "$SSHPID"
       echo "$SSH_AUTH_SOCK" > "$SSHSOCK"
     fi
