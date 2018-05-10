@@ -76,7 +76,7 @@ fi
 # function preexec() {
 #   timer=${timer:-$SECONDS}
 # }
-# 
+#
 # function precmd() {
 #   if [ $timer ]; then
 #     timer_show=$(($SECONDS - $timer))
@@ -89,6 +89,10 @@ bindkey -e
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+
+if [ -f $HOME/.localprofile ]; then
+  source $HOME/.localprofile
+fi
 
 if ! [ "$SLOWPROMPT" = "yes" ]; then
   command -v fortune >/dev/null 2>&1 && fortune -s
