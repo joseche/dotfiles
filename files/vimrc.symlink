@@ -158,8 +158,8 @@ let g:pymode_rope = 0
 
 " neovim
 " Set python3 interpreter
-let g:python_host_prog = '/bin/python'
-let g:python3_host_prog = '/bin/python3'
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 " Disable python2
 " let g:loaded_python_provider = 1
 " let g:loaded_python3_provider = 1
