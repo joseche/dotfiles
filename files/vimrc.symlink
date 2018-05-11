@@ -19,7 +19,7 @@ set autoread
 set hidden
 
 " set spell by default, in code it applies to comments
-set spell
+" set spell
 
 " display statusbar
 set laststatus=2
@@ -90,7 +90,7 @@ set colorcolumn=+1
 " highlight Normal ctermfg=grey ctermbg=#0e143d
 
 " highligh current row and column
-" set cursorline
+set cursorline
 " set cursorcolumn
 
 " Tabs
@@ -290,10 +290,8 @@ let g:airline_right_alt_sep              = ''
 
 " exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
-
 " let g:UltiSnipsSnippetsDir        = "UltiSnippets"
 " let g:UltiSnipsSnippetDirectories = [ "~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
-
 
 let g:ycm_auto_trigger                   = 1
 
@@ -460,7 +458,7 @@ augroup end
 augroup vimwiki
 au!
 au BufEnter * silent! lcd %:p:h
-au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
+" au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
 au BufWritePost ~/git/work/vimwiki/* :VimwikiDiaryGenerateLinks<CR>
 au FileType vimwiki setl textwidth=80
 augroup end
@@ -471,7 +469,6 @@ augroup end
 "                 \ |   NERDTree
 "                 \ |   wincmd w
 "                 \ | endif
-
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 " }}}
