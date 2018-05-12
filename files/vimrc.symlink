@@ -19,7 +19,7 @@ set autoread
 set hidden
 
 " set spell by default, in code it applies to comments
-set spell
+" set spell
 
 " display statusbar
 set laststatus=2
@@ -199,9 +199,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'davidhalter/jedi-vim'
 Plug 'dracula/vim'
 " Plug 'easymotion/vim-easymotion'
+Plug 'sirver/ultisnips'
 Plug 'hashivim/vim-terraform'
-" Plug 'sirver/ultisnips'
+Plug 'juliosueiras/vim-terraform-completion'
 Plug 'honza/vim-snippets'
+Plug 'phenomenes/ansible-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'
@@ -278,9 +280,13 @@ let g:airline_right_alt_sep              = ''
 " let g:jedi#completions_command           = "<C-Space>"
 " let g:jedi#rename_command                = "<leader>n"
 
-" let g:UltiSnipsExpandTrigger       = "<tab>"
-" let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:terraform_align              = 1
+let g:terraform_fold_sections      = 1
+
+
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " let g:UltiSnipsListSnippets        = "<c-s>"
 
 " exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
