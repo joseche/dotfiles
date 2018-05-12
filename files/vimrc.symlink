@@ -90,7 +90,7 @@ set colorcolumn=+1
 " highlight Normal ctermfg=grey ctermbg=#0e143d
 
 " highligh current row and column
-" set cursorline
+set cursorline
 " set cursorcolumn
 
 " Tabs
@@ -255,6 +255,11 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \ 'python': ['isort', 'autopep8', 'yapf'],
       \ }
+let g:ale_yaml_yamllint_options='-d "{
+      \ extends: default,
+      \ rules: {
+      \   line-length: {
+      \     level: warning }}}"'
 "
 let g:netrw_banner                       = 0
 let g:netrw_browse_split                 = 2
@@ -291,10 +296,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
-
 " let g:UltiSnipsSnippetsDir        = "UltiSnippets"
 " let g:UltiSnipsSnippetDirectories = [ "~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
-
 
 let g:ycm_auto_trigger                   = 1
 
@@ -461,7 +464,7 @@ augroup end
 augroup vimwiki
 au!
 au BufEnter * silent! lcd %:p:h
-au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
+" au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
 au BufWritePost ~/git/work/vimwiki/* :VimwikiDiaryGenerateLinks<CR>
 au FileType vimwiki setl textwidth=80
 augroup end
@@ -472,7 +475,6 @@ augroup end
 "                 \ |   NERDTree
 "                 \ |   wincmd w
 "                 \ | endif
-
 
 " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 " }}}
