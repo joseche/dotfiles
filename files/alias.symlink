@@ -49,7 +49,7 @@ fi
 alias ap='ansible-playbook'
 alias apl='ansible-playbook -i "localhost," -c local '
 
-command -v python3 >/dev/null 2>&1 && alias python='python3'
+# command -v python3 >/dev/null 2>&1 && alias python='python3'
 command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim'
 
 command -v gsort >/dev/null 2>&1 && alias sort='gsort'

@@ -23,7 +23,7 @@
       include_tasks: OSs/freebsd.yml
       when: ansible_distribution == 'FreeBSD'
 
-    - name: Install Neovim
-      shell: which nvim 2>/dev/null || ~/bin/install_neovim.sh
-      args:
-        creates: /usr/bin/nvim
+#    - name: Install Neovim
+#      shell: which nvim 2>/dev/null || ~/bin/install_neovim.sh
+#      args:
+#        creates: /usr/bin/nvim

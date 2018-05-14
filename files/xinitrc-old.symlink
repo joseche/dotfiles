@@ -1,0 +1,63 @@
+#!/bin/sh
+# shellcheck disable=SC1090
+
+mv -f "$HOME/tmp/startx.log" "$HOME/tmp/startx.prev"
+exec > "$HOME/tmp/startx.log"
+set -v
+set -x
+
+if which xscreensaver >/dev/null 2>&1; then
+  xscreensaver -nosplash &
+fi
+
+# WM=startxfce4
+# WM=spectrwm
+# WM=i3wm
+which xterm >/dev/null 2>&1 && WM=xterm
+which i3wm >/dev/null 2>&1 && WM=i3wm
+which quartz-wm >/dev/null 2>&1 && WM=quartz-wm
+which startxfce4 >/dev/null 2>&1 && WM=startxfce4
+which gnome-session >/dev/null 2>&1 && WM=gnome-session
+which enlightenment_start >/dev/null 2>&1 && WM=enlightenment_start
+
+# . /etc/X11/xinit/xinitrc
+
+# code from this line should happen in system's xinitrc
+# userresources=$HOME/.Xresources
+# usermodmap=$HOME/.Xmodmap
+# sysresources=/etc/X11/xinit/.Xresources
+# sysmodmap=/etc/X11/xinit/.Xmodmap
+# 
+# # merge in defaults and keymaps
+# if [ -f $sysresources ]; then
+#     xrdb -merge $sysresources
+# fi
+# 
+# if [ -f $sysmodmap ]; then
+#     xmodmap $sysmodmap
+# fi
+# 
+# if [ -f "$userresources" ]; then
+#     xrdb -merge "$userresources"
+# fi
+# 
+# if [ -f "$usermodmap" ]; then
+#     xmodmap "$usermodmap"
+# fi
+# 
+# # start some nice programs
+# if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+#  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+#    [ -x "$f" ] && . "$f"
+#  done
+#  unset f
+# fi
+# 
+
+# twm &
+# xclock -geometry 50x50-1+1 &
+# xterm -geometry 80x50+494+51 &
+# xterm -geometry 80x20+494-0 &
+# exec xterm -geometry 80x66+0+0 -name login
+# xterm -geometry 80x50-1+1 &
+exec dbus-launch $WM
