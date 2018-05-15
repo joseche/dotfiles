@@ -248,6 +248,9 @@ call plug#end()
 
 " Plugin configurations {{{
 "
+
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+
 let g:ale_completion_enabled = 1
 let g:ale_linters = {
       \ 'python': ['flake8']
@@ -417,7 +420,7 @@ au BufWritePre *.py,*.c,*.rb,*.java %s/\s\+$//e
 augroup python
 au!
 au FileType python setl expandtab     " Use spaces instead of tabs.
-au FileType python setl tabstop=4     " A tab counts for 4 spaces.
+au FileType python setl tabstop=8     " A tab counts for 4 spaces.
 au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
 au FileType python setl shiftwidth=4  " Shift by 4 spaces.
 au FileType python setl foldmethod=indent " fold method is indent for python
