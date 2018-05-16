@@ -46,8 +46,17 @@ if [ "$OS" = "Darwin" ]; then
   alias ssh='TERM=xterm-256color ssh -y'
 fi
 
-alias ap='ansible-playbook'
-alias apl='ansible-playbook -i "localhost," -c local '
+# ansible
+if command -v ansible-playbook >/dev/null 2>&1; then
+  alias ap='ansible-playbook'
+  alias apl='ansible-playbook -i "localhost," -c local '
+fi
+
+# terraform
+if command -v terraform >/dev/null 2>&1; then
+  alias tfapply='terraform apply -auto-approve'
+  alias tfdestroy='terraform destroy -auto-approve'
+fi
 
 # command -v python3 >/dev/null 2>&1 && alias python='python3'
 command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim'
