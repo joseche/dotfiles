@@ -19,15 +19,15 @@ printf "
 }
 
 sshagent() {
+  set -x
   NEEDSAGENT=0
-  SSHSOCK="$HOME/.ssh-auth-sock"
-  SSHPID="$HOME/.ssh-agent-pid"
+  SSHSOCK_STORED="$HOME/.ssh-auth-sock"
+  SSHPID_STORED="$HOME/.ssh-agent-pid"
   ssh-add -l >/dev/null 2>&1
-  if [ $? = 2 ]; then
-    # ssh-add was not able to talk to the agent
-    # check if stored pid and socket work
-    echo "ssh-agent not responding"
-    if [[ -f "$SSHSOCK" ]] && [[ -f "$SSHPID" ]]; then
+  if [ $? -eq 2 ]; then
+    # agent does not respond, load stored vars
+    echo agent not responding
+    if [[ -f "$SSHSOCK" ]]; then
        SSH_AUTH_SOCK=$(cat "$SSHSOCK")
        SSH_AGENT_PID=$(cat "$SSHPID")
        export SSH_AUTH_SOCK SSH_AGENT_PID
@@ -41,14 +41,24 @@ sshagent() {
       # no stored files
       NEEDSAGENT=1
     fi
+
     if [ $NEEDSAGENT = 1 ]; then
       echo "spawning new ssh-agent"
       rm -rf "$SSHPID" "$SSHSOCK" 2>/dev/null
       eval "$(ssh-agent)"
-      disown "$SSH_AGENT_PID"
       echo "$SSH_AGENT_PID" > "$SSHPID"
       echo "$SSH_AUTH_SOCK" > "$SSHSOCK"
     fi
+  else
+    # agent responds, check if stored socket is the same
+    SOCK=$(cat $SSHSOCK_STORED)
+    if [[ "$SOCK" != "$SSH_AUTH_SOCK" ]]; then
+      # socket is different, update
+      echo stored socket works, updating values
+      echo $SSH_AUTH_SOCK > $SSHSOCK_STORED
+      echo $SSH_AUTH_SOCK|sed 's,.*agent\.,,' > $SSHPID
+    fi
   fi
-  unset NEEDSAGENT SSHSOCK SSHPID
+  unset NEEDSAGENT SSHSOCK_STORED SSHPID_STORED SOCK
+  set +x
 }
