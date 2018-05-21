@@ -19,7 +19,6 @@ printf "
 }
 
 sshagent() {
-  set -x
   NEEDSAGENT=0
   SSHSOCK_STORED="$HOME/.ssh-auth-sock"
   SSHPID_STORED="$HOME/.ssh-agent-pid"
@@ -60,5 +59,4 @@ sshagent() {
     fi
   fi
   unset NEEDSAGENT SSHSOCK_STORED SSHPID_STORED SOCK
-  set +x
 }
