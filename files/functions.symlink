@@ -21,14 +21,14 @@ printf "
 sshagent() {
   NEEDSAGENT=0
   SSHSOCK_STORED="$HOME/.ssh-auth-sock"
-  SSHPID_STORED="$HOME/.ssh-agent-pid"
+  SSHPID_STORED="$HOME/.ssh-pid-sock"
   ssh-add -l >/dev/null 2>&1
   if [ $? -eq 2 ]; then
     # agent does not respond, load stored vars
     echo agent not responding
-    if [[ -f "$SSHSOCK" ]]; then
-       SSH_AUTH_SOCK=$(cat "$SSHSOCK")
-       SSH_AGENT_PID=$(cat "$SSHPID")
+    if [[ -f "$SSHSOCK_STORED" ]]; then
+       SSH_AUTH_SOCK=$(cat "$SSHSOCK_STORED")
+       SSH_AGENT_PID=$(cat "$SSHPID_STORED")
        export SSH_AUTH_SOCK SSH_AGENT_PID
        ssh-add -l >/dev/null 2>&1
        if [ $? = 2 ]; then
@@ -43,19 +43,19 @@ sshagent() {
 
     if [ $NEEDSAGENT = 1 ]; then
       echo "spawning new ssh-agent"
-      rm -rf "$SSHPID" "$SSHSOCK" 2>/dev/null
+      rm -rf "$SSHPID_STORED" "$SSHSOCK_STORED" 2>/dev/null
       eval "$(ssh-agent)"
-      echo "$SSH_AGENT_PID" > "$SSHPID"
-      echo "$SSH_AUTH_SOCK" > "$SSHSOCK"
+      echo "$SSH_AGENT_PID" > "$SSHPID_STORED"
+      echo "$SSH_AUTH_SOCK" > "$SSHSOCK_STORED"
     fi
   else
     # agent responds, check if stored socket is the same
-    SOCK=$(cat $SSHSOCK_STORED)
+    SOCK=$(cat "$SSHSOCK_STORED")
     if [[ "$SOCK" != "$SSH_AUTH_SOCK" ]]; then
       # socket is different, update
       echo stored socket works, updating values
-      echo $SSH_AUTH_SOCK > $SSHSOCK_STORED
-      echo $SSH_AUTH_SOCK|sed 's,.*agent\.,,' > $SSHPID
+      echo "$SSH_AUTH_SOCK" > "$SSHSOCK_STORED"
+      echo "${SSH_AUTH_SOCK//*agent\./}" > "$SSHPID_STORED"
     fi
   fi
   unset NEEDSAGENT SSHSOCK_STORED SSHPID_STORED SOCK
