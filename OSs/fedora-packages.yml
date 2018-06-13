@@ -116,3 +116,5 @@
     - ShellCheck
     - pylint
     - terminology
+    - "@development-tools"
+    - fortune-mod

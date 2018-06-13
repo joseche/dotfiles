@@ -1,5 +1,4 @@
 [defaults]
-# stdout_callback = minimal
 host_key_checking = False
 nocows = 1
 inventory = ~/.ansible.inventory
@@ -12,6 +11,10 @@ private_key_file = ~/.ssh/id_rsa
 roles_path = ~/git/xogops-ansible/roles
 retry_files_enabled = False
 retry_files_save_path = ~/tmp/
+callback_plugins = ~/.ansible/callback_plugins
+callback_whitelist = cleanoutput
+stdout_callback = cleanoutput
+
 
 [ssh_connection]
 ssh_args = -o ControlMaster=auto -o ControlPersist=30m
