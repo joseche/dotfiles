@@ -21,6 +21,7 @@
       - requests
       - ansible-lint
       - yamllint
+      - python-vlc
       # - prospector
       # - pylint
       # - pylama
