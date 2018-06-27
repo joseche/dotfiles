@@ -158,7 +158,7 @@ let g:pymode_rope = 0
 
 " neovim
 " Set python3 interpreter
-let g:python_host_prog = '/usr/bin/python'
+let g:python_host_prog = '/usr/bin/python27'
 let g:python3_host_prog = '/usr/bin/python3'
 " Disable python2
 " let g:loaded_python_provider = 1
@@ -252,16 +252,18 @@ call plug#end()
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 
 let g:ale_completion_enabled = 1
-let g:ale_linters = {
-      \ 'python': ['flake8']
-      \ }
-let g:ale_fixers = {
-      \ 'python': ['isort', 'autopep8', 'yapf'],
-      \ }
+" let g:ale_linters = {
+"       \ 'python': ['flake8'],
+"       \ 'ansible': ['ansible', 'yamllint']
+"       \ }
+" let g:ale_fixers = {
+"       \ 'python': ['isort', 'autopep8', 'yapf'],
+"       \ }
 let g:ale_yaml_yamllint_options='-d "{
       \ extends: default,
       \ rules: {
       \   line-length: {
+      \     max: 120,
       \     level: warning }}}"'
 "
 let g:netrw_banner                       = 0
@@ -463,6 +465,11 @@ au FileType markdown setl expandtab     " Use spaces instead of tabs.
 au FileType markdown setl tabstop=2     " Lists are indented with 2 spaces.
 au FileType markdown setl softtabstop=2 " Causes backspace to delete 2 spaces.
 au FileType markdown setl shiftwidth=2  " Shift by 2 spaces.
+augroup end
+
+augroup ansible
+au!
+au BufNewFile,BufRead *.yml set filetype=yaml.ansible
 augroup end
 
 augroup vimwiki
