@@ -36,6 +36,11 @@ alias hg='history|grep '
 alias wallpaper='~/git/wallpaper_manager/src/wallpaper.py'
 alias listening='netstat -ant|grep tcp|grep -i listen'
 
+# cds
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 # console mp3 player
 alias mpv='mpv --no-audio-display'
 
