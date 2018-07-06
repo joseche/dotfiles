@@ -2,6 +2,7 @@
 
 #[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
+# shellcheck source=./profile.symlink
 source "$HOME/.profile"
 
 export HISTFILE="$HOME/.history"

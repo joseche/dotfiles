@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# vim:syntax=sh
 
 alias gs='git status'
 alias ga='git add '
@@ -8,3 +7,5 @@ alias gp='git push'
 alias gd='git diff'
 alias gca='git commit -a -m '
 alias gcad='git commit -a -m "`date`"'
+
+# vim:syntax=sh

@@ -1,0 +1,25 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: 0700
+        force: true
+      with_items:
+        - ~/.config/i3
+        - ~/.config/i3status
+
+    - name: shell configs
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dst }}"
+        state: link
+        force: true
+      with_items:
+        - {src: "{{ playbook_dir }}/files/xinitrc.symlink", dst: "~/.xinitrc"}
+        - {src: "{{ playbook_dir }}/files/Xresources.symlink", dst: "~/.Xresources"}
+        - {src: "{{ playbook_dir }}/files/osx.symlink", dst: "~/.osx"}
+        - {src: "{{ playbook_dir }}/files/i3config.symlink", dst: "~/.config/i3/config"}

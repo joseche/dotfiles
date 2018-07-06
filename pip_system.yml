@@ -1,0 +1,43 @@
+---
+- hosts: all
+  gather_facts: false
+  become: true
+  vars:
+    - packages:
+        - mccabe
+        - yapf
+        - pycodestyle==2.3.1
+        - isort
+        - pep8-naming
+        - flake8-coding
+        - flake8-imports
+        - flake8-requirements
+        - powerline-status
+        - neovim
+        - requests
+        - ansible-lint
+        - yamllint
+        - python-vlc
+        # - prospector
+        # - pylint
+        # - pylama
+        # - nose
+        # - nose-cov
+        # - rednose
+        # - pytest
+        # - pytest-cov
+
+  tasks:
+    - name: pip-2 modules
+      pip:
+        executable: pip-2
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ packages }}"
+
+    - name: pip-3 modules
+      pip:
+        executable: pip-3
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ packages }}"

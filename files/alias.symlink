@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# vim:syntax=sh
 
 alias history='history 0'
 
@@ -95,7 +94,4 @@ done
 alias aws_account_id='aws sts get-caller-identity --output text --query Account'
 alias aws_keys="export | grep AWS | sed 's,^,export ,'"
 
-# not an alias, but related to above
-aws_list_amis() {
-  open 'https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Images:visibility=owned-by-me;search=CentOS7;sort=desc:ownerId'
-}
+# vim:syntax=sh

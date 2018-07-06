@@ -79,7 +79,7 @@ set ffs=unix,mac,dos
 
 " fold enabled
 set foldmethod=indent
-set foldlevel=3
+set foldlevel=5
 " fold exception for startified, using startified's event
 autocmd User Startified normal! zR
 

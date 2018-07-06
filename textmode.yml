@@ -1,0 +1,83 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Directories
+      with_items:
+        - ~/tmp
+        - ~/git
+        - ~/.vim/autoload
+        - ~/.config/nvim/autoload
+        - ~/.aws
+        - ~/.irssi
+        - ~/.config
+        - ~/.config/yamllint
+      file:
+        path: "{{item }}"
+        state: directory
+        mode: 0700
+        force: true
+
+    # shell configuration
+    - name: shell configs
+      file:
+        src: "{{item.src }}"
+        dest: "{{ item.dst }}"
+        state: link
+        force: true
+      with_items:
+        - {src: "{{ playbook_dir }}/files/zlogin.symlink", dst: "~/.zshenv"}
+        - {src: "{{ playbook_dir }}/files/zlogin.symlink", dst: "~/.zlogin"}
+        - {src: "{{ playbook_dir }}/files/zlogout.symlink", dst: "~/.zlogout"}
+        - {src: "{{ playbook_dir }}/files/zprofile.symlink", dst: "~/.zprofile"}
+        - {src: "{{ playbook_dir }}/files/zshrc.symlink", dst: "~/.zshrc"}
+        - {src: "{{ playbook_dir }}/files/bashrc.symlink", dst: "~/.bashrc"}
+        - {src: "{{ playbook_dir }}/files/profile.symlink", dst: "~/.profile"}
+        - {src: "{{ playbook_dir }}/files/hushlogin.symlink", dst: "~/.hushlogin"}
+        - {src: "{{ playbook_dir }}/files/functions.symlink", dst: "~/.functions"}
+        - {src: "{{ playbook_dir }}/files/alias.symlink", dst: "~/.alias"}
+        - {src: "{{ playbook_dir }}/files/alias.git.symlink", dst: "~/.alias.git"}
+        - {src: "{{ playbook_dir }}/files/alias.hosts.symlink", dst: "~/.alias.hosts"}
+        - {src: "{{ playbook_dir }}/files/ctags.symlink", dst: "~/.ctags"}
+        - {src: "{{ playbook_dir }}/files/emacs.symlink", dst: "~/.emacs"}
+        - {src: "{{ playbook_dir }}/files/tmux.conf.symlink", dst: "~/.tmux.conf"}
+        - {src: "{{ playbook_dir }}/files/flake8.symlink", dst: "~/.flake8"}
+        - {src: "{{ playbook_dir }}/files/pylintrc.symlink", dst: "~/.pylintrc"}
+        - {src: "{{ playbook_dir }}/files/gemrc.symlink", dst: "~/.gemrc"}
+        - {src: "{{ playbook_dir }}/files/aws.config.symlink", dst: "~/.aws/config"}
+        - {src: "{{ playbook_dir }}/files/gitconfig.symlink", dst: "~/.gitconfig"}
+        - {src: "{{ playbook_dir }}/files/ansible.cfg.symlink", dst: "~/.ansible.cfg"}
+        - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.vimrc"}
+        - {src: "{{ playbook_dir }}/files/yamllint.symlink", dst: "~/.config/yamllint/config"}
+        - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.config/nvim/init.vim"}
+
+    # clone zsh plugins
+    - name: "Checkout git://github.com/zsh-users/zsh-completions.git"
+      git:
+        repo: git://github.com/zsh-users/zsh-completions.git
+        dest: ~/git/zsh-completions
+        force: true
+        version: master
+
+    - name: "Checkout https://github.com/olivierverdier/zsh-git-prompt"
+      git:
+        repo: https://github.com/olivierverdier/zsh-git-prompt
+        dest: ~/git/zsh-git-prompt
+        force: true
+        version: master
+
+    - name: "Checkout https://github.com/zsh-users/zsh-history-substring-search"
+      git:
+        repo: https://github.com/zsh-users/zsh-history-substring-search
+        dest: ~/git/zsh-history-substring-search
+        version: master
+
+    - name: "Checkout docker zsh completion"
+      get_url:
+        url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+        dest: ~/git/zsh-completions/_docker
+
+    - name: "vim plug nvim"
+      get_url:
+        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        dest: ~/.config/nvim/autoload/plug.vim
