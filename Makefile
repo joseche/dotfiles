@@ -1,26 +1,26 @@
 
 PATH := $(PATH):/usr/local/bin
 
+AP=ansible-playbook -i 'localhost,' -c local
 
-all: light
+all: textmode
 
-
-light: ansible
-	ansible-playbook -i 'localhost,' -c local ./light.yml
+textmode: ansible
+	$(AP) ./textmode.yml
 
 packages: ansible
-	ansible-playbook -i 'localhost,' -c local ./packages.yml
+	$(AP) ./packages.yml
 
-extra_fonts: ansible
-	ansible-playbook -i 'localhost,' -c local ./extra_fonts.yml
+extra-fonts: ansible
+	$(AP) ./extra-fonts.yml
 
-pip_system: ansible
-	ansible-playbook -i 'localhost,' -c local ./pip_system.yml
+pip-system: ansible
+	$(AP) ./pip-system.yml
 
-graphicmode: ansible:
-	ansible-playbook -i 'localhost,' -c local ./graphicmode.yml
+graphicmode: ansible
+	$(AP) ./graphicmode.yml
 
-full: light packages pip_system graphicmode extra_fonts
+full: textmode packages pip-system graphicmode extra-fonts
 
 ansible:
 	which ansible 2>/dev/null || sudo dnf install -y ansible || sudo yum install -y epel-release ansible || sudo apt install -y ansible || brew install ansible

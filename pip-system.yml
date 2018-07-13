@@ -18,6 +18,7 @@
         - ansible-lint
         - yamllint
         - python-vlc
+        - boto3
         # - prospector
         # - pylint
         # - pylama

@@ -40,7 +40,8 @@ WATCH=notme
 WATCHFMT='%n %a %l from %m at %T.'
 
 if ! [ "$SLOWPROMPT" = "yes" ]; then
-  source ~/git/zsh-git-prompt/zshrc.sh
+  # source ~/git/zsh-git-prompt/zshrc.sh
+  source ~/git/git-prompt/git-prompt.sh
 fi
 
 source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -85,6 +86,22 @@ fi
 #   fi
 # }
 
+autoload -Uz add-zsh-hook
+
+function xterm_title_precmd () {
+    print -Pn '\e]2;%n@%m %1~\a'
+}
+
+function xterm_title_preexec () {
+    print -Pn '\e]2;%n@%m %1~ %# '
+    print -n "${(q)1}\a"
+}
+
+if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
+    add-zsh-hook -Uz precmd xterm_title_precmd
+    add-zsh-hook -Uz preexec xterm_title_preexec
+fi
+
 bindkey -e
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
@@ -95,5 +112,5 @@ if [ -f $HOME/.localprofile ]; then
 fi
 
 if ! [ "$SLOWPROMPT" = "yes" ]; then
-  command -v fortune >/dev/null 2>&1 && fortune -s
+  command -v fortune &>/dev/null && fortune -s
 fi

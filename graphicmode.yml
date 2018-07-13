@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Directories
       file:
@@ -11,6 +11,7 @@
       with_items:
         - ~/.config/i3
         - ~/.config/i3status
+        - ~/.local/share/fonts
 
     - name: shell configs
       file:
@@ -23,3 +24,21 @@
         - {src: "{{ playbook_dir }}/files/Xresources.symlink", dst: "~/.Xresources"}
         - {src: "{{ playbook_dir }}/files/osx.symlink", dst: "~/.osx"}
         - {src: "{{ playbook_dir }}/files/i3config.symlink", dst: "~/.config/i3/config"}
+
+    - name: Fonts for linux
+      unarchive:
+        src: ./fonts/furacode.tgz
+        dest: ~/.local/share/fonts/
+        creates: "~/.local/share/fonts/Fura Code Bold Nerd Font Complete.otf"
+      when: ansible_os_family != "Darwin"
+      notify: fontcache
+
+    - name: Fonts for OSX
+      unarchive:
+        src: ./fonts/furacode.tgz
+        dest: ~/Library/Fonts/
+      when: ansible_os_family == "Darwin"
+
+  handlers:
+    - name: fontcache
+      shell: fc-cache -f ~/.local/share/fonts
