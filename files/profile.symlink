@@ -140,3 +140,6 @@ sshagent
 
 # added for i3 and others
 # export TERMINAL=gnome-terminal
+
+# generic aws setting
+export AWS_DEFAULT_REGION=us-east-1

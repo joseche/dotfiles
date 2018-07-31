@@ -252,6 +252,7 @@ call plug#end()
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 
 let g:ale_completion_enabled = 1
+
 " let g:ale_linters = {
 "       \ 'python': ['flake8'],
 "       \ 'ansible': ['ansible', 'yamllint']
@@ -265,7 +266,14 @@ let g:ale_yaml_yamllint_options='-d "{
       \   line-length: {
       \     max: 120,
       \     level: warning }}}"'
-"
+
+
+let g:ale_set_quickfix = 1
+let g:ale_set_loclist = 0
+let g:ale_open_list = 0
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+
 let g:netrw_banner                       = 0
 let g:netrw_browse_split                 = 2
 let g:netrw_winsize                      = 25
