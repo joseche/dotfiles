@@ -5,8 +5,6 @@
 
 export OS="$(uname -s)"
 
-# Generic variables
-export OS=$(uname -s)
 # Z = shell without path
 Z=$(basename "$SHELL")
 
@@ -25,6 +23,12 @@ fi
 
 umask 0022
 
+if [ -z "$LS_COLORS" ]; then
+  export LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=1;4;5;7;31:mi=0:ex=35:*.rpm=90:*.deb=90:'
+fi
+
+export TZ='America/Costa_Rica'
+
 pathmunge()
 {
   if [ -d "$1" ]; then
@@ -38,7 +42,6 @@ pathmunge()
   fi
 }
 
-export TZ='America/Costa_Rica'
 
 # User configuration
 if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then

@@ -354,23 +354,23 @@ let g:org_agenda_files                   = ['~/git/work/org/*.org']
 nnoremap - :call bufferhint#Popup()<CR>
 nnoremap \ :call bufferhint#LoadPrevious()<CR>
 
-try
-    " solarized requires solarized iterm's colors set in preferences
-    " colorscheme solarized
-    colorscheme dracula
-    " colorscheme nova
-    " colorscheme morning
-    " colorscheme darkblue
-catch
-    colorscheme default
-endtry
-
 " after changing the colorscheme, set italic for comments
 " iterm2 needs a font with italics, also terminfo has to support italics
 highlight Comment cterm=italic
 
 " also respect the transparency of the terminal
 highligh Normal ctermbg=none
+
+try
+    " solarized requires solarized iterm's colors set in preferences
+    colorscheme solarized
+    " colorscheme dracula
+    " colorscheme nova
+    " colorscheme morning
+    " colorscheme darkblue
+catch
+    colorscheme default
+endtry
 
 let g:Powerline_symbols     = 'fancy'
 
