@@ -84,7 +84,7 @@ set foldlevel=5
 autocmd User Startified normal! zR
 
 
-set textwidth=80        " more realistic size
+set textwidth=0        " more realistic size
 set colorcolumn=+1
 " highlight ColorColumn guibg=#2d2d2d ctermbg=246
 " highlight Normal ctermfg=grey ctermbg=#0e143d
@@ -252,7 +252,6 @@ call plug#end()
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 
 let g:ale_completion_enabled = 1
-
 " let g:ale_linters = {
 "       \ 'python': ['flake8'],
 "       \ 'ansible': ['ansible', 'yamllint']
@@ -266,12 +265,10 @@ let g:ale_yaml_yamllint_options='-d "{
       \   line-length: {
       \     max: 120,
       \     level: warning }}}"'
-
-
 let g:ale_set_quickfix = 1
 let g:ale_set_loclist = 0
 let g:ale_open_list = 0
-" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_enter = 0
 
 
 let g:netrw_banner                       = 0
@@ -363,7 +360,7 @@ highligh Normal ctermbg=none
 
 try
     " solarized requires solarized iterm's colors set in preferences
-    colorscheme solarized
+    colorscheme torte
     " colorscheme dracula
     " colorscheme nova
     " colorscheme morning

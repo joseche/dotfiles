@@ -115,6 +115,9 @@ else
   unset LANG
 fi
 
+# gnu make options for fast compilation
+export MAKEFLAGS=j4
+
 # common
 export NET=192.168.70
 

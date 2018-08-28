@@ -58,10 +58,10 @@
         force: true
         version: master
 
-    - name: "Checkout https://github.com/olivierverdier/zsh-git-prompt"
+    - name: "Checkout https://github.com/c0d5x/git-prompt"
       git:
-        repo: https://github.com/olivierverdier/zsh-git-prompt
-        dest: ~/git/zsh-git-prompt
+        repo: https://github.com/c0d5x/git-prompt
+        dest: ~/git/git-prompt
         force: true
         version: master
 
