@@ -149,3 +149,7 @@ sshagent
 
 # generic aws setting
 export AWS_DEFAULT_REGION=us-east-1
+
+# Elasticsearch
+ES='http://localhost:9200'
+export ES
