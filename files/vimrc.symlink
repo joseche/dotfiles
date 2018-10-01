@@ -184,7 +184,7 @@ let @b = '/ xiwww'
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 
-Plug 'chase/vim-ansible-yaml'
+" Plug 'chase/vim-ansible-yaml'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
