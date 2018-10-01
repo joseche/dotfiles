@@ -8,11 +8,6 @@ export OS="$(uname -s)"
 # Z = shell without path
 Z=$(basename "$SHELL")
 
-SLOWPROMPT="no"
-if [[ "$(arch)" =~ "arm" ]]; then
-  SLOWPROMPT="yes"
-fi
-
 if [ "$Z" = "zsh" ] && [ -e /etc/zshrc ]; then
    source /etc/zshrc
 fi
@@ -122,7 +117,7 @@ export MAKEFLAGS=j4
 export NET=192.168.70
 
 # grunt
-command -v terraform >/dev/null 2>&1 && export TERRAGRUNT_TFPATH=$(command -v terraform)
+# command -v terraform >/dev/null 2>&1 && export TERRAGRUNT_TFPATH=$(command -v terraform)
 
 # python
 if command -v pyenv-virtualenv-init >/dev/null 2>&1; then

@@ -30,6 +30,7 @@
         - {src: "{{ playbook_dir }}/files/zlogin.symlink", dst: "~/.zlogin"}
         - {src: "{{ playbook_dir }}/files/zlogout.symlink", dst: "~/.zlogout"}
         - {src: "{{ playbook_dir }}/files/zprofile.symlink", dst: "~/.zprofile"}
+        - {src: "{{ playbook_dir }}/files/zshprompt.symlink", dst: "~/.zshprompt"}
         - {src: "{{ playbook_dir }}/files/zshrc.symlink", dst: "~/.zshrc"}
         - {src: "{{ playbook_dir }}/files/bashrc.symlink", dst: "~/.bashrc"}
         - {src: "{{ playbook_dir }}/files/profile.symlink", dst: "~/.profile"}
@@ -58,12 +59,12 @@
         force: true
         version: master
 
-    - name: "Checkout https://github.com/c0d5x/git-prompt"
-      git:
-        repo: https://github.com/c0d5x/git-prompt
-        dest: ~/git/git-prompt
-        force: true
-        version: master
+        #    - name: "Checkout https://github.com/c0d5x/git-prompt"
+        #      git:
+        #        repo: https://github.com/c0d5x/git-prompt
+        #        dest: ~/git/git-prompt
+        #        force: true
+        #        version: master
 
     - name: "Checkout https://github.com/zsh-users/zsh-history-substring-search"
       git:

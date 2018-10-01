@@ -4,8 +4,6 @@
 # zmodload zsh/zprof
 # then when you get the prompt type: zprof
 
-#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
-
 source ~/.profile
 
 fpath=($fpath ~/git/zsh-completions)
@@ -39,14 +37,8 @@ REPORTTIME=10
 WATCH=notme
 WATCHFMT='%n %a %l from %m at %T.'
 
-if ! [ "$SLOWPROMPT" = "yes" ]; then
-  # source ~/git/zsh-git-prompt/zshrc.sh
-  source ~/git/git-prompt/git-prompt.sh
-fi
-
 source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
 which aws_zsh_completer.sh >/dev/null 2>&1 && aws_zsh_completer.sh >/dev/null 2>&1
-which direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?
@@ -59,63 +51,13 @@ function check_last_exit_code() {
   fi
 }
 
-
-# Nice unicodes for prompt
-# ¥
-# ▶
-# ¤
-if [ "$SLOWPROMPT" = "yes" ]; then
-  PROMPT='$(check_last_exit_code)
-%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%2m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%}
-¤ '
-elif type git_super_status &>/dev/null; then
-    PROMPT='$(check_last_exit_code)
-%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%2m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%} $(git_super_status)
-¤ '
-else
-    PROMPT='$(check_last_exit_code)
-%{$fg[blue]%}%n%{$reset_color%}@%{$fg[red]%}%2m%{$reset_color%}%{$fg[green]%} %~%{$reset_color%}
-¤ '
-fi
-
-# function preexec() {
-#   timer=${timer:-$SECONDS}
-# }
-#
-# function precmd() {
-#   if [ $timer ]; then
-#     timer_show=$(($SECONDS - $timer))
-#     export RPROMPT="%F{cyan}${timer_show}s %{$reset_color%}"
-#     unset timer
-#   fi
-# }
-
-
-# autoload -Uz add-zsh-hook
-#
-# function xterm_title_precmd () {
-#     print -Pn '\e]2;%n@%m %~\a'
-# }
-#
-# function xterm_title_preexec () {
-#     print -Pn '\e]2;%n@%m %~ %# '
-#     print -n "${(q)1}\a"
-# }
-#
-# if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
-#     add-zsh-hook -Uz precmd xterm_title_precmd
-#     add-zsh-hook -Uz preexec xterm_title_preexec
-# fi
-
 bindkey -e
 bindkey "^r" history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+source ~/.zshprompt
+
 if [ -f $HOME/.localprofile ]; then
   source $HOME/.localprofile
-fi
-
-if ! [ "$SLOWPROMPT" = "yes" ]; then
-  command -v fortune &>/dev/null && fortune -s
 fi
