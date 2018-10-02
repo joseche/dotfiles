@@ -78,6 +78,11 @@
         dest: ~/git/zsh-autosuggestions
         version: master
 
+    - name: "Checkout https://github.com/chrissicool/zsh-256color"
+      git:
+        repo: https://github.com/chrissicool/zsh-256color
+        dest: ~/git/zsh-256color
+        version: master
         #    - name: "Checkout docker zsh completion"
         #      get_url:
         #        url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
