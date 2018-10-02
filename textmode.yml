@@ -59,12 +59,12 @@
         force: true
         version: master
 
-        #    - name: "Checkout https://github.com/c0d5x/git-prompt"
-        #      git:
-        #        repo: https://github.com/c0d5x/git-prompt
-        #        dest: ~/git/git-prompt
-        #        force: true
-        #        version: master
+    - name: "Checkout https://github.com/zsh-users/zsh-syntax-highlighting.git"
+      git:
+        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+        dest: ~/git/zsh-syntax-highlighting
+        force: true
+        version: master
 
     - name: "Checkout https://github.com/zsh-users/zsh-history-substring-search"
       git:
@@ -72,10 +72,16 @@
         dest: ~/git/zsh-history-substring-search
         version: master
 
-    - name: "Checkout docker zsh completion"
-      get_url:
-        url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
-        dest: ~/git/zsh-completions/_docker
+    - name: "Checkout https://github.com/zsh-users/zsh-autosuggestions"
+      git:
+        repo: https://github.com/zsh-users/zsh-autosuggestions
+        dest: ~/git/zsh-autosuggestions
+        version: master
+
+        #    - name: "Checkout docker zsh completion"
+        #      get_url:
+        #        url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+        #        dest: ~/git/zsh-completions/_docker
 
     - name: "vim plug nvim"
       get_url:

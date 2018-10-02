@@ -38,6 +38,11 @@ WATCH=notme
 WATCHFMT='%n %a %l from %m at %T.'
 
 source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+source ~/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source ~/git/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 which aws_zsh_completer.sh >/dev/null 2>&1 && aws_zsh_completer.sh >/dev/null 2>&1
 
 function check_last_exit_code() {
