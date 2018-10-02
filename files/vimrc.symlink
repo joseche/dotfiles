@@ -25,7 +25,7 @@ set hidden
 set laststatus=2
 
 " enable mouse
-set mouse=
+set mouse=a
 
 " indents
 set autoindent
@@ -102,15 +102,6 @@ set wrap
 set linebreak
 set showbreak=↪
 
-" set background=dark
-" set guifont=Monaco:h13
-" set guifont=Source\ Code\ Pro\ for\ Powerline
-" set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular
-" set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
-" set guifontwide=Source\ Code\ Pro\ for\ Powerline
-" set guifontwide=Ubuntu\ Mono\ derivative\ Powerline\ Regular
-
-" should be on but making sure
 set ttyfast
 set title
 
@@ -184,29 +175,22 @@ let @b = '/ xiwww'
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 
-" Plug 'chase/vim-ansible-yaml'
-Plug 'vim-scripts/BufOnly.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
-Plug 'bling/vim-bufferline'
 Plug 'bsdelf/bufferhint'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dracula/vim'
 Plug 'sirver/ultisnips'
-Plug 'hashivim/vim-terraform'
-Plug 'juliosueiras/vim-terraform-completion'
 Plug 'honza/vim-snippets'
 Plug 'phenomenes/ansible-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'
-Plug 'mattn/calendar-vim'
 Plug 'mhinz/vim-startify'
 Plug 'pearofducks/ansible-vim'
 Plug 'powerline/powerline'
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
@@ -218,10 +202,6 @@ Plug 'tpope/vim-surround'
 Plug 'ynkdir/vim-vimlparser'
 Plug 'syngan/vim-vimlint'
 
-" Chef
-Plug 'glidenote/vim-chef'
-Plug 'gregf/ultisnips-chef'
-
 " Which key?
 Plug 'liuchengxu/vim-which-key'
 
@@ -232,13 +212,13 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 " }}}
 
 " Plugin configurations {{{
 "
+let g:deoplete#enable_at_startup = 1
 
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 
@@ -261,7 +241,6 @@ let g:ale_set_loclist = 0
 let g:ale_open_list = 0
 let g:ale_lint_on_enter = 0
 
-
 let g:netrw_banner                       = 0
 let g:netrw_browse_split                 = 2
 let g:netrw_winsize                      = 25
@@ -277,30 +256,6 @@ let g:airline_left_sep                   = ''
 let g:airline_left_alt_sep               = ''
 let g:airline_right_sep                  = ''
 let g:airline_right_alt_sep              = ''
-
-let g:terraform_align              = 1
-let g:terraform_fold_sections      = 1
-
-
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" let g:UltiSnipsListSnippets        = "<c-s>"
-
-" exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-
-" let g:UltiSnipsSnippetsDir        = "UltiSnippets"
-" let g:UltiSnipsSnippetDirectories = [ "~/git/vim-snips", "~/.vim/plugged/vim-snippets" ]
-
-let g:ycm_auto_trigger                   = 1
-
-let g:ycm_key_list_select_completion     = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion   = ['<C-p>', '<Up>']
-
-let g:snips_author                       = "Jose Hidalgo"
-let g:snips_author_email                 = "c0d5x@protonmail.com"
-let g:snips_email                        = "c0d5x@protonmail.com"
-let g:snips_github                       = "https://github.com/c0d5x"
 
 let g:pymode_lint_ignore                 = "E501"
 let g:pymode_rope_lookup_project         = 0
@@ -319,9 +274,10 @@ highlight Comment cterm=italic
 " also respect the transparency of the terminal
 highligh Normal ctermbg=none
 
+set background=dark
 try
-    " solarized requires solarized iterm's colors set in preferences
-    colorscheme torte
+    colorscheme solarized
+    " colorscheme torte
     " colorscheme dracula
     " colorscheme nova
     " colorscheme morning
@@ -468,4 +424,3 @@ imap <C-]> <ESC>
 
 " }}}
 "
-
