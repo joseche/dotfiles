@@ -271,9 +271,6 @@ nnoremap \ :call bufferhint#LoadPrevious()<CR>
 " iterm2 needs a font with italics, also terminfo has to support italics
 highlight Comment cterm=italic
 
-" also respect the transparency of the terminal
-highligh Normal ctermbg=none
-
 set background=dark
 try
     colorscheme solarized
@@ -285,6 +282,10 @@ try
 catch
     colorscheme default
 endtry
+
+" also respect the transparency of the terminal
+highligh Normal guibg=NONE ctermbg=NONE
+
 
 let g:Powerline_symbols     = 'fancy'
 
