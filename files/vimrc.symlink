@@ -288,10 +288,22 @@ nnoremap \ :call bufferhint#LoadPrevious()<CR>
 
 " after changing the colorscheme, set italic for comments
 " iterm2 needs a font with italics, also terminfo has to support italics
-highlight Comment cterm=italic
+
+set background=dark
+try
+    colorscheme solarized
+    " colorscheme torte
+    " colorscheme dracula
+    " colorscheme nova
+    " colorscheme morning
+    " colorscheme darkblue
+catch
+    colorscheme default
+endtry
 
 " also respect the transparency of the terminal
-highligh Normal ctermbg=none
+highlight Normal guibg=NONE ctermbg=NONE
+highlight Comment cterm=italic
 
 let g:Powerline_symbols     = 'fancy'
 
