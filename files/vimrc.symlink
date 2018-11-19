@@ -80,6 +80,7 @@ set ffs=unix,mac,dos
 " fold enabled
 set foldmethod=indent
 set foldlevel=5
+
 " fold exception for startified, using startified's event
 autocmd User Startified normal! zR
 
@@ -171,22 +172,6 @@ let @e = ':s,=,: ,g'
 let @b = '/ xiwww'
 " let @c = 'v$hyjDpjkj'
 let @c = 'v$h"tyjD"tp'
-
-" }}}
-
-" Background configuration {{{
-set background=dark
-try
-    colorscheme solarized
-    " colorscheme torte
-    " colorscheme dracula
-    " colorscheme nova
-    " colorscheme morning
-    " colorscheme darkblue
-catch
-    colorscheme default
-endtry
-
 
 " }}}
 
@@ -289,22 +274,6 @@ nnoremap \ :call bufferhint#LoadPrevious()<CR>
 " after changing the colorscheme, set italic for comments
 " iterm2 needs a font with italics, also terminfo has to support italics
 
-set background=dark
-try
-    colorscheme solarized
-    " colorscheme torte
-    " colorscheme dracula
-    " colorscheme nova
-    " colorscheme morning
-    " colorscheme darkblue
-catch
-    colorscheme default
-endtry
-
-" also respect the transparency of the terminal
-highlight Normal guibg=NONE ctermbg=NONE
-highlight Comment cterm=italic
-
 let g:Powerline_symbols     = 'fancy'
 
 let g:vimwiki_hl_headers    = 1
@@ -405,6 +374,27 @@ au BufWritePost ~/git/work/vimwiki/* :VimwikiDiaryGenerateLinks<CR>
 au FileType vimwiki setl textwidth=80
 augroup end
 
+" }}}
+
+" Background configuration {{{
+set background=dark
+try
+    colorscheme solarized
+    " colorscheme torte
+    " colorscheme dracula
+    " colorscheme nova
+    " colorscheme morning
+    " colorscheme darkblue
+catch
+    colorscheme default
+endtry
+
+" also respect the transparency of the terminal
+highlight Normal guibg=NONE ctermbg=NONE
+highlight Comment cterm=italic
+
+
+" }}}
 
 " Mappings {{{
 
