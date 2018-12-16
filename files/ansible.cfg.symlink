@@ -8,7 +8,7 @@ fact_caching = jsonfile
 fact_caching_connection = ~/tmp/ansible_fact_cache
 forks = 20
 private_key_file = ~/.ssh/id_rsa
-roles_path = ~/git/xogops-ansible/roles
+roles_path = ~/git/xogops-ansible/roles:~/git/xogops-ansible/roles-galaxy
 retry_files_enabled = False
 retry_files_save_path = ~/tmp/
 
