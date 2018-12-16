@@ -3,7 +3,7 @@
     email = c0d5x@protonmail.com
 
 [core]
-    editor = nvim
+    editor = vim
 
 [color]
     ui = auto
