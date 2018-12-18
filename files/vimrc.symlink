@@ -25,7 +25,7 @@ set hidden
 set laststatus=2
 
 " enable mouse
-set mouse=
+set mouse=a
 
 " indents
 set autoindent
@@ -109,8 +109,6 @@ set title
 set showcmd
 set showmode
 
-set viminfo='10,\"100,:100,%,n~/.viminfo
-
 " invisible chars
 set list
 " set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,space:·
@@ -138,6 +136,16 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
 
+set viminfo=%,<800,'10,/50,:100,h,f9,n~/.viminfo
+"           | |    |   |   |    | |  + viminfo file path
+"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+"           | |    |   |   |    + disable 'hlsearch' loading viminfo
+"           | |    |   |   + command-line history saved
+"           | |    |   + search history saved
+"           | |    + files marks saved
+"           | + lines saved each register (old name for <, vi6.2)
+"           + save/restore buffer list
+
 
 filetype plugin on
 filetype indent on
@@ -159,13 +167,6 @@ let g:python3_host_prog = '/usr/bin/python3'
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
 
-if has('nvim')
-    " NEOVIM ON
-    set viminfo='10,\"100,:100,%,n~/.viminfo
-else
-    " Vim only
-    set viminfo='10,\"100,:100,%,n~/.viminfo_vim
-endif
 
 " Macros
 let @e = ':s,=,: ,g'
@@ -180,12 +181,12 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
-Plug 'bsdelf/bufferhint'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dracula/vim'
-Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'phenomenes/ansible-snippets'
+" Plug 'bsdelf/bufferhint'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'dracula/vim'
+" Plug 'sirver/ultisnips'
+" Plug 'honza/vim-snippets'
+" Plug 'phenomenes/ansible-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'majutsushi/tagbar'
@@ -206,26 +207,19 @@ Plug 'ynkdir/vim-vimlparser'
 Plug 'syngan/vim-vimlint'
 
 " Which key?
-Plug 'liuchengxu/vim-which-key'
+" Plug 'liuchengxu/vim-which-key'
 
-if has("nvim")
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'maxboisvert/vim-simple-complete'
 
 call plug#end()
 " }}}
 
 " Plugin configurations {{{
 "
-let g:deoplete#enable_at_startup = 1
 
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1
 " let g:ale_linters = {
 "       \ 'python': ['flake8'],
 "       \ 'ansible': ['ansible', 'yamllint']
