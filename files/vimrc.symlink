@@ -372,6 +372,7 @@ augroup end
 
 " Background configuration {{{
 set background=dark
+let g:solarized_termcolors=256
 try
     colorscheme solarized
     " colorscheme torte
