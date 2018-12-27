@@ -1,3 +1,4 @@
 .ropeproject
 aws.symlink/credentials
 *.retry
+tags
