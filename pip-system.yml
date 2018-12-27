@@ -1,7 +1,6 @@
 ---
 - hosts: all
   gather_facts: false
-  # become: true
   vars:
     - packages:
         - mccabe
@@ -33,9 +32,11 @@
         executable: pip-2
         name: "{{ packages }}"
         state: present
+        extra_args: '-U --user'
 
     - name: pip-3 modules
       pip:
-        executable: pip-3
+        executable: pip3
         name: "{{ packages }}"
         state: present
+        extra_args: '-U --user'
