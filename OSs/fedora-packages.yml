@@ -1,43 +1,35 @@
-# vim:ft=ansible:
 ---
+- name: Install fedora specific dependencies
+  yum: name=python3-dnf state=present
+  become: true
+
+- name: "Add base packages for servers Fedora"
+  dnf:
+    state: present
+    name:
+      - atop
+      - awscli
+      - bpython
+      - curl
+      - git
+      - nmap
+      - python-devel
+      - python-pip
+      - python-setuptools
+      - python-virtualenv
+      - ruby-devel
+      - rubygems
+      - strace
+      - tree
+      - vim
+      - wget
+      - zsh
+  become: true
+  become_user: root
+
 - name: "User shell"
   user: name={{ansible_user_id}} shell=/usr/bin/zsh
   become: true
-
-- name: first packages
-  dnf: name={{item}}
-  become: true
-  with_items:
-    - yum
-
-- name: "Add base packages for servers Fedora"
-  dnf: name={{item}} state=present
-  become: true
-  become_user: root
-  with_items:
-    - sysstat
-    - lm_sensors
-    - lm_sensors-sensord
-    - i2c-tools
-    - vim
-    - zsh
-    - git
-    - python-pip
-    - python-devel
-    - python-setuptools
-    - python-virtualenv
-    - rubygems
-    - ruby-devel
-    - awscli
-    - curl
-    - wget
-    - nmap
-    - bpython
-    - tree
-    - atop
-    - bmon
-    - libselinux-python
-    - strace
 
 - name: Fastest mirror
   become: true
@@ -45,77 +37,45 @@
               line="fastestmirror=true"
               state=present
 
-- name: Install fedora specific dependencies
-  dnf: name=python2-dnf state=present
-  become: true
-
 - name: "Add base packages for Fedora"
-  dnf: name={{item}} state=present
+  dnf:
+    name:
+      - adb
+      - ansible
+      - ansible-lint
+      - bash-completion
+      - bmon
+      - cmake
+      - "@development-tools"
+      - dnf-plugins-core
+      - fortune-mod
+      - gcc-c++
+      - gitk
+      - global-ctags
+      - gnome-tweak-tool
+      - golang
+      - kmod-devel
+      - libvirt-daemon-driver-vbox
+      - libvirt-daemon-vbox
+      - powerline
+      - pylint
+      - python3-devel
+      - rhythmbox
+      - ShellCheck
+      - strace
+      - terminology
+      - tmux
+      - transmission-gtk
+      - vagrant
+      - vagrant-lxc
+      - vim-enhanced
+      - vim-powerline
+      - vim-X11
+      - virt-manager
+      - x11-ssh-askpass
+      - xbacklight
+    state: present
   become: true
   become_user: root
-  with_items:
-    - cmake
-    - gcc-c++
-    - python3-devel
-    - redhat-lsb-core
-    - wireshark
-    - macchanger
-    - gitk
-    - RemoteBox
-    - kmod-devel
-    - libvirt-daemon-driver-vbox
-    - virt-manager
-    - libvirt-daemon-kvm
-    - libvirt-daemon-lxc
-    - libvirt-daemon-vbox
-    - vagrant
-    - vagrant-lxc
-    - qemu-kvm
-    - golang
-    - ansible
-    - ansible-lint
-    - rhythmbox
-    - adb
-    - transmission-gtk
-    - mongodb
-    - sysstat
-    - lm_sensors
-    - lm_sensors-sensord
-    - i2c-tools
-    - vim
-    - vim-X11
-    - vim-enhanced
-    - zsh
-    - git
-    - python-pip
-    - python-devel
-    - python-setuptools
-    - python-virtualenv
-    - rubygems
-    - ruby-devel
-    - awscli
-    - curl
-    - wget
-    - nmap
-    - bpython
-    - tree
-    - atop
-    - bmon
-    - vim-powerline
-    - powerline
-    - global-ctags
-    - x11-ssh-askpass
-    - dnf-plugins-core
-    - gnome-tweak-tool
-    - tmux
-    - i3
-    - i3status
-    - i3-ipc
-    - i3lock
-    - xbacklight
-    - ShellCheck
-    - pylint
-    - terminology
-    - "@development-tools"
-    - fortune-mod
-    - bash-completion
+
+# vim:ft=ansible:

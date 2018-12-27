@@ -19,7 +19,7 @@ set autoread
 set hidden
 
 " set spell by default, in code it applies to comments
-" set spell
+set spell
 
 " display statusbar
 set laststatus=2
@@ -60,7 +60,8 @@ set backspace=indent,eol,start
 " when searching
 set showmatch
 set incsearch
-set nohlsearch
+" set nohlsearch
+set hlsearch
 
 " annoying sounds
 set noerrorbells
@@ -80,9 +81,6 @@ set ffs=unix,mac,dos
 " fold enabled
 set foldmethod=indent
 set foldlevel=5
-
-" fold exception for startified, using startified's event
-autocmd User Startified normal! zR
 
 
 set textwidth=0        " more realistic size
@@ -151,22 +149,14 @@ filetype plugin on
 filetype indent on
 
 " vim uses
-let g:pymode_python = 'python3'
-
-" let g:pymode_folding=0
-let g:pymode_rope = 0
-
-" neovim
-" Set python3 interpreter
-let g:python_host_prog = '/usr/bin/python27'
-let g:python3_host_prog = '/usr/bin/python3'
-" Disable python2
-" let g:loaded_python_provider = 1
-" let g:loaded_python3_provider = 1
+if has("python3")
+  let g:pymode_python = 'python3'
+else
+  let g:pymode_python = 'python'
+endif
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
-
 
 " Macros
 let @e = ':s,=,: ,g'
@@ -179,26 +169,30 @@ let @c = 'v$h"tyjD"tp'
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
-" Plug 'bsdelf/bufferhint'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'dracula/vim'
-" Plug 'sirver/ultisnips'
-" Plug 'honza/vim-snippets'
-" Plug 'phenomenes/ansible-snippets'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
-Plug 'majutsushi/tagbar'
-Plug 'mhinz/vim-startify'
-Plug 'pearofducks/ansible-vim'
 Plug 'powerline/powerline'
-Plug 'scrooloose/nerdtree'
-Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
+
+Plug 'sirver/ultisnips'
+Plug 'pearofducks/ansible-vim'
+Plug 'honza/vim-snippets'
+Plug 'phenomenes/ansible-snippets'
+
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+
+Plug 'junegunn/vim-easy-align'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdtree'
+
 Plug 'vimwiki/vimwiki'
+Plug 'mhinz/vim-startify'
+
+" python-mode doesn't support python3.7
+" Plug 'python-mode/python-mode', { 'branch': 'develop' }
+
+Plug 'w0rp/ale'
 
 Plug 'tpope/vim-surround'
 
@@ -209,6 +203,10 @@ Plug 'syngan/vim-vimlint'
 " Which key?
 " Plug 'liuchengxu/vim-which-key'
 
+" Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-misc'
+Plug 'ludovicchabant/vim-gutentags'
+
 Plug 'maxboisvert/vim-simple-complete'
 
 call plug#end()
@@ -216,9 +214,24 @@ call plug#end()
 
 " Plugin configurations {{{
 "
+"
+let g:easytags_async = 1
 
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 
+" let g:pymode = 1
+" let g:pymode_indent = 1
+" let g:pymode_doc = 1
+" let g:pymode_doc_bind = 'K'
+" let g:pymode_virtualenv = 1
+" let g:pymode_syntax = 1
+"
+" let g:pymode_lint = 1
+" let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+" let g:pymode_lint_ignore = ["E501"]
+" let g:pymode_lint_cwindow = 1
+" let g:pymode_lint_options_mccabe = { 'complexity': 12 }
+"
+" let g:pymode_rope_lookup_project         = 0
 " let g:ale_completion_enabled = 1
 " let g:ale_linters = {
 "       \ 'python': ['flake8'],
@@ -255,8 +268,6 @@ let g:airline_left_alt_sep               = ''
 let g:airline_right_sep                  = ''
 let g:airline_right_alt_sep              = ''
 
-let g:pymode_lint_ignore                 = "E501"
-let g:pymode_rope_lookup_project         = 0
 
 let g:python_highlight_all               = 1
 
@@ -291,6 +302,10 @@ let g:tagbar_autoshowtag = 1
 
 " Autocommands & Autogroups {{{
 "
+" fold exception for startified, using startified's event
+autocmd User Startified normal! zR
+
+"
 augroup resCur
 autocmd!
 autocmd BufReadPost * call setpos(".", getpos("'\""))
@@ -314,17 +329,9 @@ au FileType python setl expandtab     " Use spaces instead of tabs.
 au FileType python setl tabstop=4     " A tab counts for 4 spaces.
 au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
 au FileType python setl shiftwidth=4  " Shift by 4 spaces.
+au FileType python setl autoindent
 au FileType python setl foldmethod=indent " fold method is indent for python
-augroup end
-
-" Ruby section
-augroup ruby
-au!
-augroup end
-
-" Javascript section
-augroup javascript
-au!
+au FileType python setl fileformat=unix
 augroup end
 
 " Terraform section
@@ -336,6 +343,7 @@ au FileType terraform setl softtabstop=2 " Causes backspace to delete 4 spaces.
 au FileType terraform setl shiftwidth=2  " Shift by 4 spaces.
 au FileType terraform setl foldmethod=indent " fold method is indent for terraform
 au FileType terraform setl foldlevel=2 " fold method is indent for terraform
+au FileType terraform setl fileformat=unix
 augroup end
 
 " Git commits

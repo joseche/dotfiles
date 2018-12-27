@@ -44,6 +44,7 @@ if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
 fi
 
 pathmunge "$HOME/bin"
+pathmunge "$HOME/.local/bin"
 pathmunge "/opt/X11/bin"
 
 pathmunge "/bin"
