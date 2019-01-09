@@ -19,7 +19,7 @@ fi
 umask 0022
 
 if [ -z "$LS_COLORS" ]; then
-  export LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=1;4;5;7;31:mi=0:ex=35:*.rpm=90:*.deb=90:'
+  eval $(dircolors)
 fi
 
 export TZ='America/Costa_Rica'
@@ -36,7 +36,6 @@ pathmunge()
     fi
   fi
 }
-
 
 # User configuration
 if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
@@ -64,7 +63,6 @@ if [ -d /usr/local/man ]; then
   export MANPATH="/usr/local/man":$MANPATH
 fi
 
-# export GREP_COLOR="1;32"
 export MANPAGER="less -X"
 
 # Java

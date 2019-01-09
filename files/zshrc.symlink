@@ -7,11 +7,22 @@
 source ~/.profile
 
 fpath=($fpath ~/git/zsh-completions)
+
 autoload -U compinit && compinit -u
 autoload -U colors && colors
 autoload -U bashcompinit && bashcompinit
 autoload -U zrecompile
+autoload -Uz vcs_info
 
+zmodload -i zsh/compctl
+zmodload -i zsh/complete
+zmodload -i zsh/complist
+zmodload -i zsh/computil
+zmodload -i zsh/zutil
+
+zstyle ':vcs_info:*' enable git
+
+zstyle ':completion:*' verbose yes
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' menu select
 zstyle ':completion:*' cache-path ~/.zsh/cache
@@ -22,12 +33,24 @@ zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 
-setopt prompt_subst \
-       auto_cd \
-       complete_aliases \
-       extended_glob \
-       incappendhistory \
-       extended_history
+# completion for ssh
+sconf=( $(sed -n '/^Host[=\t ]/{s///;s/#.*//;p;}' ~/.ssh/config) )
+sknown=( $(sed 's/\s.*//' ~/.ssh/known_hosts) )
+zstyle ':completion::complete:ssh:argument-1:' tag-order !users
+zstyle ':completion::*:ssh:*:' hosts $sconf $sknown
+
+setopt prompt_subst
+setopt auto_cd
+setopt complete_aliases
+setopt extended_glob
+setopt append_history
+setopt inc_append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt correct
+setopt auto_menu
+
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
