@@ -310,10 +310,10 @@ augroup end
 augroup myansible
 au!
 au BufNewFile,BufRead *.yml set filetype=yaml.ansible
-au FileType ansible setl expandtab     " Use spaces instead of tabs.
-au FileType ansible setl tabstop=2     " Lists are indented with 2 spaces.
-au FileType ansible setl softtabstop=2 " Causes backspace to delete 2 spaces.
-au FileType ansible setl shiftwidth=2  " Shift by 2 spaces.
+au FileType yaml.ansible setl expandtab     " Use spaces instead of tabs.
+au FileType yaml.ansible setl tabstop=2     " Lists are indented with 2 spaces.
+au FileType yaml.ansible setl softtabstop=2 " Causes backspace to delete 2 spaces.
+au FileType yaml.ansible setl shiftwidth=2  " Shift by 2 spaces.
 augroup end
 
 augroup vimwiki
