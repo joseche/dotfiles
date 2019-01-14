@@ -187,6 +187,8 @@ let g:airline_left_alt_sep               = ''
 let g:airline_right_sep                  = ''
 let g:airline_right_alt_sep              = ''
 
+let g:airline#extensions#ale#enabled     = 1
+
 
 let g:python_highlight_all               = 1
 
@@ -240,6 +242,8 @@ Plug 'honza/vim-snippets'
 Plug 'phenomenes/ansible-snippets'
 Plug 'hashivim/vim-terraform'
 " Plug 'pearofducks/ansible-vim'
+
+Plug 'w0rp/ale'
 
 call plug#end()
 " }}}
