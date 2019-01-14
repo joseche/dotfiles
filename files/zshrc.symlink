@@ -86,7 +86,14 @@ bindkey "^r" history-incremental-search-backward
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-source ~/.zshprompt
+if [ -f ~/.zshprompt ]; then
+  source ~/.zshprompt
+fi
+
+if [ -f ~/.kubectl.zsh ]; then
+  source ~/.kubectl.zsh
+fi
+
 
 if [ -f $HOME/.localprofile ]; then
   source $HOME/.localprofile

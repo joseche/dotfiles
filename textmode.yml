@@ -49,7 +49,7 @@
         - {src: "{{ playbook_dir }}/files/ansible.cfg.symlink", dst: "~/.ansible.cfg"}
         - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.vimrc"}
         - {src: "{{ playbook_dir }}/files/yamllint.symlink", dst: "~/.config/yamllint/config"}
-        - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.config/nvim/init.vim"}
+        - {src: "{{ playbook_dir }}/files/kubectl.zsh.symlink", dst: "~/.kubectl.zsh"}
 
     # clone zsh plugins
     - name: "Checkout git://github.com/zsh-users/zsh-completions.git"
