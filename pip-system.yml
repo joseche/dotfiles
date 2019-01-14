@@ -25,6 +25,7 @@
         - rednose
         - pytest
         - pytest-cov
+        - vim-vint
 
   tasks:
     - name: pip-2 modules

@@ -79,7 +79,7 @@ set splitright
 set splitbelow
 
 " default file format
-set ffs=unix,mac,dos
+set fileformats=unix,mac,dos
 
 " fold enabled
 set foldmethod=indent
@@ -128,13 +128,13 @@ set backupdir=~/.vim/tmp/backup// " backups
 set directory=~/.vim/tmp/swap//   " swap files
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
+    call mkdir(expand(&undodir), 'p')
 endif
 if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), "p")
+    call mkdir(expand(&backupdir), 'p')
 endif
 if !isdirectory(expand(&directory))
-    call mkdir(expand(&directory), "p")
+    call mkdir(expand(&directory), 'p')
 endif
 
 set viminfo=%,<800,'10,/50,:100,h,f9,n~/.viminfo
@@ -153,7 +153,7 @@ set omnifunc=syntaxcomplete#Complete
 filetype indent on
 
 " vim uses
-if has("python3")
+if has('python3')
   let g:pymode_python = 'python3'
 else
   let g:pymode_python = 'python'
