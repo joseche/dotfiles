@@ -172,6 +172,7 @@ let @c = 'v$h"tyjD"tp'
 
 " Plugin configurations {{{
 let g:easytags_async = 1
+let g:easytags_file = '~/.vim/tags'
 
 let g:netrw_banner                       = 0
 let g:netrw_browse_split                 = 2
@@ -214,6 +215,8 @@ let g:tagbar_autoshowtag = 1
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
+let g:limelight_conceal_ctermfg = 'gray'
+
 " }}}
 
 " Plugins to install {{{
@@ -233,6 +236,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/limelight.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 
@@ -331,7 +335,6 @@ augroup end
 " }}}
 
 " Theme configuration {{{
-set background=dark
 let g:solarized_termcolors=256
 try
     colorscheme solarized
@@ -350,6 +353,7 @@ highlight Normal guibg=NONE ctermbg=NONE
 " enable italic comments
 highlight Comment cterm=italic
 
+set background=dark
 " }}}
 
 " Mappings {{{
