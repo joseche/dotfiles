@@ -1,8 +1,9 @@
 " vim: syntax=vim foldmethod=marker foldlevel=1
-
 " Set options {{{
 
-set nocompatible
+
+" removed due to inconsistencies
+" set nocompatible
 
 syntax on
 set t_Co=256
@@ -39,8 +40,8 @@ set smartindent
 set encoding=utf-8
 set fileencoding=utf-8
 scriptencoding utf-8
-if has("multi_byte")
-  if &termencoding == ""
+if has('multi_byte')
+  if &termencoding ==# ''
     let &termencoding = &encoding
   endif
 
@@ -148,19 +149,25 @@ set viminfo=%,<800,'10,/50,:100,h,f9,n~/.viminfo
 "           + save/restore buffer list
 
 filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-
 filetype indent on
+" set omnifunc=syntaxcomplete#Complete
 
 " vim uses
-if has('python3')
-  let g:pymode_python = 'python3'
-else
-  let g:pymode_python = 'python'
-endif
+" if has('python3')
+"  let g:pymode_python = 'python3'
+" else
+"   let g:pymode_python = 'python'
+" endif
+
+" Fix powerline not part of virtualenv
+python3 import sys
+python3 import os
+python3 sys.path.append(os.environ['HOME'] + "/.local/lib/python3.6/site-packages")
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
+
+let g:gutentags_ctags_tagfile = '.git/tags'
 
 " Macros
 let @e = ':s,=,: ,g'
@@ -217,6 +224,8 @@ let g:terraform_fmt_on_save=1
 
 let g:limelight_conceal_ctermfg = 'gray'
 
+let g:ale_completion_enabled = 1
+
 " }}}
 
 " Plugins to install {{{
@@ -254,8 +263,14 @@ call plug#end()
 
 " Autocommands & Autogroups {{{
 "
-" fold exception for startified, using startified's event
-autocmd User Startified normal! zR
+
+augroup default
+  " fold exception for startified, using startified's event
+  au User Startified normal! zR
+  au VimResized * :wincmd =
+  " Remove trailing spaces for file types:
+  au BufWritePre *.py,*.c,*.rb,*.java %s/\s\+$//e
+augroup END
 
 "
 augroup resCur
@@ -263,15 +278,9 @@ autocmd!
 autocmd BufReadPost * call setpos(".", getpos("'\""))
 augroup END
 
-
 " fix crontab -e problem
 set backupskip=/tmp/*,/private/tmp/*
 " autocmd filetype crontab setlocal nobackup nowritebackup
-
-autocmd VimResized * :wincmd =
-
-" Remove trailing spaces for file types:
-au BufWritePre *.py,*.c,*.rb,*.java %s/\s\+$//e
 
 " Python section
 augroup mypython
@@ -353,7 +362,7 @@ highlight Normal guibg=NONE ctermbg=NONE
 " enable italic comments
 highlight Comment cterm=italic
 
-set background=dark
+set background=light
 " }}}
 
 " Mappings {{{
