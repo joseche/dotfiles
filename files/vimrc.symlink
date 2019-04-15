@@ -160,9 +160,9 @@ filetype indent on
 " endif
 
 " Fix powerline not part of virtualenv
-python3 import sys
-python3 import os
-python3 sys.path.append(os.environ['HOME'] + "/.local/lib/python3.6/site-packages")
+" python3 import sys
+" python3 import os
+" python3 sys.path.append(os.environ['HOME'] + "/.local/lib/python3.7/site-packages")
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
@@ -363,6 +363,14 @@ highlight Normal guibg=NONE ctermbg=NONE
 highlight Comment cterm=italic
 
 set background=light
+
+if has('gui_running')
+  " set background=light
+  " set t_Co=16
+  " let g:solarized_termcolors=16
+  " colorscheme solarized
+endif
+
 " }}}
 
 " Mappings {{{
