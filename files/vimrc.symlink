@@ -1,7 +1,6 @@
 " vim: syntax=vim foldmethod=marker foldlevel=1
 " Set options {{{
 
-
 " removed due to inconsistencies
 " set nocompatible
 
@@ -24,7 +23,7 @@ set smartcase
 set hidden
 
 " set spell by default, in code it applies to comments
-set spell
+" set spell
 
 " display statusbar
 set laststatus=2
@@ -85,7 +84,6 @@ set fileformats=unix,mac,dos
 " fold enabled
 set foldmethod=indent
 set foldlevel=5
-
 
 set textwidth=0        " more realistic size
 set colorcolumn=+1
@@ -197,10 +195,9 @@ let g:airline_right_alt_sep              = ''
 
 let g:airline#extensions#ale#enabled     = 1
 
-
 let g:python_highlight_all               = 1
 
-let g:org_agenda_files                   = ['~/git/work/org/*.org']
+" let g:org_agenda_files                   = ['~/git/work/org/*.org']
 
 let g:Powerline_symbols     = 'fancy'
 
@@ -224,7 +221,7 @@ let g:terraform_fmt_on_save=1
 
 let g:limelight_conceal_ctermfg = 'gray'
 
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
 
 " }}}
 
@@ -256,6 +253,8 @@ Plug 'phenomenes/ansible-snippets'
 Plug 'hashivim/vim-terraform'
 " Plug 'pearofducks/ansible-vim'
 
+Plug 'davidhalter/jedi-vim'
+
 Plug 'w0rp/ale'
 
 call plug#end()
@@ -285,13 +284,13 @@ set backupskip=/tmp/*,/private/tmp/*
 " Python section
 augroup mypython
 au!
-au FileType python setl smarttab     " Use spaces instead of tabs.
-au FileType python setl expandtab     " Use spaces instead of tabs.
-au FileType python setl tabstop=4     " A tab counts for 4 spaces.
-au FileType python setl softtabstop=4 " Causes backspace to delete 4 spaces.
-au FileType python setl shiftwidth=4  " Shift by 4 spaces.
+au BufNewFile,BufRead *.py
+au FileType python setl tabstop=4
+au FileType python setl softtabstop=4
+au FileType python setl shiftwidth=4
+au FileType python setl textwidth=79
+au FileType python setl expandtab
 au FileType python setl autoindent
-au FileType python setl foldmethod=indent " fold method is indent for python
 au FileType python setl fileformat=unix
 augroup end
 
