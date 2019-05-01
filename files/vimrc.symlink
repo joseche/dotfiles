@@ -86,13 +86,13 @@ set foldmethod=indent
 set foldlevel=5
 
 set textwidth=0        " more realistic size
-set colorcolumn=+1
+set colorcolumn=0
 " highlight ColorColumn guibg=#2d2d2d ctermbg=246
 " highlight Normal ctermfg=grey ctermbg=#0e143d
 
 " highligh current row and column
 set cursorline
-" set cursorcolumn
+set cursorcolumn
 
 " Tabs
 set tabstop=2
@@ -172,6 +172,7 @@ let @e = ':s,=,: ,g'
 let @b = '/ xiwww'
 " let @c = 'v$hyjDpjkj'
 let @c = 'v$h"tyjD"tp'
+let @h = 'ggO# coding: utf-8"""HeaderThis is the header"""'
 
 " }}}
 
@@ -284,7 +285,6 @@ set backupskip=/tmp/*,/private/tmp/*
 " Python section
 augroup mypython
 au!
-au BufNewFile,BufRead *.py
 au FileType python setl tabstop=4
 au FileType python setl softtabstop=4
 au FileType python setl shiftwidth=4
