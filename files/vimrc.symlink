@@ -136,15 +136,9 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), 'p')
 endif
 
-set viminfo=%,<800,'10,/50,:100,h,f9,n~/.viminfo
-"           | |    |   |   |    | |  + viminfo file path
-"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
-"           | |    |   |   |    + disable 'hlsearch' loading viminfo
-"           | |    |   |   + command-line history saved
-"           | |    |   + search history saved
-"           | |    + files marks saved
-"           | + lines saved each register (old name for <, vi6.2)
-"           + save/restore buffer list
+if !has('nvim')
+  set viminfo=%,'10,/50,:100,f9,n~/.viminfo
+endif
 
 filetype plugin on
 filetype indent on
@@ -241,7 +235,7 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim'
 Plug 'airblade/vim-gitgutter'
