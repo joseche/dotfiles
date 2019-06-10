@@ -248,6 +248,8 @@ Plug 'phenomenes/ansible-snippets'
 Plug 'hashivim/vim-terraform'
 " Plug 'pearofducks/ansible-vim'
 
+Plug 'hynek/vim-python-pep8-indent'
+
 Plug 'davidhalter/jedi-vim'
 
 Plug 'w0rp/ale'
