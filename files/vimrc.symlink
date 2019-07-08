@@ -357,7 +357,8 @@ highlight Normal guibg=NONE ctermbg=NONE
 " enable italic comments
 highlight Comment cterm=italic
 
-set background=light
+" set background=light
+set background=dark
 
 if has('gui_running')
   " set background=light
