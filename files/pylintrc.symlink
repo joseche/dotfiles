@@ -1,5 +1,8 @@
 [MASTER]
 
+# ignore-patterns=**/site-packages/**/*.py
+
+
 # Specify a configuration file.
 #rcfile=
 
