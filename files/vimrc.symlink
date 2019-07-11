@@ -92,7 +92,7 @@ set colorcolumn=0
 
 " highligh current row and column
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 
 " Tabs
 set tabstop=2
@@ -339,7 +339,8 @@ augroup end
 " Theme configuration {{{
 let g:solarized_termcolors=256
 try
-    colorscheme solarized
+    colorscheme default
+    " colorscheme solarized
     " colorscheme torte
     " colorscheme dracula
     " colorscheme nova
@@ -355,7 +356,7 @@ highlight Normal guibg=NONE ctermbg=NONE
 " enable italic comments
 highlight Comment cterm=italic
 
-set background=light
+set background=dark
 
 if has('gui_running')
   " set background=light
