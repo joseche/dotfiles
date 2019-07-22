@@ -35,6 +35,9 @@ set mouse=a
 set autoindent
 set smartindent
 
+" set shell to sh for basic func
+set shell=/bin/sh
+
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -87,12 +90,7 @@ set foldlevel=5
 
 set textwidth=0        " more realistic size
 set colorcolumn=0
-" highlight ColorColumn guibg=#2d2d2d ctermbg=246
-" highlight Normal ctermfg=grey ctermbg=#0e143d
 
-" highligh current row and column
-set cursorline
-" set cursorcolumn
 
 " Tabs
 set tabstop=2
@@ -216,28 +214,24 @@ let g:terraform_fmt_on_save=1
 
 let g:limelight_conceal_ctermfg = 'gray'
 
-let g:ale_completion_enabled = 0
+let g:ale_completion_enabled = 1
 
 " }}}
 
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
-
 Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'altercation/vim-colors-solarized'
-
 Plug 'mhinz/vim-startify'
-
 Plug 'vimwiki/vimwiki'
-
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/limelight.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 
@@ -249,9 +243,7 @@ Plug 'hashivim/vim-terraform'
 " Plug 'pearofducks/ansible-vim'
 
 Plug 'hynek/vim-python-pep8-indent'
-
-Plug 'davidhalter/jedi-vim'
-
+" Plug 'davidhalter/jedi-vim'
 Plug 'w0rp/ale'
 
 call plug#end()
@@ -340,8 +332,9 @@ augroup end
 
 " Theme configuration {{{
 let g:solarized_termcolors=256
+set background=dark
 try
-    colorscheme default
+    colorscheme slate
     " colorscheme solarized
     " colorscheme torte
     " colorscheme dracula
@@ -352,13 +345,6 @@ catch
     colorscheme default
 endtry
 
-" also respect the transparency of the terminal
-highlight Normal guibg=NONE ctermbg=NONE
-
-" enable italic comments
-highlight Comment cterm=italic
-
-set background=dark
 
 if has('gui_running')
   " set background=light
@@ -366,6 +352,19 @@ if has('gui_running')
   " let g:solarized_termcolors=16
   " colorscheme solarized
 endif
+
+" highlight ColorColumn guibg=#2d2d2d ctermbg=246
+" highlight Normal ctermfg=grey ctermbg=#0e143d
+
+" also respect the transparency of the terminal
+highlight Normal guibg=NONE ctermbg=NONE
+
+" enable italic comments
+highlight Comment cterm=italic gui=italic
+
+" highligh current row and column
+set cursorline
+" set cursorcolumn
 
 " }}}
 
