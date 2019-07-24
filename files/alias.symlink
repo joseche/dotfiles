@@ -95,6 +95,6 @@ done
 alias aws_account_id='aws sts get-caller-identity --output text --query Account'
 alias aws_keys="export | grep AWS | sed 's,^,export ,'"
 
-alias venv='source ~/git/HDM_end2end/venv/bin/activate;cd ~/git/HDM_end2end/end2end'
+alias venv='source ~/git/hdm_e2e/venv/bin/activate;cd ~/git/hdm_e2e/end2end'
 
 # vim:syntax=sh
