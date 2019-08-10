@@ -140,14 +140,19 @@ endif
 
 filetype plugin on
 filetype indent on
+
+
 " set omnifunc=syntaxcomplete#Complete
+if has('autocmd') && exists('+omnifunc')
+   set omnifunc=autocomplete
+endif
 
 " vim uses
-" if has('python3')
-"  let g:pymode_python = 'python3'
+if has('python3')
+  let g:pymode_python = 'python3'
 " else
 "   let g:pymode_python = 'python'
-" endif
+endif
 
 " Fix powerline not part of virtualenv
 " python3 import sys
@@ -245,7 +250,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'hynek/vim-python-pep8-indent'
 " Plug 'davidhalter/jedi-vim'
 Plug 'w0rp/ale'
-
+Plug 'python-mode/python-mode'
 call plug#end()
 " }}}
 
@@ -276,7 +281,7 @@ au!
 au FileType python setl tabstop=4
 au FileType python setl softtabstop=4
 au FileType python setl shiftwidth=4
-au FileType python setl textwidth=79
+au FileType python setl textwidth=180
 au FileType python setl expandtab
 au FileType python setl autoindent
 au FileType python setl fileformat=unix
