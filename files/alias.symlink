@@ -64,7 +64,8 @@ fi
 
 # command -v python3 >/dev/null 2>&1 && alias python='python3'
 # command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim'
-command -v vimx >/dev/null 2>&1 && alias vim='vimx' && alias vi='vimx'
+# command -v vimx >/dev/null 2>&1 && alias vim='vimx' && alias vi='vimx'
+alias vim='nvim'
 
 command -v gsort >/dev/null 2>&1 && alias sort='gsort'
 command -v gecho >/dev/null 2>&1 && alias echo='gecho'
