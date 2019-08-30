@@ -150,7 +150,10 @@ endif
 " vim uses
 if has('python3')
   let g:pymode_python = 'python3'
-  let g:pymode_lint_checkers = 'pyflakes,pep8,mccabe'
+  let g:pymode_lint_checkers = 'pyflakes,mccabe'
+  " Enable breakpoints plugin
+  let g:pymode_breakpoint = 1
+  let g:pymode_breakpoint_key = '<leader>r'
 " else
 "   let g:pymode_python = 'python'
 endif
