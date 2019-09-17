@@ -225,6 +225,8 @@ let g:limelight_conceal_ctermfg = 'gray'
 
 let g:ale_completion_enabled = 1
 
+let g:ale_python_mypy_options = '--ignore-missing-imports'
+
 " }}}
 
 " Plugins to install {{{
