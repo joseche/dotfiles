@@ -258,7 +258,8 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'hynek/vim-python-pep8-indent'
 " Plug 'davidhalter/jedi-vim'
 Plug 'w0rp/ale'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'psf/black'
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 call plug#end()
 " }}}
 
@@ -293,6 +294,7 @@ au FileType python setl textwidth=180
 au FileType python setl expandtab
 au FileType python setl autoindent
 au FileType python setl fileformat=unix
+au BufWritePre *.py execute ':Black'
 augroup end
 
 " Terraform section
