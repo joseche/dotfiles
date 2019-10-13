@@ -15,6 +15,9 @@ fi
 if [ "$Z" = "bash" ] && [ -f /usr/local/etc/bash_completion ]; then
    source /usr/local/etc/bash_completion
 fi
+if [ "$Z" = "bash" ] && [ -f /usr/share/bash-completion/bash_completion ]; then
+   source /usr/share/bash-completion/bash_completion
+fi
 
 umask 0022
 
@@ -114,26 +117,6 @@ export MAKEFLAGS=j4
 
 # common
 export NET=192.168.70
-
-# grunt
-# command -v terraform >/dev/null 2>&1 && export TERRAGRUNT_TFPATH=$(command -v terraform)
-
-# python
-if command -v pyenv-virtualenv-init >/dev/null 2>&1; then
-  eval "$(pyenv virtualenv-init -)"
-fi
-
-# ruby & chef
-if command -v rbenv >/dev/null 2>&1; then
-  eval "$(rbenv init -)";
-fi
-
-if [ -d "/opt/spark" ]; then
-  export SPARK_HOME="/opt/spark"
-fi
-
-# ssh keys
-sshagent
 
 # source /usr/local/share/zsh/site-functions/_aws
 export VAGRANT_DEFAULT_PROVIDER='virtualbox'
