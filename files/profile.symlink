@@ -131,7 +131,9 @@ export AWS_DEFAULT_REGION=us-east-1
 ES='http://localhost:9200'
 export ES
 
-setxkbmap \
+if which setxkbmap &>/dev/null; then
+  setxkbmap \
   -variant altgr-intl \
   -option \
   -option compose:rctrl
+fi
