@@ -116,7 +116,7 @@ fi
 export MAKEFLAGS=j4
 
 # common
-export NET=192.168.70
+# export NET=192.168.70
 
 # source /usr/local/share/zsh/site-functions/_aws
 export VAGRANT_DEFAULT_PROVIDER='virtualbox'
@@ -128,10 +128,13 @@ export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 export AWS_DEFAULT_REGION=us-east-1
 
 # Elasticsearch
-ES='http://localhost:9200'
-export ES
+# ES='http://localhost:9200'
+# export ES
 
-setxkbmap \
-  -variant altgr-intl \
-  -option \
-  -option compose:rctrl
+# does not work with wayland
+# if which setxkbmap &>/dev/null; then
+#   setxkbmap \
+#   -variant altgr-intl \
+#   -option \
+#   -option compose:rctrl
+# fi

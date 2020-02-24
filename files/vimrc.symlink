@@ -231,6 +231,8 @@ let g:ale_python_mypy_options = '--ignore-missing-imports'
 
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
+Plug 'kien/ctrlp.vim'
+Plug 'mileszs/ack.vim'
 Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
