@@ -70,6 +70,18 @@ source ~/git/zsh-256color/zsh-256color.plugin.zsh
 
 which aws_zsh_completer.sh >/dev/null 2>&1 && aws_zsh_completer.sh >/dev/null 2>&1
 
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
+
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?
   if [[ $LAST_EXIT_CODE -ne 0 ]]; then

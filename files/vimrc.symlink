@@ -348,24 +348,25 @@ augroup end
 " Theme configuration {{{
 let g:solarized_termcolors=256
 set background=dark
-try
-    colorscheme slate
+" try
+    " colorscheme slate
+    " colorscheme industry
     " colorscheme solarized
     " colorscheme torte
     " colorscheme dracula
     " colorscheme nova
     " colorscheme morning
     " colorscheme darkblue
-catch
-    colorscheme default
-endtry
+" catch
+"     colorscheme default
+" endtry
 
 
 if has('gui_running')
-  " set background=light
-  " set t_Co=16
+  " set background=black
+  set t_Co=16
   " let g:solarized_termcolors=16
-  " colorscheme solarized
+  colorscheme industry
 endif
 
 " highlight ColorColumn guibg=#2d2d2d ctermbg=246
@@ -396,6 +397,7 @@ nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>b :NERDTreeToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>E :EasyAlign=<CR>
+nnoremap <Leader>/ :set nohlsearch<CR>
 
 map <Leader>h <C-w>h
 map <Leader>j <C-w>j
