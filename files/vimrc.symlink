@@ -350,25 +350,12 @@ augroup end
 " Theme configuration {{{
 let g:solarized_termcolors=256
 set background=dark
-" try
-    " colorscheme slate
-    " colorscheme industry
-    " colorscheme solarized
-    " colorscheme torte
-    " colorscheme dracula
-    " colorscheme nova
-    " colorscheme morning
-    " colorscheme darkblue
-" catch
-"     colorscheme default
-" endtry
 
 
 if has('gui_running')
   " set background=black
   set t_Co=16
   " let g:solarized_termcolors=16
-  colorscheme industry
 endif
 
 " highlight ColorColumn guibg=#2d2d2d ctermbg=246
@@ -383,6 +370,20 @@ highlight Comment cterm=italic gui=italic
 " highligh current row and column
 set cursorline
 " set cursorcolumn
+
+try
+    " colorscheme slate
+    colorscheme industry
+    " colorscheme solarized
+    " colorscheme torte
+    " colorscheme dracula
+    " colorscheme nova
+    " colorscheme morning
+    " colorscheme darkblue
+catch
+    colorscheme default
+endtry
+
 
 " }}}
 
