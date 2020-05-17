@@ -8,6 +8,10 @@ export OS="$(uname -s)"
 # Z = shell without path
 Z=$(basename "$SHELL")
 
+if [ -e /etc/profile ]; then
+   source /etc/profile
+fi
+
 if [ "$Z" = "zsh" ] && [ -e /etc/zshrc ]; then
    source /etc/zshrc
 fi

@@ -149,6 +149,7 @@ endif
 
 " vim uses
 if has('python3')
+  let g:python3_host_prog = '/home/jose/git/hdm_e2e/venv/bin/python'
   let g:pymode_python = 'python3'
   let g:pymode_lint_checkers = 'pyflakes,mccabe'
   " Enable breakpoints plugin
