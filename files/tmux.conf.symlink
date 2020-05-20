@@ -1,1 +1,9 @@
-source-file "${HOME}/.tmux-themepack/powerline/default/red.tmuxtheme"
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'jimeh/tmux-themepack'
+
+set -goq @themepack-status-right-area-left-format "%H:%M"
+set -goq @themepack-status-right-area-right-format "#h"
+set -g @themepack 'powerline/double/magenta'
+
+run -b '~/.tmux/plugins/tpm/tpm'
