@@ -70,6 +70,10 @@ source ~/git/zsh-256color/zsh-256color.plugin.zsh
 
 which aws_zsh_completer.sh >/dev/null 2>&1 && aws_zsh_completer.sh >/dev/null 2>&1
 
+which minikube 2>&1 >/dev/null && source <(minikube completion zsh)
+which kubectl 2>&1 >/dev/null && source <(kubectl completion zsh)
+which kubectl 2>&1 >/dev/null && export KUBE_EDITOR=vim
+
 # pip zsh completion start
 function _pip_completion {
   local words cword
