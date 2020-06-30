@@ -62,6 +62,7 @@ pathmunge "/usr/sbin"
 pathmunge "/usr/local/sbin"
 
 pathmunge "/opt/spark/bin"
+pathmunge "/snap/bin"
 
 pathmunge "/usr/local/MacGPG2/bin"
 pathmunge "/Users/c0d5x/Library/Android/sdk/platform-tools"

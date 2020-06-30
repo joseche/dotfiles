@@ -1,7 +1,6 @@
 [user]
     name = Jose Hidalgo
-    email = jose.hidalgo@xogito.com
-    ; email = c0d5x@protonmail.com
+    email = c0d5x@protonmail.com
 
 [core]
     editor = vim

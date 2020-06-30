@@ -1,7 +1,7 @@
 # `.zshrc' is sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
 
 # for profiling a slow zsh:
-# zmodload zsh/zprof
+zmodload zsh/zprof
 # then when you get the prompt type: zprof
 
 source ~/.profile
@@ -71,7 +71,7 @@ source ~/git/zsh-256color/zsh-256color.plugin.zsh
 which aws_zsh_completer.sh >/dev/null 2>&1 && aws_zsh_completer.sh >/dev/null 2>&1
 
 which minikube 2>&1 >/dev/null && source <(minikube completion zsh)
-which kubectl 2>&1 >/dev/null && source <(kubectl completion zsh)
+# which kubectl 2>&1 >/dev/null && source <(kubectl completion zsh)
 which kubectl 2>&1 >/dev/null && export KUBE_EDITOR=vim
 
 # pip zsh completion start
