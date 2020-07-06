@@ -45,9 +45,10 @@
         - {src: "{{ playbook_dir }}/files/pylintrc.symlink", dst: "~/.pylintrc"}
         - {src: "{{ playbook_dir }}/files/gemrc.symlink", dst: "~/.gemrc"}
         - {src: "{{ playbook_dir }}/files/aws.config.symlink", dst: "~/.aws/config"}
-        - {src: "{{ playbook_dir }}/files/gitconfig.symlink", dst: "~/.gitconfig"}
+          # - {src: "{{ playbook_dir }}/files/gitconfig.symlink", dst: "~/.gitconfig"}
         - {src: "{{ playbook_dir }}/files/ansible.cfg.symlink", dst: "~/.ansible.cfg"}
         - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.vimrc"}
+        - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.config/nvim/init.vim"}
         - {src: "{{ playbook_dir }}/files/yamllint.symlink", dst: "~/.config/yamllint/config"}
         - {src: "{{ playbook_dir }}/files/kubectl.zsh.symlink", dst: "~/.kubectl.zsh"}
 
