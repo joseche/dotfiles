@@ -98,4 +98,6 @@ alias aws_keys="export | grep AWS | sed 's,^,export ,'"
 
 alias venv='source ~/git/hdm_e2e/venv/bin/activate;cd ~/git/hdm_e2e/end2end'
 
+alias docker-cleanup='docker rm $(docker ps -a -q); docker volume rm $(docker volume ls -q)'
+
 # vim:syntax=sh
