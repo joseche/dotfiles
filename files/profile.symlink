@@ -49,6 +49,10 @@ if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
   pathmunge /usr/local/opt/coreutils/libexec/gnubin
 fi
 
+pathmunge "/sbin"
+pathmunge "/usr/sbin"
+pathmunge "/usr/local/sbin"
+
 pathmunge "$HOME/bin"
 pathmunge "$HOME/.local/bin"
 pathmunge "/opt/X11/bin"
@@ -56,10 +60,6 @@ pathmunge "/opt/X11/bin"
 pathmunge "/bin"
 pathmunge "/usr/bin"
 pathmunge "/usr/local/bin"
-
-pathmunge "/sbin"
-pathmunge "/usr/sbin"
-pathmunge "/usr/local/sbin"
 
 pathmunge "/opt/spark/bin"
 
