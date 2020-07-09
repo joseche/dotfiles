@@ -145,6 +145,7 @@ prompt_agnoster_main() {
 
 prompt_agnoster_precmd() {
   vcs_info
+  # echo -e "\xE2\x98\xA0"
   # PROMPT='%{%f%b%k%}$(prompt_agnoster_main) 👉 '
   PROMPT='%{%f%b%k%}$(prompt_agnoster_main) '
 }
