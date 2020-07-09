@@ -6,4 +6,6 @@ set -goq @themepack-status-right-area-left-format "%H:%M"
 set -goq @themepack-status-right-area-right-format "#h"
 set -g @themepack 'powerline/double/magenta'
 
+set -g mouse on
+
 run -b '~/.tmux/plugins/tpm/tpm'

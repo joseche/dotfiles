@@ -385,6 +385,10 @@ catch
     colorscheme default
 endtry
 
+" enable transparent vim
+hi Normal guibg=NONE ctermbg=NONE
+
+
 
 " }}}
 
