@@ -12,6 +12,7 @@
         - ~/.irssi
         - ~/.config
         - ~/.config/yamllint
+        - ~/.zfunctions
       file:
         path: "{{item }}"
         state: directory
@@ -30,8 +31,8 @@
         - {src: "{{ playbook_dir }}/files/zlogin.symlink", dst: "~/.zlogin"}
         - {src: "{{ playbook_dir }}/files/zlogout.symlink", dst: "~/.zlogout"}
         - {src: "{{ playbook_dir }}/files/zprofile.symlink", dst: "~/.zprofile"}
-        - {src: "{{ playbook_dir }}/files/zshprompt.symlink", dst: "~/.zshprompt"}
         - {src: "{{ playbook_dir }}/files/zshrc.symlink", dst: "~/.zshrc"}
+        - {src: "{{ playbook_dir }}/files/zshprompt.symlink", dst: "~/.zshprompt"}
         - {src: "{{ playbook_dir }}/files/bashrc.symlink", dst: "~/.bashrc"}
         - {src: "{{ playbook_dir }}/files/profile.symlink", dst: "~/.profile"}
         - {src: "{{ playbook_dir }}/files/hushlogin.symlink", dst: "~/.hushlogin"}
@@ -57,6 +58,19 @@
         dest: ~/git/zsh-completions
         force: true
         version: master
+
+    - name: "Checkout Spaceship Zsh Theme"
+      git:
+        repo: https://github.com/denysdovhan/spaceship-prompt.git
+        dest: ~/.zfunctions/spaceship-prompt
+        force: true
+        version: master
+
+    - name: "Link spaceship theme"
+      file:
+        src: ~/.zfunctions/spaceship-prompt/spaceship.zsh-theme
+        dest: ~/.zfunctions/prompt_spaceship_setup
+        state: link
 
     - name: "Checkout tmux tpm"
       git:

@@ -6,10 +6,10 @@ zmodload zsh/zprof
 
 source ~/.profile
 
-fpath=($fpath ~/git/dotfiles/zsh ~/git/zsh-completions)
+fpath=($fpath ~/git/dotfiles/zsh/themes ~/git/zsh-completions)
 
 autoload -U compinit && compinit -u
-autoload -Uz promptinit && promptinit
+autoload -U promptinit && promptinit
 autoload -U colors && colors
 autoload -U bashcompinit && bashcompinit
 autoload -U zrecompile
