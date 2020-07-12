@@ -1,0 +1,285 @@
+#!/usr/bin/zsh
+
+# A fast, customizable, and informative zsh prompt.
+# Written by Nathaniel Maia, December 2018 - February 2019
+#
+# don't use $(), awk, sed or any of that noise
+# we want to be as fast and unbuffered as possible, use builtins!
+
+# load colors, needed to use %F{color}
+autoload -U colors && colors
+
+# load the needed prompt shell opts, see `man zshmisc`
+prompt_opts=(subst percent cr sp)
+
+prompt_defaults()
+{ # set prompt defaults that aren't already
+	nl=$'\n'
+	: "${PMT_GIT="1"}"
+	: "${PMT_TITLE="1"}"
+	: "${PMT_USERFMT=""}"
+	: "${PMT_TIMEFMT="%*"}"
+	: "${PMT_NEWLINE="$nl"}"
+	: "${PMT_SHCOL="%F{blue}"}"
+	: "${PMT_WRAPCOL="%F{magenta}"}"
+	: "${PMT_ECODE="%(?,, %F{red}%?)"}"
+	: "${PMT_USERCOL="%(!,%F{red},%F{cyan})"}"
+
+	(( ! ${#PMT_USERFMT} && EUID == 0 )) && PMT_USERFMT=" %n"
+
+	if [[ $PMT_NEWLINE ]]; then
+		: "${PMT_ARROW=">"}" # ➜ ➤ ► ▻ ▸ ▹ ❯
+		: "${PMT_LNBR1="┌"}" # ┌ ┏ ╓ ╒
+		: "${PMT_LNBR2="└"}" # └ ┗ ╙ ╘
+	else
+		: "${PMT_LNBR1=">"}"
+	fi
+
+	if [[ $PMT_ARROW != *"$PMT_WRAPCOL"* ]]; then
+		PMT_ARROW="${PMT_WRAPCOL}${PMT_ARROW}%f"
+		PMT_LNBR1="${PMT_WRAPCOL}${PMT_LNBR1}%f"
+		PMT_LNBR2="${PMT_WRAPCOL}${PMT_LNBR2}%f"
+	fi
+
+	: "${_GIT_PRE="("}"
+	: "${_GIT_SEP="|"}"
+	: "${_GIT_SUF=")"}"
+	: "${_GIT_BRCH="%F{magenta}"}"
+	: "${_GIT_CNFL="%F{red}x%f"}"
+	: "${_GIT_CHGD="%F{blue}+%f"}"
+	: "${_GIT_UNMG="%F{yellow}*%f"}"
+
+	if [[ $TERM =~ (linux|rxvt) ]]; then
+		[[ $TERM == linux ]] && PMT_TITLE=''
+		: "${_GIT_CLN="%F{green}Ok%f"}"
+		: "${_GIT_STGD="%F{red}.%f"}"
+		: "${_GIT_AHD="%F{green}^%f"}"
+		: "${_GIT_BHD="%F{red}v%f"}"
+		: "${_GIT_UNTR="%F{yellow}--%f"}"
+		: "${_GIT_STSH="%F{blue}S%f"}"
+	else
+		: "${_GIT_CLN="%F{green}%{✔%G%}%f"}"
+		: "${_GIT_STGD="%F{red}%{•%G%}%f"}"
+		: "${_GIT_AHD="%F{green}%{↑%G%}%f"}" # ⇡
+		: "${_GIT_BHD="%F{red}%{↓%G%}%f"}"   # ⇣
+		: "${_GIT_UNTR="%F{yellow}%{…%G%}%f"}"
+		: "${_GIT_STSH="%F{blue}%{⚑%G%}%f"}"
+	fi
+
+	unset nl
+}
+
+prompt_right()
+{ # prints the right prompt
+	typeset -i H B G S C M A U # ints
+	typeset s='' b='' d='' x='' y='' c="$PWD"
+
+	[[ -z $PMT_GIT || $COLUMNS -lt 40 || $c =~ (boot|bin|etc|usr|dev|lib|proc|sys|var) || $c == "$HOME" ]] ||
+		git status --porcelain=v2 -b 2>/dev/null |
+		{ # parse git status output
+			while read l; do case "$l" in
+				'u'*) (( U++ )) ;;
+				'?'*) (( A++ )) ;;
+				*'.head'*) b="${l##*.head }" ;;
+				*'.ab'*) l="${l#*.ab +}" H="${l% -*}" B="${l#* -}" ;;
+				*[1-2]*) x="${l:2:1}" y="${l:3:1}"
+					if [[ $x$y =~ (AA|AU|DD|DU|UA|UD|UU) ]]; then
+						(( C++ ))
+					else
+						[[ $x =~ [ACDMR] ]] && (( G++ ))
+						[[ $y =~ [CDMR]  ]] && (( M++ ))
+					fi ;;
+			esac done
+		}
+
+	if [[ $b ]]; then # in a git repo
+		while [[ $c && -z $d ]]; do # find .git/
+			[[ -d "$c/.git" ]] && d="$c/.git" || c="${c%/*}"
+		done
+		if [[ -f "$d/refs/stash" ]]; then
+			while read l; do
+				(( S++ ))
+			done < "$d/refs/stash"
+		fi
+		s+="%f$_GIT_PRE$_GIT_BRCH${b}%f"
+		(( H )) && s+="$_GIT_AHD${H}"
+		(( B )) && s+="$_GIT_BHD${B}"
+		s+="$_GIT_SEP"
+		(( G )) && s+="$_GIT_STGD${G}"
+		(( M )) && s+="$_GIT_CHGD${M}"
+		(( C )) && s+="$_GIT_CNFL${C}"
+		(( U )) && s+="$_GIT_UNMG${U}"
+		(( A )) && s+="$_GIT_UNTR${A}"
+		(( ! M && ! C && ! G && ! A && ! U )) && s+="$_GIT_CLN"
+		(( S )) && s+="$_GIT_STSH${S}"
+		s+="$_GIT_SUF%f"
+	fi
+
+	(( ${#PMT_TIMEFMT} && (COLUMNS > 70 || ${#PMT_NEWLINE} && COLUMNS > 50) )) && s+=" $PMT_TIMEFMT"
+
+	print -n "$s"
+}
+
+prompt_main()
+{ # prints the main prompt
+	typeset p='' pmt='' pid='' name='' ptype='' ppid=$PPID
+
+	p+="${PMT_LNBR1}${PMT_ECODE}${PMT_USERCOL}${PMT_USERFMT} ${PMT_WRAPCOL}"
+
+	# current working directory, truncated as needed
+	if (( ! ${#PMT_NEWLINE} && COLUMNS > 65 )); then
+		p+='%-40<..<%~%<<'
+	elif (( ${#PMT_NEWLINE} && COLUMNS > 40 )); then
+		p+='%-5<..<%~%<<'
+	else
+		p+='%1~'
+	fi
+
+	for (( shlvl=1; shlvl < SHLVL; shlvl++ )); do
+		read -r pid name ptype ppid rest < "/proc/$ppid/stat" 2>/dev/null || break
+		[[ $TMUX ]] && { read -r pid name server ptype ppid rest < "/proc/$PPID/stat" 2>/dev/null || break; }
+		typeset n="${name//[()]/}" # strip the () around name
+		[[ $TERM == *"$n"* || $n == *rxvt* ]] && break # we're done
+		if [[ $SHELL != *"$n"* || ($SHELL != *"$n"* && $n != *sh) ]]; then
+			(( shlvl-- ))
+			(( sub )) || sub=1 p="$p ${PMT_SHCOL}${name}%f"
+		fi
+	done
+
+	printf -v pmt '%*s' $shlvl && pmt="${pmt// /%#}" || pmt='%#'
+	print -n "${p}${PMT_NEWLINE}${PMT_LNBR2}${PMT_ARROW} ${PMT_USERCOL}${pmt}%f "
+}
+
+prompt_simpl_preview()
+{ # simulate the default prompt as a preview
+	printf -v spacer "%*s" $((COLUMNS - 40))
+	print "simpl theme:"
+	print -P "%F{magenta}┌ %-5<..<%~%<<\n└>%f %(!,%F{red},%F{cyan})%#%f command arg1 arg2 ... argn${spacer}%*"
+}
+
+prompt_simpl_help()
+{ # prompt help function called with: prompt simpl -h
+	cat << EOF
+Values used in the prompt with their default values, setting a value in
+your ~/.zshrc will override the default (even empty). Prompt expansion is
+used where possible to help keep the prompt understandable, fast, and simple.
+
+-------------------------------------------------------------------------------
+BASIC SETTINGS
+
+show current git branch and status, empty to disable
+    PMT_GIT=1
+
+set the terminal title for supporting terminals, empty to disable
+    PMT_TITLE=1
+
+user@host format string, unless root and USERFMT is empty
+    PMT_USERFMT=""
+
+time format string displayed in the right prompt
+    PMT_TIMEFMT="%*"
+
+color used for matching characters: LNBR1, LNBR2, and ARROW
+    PMT_WRAPCOL="%F{magenta}"
+
+username colour, red when user is root, cyan otherwise
+    PMT_USERCOL="%(!,%F{red},%F{cyan})"
+
+when the last command exits non-zero, show the exit code in red
+    PMT_ECODE="%(?,, %F{red}%?)"
+
+colour used for subshell process name (nnn, ranger, su, etc..)
+    PMT_SHCOL="%F{blue}"
+
+determine if the prompt will span multiple lines or not
+    PMT_NEWLINE=\$'\n'
+
+when PMT_NEWLINE not empty use full line wrap characters and an arrow prefix
+    PMT_LNBR1="┌"
+    PMT_LNBR2="└"
+    PMT_ARROW=">"
+
+when PMT_NEWLINE is empty only use line wrap character 1 as an arrow prefix
+    PMT_LNBR1=">"
+
+-------------------------------------------------------------------------------
+GIT SETTINGS
+
+    _GIT_PRE="("
+    _GIT_SEP="|"
+    _GIT_SUF=")"
+    _GIT_CNFL="%F{red}x%f"
+    _GIT_CHGD="%F{blue}+%f"
+    _GIT_BRCH="%F{magenta}%f"
+    _GIT_UNMG="%F{yellow}*%f"
+    _GIT_CLN="%F{green}%{✔%G%}%f"
+
+UNICODE SUPPORT
+
+    _GIT_AHD="%F{green}%{↑%G%}%f"
+    _GIT_BHD="%F{red}%{↓%G%}%f"
+    _GIT_STGD="%F{red}%{•%G%}%f"
+    _GIT_STSH="%%F{blue}%{⚑%G%}%f"
+    _GIT_UNTR="%F{yellow}%{…%G%}%f"
+
+NO UNICODE SUPPORT
+
+    _GIT_AHD="%F{green}^%f"
+    _GIT_BHD="%F{red}v%f"
+    _GIT_STGD="%F{red}.%f"
+    _GIT_STSH="%%F{blue}S%f"
+    _GIT_UNTR="%F{yellow}--%f"
+
+-------------------------------------------------------------------------------
+NOTES
+
+    When in nested shells the prompt will have an additional %# (prompt symbol)
+    added for each shell level.
+
+    The current working directory in the prompt will be truncated and expanded
+    to fit nearly any size terminal, this is handled by the TRAPWINCH function.
+
+    For supporting terminals, the title will be set to show the shell state,
+    support relies on your terminal being one of: xterm, st, or urxvt
+    Any xterm compliant terminal can work after a simple edit to the theme.
+
+    When in vi mode (by using setopt vi) the terminal cursor will be changed
+    between a block and bar based on the current mode,  insert: |  others: █
+    This is done by the zle-keymap-select function.
+
+    After running a command the right prompt will be removed,
+    this helps to avoid copy/paste issues due to the right prompt.
+
+EOF
+}
+
+TRAPWINCH()
+{ # redraw the prompt when the terminal is resized
+	zle && zle -R
+}
+
+prompt_defaults
+
+PROMPT='$(prompt_main)'
+PROMPT2='%_ ==> '
+PROMPT3=$'\nSelection: '
+PROMPT4='+%N:%I:%_ ==> '
+[[ $PMT_TIMEFMT || $PMT_GIT ]] && RPROMPT='$(prompt_right)'
+
+if [[ $TERM =~ (linux|xterm|rxvt|st|alacritty|kitty) ]]; then
+	# only change the cursor for vi-mode, in emacs-mode it serves no purpose
+	if bindkey -lL | grep -q 'viins\s*main'; then
+		CUR_BAR="\e[6 q" CUR_BLOCK="\e[2 q"
+		[[ $TERM == linux ]] && { CUR_BAR="\e[?0c" CUR_BLOCK="\e[?8c"; }
+		zle-keymap-select() { [[ $KEYMAP != vicmd ]] && printf "$CUR_BAR" || printf "$CUR_BLOCK"; }
+		zle -N zle-keymap-select
+		precmd_functions+=(zle-keymap-select)
+	fi
+	# don't set the title when in a tty
+	if [[ $PMT_TITLE && $TERM != linux ]]; then
+		ttl_precmd() { print -n "\e]2;zsh - ${(%):-%2/}\a"; }
+		ttl_preexec() { print -n "\e]2;zsh - ${(%):-%2/}: ${(q)2}\a"; }
+		precmd_functions+=(ttl_precmd)
+		preexec_functions+=(ttl_preexec)
+	fi
+fi
