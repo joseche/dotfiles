@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 alias history='history 0'
+alias hg='history | grep'
 
 # set nice ls
 if [ "$OS" = "Linux" ]; then

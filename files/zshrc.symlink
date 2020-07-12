@@ -1,4 +1,4 @@
-# `.zshrc' is sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
+# Sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
 
 # for profiling a slow zsh:
 zmodload zsh/zprof
@@ -46,6 +46,7 @@ setopt extended_glob
 setopt append_history
 setopt inc_append_history
 setopt extended_history
+setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt correct
@@ -60,18 +61,16 @@ REPORTTIME=10
 WATCH=notme
 WATCHFMT='%n %a %l from %m at %T.'
 
-source ~/git/zsh-history-substring-search/zsh-history-substring-search.zsh
-
 source ~/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source ~/git/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ~/git/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ~/git/zsh-256color/zsh-256color.plugin.zsh
 
 which aws_zsh_completer.sh >/dev/null 2>&1 && aws_zsh_completer.sh >/dev/null 2>&1
 
 which minikube 2>&1 >/dev/null && source <(minikube completion zsh)
-# which kubectl 2>&1 >/dev/null && source <(kubectl completion zsh)
+which kubectl 2>&1 >/dev/null && source <(kubectl completion zsh)
 which kubectl 2>&1 >/dev/null && export KUBE_EDITOR=vim
 
 # pip zsh completion start
@@ -98,18 +97,12 @@ function check_last_exit_code() {
 }
 
 bindkey -e
-bindkey "^r" history-incremental-search-backward
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
 
 if [ -f ~/.zshprompt ]; then
   source ~/.zshprompt
 fi
-
-if [ -f ~/.kubectl.zsh ]; then
-  source ~/.kubectl.zsh
-fi
-
 
 if [ -f $HOME/.localprofile ]; then
   source $HOME/.localprofile

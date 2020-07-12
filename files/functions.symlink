@@ -29,39 +29,16 @@ dockerips() {
   done
 }
 
-ssh_setup() {
-  envfile="$HOME/.ssh/environment"
-  mkdir -p "${envfile%/*}"
-  touch "$envfile"
-  chmod 600 "$envfile"
-  source "$envfile"
-  if [[ -n $SSH_AGENT_PID ]] && kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
-    # The PID is up but it could have been recycled - attempt to list keys.
-    # This will exit with 2 if the SSH_AUTH_SOCK is broken.
-    ssh-add -l &>/dev/null
-    if (($? != 2)); then
-        # echo "alreading running: $SSH_AGENT_PID"
-        return
-    fi
-  fi
-
-  # no agent, start it
-  echo "# Started $(date)" > "$envfile"
-  echo "SSH_AGENT_PID=$$; export SSH_AGENT_PID" >> "$envfile"
-  exec ssh-agent -D >> "$envfile"
-}
-
-
-function man() {
-  env \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
-    PAGER="${commands[less]:-$PAGER}" \
-    _NROFF_U=1 \
-      man "$@"
-}
+# function man() {
+#   env \
+#     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+#     LESS_TERMCAP_md=$(printf "\e[1;31m") \
+#     LESS_TERMCAP_me=$(printf "\e[0m") \
+#     LESS_TERMCAP_se=$(printf "\e[0m") \
+#     LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+#     LESS_TERMCAP_ue=$(printf "\e[0m") \
+#     LESS_TERMCAP_us=$(printf "\e[1;32m") \
+#     PAGER="${commands[less]:-$PAGER}" \
+#     _NROFF_U=1 \
+#       man "$@"
+# }

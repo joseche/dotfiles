@@ -1,27 +1,28 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2155
 # shellcheck disable=SC1090
+# shellcheck disable=SC2046
 # vim:syntax=sh
 
 export OS="$(uname -s)"
 
 # Z = shell without path
-Z=$(basename "$SHELL")
+# Z=$(basename "$SHELL")
 
-if [ -e /etc/profile ]; then
-   source /etc/profile
-fi
+# if [ -e /etc/profile ]; then
+#    source /etc/profile
+# fi
 
-if [ "$Z" = "zsh" ] && [ -e /etc/zshrc ]; then
+if [ -e /etc/zshrc ]; then
    source /etc/zshrc
 fi
 
-if [ "$Z" = "bash" ] && [ -f /usr/local/etc/bash_completion ]; then
-   source /usr/local/etc/bash_completion
-fi
-if [ "$Z" = "bash" ] && [ -f /usr/share/bash-completion/bash_completion ]; then
-   source /usr/share/bash-completion/bash_completion
-fi
+# if [ "$Z" = "bash" ] && [ -f /usr/local/etc/bash_completion ]; then
+#    source /usr/local/etc/bash_completion
+# fi
+# if [ "$Z" = "bash" ] && [ -f /usr/share/bash-completion/bash_completion ]; then
+#    source /usr/share/bash-completion/bash_completion
+# fi
 
 umask 0022
 
@@ -44,11 +45,6 @@ pathmunge()
   fi
 }
 
-# User configuration
-if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
-  pathmunge /usr/local/opt/coreutils/libexec/gnubin
-fi
-
 pathmunge "/sbin"
 pathmunge "/usr/sbin"
 pathmunge "/usr/local/sbin"
@@ -60,18 +56,7 @@ pathmunge "/opt/X11/bin"
 pathmunge "/bin"
 pathmunge "/usr/bin"
 pathmunge "/usr/local/bin"
-
-pathmunge "/opt/spark/bin"
 pathmunge "/snap/bin"
-
-pathmunge "/usr/local/MacGPG2/bin"
-pathmunge "/Users/c0d5x/Library/Android/sdk/platform-tools"
-
-if [ -d /usr/local/man ]; then
-  export MANPATH="/usr/local/man":$MANPATH
-fi
-
-export MANPAGER="less -X"
 
 # Java
 [ -x /usr/libexec/java_home ] && export JAVA_HOME=$(/usr/libexec/java_home)
@@ -83,7 +68,7 @@ source ~/.alias
 source ~/.functions
 
 # osx specific calls
-which macerror >/dev/null 2>&1 && source ~/.osx
+command -v macerror >/dev/null 2>&1 && source ~/.osx
 
 # keys, tokens, etc.
 [ -f ~/.keys ] && source ~/.keys
@@ -120,26 +105,6 @@ fi
 # gnu make options for fast compilation
 export MAKEFLAGS=j4
 
-# common
-# export NET=192.168.70
-
-# source /usr/local/share/zsh/site-functions/_aws
 export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 
-# added for i3 and others
-# export TERMINAL=gnome-terminal
-
-# generic aws setting
 export AWS_DEFAULT_REGION=us-east-1
-
-# Elasticsearch
-# ES='http://localhost:9200'
-# export ES
-
-# does not work with wayland
-# if which setxkbmap &>/dev/null; then
-#   setxkbmap \
-#   -variant altgr-intl \
-#   -option \
-#   -option compose:rctrl
-# fi
