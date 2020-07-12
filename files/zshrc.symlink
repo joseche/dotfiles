@@ -6,7 +6,7 @@ zmodload zsh/zprof
 
 source ~/.profile
 
-fpath=($fpath ~/git/dotfiles/zsh/themes ~/git/zsh-completions)
+fpath=($fpath ~/.zfunctions ~/git/zsh-completions)
 
 autoload -U compinit && compinit -u
 autoload -U promptinit && promptinit
