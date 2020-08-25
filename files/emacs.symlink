@@ -4,9 +4,9 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives
-	     '("melpa-stable" . "http://stable.melpa.org/packages/"))
+             '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (defvar elpa-packages '(
                         company
@@ -71,7 +71,7 @@
 (setq org-icalendar-use-scheduled '(event-if-todo
           event-if-not-todo todo-start))
 
-(setq org-agenda-files (list "~/git/orgmode/personal.org" 
+(setq org-agenda-files (list "~/git/orgmode/personal.org"
                      "~/git/orgmode/goals2016.org" ))
 
 (require 'org-ac)
