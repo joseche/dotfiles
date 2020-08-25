@@ -15,6 +15,10 @@ autoload -U bashcompinit && bashcompinit
 autoload -U zrecompile
 autoload -Uz vcs_info
 
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
 zmodload -i zsh/compctl
 zmodload -i zsh/complete
 zmodload -i zsh/complist
@@ -74,6 +78,8 @@ which minikube 2>&1 >/dev/null && source <(minikube completion zsh)
 which kubectl 2>&1 >/dev/null && source <(kubectl completion zsh)
 which kubectl 2>&1 >/dev/null && export KUBE_EDITOR=vim
 
+export SPACESHIP_BATTERY_THRESHOLD=20
+
 # pip zsh completion start
 function _pip_completion {
   local words cword
@@ -98,8 +104,10 @@ function check_last_exit_code() {
 }
 
 bindkey -e
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+# bindkey "^[[A" history-beginning-search-backward
+# bindkey "^[[B" history-beginning-search-forward
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
 
 if [ -f ~/.zshprompt ]; then
   source ~/.zshprompt
@@ -107,4 +115,8 @@ fi
 
 if [ -f $HOME/.localprofile ]; then
   source $HOME/.localprofile
+fi
+
+if [ -f $HOME/git/bash-insulter/src/bash.command-not-found ]; then
+  source ~/git/bash-insulter/src/bash.command-not-found
 fi
