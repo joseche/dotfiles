@@ -96,6 +96,7 @@ done
 
 alias aws_account_id='aws sts get-caller-identity --output text --query Account'
 alias aws_keys="export | grep AWS | sed 's,^,export ,'"
+alias aws_whoami="aws sts get-caller-identity"
 
 alias venv='source ~/git/hdm_e2e/venv/bin/activate;cd ~/git/hdm_e2e/end2end'
 
