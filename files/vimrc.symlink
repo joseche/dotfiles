@@ -22,6 +22,9 @@ set smartcase
 " let me change buffers when mod
 set hidden
 
+" look for files recursively
+set path+=**
+
 " set spell by default, in code it applies to comments
 " set spell
 
@@ -151,18 +154,13 @@ endif
 if has('python3')
   let g:python3_host_prog = '/home/jose/git/hdm_e2e/venv/bin/python'
   let g:pymode_python = 'python3'
-  let g:pymode_lint_checkers = 'pyflakes,mccabe'
+  " let g:pymode_lint_checkers = 'pyflakes,mccabe'
   " Enable breakpoints plugin
   let g:pymode_breakpoint = 1
   let g:pymode_breakpoint_key = '<leader>r'
 " else
 "   let g:pymode_python = 'python'
 endif
-
-" Fix powerline not part of virtualenv
-" python3 import sys
-" python3 import os
-" python3 sys.path.append(os.environ['HOME'] + "/.local/lib/python3.7/site-packages")
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = "\\"
@@ -225,28 +223,43 @@ let g:terraform_fmt_on_save=1
 let g:limelight_conceal_ctermfg = 'gray'
 
 let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 0
+let g:ale_fixers = {'python': ['isort','black']}
+let g:ale_linters = {'python': ['prospector']}
 
-let g:ale_python_mypy_options = '--ignore-missing-imports'
+" let g:ale_python_mypy_options = '--ignore-missing-imports'
 
 " }}}
 
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
-Plug 'mileszs/ack.vim'
+
+" Plug 'mileszs/ack.vim'
+
 Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'altercation/vim-colors-solarized'
+
 Plug 'mhinz/vim-startify'
 Plug 'vimwiki/vimwiki'
+
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
+
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+
 " Plug 'ludovicchabant/vim-gutentags'
+
 " Plug 'junegunn/vim-easy-align'
+
 " Plug 'junegunn/limelight.vim'
+
 Plug 'airblade/vim-gitgutter'
+
 Plug 'tpope/vim-surround'
 
 " Plug 'sirver/ultisnips'
@@ -256,13 +269,22 @@ Plug 'tpope/vim-surround'
 Plug 'hashivim/vim-terraform'
 " Plug 'pearofducks/ansible-vim'
 
+if has('nvim')
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+endif
 
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 Plug 'w0rp/ale'
-Plug 'psf/black'
+
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
+" black has a new func that is not updated yet, so pinned version
+Plug 'psf/black', { 'tag': '19.10b0' }
+
+" R programming
+" Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+
 call plug#end()
 " }}}
 
@@ -352,13 +374,6 @@ augroup end
 let g:solarized_termcolors=256
 set background=dark
 
-
-if has('gui_running')
-  " set background=black
-  set t_Co=16
-  " let g:solarized_termcolors=16
-endif
-
 " highlight ColorColumn guibg=#2d2d2d ctermbg=246
 " highlight Normal ctermfg=grey ctermbg=#0e143d
 
@@ -374,7 +389,8 @@ set cursorline
 
 try
     " colorscheme slate
-    colorscheme industry
+    " colorscheme industry
+    colorscheme koehler
     " colorscheme solarized
     " colorscheme torte
     " colorscheme dracula
@@ -388,6 +404,11 @@ endtry
 " enable transparent vim
 hi Normal guibg=NONE ctermbg=NONE
 
+if has('gui_running')
+  set background=dark
+  set t_Co=16
+  " let g:solarized_termcolors=16
+endif
 
 
 " }}}
