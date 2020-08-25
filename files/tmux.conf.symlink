@@ -7,13 +7,21 @@ set -goq @themepack-status-right-area-right-format "#h"
 set -g @themepack 'powerline/double/magenta'
 
 set -g mouse on
+set -g set-titles on
+set -g set-titles-string "tmux.#I.#W"
+set -g bell-action any
+set -g history-limit 5000
 
 setw -g mode-keys vi
+
 bind-key -T copy-mode-vi v send-keys -X begin-selection
 bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 bind y run-shell "tmux show-buffer|xsel --clipboard --input" \; display-message "Copied to system clipboard"
 
 bind | split-window -h
 bind - split-window -v
+
+bind-key -n C-right next
+bind-key -n C-left prev
 
 run -b '~/.tmux/plugins/tpm/tpm'
