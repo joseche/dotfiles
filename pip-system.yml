@@ -34,7 +34,7 @@
           #       name: "{{ packages }}"
           #       state: present
           #       extra_args: '-U --user'
-
+  tasks:
     - name: pip-3 modules
       pip:
         executable: pip3
