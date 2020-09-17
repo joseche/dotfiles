@@ -3,6 +3,12 @@
   yum: name=python3-dnf state=present
   become: true
 
+- name: Fastest mirror
+  become: true
+  lineinfile: dest=/etc/dnf/dnf.conf
+              line="fastestmirror=true"
+              state=present
+
 - name: "Add base packages for servers Fedora"
   dnf:
     state: present
@@ -21,7 +27,6 @@
       - rubygems
       - strace
       - tree
-      - vim
       - wget
       - zsh
   become: true
@@ -31,16 +36,10 @@
   user: name={{ansible_user_id}} shell=/usr/bin/zsh
   become: true
 
-- name: Fastest mirror
-  become: true
-  lineinfile: dest=/etc/dnf/dnf.conf
-              line="fastestmirror=true"
-              state=present
-
 - name: "Add base packages for Fedora"
   dnf:
     name:
-      - adb
+      # - adb
       - ansible
       - ansible-lint
       - bash-completion
@@ -50,28 +49,28 @@
       - dnf-plugins-core
       - fortune-mod
       - gcc-c++
-      - gitk
+      # - gitk
       - global-ctags
       - gnome-tweak-tool
       - golang
       - kmod-devel
-      - libvirt-daemon-driver-vbox
-      - libvirt-daemon-vbox
+      # - libvirt-daemon-driver-vbox
+      # - libvirt-daemon-vbox
       - powerline
       - pylint
       - python3-devel
-      - rhythmbox
+      # - rhythmbox
       - ShellCheck
       - strace
-      - terminology
+      # - terminology
       - tmux
       - transmission-gtk
-      - vagrant
-      - vagrant-lxc
-      - vim-enhanced
-      - vim-powerline
-      - vim-X11
-      - virt-manager
+      # - vagrant
+      # - vagrant-lxc
+      # - vim-enhanced
+      # - vim-powerline
+      # - vim-X11
+      # - virt-manager
       - x11-ssh-askpass
       - xbacklight
     state: present

@@ -14,7 +14,7 @@
         - ~/.config/yamllint
         - ~/.zfunctions
       file:
-        path: "{{item }}"
+        path: "{{ item }}"
         state: directory
         mode: 0700
         force: true
@@ -22,7 +22,7 @@
     # shell configuration
     - name: shell configs
       file:
-        src: "{{item.src }}"
+        src: "{{ item.src }}"
         dest: "{{ item.dst }}"
         state: link
         force: true
