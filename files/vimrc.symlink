@@ -167,6 +167,10 @@ let g:maplocalleader = "\\"
 
 let g:gutentags_ctags_tagfile = '.git/tags'
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " Macros
 let @e = ':s,=,: ,g'
 let @b = '/ xiwww'
@@ -262,8 +266,8 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-surround'
 
-" Plug 'sirver/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Plug 'phenomenes/ansible-snippets'
 Plug 'hashivim/vim-terraform'
