@@ -49,28 +49,19 @@
       - dnf-plugins-core
       - fortune-mod
       - gcc-c++
-      # - gitk
       - global-ctags
       - gnome-tweak-tool
       - golang
-      - kmod-devel
-      # - libvirt-daemon-driver-vbox
-      # - libvirt-daemon-vbox
       - powerline
       - pylint
       - python3-devel
-      # - rhythmbox
       - ShellCheck
       - strace
-      # - terminology
       - tmux
       - transmission-gtk
-      # - vagrant
-      # - vagrant-lxc
       # - vim-enhanced
       # - vim-powerline
       # - vim-X11
-      # - virt-manager
       - x11-ssh-askpass
       - xbacklight
     state: present

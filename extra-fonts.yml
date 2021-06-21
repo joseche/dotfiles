@@ -9,12 +9,12 @@
         version: "master"
       notify: powerline install
 
-    - name: Checkout Nerd fonts
-      git:
-        repo: https://github.com/ryanoasis/nerd-fonts
-        dest: ~/git/nerdfonts
-        version: "master"
-      notify: nerdfonts install
+    # - name: Checkout Nerd fonts
+    #   git:
+    #     repo: https://github.com/ryanoasis/nerd-fonts
+    #     dest: ~/git/nerdfonts
+    #     version: "master"
+    #   notify: nerdfonts install
 
   handlers:
     - name: powerline install
@@ -22,9 +22,9 @@
       args:
         chdir: ~/git/fonts
 
-    - name: nerdfonts install
-      shell: ~/git/nerdfonts/install.sh
-      args:
-        chdir: ~/git/nerdfonts
+    # - name: nerdfonts install
+    #   shell: ~/git/nerdfonts/install.sh
+    #   args:
+    #     chdir: ~/git/nerdfonts
 
 # vim:ft=ansible:

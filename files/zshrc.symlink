@@ -120,3 +120,11 @@ fi
 if [ -f $HOME/git/bash-insulter/src/bash.command-not-found ]; then
   source ~/git/bash-insulter/src/bash.command-not-found
 fi
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
+
+if [ -d $HOME/.krew ]; then
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi

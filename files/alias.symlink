@@ -31,10 +31,11 @@ alias cd=cdl
 alias dmesg='sudo dmesg'
 alias c='clear'
 alias e='printf "\ec"'
-alias rm='rm -rf '
+# alias rm='rm -rf '
 alias hg='history|grep '
 alias wallpaper='~/git/wallpaper_manager/src/wallpaper.py'
 alias listening='netstat -ant|grep tcp|grep -i listen|sort'
+alias random='openssl rand -base64 128'
 
 # cds
 alias ..='cd ..'
@@ -101,5 +102,8 @@ alias aws_whoami="aws sts get-caller-identity"
 alias venv='source ~/git/hdm_e2e/venv/bin/activate;cd ~/git/hdm_e2e/end2end'
 
 alias docker-cleanup='docker rm $(docker ps -a -q); docker volume rm $(docker volume ls -q)'
+
+alias kube_badpods="kubectl get pods --all-namespaces | grep -Ev '([0-9]+)/\1'"
+alias k="kubectl"
 
 # vim:syntax=sh

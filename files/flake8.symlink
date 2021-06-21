@@ -1,6 +1,6 @@
 [flake8]
 ignore = E501,C1801,I900,W503
-exclude = 
+exclude =
     .git,
     __pycache__,
     build,
