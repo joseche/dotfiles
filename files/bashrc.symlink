@@ -47,6 +47,6 @@ test -e "$HOME/.alias" 2>/dev/null && source "$HOME/.alias"
 
 export PS1='\u @ \h \w \$ '
 
-if command -v fortune >/dev/null 2>&1; then
-  fortune -s
-fi
+# if command -v fortune >/dev/null 2>&1; then
+#   fortune -s
+# fi
