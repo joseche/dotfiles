@@ -84,6 +84,12 @@ alias df='df -H|grep -v loop'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 # alias ping='ping -c 4'
 
+if command -v exa >/dev/null 2>&1; then
+  alias ls='exa'
+  alias ll='exa -la'
+  alias la='exa -la'
+fi
+
 if command -v tmux >/dev/null 2>&1; then
   alias ta='tmux attach -d -t'
   alias tn='tmux new -s $(basename $(pwd))'
@@ -98,6 +104,7 @@ done
 alias aws_account_id='aws sts get-caller-identity --output text --query Account'
 alias aws_keys="export | grep AWS | sed 's,^,export ,'"
 alias aws_whoami="aws sts get-caller-identity"
+alias open_sgs="aws ec2 describe-security-groups --filters Name=ip-permission.from-port,Values=22 Name=ip-permission.to-port,Values=22 Name=ip-permission.cidr,Values='0.0.0.0/0' --query 'SecurityGroups[*].{Name:GroupName}'"
 
 alias venv='source ~/git/hdm_e2e/venv/bin/activate;cd ~/git/hdm_e2e/end2end'
 
