@@ -9,12 +9,14 @@ export OS="$(uname -s)"
 # Z = shell without path
 # Z=$(basename "$SHELL")
 
-# if [ -e /etc/profile ]; then
-#    source /etc/profile
-# fi
+if [ -e /etc/profile ]; then
+  source /etc/profile
+fi
 
-if [ -e /etc/zshrc ]; then
-   source /etc/zshrc
+if [[ $SHELL =~ "zsh" ]]; then
+  if [ -e /etc/zshrc ]; then
+    source /etc/zshrc
+  fi
 fi
 
 # if [ "$Z" = "bash" ] && [ -f /usr/local/etc/bash_completion ]; then
@@ -37,9 +39,9 @@ pathmunge()
   if [ -d "$1" ]; then
     if ! echo "$PATH" | grep -qE "(^|:)$1($|:)" ; then
       if [ "$2" = "after" ] ; then
-          PATH=$PATH:$1
+        PATH=$PATH:$1
       else
-          PATH=$1:$PATH
+        PATH=$1:$PATH
       fi
     fi
   fi
@@ -74,14 +76,14 @@ command -v macerror >/dev/null 2>&1 && source ~/.osx
 [ -f ~/.keys ] && source ~/.keys
 
 if command -v nvim >/dev/null 2>&1; then
-   export EDITOR=nvim
-   export VISUAL=nvim
+  export EDITOR=nvim
+  export VISUAL=nvim
 elif command -v vim >/dev/null 2>&1; then
-   export EDITOR=vim
-   export VISUAL=vim
+  export EDITOR=vim
+  export VISUAL=vim
 else
-   export EDITOR=vi
-   export VISUAL=vi
+  export EDITOR=vi
+  export VISUAL=vi
 fi
 
 # Android
@@ -105,6 +107,5 @@ fi
 # gnu make options for fast compilation
 export MAKEFLAGS=j4
 
-export VAGRANT_DEFAULT_PROVIDER='virtualbox'
-
+# export VAGRANT_DEFAULT_PROVIDER='virtualbox'
 # export AWS_DEFAULT_REGION=us-east-2
