@@ -49,7 +49,7 @@ setopt auto_cd
 setopt complete_aliases
 setopt extended_glob
 setopt append_history
-setopt inc_append_history
+# setopt inc_append_history
 setopt extended_history
 setopt share_history
 setopt hist_expire_dups_first
@@ -122,7 +122,7 @@ if [ -f $HOME/git/bash-insulter/src/bash.command-not-found ]; then
 fi
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
+  source /etc/profile.d/vte.sh
 fi
 
 if [ -d $HOME/.krew ]; then
