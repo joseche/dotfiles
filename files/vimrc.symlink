@@ -152,7 +152,7 @@ endif
 
 " vim uses
 if has('python3')
-  let g:python3_host_prog = '/home/jose/git/hdm_e2e/venv/bin/python'
+  let g:python3_host_prog = '/home/jose.hidalgo/git/hdm_e2e/venv/bin/python'
   let g:pymode_python = 'python3'
   " let g:pymode_lint_checkers = 'pyflakes,mccabe'
   " Enable breakpoints plugin
@@ -280,7 +280,7 @@ Plug 'hashivim/vim-terraform'
 
 Plug 'hynek/vim-python-pep8-indent'
 " Plug 'davidhalter/jedi-vim'
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 

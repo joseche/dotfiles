@@ -1,3 +1,7 @@
 [default]
 output = json
 region = us-east-1
+[profile default_tmp_profile]
+region = us-east-1
+[profile _tmp_profile]
+region = us-east-1
