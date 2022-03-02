@@ -28,9 +28,9 @@ fi
 
 umask 0022
 
-if [ -z "$LS_COLORS" ]; then
-  eval $(dircolors)
-fi
+# if [ -z "$LS_COLORS" ]; then
+#   eval $(dircolors)
+# fi
 
 export TZ='America/Costa_Rica'
 
