@@ -1,12 +1,12 @@
 [defaults]
-host_key_checking = False
-nocows = 1
-# inventory = ~/.ansible.inventory
-gathering = smart
-fact_caching_timeout = 30
-fact_caching = jsonfile
 fact_caching_connection = ~/tmp/ansible_fact_cache
+fact_caching = jsonfile
+fact_caching_timeout = 30
 forks = 20
+gathering = smart
+host_key_checking = False
+inventory = ~/.ansible.inventory
+nocows = 1
 private_key_file = ~/.ssh/id_rsa
 retry_files_enabled = False
 retry_files_save_path = ~/tmp/
