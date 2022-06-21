@@ -1,7 +1,132 @@
-[default]
-output = json
+[profile Morpheus]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 540663156536 
+sso_role_name = AdministratorAccess
 region = us-east-1
-[profile default_tmp_profile]
+
+[profile rx-platform-production]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 772220296558 
+sso_role_name = AdministratorAccess
 region = us-east-1
-[profile _tmp_profile]
+
+[profile ReverseDelta]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 715183201961
+sso_role_name = AdministratorAccess
+region = eu-west-1
+
+[profile rx-corp]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 298847656022 
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-sandbox]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 513666353144
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-build]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 326712938541
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-dw-prod]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 715807065211 
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-dw-stage]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 312852964512 
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-platform-dev]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 176435145581
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-platform-stage]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 522447036859
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-pubsite-prod]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 247165353608
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-pubsite-stage]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 514157979091
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-rd-prod]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 644021225640
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-rd-prod-uk]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 488319974538
+sso_role_name = AdministratorAccess
+region = eu-west-1
+
+[profile rx-rd-prod-us]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 096116378343
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-rd-stage-uk]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 300054071417
+sso_role_name = AdministratorAccess
+region = eu-west-1
+
+[profile rx-rd-stage-us]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 846510307804
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile rx-security]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 986038512977
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile root]
+sso_start_url = https://d-90675070de.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 537371870719
+sso_role_name = AdministratorAccess
 region = us-east-1

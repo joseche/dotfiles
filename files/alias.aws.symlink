@@ -1,0 +1,1 @@
+alias aws-list-instances="aws --profile personal --region us-east-1 ec2 describe-instances|jq '.Reservations[].Instances[]|[.InstanceId,.InstanceType,.PrivateDnsName,.PrivateIpAddress]'"

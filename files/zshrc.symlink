@@ -129,5 +129,14 @@ if [ -d $HOME/.krew ]; then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
+if [ -d /opt/apache-maven-3.5.4/bin ]; then
+  export PATH=$PATH:/opt/apache-maven-3.5.4/bin
+fi
+
+if [ -d /opt/homebrew/opt/mysql-client/bin ]; then
+  export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+fi
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+complete -C /opt/homebrew/bin/aws_completer aws

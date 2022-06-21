@@ -49,7 +49,7 @@ if [ "$OS" = "Darwin" ]; then
 # xquartz in mac seems to always warn about dynamic cookies..
 # alias ssh='ssh -y'
 # because mac < linux
-  alias ssh='TERM=xterm-256color ssh -y'
+  alias ssh='TERM=xterm-256color ssh'
 fi
 
 # ansible
@@ -106,7 +106,7 @@ alias aws_keys="export | grep AWS | sed 's,^,export ,'"
 alias aws_whoami="aws sts get-caller-identity"
 alias open_sgs="aws ec2 describe-security-groups --filters Name=ip-permission.from-port,Values=22 Name=ip-permission.to-port,Values=22 Name=ip-permission.cidr,Values='0.0.0.0/0' --query 'SecurityGroups[*].{Name:GroupName}'"
 
-alias venv='source ~/git/hdm_e2e/venv/bin/activate;cd ~/git/hdm_e2e/end2end'
+# alias venv='source ~/git/hdm_e2e/venv/bin/activate;cd ~/git/hdm_e2e/end2end'
 
 alias docker-cleanup='docker rm $(docker ps -a -q); docker volume rm $(docker volume ls -q)'
 

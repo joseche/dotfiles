@@ -39,6 +39,7 @@
         - {src: "{{ playbook_dir }}/files/functions.symlink", dst: "~/.functions"}
         - {src: "{{ playbook_dir }}/files/alias.symlink", dst: "~/.alias"}
         - {src: "{{ playbook_dir }}/files/alias.git.symlink", dst: "~/.alias.git"}
+        - {src: "{{ playbook_dir }}/files/alias.aws.symlink", dst: "~/.alias.aws"}
         - {src: "{{ playbook_dir }}/files/ctags.symlink", dst: "~/.ctags"}
         - {src: "{{ playbook_dir }}/files/emacs.symlink", dst: "~/.emacs"}
         - {src: "{{ playbook_dir }}/files/tmux.conf.symlink", dst: "~/.tmux.conf"}
