@@ -4,58 +4,45 @@
   user: name={{ansible_user_id}} shell=/bin/zsh
   become: true
 
-- name: "Add repo for neovim for debian"
-  apt_repository: repo='ppa:neovim-ppa/unstable'
-  become: true
-
-- name: "Add repo for atom for debian"
-  become: true
-  apt_repository: repo='ppa:webupd8team/atom'
-
 - name: "Add base packages for servers debian"
-  apt: name={{item}} state=present
+  apt:
+    name:
+      - atop
+      - awscli
+      - bmon
+      - build-essential
+      - curl
+      - exuberant-ctags
+      - git
+      - mailutils
+      - neovim
+      - nmap
+      - powerline
+      - python3-powerline
+      - sqlite3
+      - sysstat
+      - tree
+      - wget
+      - zsh
+    state: present
   become: true
   become_user: root
-  with_items:
-    - sysstat
-    - zsh
-    - git
-    - build-essential
-    - awscli
-    - curl
-    - wget
-    - nmap
-    - exuberant-ctags
-    - bpython3
-    - mailutils
-    - tree
-    - powerline
-    - python3-powerline
-    - neovim
-    - atop
-    - sqlite3
-    - bmon
 
 - name: "Add base packages for debian"
-  apt: name={{item}} state=present
+  apt:
+    name:
+      - fonts-powerline
+      - gitk
+      - golang
+      - macchanger
+      - python3-dev
+      - python3-pudb
+      - terminology
+      - transmission-gtk
+      - vagrant
+      - vagrant-lxc
+      - wifite
+      - wireshark
+    state: present
   become: true
   become_user: root
-  with_items:
-    - terminology
-    - python3-dev
-    - python3-pudb
-    - wifite
-    - wireshark
-    - macchanger
-    - gitk
-    - libvirt-bin
-    - vagrant
-    - vagrant-lxc
-    - qemu-kvm
-    - lxctl
-    - golang
-    - ansible
-    - rhythmbox
-    - rhythmbox-plugins
-    - fonts-powerline
-    - transmission-gtk

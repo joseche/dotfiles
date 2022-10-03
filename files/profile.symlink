@@ -61,7 +61,7 @@ pathmunge "/usr/local/bin"
 pathmunge "/snap/bin"
 
 # Java
-[ -x /usr/libexec/java_home ] && export JAVA_HOME=$(/usr/libexec/java_home)
+# [ -x /usr/libexec/java_home ] && export JAVA_HOME=$(/usr/libexec/java_home)
 
 # aliases, sub alias should be called from it
 source ~/.alias

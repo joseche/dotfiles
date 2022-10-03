@@ -53,9 +53,9 @@
         - {src: "{{ playbook_dir }}/files/yamllint.symlink", dst: "~/.config/yamllint/config"}
 
     # clone zsh plugins
-    - name: "Checkout git://github.com/zsh-users/zsh-completions.git"
+    - name: "Checkout https://github.com/zsh-users/zsh-completions.git"
       git:
-        repo: git://github.com/zsh-users/zsh-completions.git
+        repo: https://github.com/zsh-users/zsh-completions.git
         dest: ~/git/zsh-completions
         force: true
         version: master
@@ -75,7 +75,7 @@
 
     - name: "Checkout tmux tpm"
       git:
-        repo: git://github.com/tmux-plugins/tpm.git
+        repo: https://github.com/tmux-plugins/tpm.git
         dest: ~/.tmux/plugins/tpm
         force: true
         version: master

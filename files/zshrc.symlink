@@ -1,7 +1,7 @@
 # Sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
 
 # for profiling a slow zsh:
-zmodload zsh/zprof
+# zmodload zsh/zprof
 # then when you get the prompt type: zprof
 
 source ~/.profile
@@ -121,9 +121,9 @@ if [ -f $HOME/git/bash-insulter/src/bash.command-not-found ]; then
   source ~/git/bash-insulter/src/bash.command-not-found
 fi
 
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-  source /etc/profile.d/vte.sh
-fi
+# if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+#   source /etc/profile.d/vte.sh
+# fi
 
 if [ -d $HOME/.krew ]; then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -139,4 +139,4 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-complete -C /opt/homebrew/bin/aws_completer aws
+test -e /opt/homebrew/bin/aws_completer && complete -C /opt/homebrew/bin/aws_completer aws
