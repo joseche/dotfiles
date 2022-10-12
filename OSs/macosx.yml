@@ -18,7 +18,6 @@
     - wget
     - bash
     - emacs
-    - gdb
     - m4
     - make
     - file-formula
