@@ -142,3 +142,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 test -e /opt/homebrew/bin/aws_completer && complete -C /opt/homebrew/bin/aws_completer aws
 
 SPACESHIP_PROMPT_ASYNC=false
+
+# SDKMAN!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
