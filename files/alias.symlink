@@ -3,26 +3,20 @@
 alias history='history 0'
 alias hg='history | grep'
 
-# set nice ls
-if [ "$OS" = "Linux" ]; then
+if command -v exa >/dev/null 2>&1; then
+  alias ls='exa'
+  alias ll='exa -la'
+  alias la='exa -la'
+elif [ "$OS" = "Linux" ]; then
   alias l='ls -h --color'
   alias ls='ls -h --color'
   alias ll='ls -h -l --color'
   alias la='ls -hla --color'
-else
-  # OSX with gnu ls ?
-  if command -v gls >/dev/null 2>&1; then
-    alias l='gls -h --color'
-    alias ls='gls -h --color'
-    alias ll='gls -lha --color'
-    alias la='gls -lha --color'
-  else
-    # probably OSX without gnu ls
-    alias l='ls -h'
-    alias ls='ls -h'
-    alias ll='ls -lha'
-    alias la='ls -lha'
-  fi
+elif command -v gls >/dev/null 2>&1; then
+  alias l='gls -h --color'
+  alias ls='gls -h --color'
+  alias ll='gls -lha --color'
+  alias la='gls -lha --color'
 fi
 
 alias bc='bc -q -l'
@@ -83,12 +77,6 @@ alias svim='sudo vim'
 alias df='df -H|grep -v loop'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 # alias ping='ping -c 4'
-
-if command -v exa >/dev/null 2>&1; then
-  alias ls='exa'
-  alias ll='exa -la'
-  alias la='exa -la'
-fi
 
 if command -v tmux >/dev/null 2>&1; then
   alias ta='tmux attach -d -t'
