@@ -123,6 +123,8 @@ prompt_command () {
 
   # fix history to be always up-to-date
   history -a; history -c; history -r
+  # update the title bar for xterms
+  echo -en "\033]0;$PWD\a"
 }
 
 PROMPT_COMMAND=prompt_command
