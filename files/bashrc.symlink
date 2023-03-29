@@ -75,6 +75,7 @@ git_status () {
   ahead=$(echo $stdout|grep -i ahead)
   behind=$(echo $stdout|grep -i behind)
   tobecom=$(echo $stdout|grep 'to be committed')
+  unmerged=$(echo $stdout|grep -i unmerged)
 
   if [ -n "${unstaged}" ]; then
     status+="~"
@@ -91,6 +92,10 @@ git_status () {
   if [ -n "${tobecom}" ]; then
     status+="↺"
   fi
+  if [ -n "${unmerged}" ]; then
+    status+="☠"
+  fi
+
   if [ -n "${status}" ]; then
     status=":${status}"
   fi
