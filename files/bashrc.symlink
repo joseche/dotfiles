@@ -68,13 +68,28 @@ git_branch () {
 
 git_status () {
   status=""
-  unstaged=$(git status|grep -i 'not staged')
-  untracked=$(git status|grep -i untracked)
+  stdout=$(git status)
+
+  unstaged=$(echo $stdout|grep -i 'not staged')
+  untracked=$(echo $stdout|grep -i untracked)
+  ahead=$(echo $stdout|grep -i ahead)
+  behind=$(echo $stdout|grep -i behind)
+  tobecom=$(echo $stdout|grep 'to be committed')
+
   if [ -n "${unstaged}" ]; then
     status+="~"
   fi
   if [ -n "${untracked}" ]; then
     status+="±"
+  fi
+  if [ -n "${ahead}" ]; then
+    status+="↑"
+  fi
+  if [ -n "${behind}" ]; then
+    status+="↓"
+  fi
+  if [ -n "${tobecom}" ]; then
+    status+="↺"
   fi
   if [ -n "${status}" ]; then
     status=":${status}"
