@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-[ -n "$_BASHRC" ] && return || readonly _BASHRC=1
+# [ -n "$_BASHRC" ] && return || readonly _BASHRC=1
 
 # shellcheck source=./profile.symlink
 source "$HOME/.profile"
@@ -76,7 +76,10 @@ git_status () {
   if [ -n "${untracked}" ]; then
     status+="±"
   fi
-  echo $status
+  if [ -n "${status}" ]; then
+    status=":${status}"
+  fi
+  echo "$status"
 }
 
 prompt_command () {
@@ -86,7 +89,7 @@ prompt_command () {
   local ps1="[${GREEN}\w${RESET}] "
   if [ -n "$git_name" ]; then
     status=$(git_status)
-    ps1+="[${BLUE}${git_name}:${RED}${status}${RESET}] "
+    ps1+="[${BLUE}${git_name}${RED}${status}${RESET}] "
   fi
   if [ $exit_code -ne 0 ]; then
     ps1+="[${RED}Exit ${exit_code}${RESET}] "
