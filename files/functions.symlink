@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # vim:syntax=sh:ft=sh
 
+[ -n "$_MY_FUNCTIONS" ] && return || readonly _MY_FUNCTIONS=1
+
 set_title () {
   echo -n "\033]0;$1\007"
 }
@@ -27,4 +29,35 @@ dockerips() {
   for id in $DOCKER_IDS; do
     docker inspect "$id" --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{.Name}}'
   done
+}
+
+numbers() {
+  declare -i start=1
+  declare -i finish=10
+  declare -i incr=1
+  if [ $# -eq 1 ]; then
+    finish=$1
+  elif [ $# -eq 2 ]; then
+    start=$1
+    finish=$2
+  elif [ $# -eq 3 ]; then
+    start=$1
+    incr=$2
+    finish=$3
+  fi
+  for n in $(seq $start $incr $finish); do
+    echo number $n
+  done
+}
+
+tput_colors () {
+   for fg_color in {0..7}; do
+      set_foreground=$(tput setaf $fg_color)
+      for bg_color in {0..7}; do
+          set_background=$(tput setab $bg_color)
+          echo -n $set_background$set_foreground
+          printf ' F:%s B:%s ' $fg_color $bg_color
+      done
+      echo $(tput sgr0)
+    done
 }

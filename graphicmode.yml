@@ -12,6 +12,7 @@
         - ~/.config/i3
         - ~/.config/i3status
         - ~/.local/share/fonts
+      when: ansible_os_family != "Darwin"
 
     - name: shell configs
       file:
@@ -42,3 +43,4 @@
   handlers:
     - name: fontcache
       shell: fc-cache -f ~/.local/share/fonts
+      when: ansible_os_family != "Darwin"

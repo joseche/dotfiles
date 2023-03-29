@@ -59,8 +59,8 @@ setopt auto_menu
 
 
 HISTFILE="$HOME/.zsh_history"
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=10000
+SAVEHIST=10000
 
 REPORTTIME=10
 WATCH=notme
@@ -143,6 +143,7 @@ test -e /opt/homebrew/bin/aws_completer && complete -C /opt/homebrew/bin/aws_com
 
 SPACESHIP_PROMPT_ASYNC=false
 
-# SDKMAN!
+source ~/py3/bin/activate
+
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

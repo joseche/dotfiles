@@ -1,10 +1,8 @@
-" vim: syntax=vim foldmethod=marker foldlevel=1
-" Set options {{{
-
-" removed due to inconsistencies
-" set nocompatible
 
 syntax on
+filetype plugin on
+filetype indent on
+
 set t_Co=256
 
 " display number on left side and status bar
@@ -38,22 +36,13 @@ set mouse=a
 set autoindent
 set smartindent
 
-" set shell to sh for basic func
-set shell=/bin/sh
+" set shell
+set shell=/bin/bash
 
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
 scriptencoding utf-8
-if has('multi_byte')
-  if &termencoding ==# ''
-    let &termencoding = &encoding
-  endif
-
-  setglobal fileencoding=utf-8
-  "setglobal bomb
-  set fileencodings=ucs-bom,utf-8,latin1
-endif
 
 " lines from cursor to bottom
 set scrolloff=10
@@ -78,7 +67,7 @@ set noerrorbells
 set visualbell
 set t_vb=
 
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 " on splits
 set splitright
@@ -91,15 +80,15 @@ set fileformats=unix,mac,dos
 set foldmethod=indent
 set foldlevel=5
 
-set textwidth=0        " more realistic size
+set textwidth=120        " more realistic size
 set colorcolumn=0
-
 
 " Tabs
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" Wrap
 set wrap
 set linebreak
 set showbreak=↪
@@ -114,183 +103,26 @@ set showmode
 set list
 " set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,space:·
 set listchars=tab:▸\ ,trail:·,nbsp:·
-" →
-
-" history, backups and undo levels
-set undofile
-set history=1000
-set undolevels=1000
-set undoreload=10000
-set backup                        " enable backups
-set noswapfile
-set undodir=~/.vim/tmp/undo//     " undo files
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap//   " swap files
-" Make those folders automatically if they don't already exist.
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), 'p')
-endif
-if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), 'p')
-endif
-if !isdirectory(expand(&directory))
-    call mkdir(expand(&directory), 'p')
-endif
 
 if !has('nvim')
   set viminfo=%,'10,/50,:100,f9,n~/.viminfo
 endif
 
-filetype plugin on
-filetype indent on
-
-
-" set omnifunc=syntaxcomplete#Complete
-if has('autocmd') && exists('+omnifunc')
-   set omnifunc=autocomplete
-endif
-
-" vim uses
-if has('python3')
-  let g:python3_host_prog = '~/py3/bin/python'
-  let g:pymode_python = 'python3'
-  " let g:pymode_lint_checkers = 'pyflakes,mccabe'
-  " Enable breakpoints plugin
-  let g:pymode_breakpoint = 1
-  let g:pymode_breakpoint_key = '<leader>r'
-" else
-"   let g:pymode_python = 'python'
-endif
-
-
-let g:mapleader = "\<Space>"
-let g:maplocalleader = "\\"
-
-let g:gutentags_ctags_tagfile = '.git/tags'
-
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+set omnifunc=syntaxcomplete#Complete
 
 " Macros
-let @e = ':s,=,: ,g'
-let @b = '/ xiwww'
-" let @c = 'v$hyjDpjkj'
-let @c = 'v$h"tyjD"tp'
-let @h = 'ggO# coding: utf-8"""HeaderThis is the header"""'
 
-" }}}
-
-" Plugin configurations {{{
-let g:easytags_async = 1
-let g:easytags_file = '~/.vim/tags'
-
-let g:netrw_banner                       = 0
-let g:netrw_browse_split                 = 2
-let g:netrw_browsex_viewer               = 'gnome-open'
-let g:netrw_winsize                      = 25
-"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts            = 1
-" let g:airline_section_b                  = '%{strftime("%F %H:%M")}'
-
-" airline symbols
-let g:airline_left_sep                   = ''
-let g:airline_left_alt_sep               = ''
-let g:airline_right_sep                  = ''
-let g:airline_right_alt_sep              = ''
-
-let g:airline#extensions#ale#enabled     = 1
-
-let g:python_highlight_all               = 1
-
-" let g:org_agenda_files                   = ['~/git/work/org/*.org']
-
+" Plugin configurations
 let g:Powerline_symbols     = 'fancy'
-
-let g:vimwiki_hl_headers    = 1
-let g:vimwiki_hl_cb_checked = 1
-let g:vimwiki_path=$HOME.'/git/work/vimwiki'
-let g:vimwiki_html_path=$HOME.'/git/work/vimwiki_html'
-let g:vimwiki_list = [{       'path': vimwiki_path,
-                       \ 'path_html': vimwiki_html_path,
-                       \ 'template_path': vimwiki_html_path.'/assets',
-                       \ 'template_default': 'default',
-                       \ 'template_ext': '.tpl'}]
-
-let g:tagbar_width       = 25
-let g:tagbar_compact     = 1
-let g:tagbar_singleclick = 1
-let g:tagbar_autoshowtag = 1
-
-let g:terraform_align=1
-let g:terraform_fmt_on_save=1
-
-let g:limelight_conceal_ctermfg = 'gray'
-
-let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 0
-let g:ale_fixers = {'python': ['isort','black']}
-let g:ale_linters = {'python': ['prospector']}
-
-" let g:ale_python_mypy_options = '--ignore-missing-imports'
-
-" }}}
 
 " Plugins to install {{{
 call plug#begin('~/.vim/plugged')
-" Plug 'kien/ctrlp.vim'
-
-" Plug 'mileszs/ack.vim'
-
 Plug 'powerline/powerline'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
-Plug 'altercation/vim-colors-solarized'
-
 Plug 'mhinz/vim-startify'
-Plug 'vimwiki/vimwiki'
-
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-
-" Plug 'xolox/vim-easytags'
-" Plug 'xolox/vim-misc'
-
-" Plug 'ludovicchabant/vim-gutentags'
-
-" Plug 'junegunn/vim-easy-align'
-
-" Plug 'junegunn/limelight.vim'
-
-Plug 'airblade/vim-gitgutter'
-
-Plug 'tpope/vim-surround'
-
-Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
-
-" Plug 'phenomenes/ansible-snippets'
-Plug 'hashivim/vim-terraform'
-" Plug 'pearofducks/ansible-vim'
-
-" if has('nvim')
-" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" endif
-
-Plug 'hynek/vim-python-pep8-indent'
-" Plug 'davidhalter/jedi-vim'
 Plug 'w0rp/ale'
-
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-
-" black has a new func that is not updated yet, so pinned version
-Plug 'psf/black', { 'tag': '19.10b0' }
-
-" R programming
-" Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
-
 call plug#end()
 " }}}
 
@@ -298,22 +130,10 @@ call plug#end()
 "
 
 augroup default
-  " fold exception for startified, using startified's event
   au User Startified normal! zR
   au VimResized * :wincmd =
-  " Remove trailing spaces for file types:
-  au BufWritePre *.py,*.c,*.rb,*.java %s/\s\+$//e
 augroup END
 
-"
-augroup resCur
-autocmd!
-autocmd BufReadPost * call setpos(".", getpos("'\""))
-augroup END
-
-" fix crontab -e problem
-set backupskip=/tmp/*,/private/tmp/*
-" autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Python section
 augroup mypython
@@ -325,7 +145,6 @@ au FileType python setl textwidth=180
 au FileType python setl expandtab
 au FileType python setl autoindent
 au FileType python setl fileformat=unix
-au BufWritePre *.py execute ':Black'
 augroup end
 
 " Terraform section
@@ -357,29 +176,11 @@ au FileType markdown setl softtabstop=2 " Causes backspace to delete 2 spaces.
 au FileType markdown setl shiftwidth=2  " Shift by 2 spaces.
 augroup end
 
-augroup myansible
-au!
-au BufNewFile,BufRead *.yml set filetype=yaml.ansible
-au FileType yaml.ansible setl expandtab     " Use spaces instead of tabs.
-au FileType yaml.ansible setl tabstop=2     " Lists are indented with 2 spaces.
-au FileType yaml.ansible setl softtabstop=2 " Causes backspace to delete 2 spaces.
-au FileType yaml.ansible setl shiftwidth=2  " Shift by 2 spaces.
-" au FileType yaml.ansible setl cursorcolumn
-augroup end
 
-augroup vimwiki
-au!
-au BufEnter * silent! lcd %:p:h
-" au BufRead ~/git/work/vimwiki/index.wiki :!git pull<CR>
-au BufWritePost ~/git/work/vimwiki/* :VimwikiDiaryGenerateLinks<CR>
-au FileType vimwiki setl textwidth=80
-augroup end
-
-" }}}
-
-" Theme configuration {{{
+" Theme configuration
 let g:solarized_termcolors=256
 set background=dark
+
 
 " highlight ColorColumn guibg=#2d2d2d ctermbg=246
 " highlight Normal ctermfg=grey ctermbg=#0e143d
@@ -397,8 +198,8 @@ set cursorline
 try
     " colorscheme slate
     " colorscheme industry
-    colorscheme koehler
-    " colorscheme solarized
+    " colorscheme koehler
+    colorscheme solarized
     " colorscheme torte
     " colorscheme dracula
     " colorscheme nova
@@ -411,29 +212,13 @@ endtry
 " enable transparent vim
 hi Normal guibg=NONE ctermbg=NONE
 
-if has('gui_running')
-  set background=dark
-  set t_Co=16
-  " let g:solarized_termcolors=16
-endif
-
-
-" }}}
-
-" Mappings {{{
+" Mappings
 
 imap jk <Esc>
 
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>m :bp<CR>
-nnoremap <Leader>c :tabnew<CR>
-nnoremap <Leader>e :tabedit $MYVIMRC<CR>
 nnoremap <Leader>b :NERDTreeToggle<CR>
-nnoremap <Leader>t :TagbarToggle<CR>
-nnoremap <Leader>E :EasyAlign=<CR>
-nnoremap <Leader>/ :set nohlsearch<CR>
 
 map <Leader>h <C-w>h
 map <Leader>j <C-w>j
@@ -444,10 +229,3 @@ map <Leader>l <C-w>l
 map <C-l> :buffers<CR>
 
 imap <C-]> <ESC>
-
-" }}}
-
-" Functions and other {{{
-
-" }}}
-"

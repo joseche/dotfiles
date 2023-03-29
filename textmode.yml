@@ -9,7 +9,6 @@
         - ~/.vim/autoload
         - ~/.config/nvim/autoload
         - ~/.aws
-        - ~/.irssi
         - ~/.config
         - ~/.config/yamllint
         - ~/.zfunctions

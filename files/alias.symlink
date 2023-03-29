@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
+[ -n "$_MY_ALIAS" ] && return || readonly _MY_ALIAS=1
 
-alias history='history 0'
-alias hg='history | grep'
+# alias history='history 0'
 
-if command -v exa >/dev/null 2>&1; then
+if which exa >/dev/null 2>&1; then
   alias ls='exa'
   alias ll='exa -la'
   alias la='exa -la'
@@ -20,69 +20,25 @@ elif command -v gls >/dev/null 2>&1; then
 fi
 
 alias bc='bc -q -l'
-alias cp='cp -r'
-alias cd=cdl
-alias dmesg='sudo dmesg'
+# alias cd=cdl
 alias c='clear'
 alias e='printf "\ec"'
-# alias rm='rm -rf '
-alias hg='history|grep '
-alias wallpaper='~/git/wallpaper_manager/src/wallpaper.py'
-alias listening='netstat -ant|grep tcp|grep -i listen|sort'
-alias random='openssl rand -base64 128'
-
-# cds
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-# console mp3 player
-alias mpv='mpv --no-audio-display'
 
 if [ "$OS" = "Darwin" ]; then
-# xquartz in mac seems to always warn about dynamic cookies..
-# alias ssh='ssh -y'
-# because mac < linux
   alias ssh='TERM=xterm-256color ssh'
 fi
 
-# ansible
-if command -v ansible-playbook >/dev/null 2>&1; then
-  alias ap='ansible-playbook'
-  alias apl='ansible-playbook -i "localhost," -c local '
-fi
+which gsed >/dev/null 2>&1 && alias sed='gsed'
+which gsort >/dev/null 2>&1 && alias sort='gsort'
+which gecho >/dev/null 2>&1 && alias echo='gecho'
+which gprintf >/dev/null 2>&1 && alias printf='gprintf'
+which apt-get >/dev/null 2>&1 && alias apt-get='sudo apt-get -y'
+which apt >/dev/null 2>&1 && alias apt='sudo apt -y'
+which greadlink >/dev/null 2>&1 && alias readlink='greadlink'
+which xdg-open >/dev/null 2>&1 && alias open='xdg-open'
+which xsel >/dev/null 2>&1 && alias pbcopy='xsel --clipboard --input'
 
-# terraform
-if command -v terraform >/dev/null 2>&1; then
-  alias tfapply='terraform apply -auto-approve'
-  alias tfdestroy='terraform destroy -auto-approve'
-fi
-
-# command -v python3 >/dev/null 2>&1 && alias python='python3'
 command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim'
-# command -v vimx >/dev/null 2>&1 && alias vim='vimx' && alias vi='vimx'
-# alias vim='nvim'
-
-command -v gsort >/dev/null 2>&1 && alias sort='gsort'
-command -v gecho >/dev/null 2>&1 && alias echo='gecho'
-command -v gprintf >/dev/null 2>&1 && alias printf='gprintf'
-command -v apt-get >/dev/null 2>&1 && alias apt-get='sudo apt-get -y'
-command -v apt >/dev/null 2>&1 && alias apt='sudo apt -y'
-command -v greadlink >/dev/null 2>&1 && alias readlink='greadlink'
-command -v xdg-open >/dev/null 2>&1 && alias open='xdg-open'
-command -v xsel >/dev/null 2>&1 && alias pbcopy='xsel --clipboard --input'
-
-alias sha1='openssl sha1'
-alias svim='sudo vim'
-alias df='df -H|grep -v loop'
-alias nocomment='grep -Ev '\''^(#|$)'\'''
-# alias ping='ping -c 4'
-
-if command -v tmux >/dev/null 2>&1; then
-  alias ta='tmux attach -d -t'
-  alias tn='tmux new -s $(basename $(pwd))'
-  alias tl='tmux list-sessions'
-fi
 
 for af in $HOME/.alias.*; do
   # shellcheck disable=SC1090

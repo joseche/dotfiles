@@ -1,44 +1,36 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2155
-# shellcheck disable=SC1090
-# shellcheck disable=SC2046
 # vim:syntax=sh
+[ -n "$_PROFILE" ] && return || readonly _PROFILE=1
 
+umask 0022
 export OS="$(uname -s)"
 
-# Z = shell without path
-# Z=$(basename "$SHELL")
-
+# honor the minimal respect to OS
 if [ -e /etc/profile ]; then
   source /etc/profile
 fi
 
+# specific to bash
+if [[ $SHELL =~ "bash" ]]; then
+  for script in /opt/homebrew/etc/profile.d/*.sh /opt/homebrew/etc/bash_completion.d/*; do
+    source $script
+  done
+fi
+
+# specific to zsh
 if [[ $SHELL =~ "zsh" ]]; then
   if [ -e /etc/zshrc ]; then
     source /etc/zshrc
   fi
 fi
 
-# if [ "$Z" = "bash" ] && [ -f /usr/local/etc/bash_completion ]; then
-#    source /usr/local/etc/bash_completion
-# fi
-# if [ "$Z" = "bash" ] && [ -f /usr/share/bash-completion/bash_completion ]; then
-#    source /usr/share/bash-completion/bash_completion
-# fi
 
-umask 0022
-
-# if [ -z "$LS_COLORS" ]; then
-#   eval $(dircolors)
-# fi
-
-export TZ='America/Costa_Rica'
-
-pathmunge()
-{
+# helper to set PATH
+# $1 - directory to add to PATH (check if already set)
+add_to_path() {
   if [ -d "$1" ]; then
-    if ! echo "$PATH" | grep -qE "(^|:)$1($|:)" ; then
-      if [ "$2" = "after" ] ; then
+    if ! echo "$PATH" | grep -qE "(^|:)$1($|:)"; then
+      if [ "$2" = "after" ]; then
         PATH=$PATH:$1
       else
         PATH=$1:$PATH
@@ -47,21 +39,23 @@ pathmunge()
   fi
 }
 
-pathmunge "/sbin"
-pathmunge "/usr/sbin"
-pathmunge "/usr/local/sbin"
+add_to_path "/sbin"
+add_to_path "/usr/sbin"
+add_to_path "/usr/local/sbin"
+add_to_path "/opt/homebrew/sbin"
 
-pathmunge "$HOME/bin"
-pathmunge "$HOME/.local/bin"
-pathmunge "/opt/X11/bin"
+add_to_path "$HOME/bin"
+add_to_path "$HOME/.local/bin"
+add_to_path "/opt/X11/bin"
 
-pathmunge "/bin"
-pathmunge "/usr/bin"
-pathmunge "/usr/local/bin"
-pathmunge "/snap/bin"
+add_to_path "/bin"
+add_to_path "/usr/bin"
+add_to_path "/usr/local/bin"
+add_to_path "/snap/bin"
+add_to_path "/opt/homebrew/bin"
 
-# Java
-# [ -x /usr/libexec/java_home ] && export JAVA_HOME=$(/usr/libexec/java_home)
+# bashrc
+source ~/.bashrc
 
 # aliases, sub alias should be called from it
 source ~/.alias
@@ -86,26 +80,11 @@ else
   export VISUAL=vi
 fi
 
-# Android
-if [ -d /opt/android-sdk ]; then
-  export ANDROID_HOME=/opt/android-sdk
-  export ANDROID_SDK_HOME=/opt/android-sdk
-  pathmunge $ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/tools/bin
-fi
-
-export PATH
-
-# Standard and fixes an osx ssh problem
-LANG=$(locale -a|grep -i en_us.utf|head -n1)
-if [ -n "$LANG" ]; then
-  export LANG
-  export LC_ALL=$LANG
-else
-  unset LANG
-fi
-
 # gnu make options for fast compilation
 export MAKEFLAGS=j4
 
-# export VAGRANT_DEFAULT_PROVIDER='virtualbox'
-# export AWS_DEFAULT_REGION=us-east-2
+# other configurations
+[ -r ~/py3/bin/activate ] && {
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+  source ~/py3/bin/activate
+}
