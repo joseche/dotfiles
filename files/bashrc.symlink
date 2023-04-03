@@ -56,7 +56,7 @@ RED="\[$(tput setaf 1)\]"
 GREEN="\[$(tput setaf 2)\]"
 YELLOW="\[$(tput setaf 3)\]"
 BLUE="\[$(tput setaf 4)\]"
-# ROSE="\[$(tput setaf 5)\]"
+ROSE="\[$(tput setaf 5)\]"
 # LIGHTGREEN="\[$(tput setaf 6)\]"
 GREY="\[$(tput setaf 8)\]"
 RESET="\[$(tput sgr0)\]"
@@ -83,9 +83,10 @@ git_status () {
   unstaged=$(echo "$stdout"|grep -i 'not staged')
   untracked=$(echo "$stdout"|grep -i untracked)
 
+  color="$GREEN"
   [ -n "${ahead}" ]     && { symbol+="↑"; color="$BLUE"; }
   [ -n "${behind}" ]    && { symbol+="↓"; color="$RED"; }
-  [ -n "${tobecom}" ]   && { symbol+="↺"; color="$GREEN"; }
+  [ -n "${tobecom}" ]   && { symbol+="↺"; color="$ROSE"; }
   [ -n "${unmerged}" ]  && { symbol+="☠"; color="$GREY"; }
   [ -n "${unstaged}" ]  && { symbol+="~"; color="$YELLOW"; }
   [ -n "${untracked}" ] && { symbol+="±"; color="$RED"; }
