@@ -104,11 +104,11 @@ set list
 " set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,space:·
 set listchars=tab:▸\ ,trail:·,nbsp:·
 
-if !has('nvim')
-  set viminfo=%,'10,/50,:100,f9,n~/.viminfo
-endif
+" if !has('nvim')
+"   set viminfo=%,'10,/50,:100,f9,n~/.viminfo
+" endif
 
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete
 
 " Macros
 
@@ -122,12 +122,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 call plug#end()
-" }}}
-
-" Autocommands & Autogroups {{{
-"
 
 augroup default
   au User Startified normal! zR
