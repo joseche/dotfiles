@@ -59,23 +59,21 @@ BLUE="\[$(tput setaf 4)\]"
 ROSE="\[$(tput setaf 5)\]"
 LIGHTGREEN="\[$(tput setaf 6)\]"
 WHITE="\[$(tput setaf 7)\]"
-BRANCH_COLOR="$GREEN"
 RESET="\[$(tput sgr0)\]"
 
-# print the git branch
-git_branch () {
-  local branch=""
+
+# print a code that represents the git status
+git_status () {
+  local branch
+  local symbol
+  local color
+
   branch=$(git status 2>/dev/null | sed -n 's/On branch //p')
   if [ ${#branch} -gt 15 ]; then
     branch_tmp="${branch:0:8}...${branch: -5}"
     branch=$branch_tmp
   fi
-  echo "$branch"
-}
 
-# print a code that represents the git status
-git_status () {
-  status=""
   stdout=$(git status)
 
   ahead=$(echo "$stdout"|grep -i ahead)
@@ -85,29 +83,31 @@ git_status () {
   unstaged=$(echo "$stdout"|grep -i 'not staged')
   untracked=$(echo "$stdout"|grep -i untracked)
 
-  [ -n "${untracked}" ] && { status+="±"; BRANCH_COLOR="$LIGHTGREEN"; }
-  [ -n "${unstaged}" ]  && { status+="~"; BRANCH_COLOR="$YELLOW"; }
-  [ -n "${ahead}" ]     && { status+="↑"; BRANCH_COLOR="$ROSE"; }
-  [ -n "${behind}" ]    && { status+="↓"; BRANCH_COLOR="$ROSE"; }
-  [ -n "${tobecom}" ]   && { status+="↺"; BRANCH_COLOR="$WHITE"; }
-  [ -n "${unmerged}" ]  && { status+="☠"; BRANCH_COLOR="$BLUE"; }
+  [ -n "${unstaged}" ]  && { symbol+="~"; color="$YELLOW"; }
+  [ -n "${ahead}" ]     && { symbol+="↑"; color="$ROSE"; }
+  [ -n "${behind}" ]    && { symbol+="↓"; color="$ROSE"; }
+  [ -n "${tobecom}" ]   && { symbol+="↺"; color="$GREEN"; }
+  [ -n "${unmerged}" ]  && { symbol+="☠"; color="$BLUE"; }
+  [ -n "${untracked}" ] && { symbol+="±"; color="$RED"; }
 
-  echo "$status"
+  printf "%s" "[${color}${branch}${symbol}${RESET}] "
 }
 
 prompt_command () {
-  local git_name
   local exit_code=$?
-  git_name=$(git_branch)
 
   # update the title bar for xterms
   echo -en "\033]0;$PWD\a"
 
+  # add path
   local ps1="[${GREEN}\w${RESET}] "
-  if [ -n "$git_name" ]; then
-    status=$(git_status)
-    ps1+="[${BRANCH_COLOR}${git_name}${status}${RESET}] "
+
+  # add git status if it is a repo
+  if git status &> /dev/null; then
+    ps1+=$(git_status)
   fi
+
+  # add exit code of last command
   if [ $exit_code -ne 0 ]; then
     ps1+="[${RED}Exit ${exit_code}${RESET}] "
   fi
