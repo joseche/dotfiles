@@ -5,7 +5,7 @@
 source "$HOME/.profile"
 
 # history
-export HISTFILE="$HOME/.history"
+# export HISTFILE="$HOME/.history"
 export HISTSIZE=100
 export SAVEHIST=100
 
@@ -33,7 +33,7 @@ shopt -s checkwinsize
 shopt -s sourcepath
 shopt -s no_empty_cmd_completion
 shopt -s cmdhist
-shopt -s histappend histreedit histverify
+shopt -s histappend
 shopt -s extglob       # Necessary for programmable completion.
 
 complete -A hostname   ssh scp rsh rcp telnet rlogin ftp ping
@@ -49,13 +49,20 @@ complete -A job -P '%'     fg jobs disown
 complete -A directory  mkdir rmdir
 complete -A directory   -o default cd
 
-RED="$(tput setaf 1)"
-GREEN="$(tput setaf 2)"
-YELLOW="$(tput setaf 3)"
-BLUE="$(tput setaf 4)"
-RESET="$(tput sgr0)"
 
 
+# \[ and \] are required to tell bash these are codes without length
+RED="\[$(tput setaf 1)\]"
+GREEN="\[$(tput setaf 2)\]"
+YELLOW="\[$(tput setaf 3)\]"
+BLUE="\[$(tput setaf 4)\]"
+ROSE="\[$(tput setaf 5)\]"
+LIGHTGREEN="\[$(tput setaf 6)\]"
+WHITE="\[$(tput setaf 7)\]"
+BRANCH_COLOR="$GREEN"
+RESET="\[$(tput sgr0)\]"
+
+# print the git branch
 git_branch () {
   local branch=""
   branch=$(git status 2>/dev/null | sed -n 's/On branch //p')
@@ -63,68 +70,55 @@ git_branch () {
     branch_tmp="${branch:0:8}...${branch: -5}"
     branch=$branch_tmp
   fi
-  echo $branch
+  echo "$branch"
 }
 
+# print a code that represents the git status
 git_status () {
   status=""
   stdout=$(git status)
 
-  unstaged=$(echo $stdout|grep -i 'not staged')
-  untracked=$(echo $stdout|grep -i untracked)
-  ahead=$(echo $stdout|grep -i ahead)
-  behind=$(echo $stdout|grep -i behind)
-  tobecom=$(echo $stdout|grep 'to be committed')
-  unmerged=$(echo $stdout|grep -i unmerged)
+  ahead=$(echo "$stdout"|grep -i ahead)
+  behind=$(echo "$stdout"|grep -i behind)
+  tobecom=$(echo "$stdout"|grep 'to be committed')
+  unmerged=$(echo "$stdout"|grep -i unmerged)
+  unstaged=$(echo "$stdout"|grep -i 'not staged')
+  untracked=$(echo "$stdout"|grep -i untracked)
 
-  if [ -n "${unstaged}" ]; then
-    status+="~"
-  fi
-  if [ -n "${untracked}" ]; then
-    status+="±"
-  fi
-  if [ -n "${ahead}" ]; then
-    status+="↑"
-  fi
-  if [ -n "${behind}" ]; then
-    status+="↓"
-  fi
-  if [ -n "${tobecom}" ]; then
-    status+="↺"
-  fi
-  if [ -n "${unmerged}" ]; then
-    status+="☠"
-  fi
+  [ -n "${untracked}" ] && { status+="±"; BRANCH_COLOR="$LIGHTGREEN"; }
+  [ -n "${unstaged}" ]  && { status+="~"; BRANCH_COLOR="$YELLOW"; }
+  [ -n "${ahead}" ]     && { status+="↑"; BRANCH_COLOR="$ROSE"; }
+  [ -n "${behind}" ]    && { status+="↓"; BRANCH_COLOR="$ROSE"; }
+  [ -n "${tobecom}" ]   && { status+="↺"; BRANCH_COLOR="$WHITE"; }
+  [ -n "${unmerged}" ]  && { status+="☠"; BRANCH_COLOR="$BLUE"; }
 
-  if [ -n "${status}" ]; then
-    status=":${status}"
-  fi
   echo "$status"
 }
 
 prompt_command () {
+  local git_name
   local exit_code=$?
-  local git_name=$(git_branch)
+  git_name=$(git_branch)
+
+  # update the title bar for xterms
+  echo -en "\033]0;$PWD\a"
 
   local ps1="[${GREEN}\w${RESET}] "
   if [ -n "$git_name" ]; then
     status=$(git_status)
-    ps1+="[${BLUE}${git_name}${RED}${status}${RESET}] "
+    ps1+="[${BRANCH_COLOR}${git_name}${status}${RESET}] "
   fi
   if [ $exit_code -ne 0 ]; then
     ps1+="[${RED}Exit ${exit_code}${RESET}] "
   fi
 
   # if ps1 is long, add a new line
-  if [ ${#PWD} -gt 40 ]; then
-    ps1+="\n\$ "
-  fi
+  [ ${#PWD} -gt 40 ] && ps1+="\n\$ "
+
   export PS1=$ps1
 
   # fix history to be always up-to-date
-  history -a; history -c; history -r
-  # update the title bar for xterms
-  echo -en "\033]0;$PWD\a"
+  # history -a; history -c; history -r
 }
 
 PROMPT_COMMAND=prompt_command
