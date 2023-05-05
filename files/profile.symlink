@@ -88,3 +88,9 @@ export MAKEFLAGS=j4
   export VIRTUAL_ENV_DISABLE_PROMPT=1
   source ~/py3/bin/activate
 }
+
+which go &>/dev/null && {
+  [ -d ~/go/bin ] || mkdir -p ~/go/bin
+  export GOBIN=~/go/bin
+  export GOPATH=~/go
+}
