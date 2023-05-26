@@ -13,7 +13,7 @@ fi
 # specific to bash
 if [[ $SHELL =~ "bash" ]]; then
   for script in /opt/homebrew/etc/profile.d/*.sh /opt/homebrew/etc/bash_completion.d/*; do
-    source $script
+    test -r $script && source $script
   done
 fi
 
@@ -93,4 +93,4 @@ which go &>/dev/null && {
   [ -d ~/go/bin ] || mkdir -p ~/go/bin
   export GOBIN=~/go/bin
   export GOPATH=~/go
-}
+} || :
