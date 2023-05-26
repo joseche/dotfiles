@@ -103,7 +103,7 @@ prompt_command () {
   echo -en "\033]0;$PWD\a"
 
   # add path
-  local ps1="[${GREEN}\w${RESET}] "
+  local ps1="[\h:${GREEN}\w${RESET}] "
 
   # add git status if it is a repo
   if git status &> /dev/null; then
