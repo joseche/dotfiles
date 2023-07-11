@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 # vim:syntax=sh
-[ -n "$_PROFILE" ] && return || readonly _PROFILE=1
+
+# prevent reentry
+[ -n "$_PROFILE" ] && return
+readonly _PROFILE=1
 
 umask 0022
-export OS="$(uname -s)"
+OS="$(uname -s)"
+export OS
 
 # honor the minimal respect to OS
 if [ -e /etc/profile ]; then
