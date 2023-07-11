@@ -26,7 +26,7 @@ export LC_ALL=
 # ulimit -S -c 0      # Dont want coredumps.
 set -o notify
 set -o noclobber
-set -o ignoreeof
+set +o ignoreeof
 
 # Enable options:
 shopt -s cdspell
