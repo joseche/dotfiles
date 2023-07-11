@@ -21,7 +21,6 @@
         state: link
         force: true
       with_items:
-        - {src: "{{ playbook_dir }}/files/xinitrc.symlink", dst: "~/.xinitrc"}
         - {src: "{{ playbook_dir }}/files/Xresources.symlink", dst: "~/.Xresources"}
         - {src: "{{ playbook_dir }}/files/osx.symlink", dst: "~/.osx"}
         - {src: "{{ playbook_dir }}/files/i3config.symlink", dst: "~/.config/i3/config"}
