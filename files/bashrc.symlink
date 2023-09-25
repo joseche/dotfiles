@@ -126,3 +126,9 @@ prompt_command () {
 }
 
 PROMPT_COMMAND=prompt_command
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/jhidalgo/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+source <(kubectl completion bash)

@@ -16,6 +16,7 @@ fi
 
 # specific to bash
 if [[ $SHELL =~ "bash" ]]; then
+  [ -f /opt/homebrew/etc/bash_completion ] && source /opt/homebrew/etc/bash_completion
   for script in /opt/homebrew/etc/profile.d/*.sh /opt/homebrew/etc/bash_completion.d/*; do
     test -r "$script" && source "$script"
   done
