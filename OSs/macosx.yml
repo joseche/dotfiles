@@ -36,6 +36,7 @@
     - pyenv-virtualenv
     - golang
     - neovim
+    - ccat
 
 - name: "OSX - remove sound at boot"
   become: true
