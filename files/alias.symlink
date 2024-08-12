@@ -57,4 +57,7 @@ alias get_dashboard_token='kubectl -n kubernetes-dashboard create token admin-us
 alias kube_badpods="kubectl get pods --all-namespaces | grep -Ev '([0-9]+)/\1'"
 alias k="kubectl"
 
+
+
+alias docker-cleanup-full='docker rmi -f $(docker images -a -q)'
 # vim:syntax=sh
