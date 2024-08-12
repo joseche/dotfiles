@@ -37,7 +37,7 @@ which gdu >/dev/null 2>&1 && alias du='gdu'
 
 command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim'
 
-for af in $HOME/.alias.*; do
+for af in "$HOME"/.alias.*; do
   # shellcheck disable=SC1090
   source "$af"
 done
