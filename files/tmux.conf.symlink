@@ -1,10 +1,17 @@
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'jimeh/tmux-themepack'
 
-set -goq @themepack-status-right-area-left-format "%H:%M"
-set -goq @themepack-status-right-area-right-format "#h"
-set -g @themepack 'powerline/double/magenta'
+# this is a nice theme, but changing it for tmux2k just for a test
+# set -g @plugin 'jimeh/tmux-themepack'
+# set -goq @themepack-status-right-area-left-format "%H:%M"
+# set -goq @themepack-status-right-area-right-format "#h"
+# set -g @themepack 'powerline/double/magenta'
+# set -g @themepack 'powerline/default/orange'
+# set -g @themepack 'basic'
+
+
+set -g @plugin '2kabhishek/tmux2k'
+set -g @tmux2k-theme 'gruvbox'
 
 set -g mouse on
 set -g set-titles on
