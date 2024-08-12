@@ -6,7 +6,6 @@
       with_items:
         - ~/tmp
         - ~/git
-        - ~/.vim/autoload
         - ~/.config/nvim/autoload
         - ~/.aws
         - ~/.config
@@ -51,26 +50,31 @@
         - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.config/nvim/init.vim"}
         - {src: "{{ playbook_dir }}/files/yamllint.symlink", dst: "~/.config/yamllint/config"}
 
+    - name: install oh-my-zsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      args:
+        creates: ~/.oh-my-zsh/oh-my-zsh.sh
+
     # clone zsh plugins
-    - name: "Checkout https://github.com/zsh-users/zsh-completions.git"
-      git:
-        repo: https://github.com/zsh-users/zsh-completions.git
-        dest: ~/git/zsh-completions
-        force: true
-        version: master
+    # - name: "Checkout https://github.com/zsh-users/zsh-completions.git"
+    #   git:
+    #     repo: https://github.com/zsh-users/zsh-completions.git
+    #     dest: ~/git/zsh-completions
+    #     force: true
+    #     version: master
 
-    - name: "Checkout Spaceship Zsh Theme"
-      git:
-        repo: https://github.com/denysdovhan/spaceship-prompt.git
-        dest: ~/.zfunctions/spaceship-prompt
-        force: true
-        version: master
+    # - name: "Checkout Spaceship Zsh Theme"
+    #   git:
+    #     repo: https://github.com/denysdovhan/spaceship-prompt.git
+    #     dest: ~/.zfunctions/spaceship-prompt
+    #     force: true
+    #     version: master
 
-    - name: "Link spaceship theme"
-      file:
-        src: ~/.zfunctions/spaceship-prompt/spaceship.zsh-theme
-        dest: ~/.zfunctions/prompt_spaceship_setup
-        state: link
+    # - name: "Link spaceship theme"
+    #   file:
+    #     src: ~/.zfunctions/spaceship-prompt/spaceship.zsh-theme
+    #     dest: ~/.zfunctions/prompt_spaceship_setup
+    #     state: link
 
     - name: "Checkout tmux tpm"
       git:
@@ -79,42 +83,42 @@
         force: true
         version: master
 
-    - name: "Checkout https://github.com/zsh-users/zsh-syntax-highlighting.git"
-      git:
-        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-        dest: ~/git/zsh-syntax-highlighting
-        force: true
-        version: master
+    # - name: "Checkout https://github.com/zsh-users/zsh-syntax-highlighting.git"
+    #   git:
+    #     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    #     dest: ~/git/zsh-syntax-highlighting
+    #     force: true
+    #     version: master
 
-    - name: "Checkout https://github.com/zsh-users/zsh-history-substring-search"
-      git:
-        repo: https://github.com/zsh-users/zsh-history-substring-search
-        dest: ~/git/zsh-history-substring-search
-        version: master
+    # - name: "Checkout https://github.com/zsh-users/zsh-history-substring-search"
+    #   git:
+    #     repo: https://github.com/zsh-users/zsh-history-substring-search
+    #     dest: ~/git/zsh-history-substring-search
+    #     version: master
 
-    - name: "Checkout https://github.com/zsh-users/zsh-autosuggestions"
-      git:
-        repo: https://github.com/zsh-users/zsh-autosuggestions
-        dest: ~/git/zsh-autosuggestions
-        version: master
+    # - name: "Checkout https://github.com/zsh-users/zsh-autosuggestions"
+    #   git:
+    #     repo: https://github.com/zsh-users/zsh-autosuggestions
+    #     dest: ~/git/zsh-autosuggestions
+    #     version: master
 
-    - name: "Checkout https://github.com/chrissicool/zsh-256color"
-      git:
-        repo: https://github.com/chrissicool/zsh-256color
-        dest: ~/git/zsh-256color
-        version: master
+    # - name: "Checkout https://github.com/chrissicool/zsh-256color"
+    #   git:
+    #     repo: https://github.com/chrissicool/zsh-256color
+    #     dest: ~/git/zsh-256color
+    #     version: master
 
-    - name: "Checkout docker zsh completion"
-      get_url:
-        url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
-        dest: ~/git/zsh-completions/_docker
+    # - name: "Checkout docker zsh completion"
+    #   get_url:
+    #     url: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+    #     dest: ~/git/zsh-completions/_docker
 
-    - name: "vim plug vim"
-      get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: ~/.vim/autoload/plug.vim
+    # - name: "vim plug vim"
+    #   get_url:
+    #     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    #     dest: ~/.vim/autoload/plug.vim
 
-    - name: "nvim plug"
-      get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: ~/.config/nvim/autoload/plug.vim
+    # - name: "nvim plug"
+    #   get_url:
+    #     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    #     dest: ~/.config/nvim/autoload/plug.vim
