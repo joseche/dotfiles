@@ -34,4 +34,9 @@ return {
 			desc = "Quickfix List (Trouble)",
 		},
 	},
+	config = function()
+		require("trouble").setup({
+			mode = "document_diagnostics",
+		})
+	end,
 }

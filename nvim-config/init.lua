@@ -19,7 +19,6 @@ vim.o.conceallevel = 2
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 
-
 -- vim.cmd.colorscheme('torte')
 
 -- Leader key
@@ -27,6 +26,7 @@ vim.g.mapleader = ' ' -- Space as the leader key
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, silent = true })
 
 
-
 require("lazy-configuration")
+
+
 
