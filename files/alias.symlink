@@ -34,6 +34,7 @@ which greadlink >/dev/null 2>&1 && alias readlink='greadlink'
 which xdg-open >/dev/null 2>&1 && alias open='xdg-open'
 which xsel >/dev/null 2>&1 && alias pbcopy='xsel --clipboard --input'
 which gdu >/dev/null 2>&1 && alias du='gdu'
+which ccat >/dev/null 2>&1 && alias cat='ccat'
 
 command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim'
 
