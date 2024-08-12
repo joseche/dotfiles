@@ -6,7 +6,7 @@
       with_items:
         - ~/tmp
         - ~/git
-        - ~/.config/nvim/autoload
+        # - ~/.config/nvim/autoload
         - ~/.aws
         - ~/.config
         - ~/.config/yamllint
@@ -46,9 +46,12 @@
         - {src: "{{ playbook_dir }}/files/gemrc.symlink", dst: "~/.gemrc"}
         - {src: "{{ playbook_dir }}/files/aws.config.symlink", dst: "~/.aws/config"}
         - {src: "{{ playbook_dir }}/files/ansible.cfg.symlink", dst: "~/.ansible.cfg"}
-        - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.vimrc"}
-        - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.config/nvim/init.vim"}
         - {src: "{{ playbook_dir }}/files/yamllint.symlink", dst: "~/.config/yamllint/config"}
+        
+        # vim used to be simple, now its a full directory ! :)
+        # - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.vimrc"}
+        # - {src: "{{ playbook_dir }}/files/vimrc.symlink", dst: "~/.config/nvim/init.vim"}
+        - {src: "{{ playbook_dir }}/nvim-config", dst: "~/.config/nvim"}
 
     - name: install oh-my-zsh
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
