@@ -78,6 +78,8 @@ plugins=(
     poetry
     battery
     docker
+    ansible
+    brew
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -124,3 +126,7 @@ export NVM_DIR="$HOME/.nvm"
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/jhidalgo/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+zstyle ':completion:*' menu no
+
+source <(fzf --zsh)
