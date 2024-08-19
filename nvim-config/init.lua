@@ -19,9 +19,17 @@ vim.opt.splitright = true
 
 vim.opt.virtualedit = "block"
 
+vim.o.clipboard = 'unnamedplus'
+
 -- Syntax highlighting and filetype plugins
-vim.cmd("syntax enable")
+vim.opt.syntax = 'on'
 vim.cmd("filetype plugin indent on")
+
+-- move easily pressing option/alt
+vim.api.nvim_set_keymap("n", "<M-Left>", ":wincmd h<CR>",  { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-Right>", ":wincmd l<CR>",  { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-Up>", ":wincmd k<CR>",  { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-Down>", ":wincmd d<CR>",  { noremap = true, silent = true })
 
 -- vim.cmd.colorscheme('torte')
 
