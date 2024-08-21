@@ -2,3 +2,4 @@
 aws.symlink/credentials
 *.retry
 tags*
+nvim-config/spell/
