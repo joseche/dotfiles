@@ -1,3 +1,5 @@
+local map = require("utils").map
+
 return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -24,7 +26,7 @@ return {
             }
         })
         -- keymaps
-        vim.keymap.set('n', '<Leader>e', ':Neotree reveal left<CR>', {})
-        vim.keymap.set('n', '<Leader>c', ':Neotree close<CR>', {})
+        map('n', '<Leader>e', ':Neotree reveal left<CR>', DefBufOpts, "Open Explorer")
+        map('n', '<Leader>c', ':Neotree close<CR>', DefBufOpts, 'Close Explorer')
     end
 }
