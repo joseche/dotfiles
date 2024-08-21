@@ -26,7 +26,7 @@ return {
             }
         })
         -- keymaps
-        map('n', '<Leader>e', ':Neotree reveal left<CR>', DefBufOpts, "Open Explorer")
-        map('n', '<Leader>c', ':Neotree close<CR>', DefBufOpts, 'Close Explorer')
+        map('n', '<Leader>e', ':Neotree toggle<CR>', DefBufOpts, "Open Explorer")
+        -- map('n', '<Leader>c', ':Neotree close<CR>', DefBufOpts, 'Close Explorer')
     end
 }
