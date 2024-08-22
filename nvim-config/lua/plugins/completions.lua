@@ -1,4 +1,6 @@
-local on_attach = require("utils").on_attach_lsp
+local utils = require("utils")
+local on_attach = utils.on_attach_lsp
+local map = utils.map
 
 return {
     {
@@ -91,7 +93,7 @@ return {
                     null_ls.builtins.formatting.prettier,
                 },
             })
-            vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+            map("n", "<leader>gf", vim.lsp.buf.format, DefBufOpts, "Format File")
         end,
     },
 }

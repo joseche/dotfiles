@@ -31,7 +31,9 @@ o.spelllang = { "en_us" }
 
 o.hlsearch = true
 
-o.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
+-- o.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
+o.listchars = {tab = '▸ ', trail = '·'}
+o.list = true
 
 o.clipboard = "unnamedplus"
 
