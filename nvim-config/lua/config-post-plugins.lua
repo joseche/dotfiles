@@ -30,3 +30,6 @@ Map("n", "-", builtin.find_files, DefBufOpts, "Telescope Find Files")
 Map("n", "<leader>fg", builtin.live_grep, DefBufOpts, "Telescope Live Grep")
 Map("n", "<leader>fb", builtin.buffers, DefBufOpts, "Telescope Buffers")
 Map("n", "<leader>fh", builtin.help_tags, DefBufOpts, "Telescope Help Tags")
+
+Map('n', '[d', vim.diagnostic.goto_prev, DefBufOpts, "Next Diagnostic")
+Map('n', ']d', vim.diagnostic.goto_next, DefBufOpts, "Previous Diagnostic")
