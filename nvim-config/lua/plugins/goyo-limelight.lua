@@ -1,12 +1,13 @@
-local map = require("utils").map
 return {
     {
         "junegunn/goyo.vim",
         config = function ()
-            map('n', '<Leader>g', '<Cmd>Goyo 80%<CR>', DefBufOpts, 'Goyo Toggle')
             vim.cmd [[
                 autocmd! User GoyoEnter Limelight
                 autocmd! User GoyoLeave Limelight!
+
+                let g:goyo_width = '80%'
+
                 " Default: 0.5
                 let g:limelight_default_coefficient = 0.7
 

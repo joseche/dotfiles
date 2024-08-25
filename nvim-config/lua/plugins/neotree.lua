@@ -1,5 +1,3 @@
-local map = require("utils").map
-
 return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -20,13 +18,10 @@ return {
                     ["gc"] = "git_commit",
                     ["gp"] = "git_push",
                     ["gg"] = "git_commit_and_push",
-                    ["<esc>"] = "cancel", -- close preview or floating neo-tree window
+                    ["<Esc>"] = "cancel",
                     ["P"] = "toggle_preview",
-                }
-            }
+                },
+            },
         })
-        -- keymaps
-        map('n', '<Leader>e', ':Neotree toggle<CR>', DefBufOpts, "Open Explorer")
-        -- map('n', '<Leader>c', ':Neotree close<CR>', DefBufOpts, 'Close Explorer')
-    end
+    end,
 }

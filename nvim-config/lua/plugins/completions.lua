@@ -1,6 +1,5 @@
 local utils = require("utils")
 local on_attach = utils.on_attach_lsp
-local map = utils.map
 
 return {
     {
@@ -55,7 +54,6 @@ return {
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             capabilities.textDocument.foldingRange = {
-                dynamicRegistration = false,
                 lineFoldingOnly = true,
             }
             require("mason-lspconfig").setup()
@@ -85,7 +83,6 @@ return {
             local null_ls = require("null-ls")
             null_ls.setup({
                 sources = {
-                    null_ls.builtins.completion.luasnip,
                     null_ls.builtins.completion.spell,
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.isort,
@@ -93,7 +90,6 @@ return {
                     null_ls.builtins.formatting.prettier,
                 },
             })
-            map("n", "<leader>gf", vim.lsp.buf.format, DefBufOpts, "Format File")
         end,
     },
 }

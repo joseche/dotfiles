@@ -7,5 +7,4 @@ return {
             html = { names = true; } -- Disable parsing "names" like Blue or Gray
         })
     end,
-    priority = 1001
 }

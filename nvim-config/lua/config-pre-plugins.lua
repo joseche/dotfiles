@@ -42,15 +42,5 @@ o.syntax = "on"
 
 vim.cmd("filetype plugin indent on")
 
-local map = require("utils").map
 DefBufOpts = { noremap = true, silent = true }
-
--- move easily pressing option/alt
-map("n", "<M-Left>", ":wincmd h<CR>", DefBufOpts, "Go to Left window")
-map("n", "<M-Right>", ":wincmd l<CR>", DefBufOpts, "Go to Right window")
-map("n", "<M-Up>", ":wincmd k<CR>", DefBufOpts, "Go to Up window")
-map("n", "<M-Down>", ":wincmd j<CR>", DefBufOpts, "Go Down window")
-
-map("n", "<Leader>w", ":w<CR>", DefBufOpts, "Save current file")
-map("n", "<Leader>q", ":q<CR>", DefBufOpts, "Quit")
 
