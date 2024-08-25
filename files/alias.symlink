@@ -36,7 +36,8 @@ which xsel >/dev/null 2>&1 && alias pbcopy='xsel --clipboard --input'
 which gdu >/dev/null 2>&1 && alias du='gdu'
 which ccat >/dev/null 2>&1 && alias cat='ccat'
 
-command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim'
+# if neovim is present,
+command -v nvim >/dev/null 2>&1 && alias vim='nvim' && alias vi='nvim' && alias vimdiff='nvim -d'
 
 for af in "$HOME"/.alias.*; do
   # shellcheck disable=SC1090
