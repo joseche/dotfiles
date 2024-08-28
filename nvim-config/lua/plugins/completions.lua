@@ -15,6 +15,7 @@ return {
             "uga-rosa/cmp-dictionary",
             "hrsh7th/cmp-path",
         },
+        priority = 3,
         config = function()
             local cmp = require("cmp")
             require("luasnip.loaders.from_vscode").lazy_load()
