@@ -12,7 +12,6 @@ function M.on_attach_lsp(_, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-
     M.map("n", "gD", vim.lsp.buf.declaration, bufopts, "Go to declaration")
     M.map("n", "gd", vim.lsp.buf.definition, bufopts, "Go to definition")
     M.map("n", "gi", vim.lsp.buf.implementation, bufopts, "Go to implementation")
@@ -26,15 +25,7 @@ function M.on_attach_lsp(_, bufnr)
     M.map("n", "<space>D", vim.lsp.buf.type_definition, bufopts, "Go to type definition")
     M.map("n", "<space>r", vim.lsp.buf.rename, bufopts, "Rename")
     M.map("n", "<space>ca", vim.lsp.buf.code_action, bufopts, "Code actions")
-
-    -- M.map("n", "<space>f", function()
-    --     vim.lsp.buf.format({ async = true })
-    -- end, bufopts, "Format file")
-
     M.map("n", "<leader>f", vim.lsp.buf.format, DefBufOpts, "Format File")
-
-
-
 end
 
 return M
