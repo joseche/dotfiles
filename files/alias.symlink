@@ -27,6 +27,7 @@ fi
 which gsed >/dev/null 2>&1 && alias sed='gsed'
 which gsort >/dev/null 2>&1 && alias sort='gsort'
 which gecho >/dev/null 2>&1 && alias echo='gecho'
+which ggrep >/dev/null 2>&1 && alias grep='ggrep'
 which gprintf >/dev/null 2>&1 && alias printf='gprintf'
 which apt-get >/dev/null 2>&1 && alias apt-get='sudo apt-get -y'
 which apt >/dev/null 2>&1 && alias apt='sudo apt -y'
