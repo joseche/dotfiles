@@ -8,7 +8,6 @@
   apt:
     name:
       - atop
-      - awscli
       - bmon
       - build-essential
       - curl
@@ -39,8 +38,6 @@
       - python3-pudb
       - terminology
       - transmission-gtk
-      - vagrant
-      - vagrant-lxc
       - wifite
       - wireshark
     state: present
