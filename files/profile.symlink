@@ -59,6 +59,8 @@ add_to_path "/usr/local/bin"
 add_to_path "/snap/bin"
 add_to_path "/opt/homebrew/bin"
 
+add_to_path "/opt/nvim-linux64/bin"
+
 # rancher desktop
 add_to_path "$HOME/.rd/bin"
 
