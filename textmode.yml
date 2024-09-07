@@ -6,7 +6,6 @@
       with_items:
         - ~/tmp
         - ~/git
-        # - ~/.config/nvim/autoload
         - ~/.aws
         - ~/.config
         - ~/.config/yamllint
@@ -36,6 +35,7 @@
         - {src: "{{ playbook_dir }}/files/hushlogin.symlink", dst: "~/.hushlogin"}
         - {src: "{{ playbook_dir }}/files/functions.symlink", dst: "~/.functions"}
         - {src: "{{ playbook_dir }}/files/alias.symlink", dst: "~/.alias"}
+        - {src: "{{ playbook_dir }}/files/paths.symlink", dst: "~/.paths.sh"}
         - {src: "{{ playbook_dir }}/files/alias.git.symlink", dst: "~/.alias.git"}
         - {src: "{{ playbook_dir }}/files/alias.aws.symlink", dst: "~/.alias.aws"}
         - {src: "{{ playbook_dir }}/files/ctags.symlink", dst: "~/.ctags"}

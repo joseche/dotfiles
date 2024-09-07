@@ -110,6 +110,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+source ~/.paths.sh
+
 source_if_exists=(~/.alias ~/.zsh-helm ~/.keys)
 for i in "${source_if_exists[@]}"; do
     if [[ -f $i ]]; then
