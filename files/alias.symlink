@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-if which exa >/dev/null 2>&1; then
-  alias ls='exa'
-  alias ll='exa -la'
-  alias la='exa -la'
+if which eza >/dev/null 2>&1; then
+  alias ls='eza'
+  alias ll='eza -la'
+  alias la='eza -la'
 elif [ "$OS" = "Linux" ]; then
   alias l='ls -h --color'
   alias ls='ls -h --color'

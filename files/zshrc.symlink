@@ -131,3 +131,5 @@ export PATH="/Users/jhidalgo/.rd/bin:$PATH"
 
 zstyle ':completion:*' menu no
 
+source <(fzf --zsh)
+
