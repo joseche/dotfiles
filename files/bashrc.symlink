@@ -132,3 +132,4 @@ export PATH="/Users/jhidalgo/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 source <(kubectl completion bash)
+. "$HOME/.cargo/env"

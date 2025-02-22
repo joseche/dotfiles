@@ -1,1 +1,2 @@
 export PYGAME_HIDE_SUPPORT_PROMPT=true
+. "$HOME/.cargo/env"

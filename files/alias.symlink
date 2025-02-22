@@ -2,8 +2,8 @@
 
 if which eza >/dev/null 2>&1; then
   alias ls='eza'
-  alias ll='eza -la'
-  alias la='eza -la'
+  alias ll='eza -la --icons'
+  alias la='eza -la --icons'
 elif [ "$OS" = "Linux" ]; then
   alias l='ls -h --color'
   alias ls='ls -h --color'

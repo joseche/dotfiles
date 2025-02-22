@@ -105,3 +105,4 @@ which go &>/dev/null && {
   export GOPATH=~/go
   add_to_path $GOBIN
 } || :
+. "$HOME/.cargo/env"
