@@ -27,7 +27,7 @@ fi
 which gsed >/dev/null 2>&1 && alias sed='gsed'
 which gsort >/dev/null 2>&1 && alias sort='gsort'
 which gecho >/dev/null 2>&1 && alias echo='gecho'
-which ggrep >/dev/null 2>&1 && alias grep='ggrep'
+which ggrep >/dev/null 2>&1 && alias grep='ggrep --color'
 which gprintf >/dev/null 2>&1 && alias printf='gprintf'
 which apt-get >/dev/null 2>&1 && alias apt-get='sudo apt-get -y'
 which apt >/dev/null 2>&1 && alias apt='sudo apt -y'
@@ -58,5 +58,7 @@ alias get_dashboard_token='kubectl -n kubernetes-dashboard create token admin-us
 
 alias kube_badpods="kubectl get pods --all-namespaces | grep -Ev '([0-9]+)/\1'"
 alias k="kubectl"
+
+alias love='~/Downloads/love.app/Contents/MacOS/love'
 
 # vim:syntax=sh

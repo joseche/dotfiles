@@ -1,5 +1,5 @@
 [flake8]
-ignore = E501,C1801,I900,W503
+ignore = E501,I900,W503
 max-line-length = 120
 exclude =
     .git,

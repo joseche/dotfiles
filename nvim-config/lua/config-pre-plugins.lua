@@ -44,3 +44,5 @@ vim.cmd("filetype plugin indent on")
 
 DefBufOpts = { noremap = true, silent = true }
 
+o.selection = "inclusive"
+

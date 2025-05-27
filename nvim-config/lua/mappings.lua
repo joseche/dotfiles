@@ -1,5 +1,17 @@
 local M = {}
 
+local lspconfig = require("lspconfig")
+lspconfig.lua_ls.setup({
+    settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'}
+      }
+    }
+  }
+})
+
+
 Map = require("utils").map
 
 function M.normal_mappings()
