@@ -35,3 +35,6 @@ add_to_path "/opt/nvim-linux64/bin"
 
 # rancher desktop
 add_to_path "$HOME/.rd/bin"
+
+# kotlin
+add_to_path "$HOME/kotlin/bin"

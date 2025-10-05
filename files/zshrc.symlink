@@ -13,24 +13,10 @@ function virtualenv_info {
   [[ -n "$VIRTUAL_ENV" ]] && echo "($(basename $VIRTUAL_ENV)) "
 }
 
-source ~/.paths.sh
-
-source_if_exists=(~/.alias ~/.zsh-helm ~/.keys)
-for i in "${source_if_exists[@]}"; do
-    if [[ -f $i ]]; then
-        source "$i"
-    fi
-done
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/jhidalgo/kotlin/bin:/Users/jhidalgo/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 # --- Git branch and status indicator ---
 autoload -Uz vcs_info
@@ -47,8 +33,6 @@ $ '
 autoload -Uz compinit
 compinit
 
-# --- Suggested plugins (use oh-my-zsh or load manually) ---
-# Git, pip, python, ls, grep autocompletions
 autoload -U +X bashcompinit && bashcompinit
 
 # For enhanced completion: brew install zsh-completions (on macOS)
@@ -64,3 +48,14 @@ source <(fzf --zsh)
 # >>> xmake >>>
 test -f "/Users/jhidalgo/.xmake/profile" && source "/Users/jhidalgo/.xmake/profile"
 # <<< xmake <<<
+
+
+source ~/.paths.sh
+
+source_if_exists=(~/.alias ~/.zsh-helm ~/.keys)
+for i in "${source_if_exists[@]}"; do
+    if [[ -f $i ]]; then
+        source "$i"
+    fi
+done
+
